@@ -83,26 +83,12 @@ public class UserInterface {
         System.out.println("What is the name of your task or event?");
         String name = reader.nextLine(); // Get user input
         System.out.println("On what date does your task or event to take place?");
-        System.out.println();
-        System.out.println("(Please enter date in format YYYY-MM-DD)");
-        String startDate = reader.nextLine(); // Get user input
-        int year = Integer.parseInt(startDate.substring(0, 4));
-        int month = Integer.parseInt(startDate.substring(5, 7));
-        int day = Integer.parseInt(startDate.substring(8, 10));
+        LocalDate date = UserInterfacePrints.getDate(reader);
         System.out.println("At what time does your task or event begin?");
-        System.out.println();
-        System.out.println("(Please enter time in format HH:MM, where HH ranges from 00 to 23 and" +
-                " where MM is either 00 or 30)");
-        String startTime = reader.nextLine();  // Get user input
-        int hour = Integer.parseInt(startTime.substring(0, 2));
-        int minute = Integer.parseInt(startTime.substring(3, 5));
-        LocalDateTime startDateTime = LocalDateTime.of(year, month, day, hour, minute);
-        System.out.println("(Please enter the duration of this task or event in the format HH:MM, HH ranges from 00 to" +
-                " 23 and where MM is either 00 or 30");
-        String durationStr = reader.nextLine();  // Get user input
-        int hourDuration = Integer.parseInt(durationStr.substring(0, 2));
-        int minuteDuration = Integer.parseInt(durationStr.substring(3, 5));
-        LocalTime duration = LocalTime.of(hourDuration, minuteDuration);
+        LocalTime time = UserInterfacePrints.getTime(reader);
+        LocalDateTime startDateTime = LocalDateTime.of(date, time);
+        System.out.println("What is the duration of this task or event?");
+        LocalTime duration = UserInterfacePrints.getTime(reader);
         return new FixedTask(name, startDateTime, duration);  // Create a FixedTask from this information
     }
 

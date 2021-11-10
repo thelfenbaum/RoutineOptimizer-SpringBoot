@@ -24,6 +24,6 @@ public interface TaskRepository extends JpaRepository<Week, Long>{
      * @param taskDate: the date of the tasks we are searching for.
      * @param userId: the ID of the user accessing tasks in the database.
      */
-    @Query("SELECT t FROM tasks WHERE t.start_date = taskDate")
+    @Query("SELECT t FROM tasks t WHERE t.start_date = :taskDate")
     public ArrayList<Task> getTaskByDate(LocalDate taskDate, int userId);
 }
