@@ -1,13 +1,24 @@
 package com.csc207.routop;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+@Entity
 public class Task {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    public Long id;
     public String name;
     public LocalDateTime startDateTime;
     public LocalTime duration;
     public boolean completed;
+
+    protected Task(){}
+
 
     /**
      * Constructor to be used by NonFixedTasks, giving the task its name and duration
@@ -42,6 +53,8 @@ public class Task {
     public void complete(){
         this.completed = true;
     }
+
+
 
     // want to implement a "schedule" method which takes a task and a time slot and places the task
     // into that time slot.

@@ -1,15 +1,12 @@
 package accessingdatajpa;
-
 import com.csc207.routop.Task;
 import com.csc207.routop.Week;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public interface TaskRepository extends JpaRepository<Week, Long>{
+public interface TaskRepository extends JpaRepository<Task, Long>{
     /**
      * Save this task to the database.
      *
@@ -24,6 +21,6 @@ public interface TaskRepository extends JpaRepository<Week, Long>{
      * @param taskDate: the date of the tasks we are searching for.
      * @param userId: the ID of the user accessing tasks in the database.
      */
-    @Query("SELECT t FROM tasks t WHERE t.start_date = :taskDate")
-    public ArrayList<Task> getTaskByDate(LocalDate taskDate, int userId);
+    @Query("Select t from Task t where t.startDateTime = :taskDate")
+    ArrayList<Task> getTaskByDate(LocalDate taskDate, int userId);
 }

@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "jpa",
+      "type": "java.lang.String",
+      "description": "Description for jpa."
+    },
+    {
+      "name": "database-platform",
+      "type": "java.lang.String",
+      "description": "Description for database-platform."
+    },
+    {
+      "name": "datasource",
+      "type": "java.lang.String",
+      "description": "Description for datasource."
+    },
+    {
+      "name": "spring",
+      "type": "java.lang.String",
+      "description": "Description for spring."
+    }
+  ] }

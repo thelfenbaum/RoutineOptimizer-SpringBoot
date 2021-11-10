@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 public class Week {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long Id;
+    private int Id;
     public Day[] days;
 
 
