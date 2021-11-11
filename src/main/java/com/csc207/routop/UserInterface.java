@@ -135,29 +135,10 @@ public class UserInterface {
         System.out.println("What date do you want to start working on this project or goal?\n");
         LocalDate startDate = UserInterfacePrints.getDate(reader);
 
-        System.out.println("What date is this project or goal due by?");
-        LocalDate dueDate = UserInterfacePrints.getDate(reader);
+        LocalDateTime dueDateTime = getDueDateTime(reader);
 
-        System.out.println("At what time on that day is your project or goal due before? \n");
-        LocalTime dueTime = UserInterfacePrints.getTime(reader);
+        LocalTime maxHoursPerTask = getMaxHoursPerTask(week, reader, startDate, dueDateTime);
 
-        LocalDateTime dueDateTime = LocalDateTime.of(dueDate, dueTime);
-
-        System.out.println("What is the total number of hours you would like to work on this project? (round to the" +
-                " nearest 0.5)");
-        double totalHours = Double.parseDouble(reader.nextLine());
-        double minHours = Project.calculateMinHours(week, startDate, dueDateTime, totalHours, Constants.FREQUENCY);
-        // Create case to handle when minHours is 0.0
-        double maxHours = Project.calculateMaxHoursWeek(week);
-        System.out.println("You must work on this project at least " + minHours + " per day and at most " + maxHours +
-                " per day.");
-        System.out.println("Please enter the maximum amount of time you would like to work on this project in a given" +
-                "day. Enter a time formatted as HH:MM, where HH and MM are between that of the minimum and maximum" +
-                "shown above.");
-        String input = reader.nextLine();
-        int hours = Integer.parseInt(input.substring(0, 2));
-        int minutes = Integer.parseInt(input.substring(3, 5));
-        LocalTime maxHoursPerTask = LocalTime.of(hours, minutes);
         NonFixedTask[] projectTasks = new NonFixedTask[Constants.FREQUENCY];
         for(int i = 0; i < 7; i++){
             projectTasks[i] = new NonFixedTask(name, dueDateTime, maxHoursPerTask);
@@ -171,7 +152,7 @@ public class UserInterface {
      * @param week: the week that the task will be scheduled in
      * @param selection: the selection from the user about which type of task they would like to put
      */
-    public static void schedulingDecision(Week week, int selection, Scanner reader){
+    public static void schedulingDecision(Week week, int selection, Scanner reader) {
         if (selection == 1) {
             FixedTask taskToPut = UserInterface.createFixedTask(reader);
             Controller.activateFixedTaskScheduling(week, taskToPut);
@@ -185,6 +166,31 @@ public class UserInterface {
             System.out.println("Please enter a valid option (1, 2, or 3).");
         }
     }
+
+        private static LocalDateTime getDueDateTime(Scanner reader) {
+            System.out.println("What date is this project or goal due by?");
+            LocalDate dueDate = UserInterfacePrints.getDate(reader);
+
+            System.out.println("At what time on that day is your project or goal due before? \n");
+            LocalTime dueTime = UserInterfacePrints.getTime(reader);
+
+            return LocalDateTime.of(dueDate, dueTime);
+        }
+
+        private static LocalTime getMaxHoursPerTask(Week week, Scanner reader, LocalDate startDate, LocalDateTime dueDateTime)
+        {
+            System.out.println("What is the total number of hours you would like to work on this project? (round to the" +
+                    " nearest 0.5)");
+            double totalHours = Double.parseDouble(reader.nextLine());
+            double minHours = Project.calculateMinHours(week, startDate, dueDateTime, totalHours, Constants.FREQUENCY);
+            // Create case to handle when minHours is 0.0
+            double maxHours = Project.calculateMaxHoursWeek(week);
+            System.out.println("You must work on this project at least " + minHours + " per day and at most " + maxHours +
+                    " per day.");
+            System.out.println("Please enter the maximum amount of time you would like to work on this project in a given" +
+                    "day.");
+            return UserInterfacePrints.getTime(reader);
+        }
 
 
 
