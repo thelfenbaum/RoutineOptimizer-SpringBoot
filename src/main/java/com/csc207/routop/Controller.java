@@ -1,17 +1,10 @@
 package com.csc207.routop;
 
-import java.time.LocalDate;
-
 public class Controller {
 
 
 
-    // instantiate a week object to be populated by input from UI
-    public static Week activateInstantiateWeek(LocalDate startDate){
-        return InstantiateWeek.instantiateWeek(startDate);
-    }
-
-    // initiates scheduling and putting of fixed task if user chooses to add one to their schedule in UI
+   // initiates scheduling and putting of fixed task if user chooses to add one to their schedule in UI
     public static void activateFixedTaskScheduling(Week week, FixedTask taskToPut){
         Putter.putTask(week, taskToPut);
     }
