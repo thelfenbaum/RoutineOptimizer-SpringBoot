@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public interface TaskRepository extends JpaRepository<Task, Long>{
+public interface TaskSerializableRepository extends JpaRepository<Task, Long>{
     /**
      * Save this task to the database.
      *
