@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public class UserInterfacePrints {
+
     /**
      * Welcome message which greets user when they initiate the program
      */
@@ -27,8 +28,8 @@ public class UserInterfacePrints {
         System.out.println("    - 1 to schedule a task or event that is part of your week's fixed schedule");
         System.out.println("    - 2 to schedule a task or event that is flexible, which RoutOp will find the best" +
                 "time slot for based on your fixed schedule.");
-        System.out.println("    - 3 to enter information about a project or goal you are working towards, which" +
-                "RoutOp will find time during the week for you to work on based on your fixed schedule as well" +
+        System.out.println("    - 3 to enter information about a project or goal you are working towards, which " +
+                "RoutOp will find time during the week for you to work on based on your fixed schedule as well " +
                 "as the information you enter about the project.");
         System.out.println("    - 4 to exit the program");
     }

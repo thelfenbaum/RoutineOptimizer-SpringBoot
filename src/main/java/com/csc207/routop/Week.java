@@ -14,8 +14,11 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 public class Week {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int Id;
-    public Day[] days;
+    private double Id;
+//    public Day[] days;
+    public LocalDate start_date;
+    public double user_id;
+
 
 
     protected Week(){}
@@ -27,12 +30,12 @@ public class Week {
      * Class Week contains seven days. It represents a user's week and contains the data regarding all of their tasks.
      * @param startDate the start date of that week.
      */
-    public Week(LocalDate startDate){
-        // initialize <days> to an empty array of 7 days
-        days = new Day[7];
-        // set each element of <days> to its corresponding day, starting with days[0] = new Day(startDate, startDay).
-        for(int i = 0; i <= 6; i++){
-            days[i] = new Day(startDate.plusDays(i));
+    public Week(LocalDate startDate, double user_id){
+//        // initialize <days> to an empty array of 7 days
+//        days = new Day[7];
+//        // set each element of <days> to its corresponding day, starting with days[0] = new Day(startDate, startDay).
+//        for(int i = 0; i <= 6; i++){
+//            days[i] = new Day(startDate.plusDays(i));
         }
     }
 
