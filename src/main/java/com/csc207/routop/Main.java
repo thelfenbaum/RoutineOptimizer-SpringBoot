@@ -20,7 +20,7 @@ public class Main {
             if (selectionForScheduling == 4) {
                 break;
             }
-            UserInterface.activateCreateOrImport(week, createOrImportChoice, startDate, selectionForScheduling, reader);
+            UserInterface.activateCreateOrImport(week, createOrImportChoice, selectionForScheduling, reader);
         }
         reader.close();
   }

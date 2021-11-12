@@ -5,6 +5,9 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public class UserInterfacePrints {
+    /**
+     * Welcome message which greets user when they initiate the program
+     */
     public static void welcomeMessage(){
         System.out.println("Hi there! Welcome to RoutOp, the app built for optimizing your week.");
         System.out.println("The app looks at your week's fixed schedule (for example: meetings, exercise, or " +
@@ -15,6 +18,10 @@ public class UserInterfacePrints {
         System.out.println("    - 2 to import a week schedule from a .ics file (feature coming soon)");
     }
 
+    /**
+     * Options presented to user for which kind of scheduling process they would like to initiate.
+     * If they choose option 4, they exit the program
+     */
     public static void scheduleOptionsMessage(){
         System.out.println("Schedule one or more duties. Enter:");
         System.out.println("    - 1 to schedule a task or event that is part of your week's fixed schedule");
@@ -26,6 +33,11 @@ public class UserInterfacePrints {
         System.out.println("    - 4 to exit the program");
     }
 
+    /**
+     * Helper method UserInterface calls on to gather a date from the user
+     * @param reader: Scanner in Main module reading user input
+     * @return requested LocalDate object
+     */
     public static LocalDate getDate(Scanner reader){
         System.out.println("(Please enter date in format YYYY-MM-DD)");
         String startDate = reader.nextLine(); // Get user input
@@ -34,7 +46,11 @@ public class UserInterfacePrints {
         int day = Integer.parseInt(startDate.substring(8, 10));
         return LocalDate.of(year, month, day);
     }
-
+    /**
+     * Helper method UserInterface calls on to gather a time from the user
+     * @param reader: Scanner in Main module reading user input
+     * @return requested LocalTime object
+     */
     public static LocalTime getTime(Scanner reader){
         System.out.println("(Please enter time in format HH:MM, where HH ranges from 00 to 23 and" +
                 " where MM is either 00 or 30)");

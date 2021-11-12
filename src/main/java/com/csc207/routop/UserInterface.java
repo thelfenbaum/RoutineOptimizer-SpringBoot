@@ -1,6 +1,6 @@
 package com.csc207.routop;
 
-import org.apache.catalina.User;
+//import org.apache.catalina.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,6 +14,7 @@ public class UserInterface {
      *  - If the user inputs 1, program creates a week calendar.
      *  - If the user inputs 2, program imports a week calendar.
      *
+     * @param reader: The scanner in the Main module reading user input.
      * @return user's selected option as an integer.
      */
     public static int createOrImportWeek(Scanner reader){
@@ -28,10 +29,10 @@ public class UserInterface {
      *
      * @param week: The week in which the schedule is being made for
      * @param selection: The selection of the user, whether they want to import or create their schedule
-     * @param startDate: The day they would like to start their schedule
+     * @param reader: The scanner in Main module reading user input
      * @param selectionForScheduling: The type of task they would like to put into their week
      */
-    public static void activateCreateOrImport(Week week, int selection, LocalDate startDate, int selectionForScheduling, Scanner reader){
+    public static void activateCreateOrImport(Week week, int selection, int selectionForScheduling, Scanner reader){
         if (selection == 1) {
             //Controller.activateInstantiateWeek(startDate);
             schedulingDecision(week, selectionForScheduling, reader);
@@ -47,6 +48,7 @@ public class UserInterface {
      * Assuming user starts a new week, ask the user to choose on which date
      * they want their week to start.
      *
+     * @param reader: The scanner in Main module reading user input
      * @return the date they input as a LocalDate object.
      */
     public static LocalDate getStartDate(Scanner reader){
@@ -62,6 +64,7 @@ public class UserInterface {
      *  - If the user inputs 3, program schedules a project.
      *  - If the user inputs 4, program ends
      *
+     * @param reader: The scanner in Main module reading user input
      * @return user's selected option as an integer.
      */
     public static int scheduleDuty(Scanner reader){
@@ -77,6 +80,7 @@ public class UserInterface {
      * Collect information from user about task they want to schedule and return a task according to their
      * specifications
      *
+     * @param reader: The scanner in Main module reading user input
      * @return the FixedTask that is to be put in the schedule.
      */
     public static FixedTask createFixedTask(Scanner reader){
@@ -101,6 +105,7 @@ public class UserInterface {
     /**
      * Get info from user about the NonFixedTask that they want to schedule and return the Task.
      *
+     * @param reader: The scanner in Main module reading user input
      * @return the NonFixedTask that is to be put in the schedule.
      */
     public static NonFixedTask createNonFixedTask(Scanner reader){
@@ -125,6 +130,8 @@ public class UserInterface {
      * Get info from user about the project they want to schedule, and return an array of NonFixedTasks
      * corresponding to the project.
      *
+     * @param week: The week in which the nonFixedTask is being scheduled
+     * @param reader: The scanner in Main module reading user input
      * @return an array of unscheduled NonFixedTasks corresponding to this project.
      */
     public static NonFixedTask[] createProject(Week week, Scanner reader){
@@ -151,6 +158,7 @@ public class UserInterface {
      *
      * @param week: the week that the task will be scheduled in
      * @param selection: the selection from the user about which type of task they would like to put
+     * @param reader: The scanner in Main module reading user input
      */
     public static void schedulingDecision(Week week, int selection, Scanner reader) {
         if (selection == 1) {
@@ -167,32 +175,42 @@ public class UserInterface {
         }
     }
 
-        private static LocalDateTime getDueDateTime(Scanner reader) {
-            System.out.println("What date is this project or goal due by?");
-            LocalDate dueDate = UserInterfacePrints.getDate(reader);
+    /** Helper method for createProject which gathers information about the project due date and time
+     *
+     * @param reader: The scanner in Main module reading user input
+     * @return the LocalDateTime object representing the due date for the project
+     */
+    private static LocalDateTime getDueDateTime(Scanner reader) {
+        System.out.println("What date is this project or goal due by?");
+        LocalDate dueDate = UserInterfacePrints.getDate(reader);
 
-            System.out.println("At what time on that day is your project or goal due before? \n");
-            LocalTime dueTime = UserInterfacePrints.getTime(reader);
+        System.out.println("At what time on that day is your project or goal due before? \n");
+        LocalTime dueTime = UserInterfacePrints.getTime(reader);
 
-            return LocalDateTime.of(dueDate, dueTime);
-        }
-
-        private static LocalTime getMaxHoursPerTask(Week week, Scanner reader, LocalDate startDate, LocalDateTime dueDateTime)
-        {
-            System.out.println("What is the total number of hours you would like to work on this project? (round to the" +
-                    " nearest 0.5)");
-            double totalHours = Double.parseDouble(reader.nextLine());
-            double minHours = Project.calculateMinHours(week, startDate, dueDateTime, totalHours, Constants.FREQUENCY);
-            // Create case to handle when minHours is 0.0
-            double maxHours = Project.calculateMaxHoursWeek(week);
-            System.out.println("You must work on this project at least " + minHours + " per day and at most " + maxHours +
-                    " per day.");
-            System.out.println("Please enter the maximum amount of time you would like to work on this project in a given" +
-                    "day.");
-            return UserInterfacePrints.getTime(reader);
-        }
-
-
+        return LocalDateTime.of(dueDate, dueTime);
+    }
+    /** Helper method for createProject which gathers information about the maximum amount of time the user can spend
+     * on the project at a time
+     *
+     * @param reader: The scanner in Main module reading user input
+     * @param week: the week into which the project is being scheduled
+     * @return the LocalTime object representing the maximum amount of hours the user is willing to spend on the project
+     * at a time
+     */
+    private static LocalTime getMaxHoursPerTask(Week week, Scanner reader, LocalDate startDate, LocalDateTime dueDateTime)
+    {
+        System.out.println("What is the total number of hours you would like to work on this project? (round to the" +
+                " nearest 0.5)");
+        double totalHours = Double.parseDouble(reader.nextLine());
+        double minHours = Project.calculateMinHours(week, startDate, dueDateTime, totalHours, Constants.FREQUENCY);
+        // Create case to handle when minHours is 0.0
+        double maxHours = Project.calculateMaxHoursWeek(week);
+        System.out.println("You must work on this project at least " + minHours + " per day and at most " + maxHours +
+                " per day.");
+        System.out.println("Please enter the maximum amount of time you would like to work on this project in a given" +
+                "day.");
+        return UserInterfacePrints.getTime(reader);
+    }
 
     // The unitTest gave an error saying that there was no main method in UI, so I added one     -Issam
     public static void main(String[] args) {
