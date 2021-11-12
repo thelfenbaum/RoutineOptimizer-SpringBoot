@@ -28,7 +28,7 @@ public class ConvertTimeToDouble {
      * @return LocalTime converted to a Double, where the digits before the decimal point represent the hours and the
      * digits after the decimal point represent the minutes
      */
-    public double ConvertLocalTimeDouble (LocalTime localTime){
+    public static double ConvertLocalTimeDouble (LocalTime localTime){
         int hour = localTime.getHour();
         int minute = localTime.getMinute();
         double minuteDouble = ((double)minute/60);
@@ -45,5 +45,6 @@ public class ConvertTimeToDouble {
         int minute = (int)((time - hour)*60);
         return LocalTime.of(hour, minute);
     }
+
 
 }

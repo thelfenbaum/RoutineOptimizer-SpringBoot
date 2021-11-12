@@ -22,5 +22,5 @@ public interface TaskRepository extends JpaRepository<Task, Long>{
      * @param userId: the ID of the user accessing tasks in the database.
      */
     @Query("Select t from Task t where t.startDateTime = :taskDate")
-    ArrayList<Task> getTaskByDate(LocalDate taskDate, int userId);
+    ArrayList<Task> getTaskByDate(LocalDate taskDate, double userId);
 }
