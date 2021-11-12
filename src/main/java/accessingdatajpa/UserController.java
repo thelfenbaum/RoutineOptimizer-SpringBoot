@@ -23,6 +23,7 @@ public class UserController {
         return this.userInt.getUserFromUsername(username);
     }
 
+
     public void createUsernameAndPasswordInDb(Long userId, String username, String password){
         this.userInt.saveUser(userId, username, password);
     }
