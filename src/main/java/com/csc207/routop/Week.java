@@ -18,7 +18,6 @@ public class Week {
 //    public Day[] days;
     public LocalDate startDate;
     public double userId;
-    public Day[] days;
 
 
 

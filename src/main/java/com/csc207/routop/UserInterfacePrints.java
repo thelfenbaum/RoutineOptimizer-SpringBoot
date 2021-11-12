@@ -14,9 +14,27 @@ public class UserInterfacePrints {
         System.out.println("The app looks at your week's fixed schedule (for example: meetings, exercise, or " +
                 "classes), and then schedules all your flexible duties in their optimal time slot. This way," +
                 "RoutOp helps you maximize your executive output each week!");
-        System.out.println("Let's begin. Enter");
-        System.out.println("    - 1 to start a new week schedule");
-        System.out.println("    - 2 to import a week schedule from a .ics file (feature coming soon)");
+    }
+
+    public static void promptSignInOrSignUp(){
+        System.out.println("Let's begin. Do you already have an account with us? (y/n)");
+    }
+
+
+    public static void promptUsernameInputSignIn(){
+        System.out.println("Please enter your username.");
+    }
+
+    public static void promptPasswordInputSignIn(){
+        System.out.println("Please enter your password.");
+    }
+
+    public static void promptUsernameInputSignUp(){
+        System.out.println("Please enter a username.");
+    }
+
+    public static void promptPasswordInputSignUp(){
+        System.out.println("Please enter a password.");
     }
 
     /**

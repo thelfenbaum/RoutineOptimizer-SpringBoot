@@ -9,7 +9,8 @@ public class Main {
         Scanner reader = new Scanner(System.in);
         // Give user background on app and ask them whether they want to create
         // new week or import one from a .ics file
-        int createOrImportChoice = UserInterface.createOrImportWeek(reader); // gets user input for whether they would like
+        String signInOrSignUp = UserInterface.signInOrSignUp(reader);
+        double userid = UserInterface.getUserId(reader); // gets user input for whether they would like
         // create or import a week
         LocalDate startDate = UserInterface.getStartDate(reader); // gets the start date for the week assuming they create it
         // FixedTask taskToPut = UserInterface.createFixedTask(reader);

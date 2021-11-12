@@ -5,9 +5,39 @@ package com.csc207.routop;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class UserInterface {
+
+    public static String signInOrSignUp(Scanner reader){
+        UserInterfacePrints.welcomeMessage();
+        UserInterfacePrints.promptSignInOrSignUp();
+        return reader.nextLine();
+    }
+
+    public static void getUsernameAndPassword(Scanner reader, String choice){
+        if (Objects.equals(choice, "y")){
+            UserInterfacePrints.promptUsernameInputSignIn();
+            String username = reader.nextLine();
+            UserController.
+            UserInterfacePrints.promptUsernameInputSignIn();
+        } else if (Objects.equals(choice, "n")){
+            // create user name and password
+        } else {
+            System.out.println("Please enter a valid option (y or n).");
+        }
+    }
+
+    public static void getUserName(Scanner reader){
+
+    }
+
+    public static double getUserId(Scanner reader, String username, String password){
+
+
+    }
+
     /**
      * Starts the calendar program. Prints a blurb regarding how to program works, and then
      * gives user the option to either create or import their week calendar.
@@ -20,6 +50,7 @@ public class UserInterface {
     public static int createOrImportWeek(Scanner reader){
         // Give background for the app and instructions for the user
         UserInterfacePrints.welcomeMessage();
+        UserInterfacePrints.promptSignInOrSignUp();
         String selectedOption = reader.nextLine();  // Read user input
         return Integer.parseInt(selectedOption);
     }

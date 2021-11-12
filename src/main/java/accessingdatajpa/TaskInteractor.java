@@ -64,7 +64,7 @@ public class TaskInteractor {
      * @param userId: the user's user ID.
      * @return the string representation of the Week object we are looking up in the database.
      */
-    public String buildWeekString(LocalDate weekStartDate, double userId){
+    public String getWeekString(LocalDate weekStartDate, double userId){
         StringBuilder s = new StringBuilder();
         s.append("Week starting on ").append(weekStartDate.getDayOfWeek()).append(", ").append(weekStartDate.getDayOfMonth()).append("\n");
         s.append("-------------------------------------------\n");
