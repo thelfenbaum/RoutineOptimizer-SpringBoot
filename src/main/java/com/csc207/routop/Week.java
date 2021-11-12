@@ -10,11 +10,9 @@ import org.hibernate.annotations.TypeDef;
 import javax.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@Entity
 public class Week {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private int Id;
+    private Long id;
+    public Long userId;
     public Day[] days;
 
 
