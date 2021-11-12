@@ -14,7 +14,7 @@ public class Main {
         LocalDate startDate = UserInterface.getStartDate(reader); // gets the start date for the week assuming they create it
         // FixedTask taskToPut = UserInterface.createFixedTask(reader);
         // NonFixedTask taskToSchedule = UserInterface.createNonFixedTask(reader);
-        Week week = new Week(startDate);
+        Week week = new Week(startDate, userId);
         while(true){
             int selectionForScheduling = UserInterface.scheduleDuty(reader);
             if (selectionForScheduling == 4) {
