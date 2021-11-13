@@ -22,7 +22,7 @@ public class TaskTest {
     }
 
     @Test
-    public void complete() {
+    public void testComplete() {
         task.complete();
         assertTrue(task.completed);
     }
