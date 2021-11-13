@@ -2,6 +2,8 @@ package com.csc207.routop;
 
 //import org.apache.catalina.User;
 
+import accessingdatajpa.UserInteractor;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -10,33 +12,76 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    public static String signInOrSignUp(Scanner reader){
-        UserInterfacePrints.welcomeMessage();
-        UserInterfacePrints.promptSignInOrSignUp();
-        return reader.nextLine();
+    /**
+     * Welcome message which greets user when they initiate the program
+     */
+    public static void welcomeMessage(){
+        System.out.println("Hi there! Welcome to RoutOp, the app built for optimizing your week.");
+        System.out.println("The app looks at your week's fixed schedule (for example: meetings, exercise, or " +
+                "classes), and then schedules all your flexible duties in their optimal time slot. This way," +
+                "RoutOp helps you maximize your executive output each week! \n");
+        System.out.println("Do you have an account with us? (y/n)");
     }
 
-    public static void getUsernameAndPassword(Scanner reader, String choice){
-        if (Objects.equals(choice, "y")){
-            UserInterfacePrints.promptUsernameInputSignIn();
-            String username = reader.nextLine();
-            UserController.
-            UserInterfacePrints.promptUsernameInputSignIn();
-        } else if (Objects.equals(choice, "n")){
-            // create user name and password
-        } else {
+    /**
+     * Checks whether the user wants to sign in or sign up
+     *
+     * @param reader: the scanner for user input
+     * @return the id for the user
+     */
+    public static long signInOrSignUp(Scanner reader){
+        String response = reader.nextLine(); // y or n
+        if (Objects.equals(response, "y")){
+            return signIn(reader);
+        }
+        else if (Objects.equals(response, "n")){
+            return signUp(reader);
+        }
+        else{
             System.out.println("Please enter a valid option (y or n).");
+            return signInOrSignUp(reader); // start again
         }
     }
 
-    public static void getUserName(Scanner reader){
-
+    /**
+     * signs in a user
+     *
+     * @param reader: the scanner for user input
+     * @return the id for the user
+     */
+    public static long signIn(Scanner reader){
+        System.out.println("Please enter your username.");
+        String username = reader.nextLine();
+        System.out.println("Please enter your password.");
+        String password = reader.nextLine();
+        if (UserInteractor.checkSignIn(username, password)){ // checks whether if the username and password exist and match up
+            long userId = UserInteractor.getUserId(username);
+            UserInteractor.printWeek(userId); // show the user their week
+            return userId;
+        }
+        else{
+            System.out.println("Incorrect username or password \n ");
+            System.out.println("Do you have an account with us? (y/n)");
+            return signInOrSignUp(reader); // start again
+        }
     }
 
-    public static double getUserId(Scanner reader, String username, String password){
-
-
+    /**
+     * signs up a user
+     *
+     * @param reader: the scanner for user input
+     * @return the id for the user
+     */
+    private static long signUp(Scanner reader) {
+        System.out.println("Please enter a username.");
+        String username = reader.nextLine();
+        System.out.println("Please enter a password.");
+        UserInterfacePrints.printPasswordRequirements();
+        String password = reader.nextLine();
+        return UserInteractor.addUser(username, password);
     }
+
+
 
     /**
      * Starts the calendar program. Prints a blurb regarding how to program works, and then
@@ -49,8 +94,7 @@ public class UserInterface {
      */
     public static int createOrImportWeek(Scanner reader){
         // Give background for the app and instructions for the user
-        UserInterfacePrints.welcomeMessage();
-        UserInterfacePrints.promptSignInOrSignUp();
+        UserInterfacePrints.createOrImportWeekMessage();
         String selectedOption = reader.nextLine();  // Read user input
         return Integer.parseInt(selectedOption);
     }
