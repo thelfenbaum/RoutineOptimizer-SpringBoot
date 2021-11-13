@@ -2,6 +2,7 @@ package com.csc207.routop;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,9 +12,10 @@ import java.util.Map;
  */
 
 public class Day {
-    public LocalDate dayOfMonth;
-    public DayOfWeek dayOfWeek;
-    public Map<Double, String> todaySchedule;
+    private LocalDate dayOfMonth;
+    private DayOfWeek dayOfWeek;
+    private Map<Double, String> todaySchedule;
+    private ArrayList<Task> TodayTasks;
 
     /**
      *
@@ -45,5 +47,69 @@ public class Day {
         return(s.toString());
     }
 
+    /**
+     * Gets the day of the week
+     * @return the day of the week
+     */
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    /**
+     * Gets the schedule for the day
+     * @return today's schedule
+     */
+    public Map<Double, String> getTodaySchedule(){
+        return todaySchedule;
+    }
+
+    /**
+     * Gets the tasks for the day
+     * @return The list of tasks for the day
+     */
+    public ArrayList<Task> getTodayTasks(){
+        return TodayTasks;
+    }
+
+    /**
+     * Adds task to the list of tasks for the day
+     * @param task: The task that will be added to the list of tasks
+     */
+    public void addTodayTasks(Task task){
+        TodayTasks.add(task);
+    }
+
+    /**
+     * Gets the day of the month
+     * @return the day of the month
+     */
+    public LocalDate getDayOfMonth() {
+        return dayOfMonth;
+    }
+
+    /**
+     * Puts a project into the day's schedule
+     * @param time: the time of the task to be put into the day's schedule
+     * @param name: the name of the task to be put into the day's schedule
+     */
+    public void putProject(Double time, String name) {
+        todaySchedule.replace(time, name);
+    }
+
+    /**
+     * remove a task from todaySchdule (delete the task)
+     * @param task: the task to be deleted
+     */
+    public void removeTask(Task task) {
+        double begin = task.getStartDateTime().getHour() + task.getStartDateTime().getMinute() / 30.0;
+        double end = begin + task.getDuration().getHour() + task.getDuration().getMinute() / 30.0;
+        for (double i = begin; i <= end; i+= 0.5)
+        {
+            this.todaySchedule.put(i, "");
+        }
+    }
+
 
 }
+
+

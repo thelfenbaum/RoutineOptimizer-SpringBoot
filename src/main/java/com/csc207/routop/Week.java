@@ -12,8 +12,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 public class Week {
     private Long id;
-    public Long userId;
-    public Day[] days;
+    private Long userId;
+    private Day[] days;
 
 
     protected Week(){}
@@ -44,7 +44,7 @@ public class Week {
 
     public String toString(){
         StringBuilder s = new StringBuilder();
-        s.append("Week starting on ").append(this.days[0].dayOfWeek).append(", ").append(this.days[0].dayOfMonth).append("\n");
+        s.append("Week starting on ").append(this.days[0].getDayOfWeek()).append(", ").append(this.days[0].getDayOfMonth()).append("\n");
         s.append("-------------------------------------------\n");
         for(Day day: this.days){
             s.append(day.toString());
@@ -53,6 +53,15 @@ public class Week {
     }
 
 
+    public Day[] getDays() {
+        return days;
+    }
 
+    public Long getId() {
+        return id;
+    }
 
+    public Long getUserId() {
+        return userId;
+    }
 }
