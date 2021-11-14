@@ -1,9 +1,5 @@
 package com.csc207.routop;
-
-//import org.apache.catalina.User;
-
 import accessingdatajpa.UserInteractor;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
