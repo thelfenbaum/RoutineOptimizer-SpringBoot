@@ -1,6 +1,7 @@
 package com.csc207.cli;
 import api.*;
 import entities.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;

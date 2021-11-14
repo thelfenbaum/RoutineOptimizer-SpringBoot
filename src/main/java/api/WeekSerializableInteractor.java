@@ -5,6 +5,10 @@ import entities.WeekSerializable;
 public class WeekSerializableInteractor {
     WeekSerializableRepository repo;
 
+    public WeekSerializableInteractor(WeekSerializableRepository wsr){
+        this.repo = wsr;
+    }
+
     public void saveWeekSerializable(WeekSerializable weekSer){
         this.repo.save(weekSer);
     }
