@@ -42,6 +42,9 @@ public class Putter {
                     day.getTodaySchedule().replace(startTimeD + 0.5*i, task.getName());
                     i ++;
                 }
+                if (!day.getTodayTasks().contains(task)){
+                    day.addTodayTasks(task);
+                }
             }
         }
     }

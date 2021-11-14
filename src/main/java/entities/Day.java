@@ -32,6 +32,7 @@ public class Day {
         for(double i = 0.0; i <= 23.5; i = i + 0.5){
             this.todaySchedule.put(i, "");
         }
+        this.TodayTasks = new ArrayList<Task>();
     }
 
     /**
