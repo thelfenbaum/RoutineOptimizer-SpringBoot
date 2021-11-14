@@ -15,26 +15,26 @@ public class Putter {
 
     public static void putTask(Week week, Task task){
         // loop through half-hours and put them into the correct day using Day.putHalfHourTask.
-        LocalDateTime taskStart = task.startDateTime;
-        for (Day day: week.days) {
+        LocalDateTime taskStart = task.getStartDateTime();
+        for (Day day: week.getDays()) {
             // find the day this task starts in this week
-            if (taskStart.toLocalDate().isEqual(day.dayOfMonth)) {
+            if (taskStart.toLocalDate().isEqual(day.getDayOfMonth())) {
                 //convert task duration to double
-                int hour = task.duration.getHour();
-                int minute = task.duration.getMinute();
+                int hour = task.getDuration().getHour();
+                int minute = task.getDuration().getMinute();
                 double minuteDouble = ((double)minute/60);
                 //calculate the number of half hour block represented by the minute
                 double minuteBlock = minuteDouble/0.5;
                 //calculate total number of half hour blocks in the task duration
                 int totalTaskBlock = hour*2 + (int) minuteBlock;
                 //convert the start time of task to double
-                double h = task.startDateTime.getHour();
-                double m = (double)(task.startDateTime.getMinute())/60;
+                double h = task.getStartDateTime().getHour();
+                double m = (double)(task.getStartDateTime().getMinute())/60;
                 double startTimeD = h + m;
                 //loop through todaySchedule and mutate the value of the corresponding key
                 int i = 0;
                 while (i < totalTaskBlock) {
-                    day.todaySchedule.replace(startTimeD + 0.5*i, task.name);
+                    day.getTodaySchedule().replace(startTimeD + 0.5*i, task.getName());
                     i ++;
                 }
             }

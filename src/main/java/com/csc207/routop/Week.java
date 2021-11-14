@@ -11,7 +11,6 @@ import javax.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 public class Week {
-    private Long id;
     private Long userId;
     private Day[] days;
 
@@ -55,10 +54,6 @@ public class Week {
 
     public Day[] getDays() {
         return days;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public Long getUserId() {

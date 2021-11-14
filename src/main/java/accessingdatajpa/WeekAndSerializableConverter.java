@@ -26,5 +26,11 @@ public class WeekAndSerializableConverter {
         return taskSers;
     }
 
-    public static Week SerializableToWeek(WeekSerializable weekSer, ArrayList<TaskSerializable> taskSers){}
+    public static Week SerializableToWeek(WeekSerializable weekSer, ArrayList<TaskSerializable> taskSers){
+        // convert all TaskSerializables to Tasks
+        // create seven Day objects starting on the startDate of weekSer
+        // create a Week object
+    }
+
+    public static Task TaskSerializableToTask(TaskSerializable taskSer){}
 }
