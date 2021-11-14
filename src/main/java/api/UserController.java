@@ -1,11 +1,13 @@
 package api;
 
 import entities.User;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.Objects;
 
+@Configuration
 public class UserController {
-    private final UserInteractor userInt;
+    private UserInteractor userInt;
 
     public UserController(UserInteractor userInt){
         this.userInt = userInt;

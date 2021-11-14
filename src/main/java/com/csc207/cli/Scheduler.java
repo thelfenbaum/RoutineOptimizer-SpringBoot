@@ -25,10 +25,10 @@ public class Scheduler {
     //non-fixed tasks? - Hailey
     public static NonFixedTask ScheduleTaskInWeek(Week week, NonFixedTask task){
 //         algorithm to find best time slot in this week
-        for (Day day: week.days){
+        for (Day day: week.getDays()){
             NonFixedTask dayTask = (NonFixedTask) ScheduleTaskInDay(day, task);
             LocalDateTime defaultValue = LocalDateTime.of(0, 1, 1, 0, 0);
-            if(!(dayTask.startDateTime.equals(defaultValue))) {
+            if(!(dayTask.getStartDateTime().equals(defaultValue))) {
                 return dayTask;
             }
          }
@@ -79,7 +79,7 @@ public class Scheduler {
     public static NonFixedTask[] ScheduleProject(Week week, NonFixedTask[] projectTasks){
         NonFixedTask[] updatedTasks = new NonFixedTask[projectTasks.length];
         for (int i = 0; i < projectTasks.length; i++){
-            updatedTasks[i] = (NonFixedTask) ScheduleTaskInDay(week.days[i], projectTasks[i]);
+            updatedTasks[i] = (NonFixedTask) ScheduleTaskInDay(week.getDays()[i], projectTasks[i]);
         }
         return updatedTasks;
     }
@@ -94,12 +94,10 @@ public class Scheduler {
     public static Task ScheduleTaskInDay (Day day, Task task){
         List<Double> time = new ArrayList<>();
         double freeDuration = 0.0;
-        double h = task.duration.getHour();
-        double m = (double)(task.duration.getMinute())/60;
-        double durationD = h + m;
+        double durationD = ConvertTimeToDouble.ConvertLocalTimeDouble(task.getDuration());
         //add all free time to a list
-        for (double key : day.todaySchedule.keySet()) {
-            String value = day.todaySchedule.get(key);
+        for (double key : day.getTodaySchedule().keySet()) {
+            String value = day.getTodaySchedule().get(key);
             if (value.equals("")){time.add(key);}}
         //iterate through free time to calculate how much free time we have in a row
         for (int i = 0; i < time.size(); i++) {
@@ -109,10 +107,8 @@ public class Scheduler {
                 if(freeDuration >= durationD){
                     //if yes, schedule the task to the start of the free duration
                     double startTime = time.get(i+1) - freeDuration;
-                    int hour = (int)Math.floor(startTime);
-                    int minute = (int)(startTime - hour)*60;
-                    LocalTime start = LocalTime.of(hour, minute);
-                    task.startDateTime = LocalDateTime.of(day.dayOfMonth, start);
+                    LocalTime start = ConvertTimeToDouble.ConvertDoubleToLocalTime(startTime);
+                    task.changeStartDateTime(LocalDateTime.of(day.getDayOfMonth(), start));
                     return task;
                     //if duration is not task duration, reset freeDuration to 0.0
                 }

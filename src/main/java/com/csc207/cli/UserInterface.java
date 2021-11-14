@@ -1,6 +1,7 @@
 package com.csc207.cli;
 import api.*;
 import entities.*;
+import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,8 +10,21 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+@Configuration
 public class UserInterface {
+    private UserController userController;
+    private WeekSerializableInteractor weekSerializableInteractor;
+    private UserInteractor userInteractor;
+    private TaskSerializableInteractor taskSerializableInteractor;
 
+    public UserInterface (){}
+
+    public UserInterface(UserController uc, WeekSerializableInteractor wsi, UserInteractor ui, TaskSerializableInteractor tsi){
+        this.userController = uc;
+        this.weekSerializableInteractor = wsi;
+        this.userInteractor = ui;
+        this.taskSerializableInteractor = tsi;
+    }
     /**
      * Welcome message which greets user when they initiate the program
      */
@@ -28,7 +42,7 @@ public class UserInterface {
      * @param reader: the scanner for user input
      * @return the id for the user
      */
-    public static long signInOrSignUp(Scanner reader){
+    public long signInOrSignUp(Scanner reader){
         String response = reader.nextLine(); // y or n
         if (Objects.equals(response, "y")){
             return signIn(reader);
@@ -48,14 +62,14 @@ public class UserInterface {
      * @param reader: the scanner for user input
      * @return the id for the user
      */
-    public static long signIn(Scanner reader){
+    public long signIn(Scanner reader){
         System.out.println("Please enter your username.");
         String username = reader.nextLine();
         System.out.println("Please enter your password.");
         String password = reader.nextLine();
-        if (UserInteractor.checkSignIn(username, password)){ // checks whether if the username and password exist and match up
-            long userId = UserInteractor.getUserIdByUsername(username);
-            System.out.println(WeekSerializableInteractor.getWeekSerializableByUserId(userId)); // show the user their week
+        if (this.userInteractor.checkSignIn(username, password)){ // checks whether if the username and password exist and match up
+            long userId = this.userInteractor.getUserIdByUsername(username);
+            System.out.println(this.weekSerializableInteractor.getWeekSerializableByUserId(userId)); // show the user their week
             return userId;
         }
         else{
@@ -71,14 +85,14 @@ public class UserInterface {
      * @param reader: the scanner for user input
      * @return the id for the user
      */
-    private static long signUp(Scanner reader) {
+    private long signUp(Scanner reader) {
         System.out.println("Please enter a username.");
         String username = reader.nextLine();
         System.out.println("Please enter a password.");
         UserInterfacePrints.printPasswordRequirements();
         String password = reader.nextLine();
         User newUser = new User(username, password);
-        UserController.saveUser(newUser);
+        this.userController.saveUser(newUser);
         return newUser.getId();
     }
 
@@ -107,14 +121,14 @@ public class UserInterface {
      * @param selection: The selection of the user, whether they want to import or create their schedule
      * @param reader: The scanner in Main module reading user input
      */
-    public static Week activateCreateOrImport(long userId, int selection, Scanner reader){
+    public Week activateCreateOrImport(long userId, int selection, Scanner reader){
         Week week;
         if (selection == 1) {
             LocalDate startDate = UserInterface.getStartDate(reader);
             week = new Week(startDate, userId);
         } else if (selection == 2) { // use user id to retrieve the user's week serializable, convert it to week
-            WeekSerializable weekSers = WeekSerializableInteractor.getWeekSerializableByUserId(userId);
-            ArrayList<TaskSerializable> tasksSers = TaskSerializableInteractor.getTasksByUserId(userId);
+            WeekSerializable weekSers = this.weekSerializableInteractor.getWeekSerializableByUserId(userId);
+            ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractor.getTasksByUserId(userId);
             week = WeekAndSerializableConverter.SerializableToWeek(weekSers, tasksSers);
         } else {
             System.out.println("Please enter a valid option (1 or 2).");
@@ -163,7 +177,7 @@ public class UserInterface {
      * @param reader: The scanner in Main module reading user input
      * @return the FixedTask that is to be put in the schedule.
      */
-    public static FixedTask createFixedTask(Scanner reader){
+    public static FixedTask createFixedTask(Scanner reader, Long userId){
         //Scanner reader = new Scanner(System.in);  // Create a Scanner object
         System.out.println("What is the name of your task or event?");
         String name = reader.nextLine(); // Get user input
@@ -178,7 +192,7 @@ public class UserInterface {
         System.out.println("What is the duration of this task or event?");
         LocalTime duration = UserInterfacePrints.getTime(reader);
 
-        return new FixedTask(name, startDateTime, duration);  // Create a FixedTask from this information
+        return new FixedTask(name, startDateTime, duration, userId);  // Create a FixedTask from this information
     }
 
 
@@ -188,7 +202,7 @@ public class UserInterface {
      * @param reader: The scanner in Main module reading user input
      * @return the NonFixedTask that is to be put in the schedule.
      */
-    public static NonFixedTask createNonFixedTask(Scanner reader){
+    public static NonFixedTask createNonFixedTask(Scanner reader, Long userId){
         //Scanner reader = new Scanner(System.in);  // Create a Scanner object
         System.out.println("What is the name of your task or event?");
         String name = reader.nextLine(); // Get user input
@@ -203,7 +217,7 @@ public class UserInterface {
         LocalTime dueTime = UserInterfacePrints.getTime(reader);
 
         LocalDateTime dueDateTime = LocalDateTime.of(dueDate, dueTime);
-        return new NonFixedTask(name, dueDateTime, duration);
+        return new NonFixedTask(name, dueDateTime, duration, userId);
     }
 
     /**
@@ -228,7 +242,7 @@ public class UserInterface {
 
         NonFixedTask[] projectTasks = new NonFixedTask[Constants.FREQUENCY];
         for(int i = 0; i < 7; i++){
-            projectTasks[i] = new NonFixedTask(name, dueDateTime, maxHoursPerTask);
+            projectTasks[i] = new NonFixedTask(name, dueDateTime, maxHoursPerTask, week.getUserId());
         }
         return projectTasks;
     }
@@ -243,12 +257,12 @@ public class UserInterface {
 
     public static void schedulingDecision(Week week, int selection, Scanner reader){
         if (selection == 1) {
-            FixedTask taskToPut = UserInterface.createFixedTask(reader);
+            FixedTask taskToPut = UserInterface.createFixedTask(reader, week.getUserId());
             if(!Controller.checkFixedTaskScheduling(week, taskToPut)){
                 System.out.println("This task can't be scheduled");}
             else{Controller.activateFixedTaskScheduling(week, taskToPut);}
         } else if (selection == 2) {
-            NonFixedTask taskToSchedule = UserInterface.createNonFixedTask(reader);
+            NonFixedTask taskToSchedule = UserInterface.createNonFixedTask(reader, week.getUserId());
             if(!Controller.checkNonFixedTaskScheduling(week, taskToSchedule)){
                 System.out.println("This task can't be scheduled");}
             else{Controller.activateNonFixedTaskScheduling(week, taskToSchedule);}
