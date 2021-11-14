@@ -29,7 +29,7 @@ public class TaskSerializable {
     @Column(name = "user_id", columnDefinition = "bigint")
     private Long userId;
 
-    protected TaskSerializable();
+    protected TaskSerializable() {};
 
     public TaskSerializable(String name, LocalDateTime startDateTime, LocalTime duration, boolean isComplete, Long userId){
         this.name = name;
