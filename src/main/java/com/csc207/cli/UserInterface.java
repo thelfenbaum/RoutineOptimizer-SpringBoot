@@ -12,13 +12,11 @@ import java.util.Scanner;
 
 @Configuration
 public class UserInterface {
-    private UserController userController;
-    private WeekSerializableInteractor weekSerializableInteractor;
-    private UserInteractor userInteractor;
-    private TaskSerializableInteractor taskSerializableInteractor;
-    private WeekController weekController;
-
-    public UserInterface (){}
+    private final UserController userController;
+    private final WeekSerializableInteractor weekSerializableInteractor;
+    private final UserInteractor userInteractor;
+    private final TaskSerializableInteractor taskSerializableInteractor;
+    private final WeekController weekController;
 
     public UserInterface(UserController uc, WeekSerializableInteractor wsi, UserInteractor ui,
                          TaskSerializableInteractor tsi, WeekController wc){
@@ -43,7 +41,7 @@ public class UserInterface {
      * Checks whether the user wants to sign in or sign up
      *
      * @param reader: the scanner for user input
-     * @return the id for the user
+     * @return the method required to satisfy use selection: either signIn or signUp
      */
     public long signInOrSignUp(Scanner reader){
         String response = reader.nextLine(); // y or n
@@ -60,7 +58,7 @@ public class UserInterface {
     }
 
     /**
-     * signs in a user
+     * signs in a user, intaking username and password
      *
      * @param reader: the scanner for user input
      * @return the id for the user
@@ -83,7 +81,7 @@ public class UserInterface {
     }
 
     /**
-     * signs up a user
+     * signs up a user, taking username and password
      *
      * @param reader: the scanner for user input
      * @return the id for the user
@@ -98,8 +96,6 @@ public class UserInterface {
         this.userController.saveUser(newUser);
         return newUser.getId();
     }
-
-
 
     /**
      * Starts the calendar program. Prints a blurb regarding how to program works, and then
@@ -123,6 +119,7 @@ public class UserInterface {
      * @param userId: the id of the user
      * @param selection: The selection of the user, whether they want to import or create their schedule
      * @param reader: The scanner in Main module reading user input
+     * @return the week schedule for the user
      */
     public Week activateCreateOrImport(long userId, int selection, Scanner reader){
         Week week;
@@ -165,7 +162,6 @@ public class UserInterface {
      * @return user's selected option as an integer.
      */
     public static int scheduleDuty(Scanner reader){
-        //Scanner reader = new Scanner(System.in);  // Create a Scanner object
         // Give user instructions
         UserInterfacePrints.scheduleOptionsMessage();
         String selectedOption = reader.nextLine(); // Get user input
@@ -178,10 +174,10 @@ public class UserInterface {
      * specifications
      *
      * @param reader: The scanner in Main module reading user input
+     * @param userId: the ID of the user
      * @return the FixedTask that is to be put in the schedule.
      */
     public static FixedTask createFixedTask(Scanner reader, Long userId){
-        //Scanner reader = new Scanner(System.in);  // Create a Scanner object
         System.out.println("What is the name of your task or event?");
         String name = reader.nextLine(); // Get user input
 
@@ -203,10 +199,10 @@ public class UserInterface {
      * Get info from user about the NonFixedTask that they want to schedule and return the Task.
      *
      * @param reader: The scanner in Main module reading user input
+     * @param userId: ID for the user
      * @return the NonFixedTask that is to be put in the schedule.
      */
     public static NonFixedTask createNonFixedTask(Scanner reader, Long userId){
-        //Scanner reader = new Scanner(System.in);  // Create a Scanner object
         System.out.println("What is the name of your task or event?");
         String name = reader.nextLine(); // Get user input
 
@@ -232,7 +228,6 @@ public class UserInterface {
      * @return an array of unscheduled NonFixedTasks corresponding to this project.
      */
     public static NonFixedTask[] createProject(Week week, Scanner reader){
-        //Scanner reader = new Scanner(System.in);  // Create a Scanner object
         System.out.println("What is the name of your project or goal?");
         String name = reader.nextLine(); // Get user input
 
@@ -260,20 +255,14 @@ public class UserInterface {
 
     public void schedulingDecision(Week week, int selection, Scanner reader){
         if (selection == 1) {
-            FixedTask taskToPut = UserInterface.createFixedTask(reader, week.getUserId());
-            if(!Controller.checkFixedTaskScheduling(week, taskToPut)){
-                System.out.println("This task can't be scheduled");}
-            else{Controller.activateFixedTaskScheduling(week, taskToPut);}
+            selectsOne(week, reader);
+
         } else if (selection == 2) {
-            NonFixedTask taskToSchedule = UserInterface.createNonFixedTask(reader, week.getUserId());
-            if(!Controller.checkNonFixedTaskScheduling(week, taskToSchedule)){
-                System.out.println("This task can't be scheduled");}
-            else{Controller.activateNonFixedTaskScheduling(week, taskToSchedule);}
+            selectsTwo(week, reader);
+
         } else if (selection == 3) {
-            NonFixedTask[] projectTasksToSchedule = UserInterface.createProject(week, reader);
-            if(!Controller.checkProjectScheduling(week, projectTasksToSchedule)){
-                System.out.println("This project can't be scheduled");}
-            else{Controller.activateProjectScheduling(week, projectTasksToSchedule);}
+            selectsThree(week, reader);
+
         } else if (selection == 4){
             // convert the week into WeekSerializable and TaskSerializable, and save to database
             this.weekController.saveWeek(week);
@@ -281,7 +270,6 @@ public class UserInterface {
             System.out.println("Please enter a valid option (1, 2, or 3).");
         }
     }
-
 
     /** Helper method for createProject which gathers information about the project due date and time
      *
@@ -302,6 +290,8 @@ public class UserInterface {
      *
      * @param reader: The scanner in Main module reading user input
      * @param week: the week into which the project is being scheduled
+     * @param startDate: the day the project will be started
+     * @param dueDateTime: date and time by which the user wishes to complete their project
      * @return the LocalTime object representing the maximum amount of hours the user is willing to spend on the project
      * at a time
      */
@@ -318,6 +308,42 @@ public class UserInterface {
         System.out.println("Please enter the maximum amount of time you would like to work on this project in a given" +
                 "day.");
         return UserInterfacePrints.getTime(reader);
+    }
+
+    /**
+     * process schedulingDecision undergoes if the user enters 1 to indicate that they wish to schedule a fixedTask
+     * @param week: the week the fixed task is being scheduled into
+     * @param reader: the scanner object reading user input in the Main module
+     */
+    private void selectsOne(Week week, Scanner reader) {
+        FixedTask taskToPut = UserInterface.createFixedTask(reader, week.getUserId());
+        if(!Controller.checkFixedTaskScheduling(week, taskToPut)){
+            System.out.println("This task can't be scheduled");}
+        else{Controller.activateFixedTaskScheduling(week, taskToPut);}
+    }
+
+    /**
+     * process schedulingDecision undergoes if the user enters 2 to indicate that they wish to schedule a nonfixed Task
+     * @param week: week the non-fixed task is being scheduled into
+     * @param reader: the scanner object reading user input in Main module
+     */
+    private void selectsTwo(Week week, Scanner reader) {
+        NonFixedTask taskToSchedule = UserInterface.createNonFixedTask(reader, week.getUserId());
+        if(!Controller.checkNonFixedTaskScheduling(week, taskToSchedule)){
+            System.out.println("This task can't be scheduled");}
+        else{Controller.activateNonFixedTaskScheduling(week, taskToSchedule);}
+    }
+
+    /**
+     * process schedulingDecision undergoes if the user enters 3 to indicate that they wish to schedule a project
+     * @param week: week the project is being scheduled into
+     * @param reader: the scanner object reading user input in Main module
+     */
+    private void selectsThree(Week week, Scanner reader) {
+        NonFixedTask[] projectTasksToSchedule = UserInterface.createProject(week, reader);
+        if(!Controller.checkProjectScheduling(week, projectTasksToSchedule)){
+            System.out.println("This project can't be scheduled");}
+        else{Controller.activateProjectScheduling(week, projectTasksToSchedule);}
     }
 
     // The unitTest gave an error saying that there was no main method in UI, so I added one     -Issam

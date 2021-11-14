@@ -5,7 +5,10 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public class UserInterfacePrints {
-
+    /**
+     * helper method for signing in process in UI
+     * requirements for password when new user signs up
+     */
     public static void printPasswordRequirements(){
         System.out.println("MUST contain at least 12 characters");
         System.out.println("MUST contain at least one uppercase letter");

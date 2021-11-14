@@ -15,6 +15,12 @@ public interface TaskSerializableRepository extends JpaRepository<TaskSerializab
     @Query("Select t from TaskSerializable t where t.startDateTime = :taskDate")
     ArrayList<TaskSerializable> getTaskByDate(LocalDate taskDate, double userId);
 
+    /**
+     * Get all tasks of the user from the database.
+     *
+     * @param userId: The userid of the tasks we are searching for.
+     * @return the arraylist of TaskSerializable objects of the userid.
+     */
     @Query("Select t from TaskSerializable t where t.userId = :userId")
     ArrayList<TaskSerializable> getTasksByUserId(long userId);
 }

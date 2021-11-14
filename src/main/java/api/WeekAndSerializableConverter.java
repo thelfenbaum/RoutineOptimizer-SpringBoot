@@ -24,7 +24,7 @@ public class WeekAndSerializableConverter {
      * @return an Array of TaskSerializables corresponding to this Week.
      */
     public static ArrayList<TaskSerializable> WeekToTaskSerializable(Week week){
-        ArrayList<TaskSerializable> taskSers = new ArrayList<TaskSerializable>();
+        ArrayList<TaskSerializable> taskSers = new ArrayList<>();
         for(Day day: week.getDays()){
             for(Task task: day.getTodayTasks()){
                 taskSers.add(new TaskSerializable(task.getName(), task.getStartDateTime(), task.getDuration(), task.isCompleted(), task.getUserId()));
@@ -42,7 +42,7 @@ public class WeekAndSerializableConverter {
      */
     public static Week SerializableToWeek(WeekSerializable weekSer, ArrayList<TaskSerializable> taskSers){
         // convert all TaskSerializable to Tasks
-        ArrayList<Task> tasks = new ArrayList<Task>();
+        ArrayList<Task> tasks = new ArrayList<>();
         for(TaskSerializable taskSer: taskSers){
             tasks.add(TaskSerializableToTask(taskSer));
         }
@@ -57,6 +57,7 @@ public class WeekAndSerializableConverter {
 
     /**
      * Helper method which converts a TaskSerializable to a Task.
+     *
      * @param taskSer: the TaskSerializable.
      * @return the resultant Task.
      */
