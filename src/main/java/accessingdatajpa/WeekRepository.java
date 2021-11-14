@@ -6,14 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public interface TaskSerializableRepository extends JpaRepository<Task, Long>{
-    /**
-     * Save this task to the database.
-     *
-     * @param task: the task to be saved to the database.
-     * @param userId: the ID of the user saving this task.
-     */
-    public void saveTask(Task task, int userId);
+public interface WeekRepository extends JpaRepository<Task, Long>{
 
     /**
      * Get all tasks on this date from the database.
@@ -21,6 +14,6 @@ public interface TaskSerializableRepository extends JpaRepository<Task, Long>{
      * @param taskDate: the date of the tasks we are searching for.
      * @param userId: the ID of the user accessing tasks in the database.
      */
-    @Query("Select t from Task t where t.startDateTime = :taskDate")
-    ArrayList<Task> getTaskByDate(LocalDate taskDate, double userId);
+    @Query("Select w from Week w where = :taskDate")
+    Week getWeekByDate(LocalDate taskDate, int userId);
 }

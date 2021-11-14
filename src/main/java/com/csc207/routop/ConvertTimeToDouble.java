@@ -46,4 +46,5 @@ public class ConvertTimeToDouble {
         return LocalTime.of(hour, minute);
     }
 
+
 }
