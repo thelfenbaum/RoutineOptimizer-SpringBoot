@@ -33,9 +33,7 @@ public class Putter {
                 //calculate total number of half hour blocks in the task duration
                 int totalTaskBlock = hour*2 + (int) minuteBlock;
                 //convert the start time of task to double
-                double h = task.getStartDateTime().getHour();
-                double m = (double)(task.getStartDateTime().getMinute())/60;
-                double startTimeD = h + m;
+                double startTimeD = ConvertTimeToDouble.ConvertDateTimeDouble(task.getStartDateTime());
                 //loop through todaySchedule and mutate the value of the corresponding key
                 int i = 0;
                 while (i < totalTaskBlock) {
