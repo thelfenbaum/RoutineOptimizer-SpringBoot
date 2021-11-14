@@ -52,7 +52,7 @@ public class Putter {
 
     public static void putProject(String projectName, Week week, NonFixedTask[] tasks){
         for (NonFixedTask task : tasks) {
-            task.name = projectName;
+            task.changeName(projectName);
             putTask(week, task);
         }
 
