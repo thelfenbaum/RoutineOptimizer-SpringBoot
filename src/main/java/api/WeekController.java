@@ -1,9 +1,5 @@
 package api;
 
-import api.TaskSerializableInteractor;
-import api.WeekAndSerializableConverter;
-import api.WeekSerializableInteractor;
-
 import entities.TaskSerializable;
 import entities.Week;
 import entities.WeekSerializable;
