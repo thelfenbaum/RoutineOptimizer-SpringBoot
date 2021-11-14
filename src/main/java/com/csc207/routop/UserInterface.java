@@ -53,8 +53,8 @@ public class UserInterface {
         System.out.println("Please enter your password.");
         String password = reader.nextLine();
         if (UserInteractor.checkSignIn(username, password)){ // checks whether if the username and password exist and match up
-            long userId = UserInteractor.getUserId(username);
-            UserInteractor.printWeek(userId); // show the user their week
+            long userId = UserInteractor.getUserIdByUsername(username);
+            System.out.println(WeekSerializableInteractor.getWeekSerializableByUserId(userId)); // show the user their week
             return userId;
         }
         else{
@@ -76,7 +76,9 @@ public class UserInterface {
         System.out.println("Please enter a password.");
         UserInterfacePrints.printPasswordRequirements();
         String password = reader.nextLine();
-        return UserInteractor.addUser(username, password);
+        User newUser = new User(username, password);
+        UserController.saveUser(newUser);
+        return newUser.getId();
     }
 
 

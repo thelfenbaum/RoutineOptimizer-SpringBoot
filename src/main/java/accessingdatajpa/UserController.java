@@ -1,6 +1,7 @@
 package accessingdatajpa;
 
 import com.csc207.routop.User;
+import com.csc207.routop.Week;
 
 import java.util.Objects;
 
@@ -26,6 +27,7 @@ public class UserController {
         return false;
     }
 
+
     /**
      * Returns a user object from the database based on the user's username.
      * @param username: the username.
@@ -36,11 +38,11 @@ public class UserController {
     }
 
     /**
-     * Add this username-password pair (along with the user id) to the database.
-     * @param username: the username.
-     * @param password: the password.
+     * Save this User entity to the database.
+     *
+     * @param user: the User.
      */
-    public void createUsernameAndPasswordInDb(String username, String password){
-        this.userInt.saveUser(username, password);
+    public void saveUser(User user){
+        this.userInt.saveUser(user);
     }
 }

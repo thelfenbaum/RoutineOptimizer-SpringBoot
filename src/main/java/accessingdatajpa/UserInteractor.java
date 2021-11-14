@@ -1,6 +1,7 @@
 package accessingdatajpa;
 
 import com.csc207.routop.User;
+import com.csc207.routop.Week;
 
 public class UserInteractor {
     private UserRepository userRepo;
@@ -17,37 +18,19 @@ public class UserInteractor {
      * @param password: the password input by the user
      * @return whether they match up
      */
-    public static boolean checkSignIn(String username, String password){
-
+    public boolean checkSignIn(String username, String password){
+        boolean existsUser = this.userRepo.existsUserByUsername(username);
+        String expectedPassword = this.userRepo.getUserByUsername(username).get(0).getPassword();
+        return existsUser && password.equals(expectedPassword);
     }
 
     /**
-     * Prints the week of a user
+     * Gets the id of a user
      *
-     * @param userId: the id of the user
+     * @param username: the Username of the user
      */
-    public static void printWeek(Long userId){
-
-    }
-
-
-    /**
-     * gets the id of a user
-     *
-     * @param username: the username of the user
-     */
-    public static long getUserId(String username){
-
-    }
-
-    /**
-     * adds the username and password to the database, return their generated userId
-     *
-     * @param username: the username input by the user
-     * @param password: the password input by the user
-     */
-    public static long addUser(String username, String password){
-
+    public long getUserIdByUsername(String username){
+        return this.userRepo.getUserByUsername(username).get(0).getId();
     }
 
     public boolean isUsernameInDb(String username) {
@@ -55,14 +38,16 @@ public class UserInteractor {
     }
 
     public User getUserFromUsername(String username) {
+        return this.userRepo.getUserByUsername(username).get(0);
     }
 
     /**
      * Save this user to the database.
-     * @param username: the username.
-     * @param password: the password.
+     *
+     * @param user: the User.
      */
-    public void saveUser(String username, String password) {
-        this.userRepo.save(new User(username, password));
+    public void saveUser(User user) {
+        this.userRepo.save(user);
     }
+
 }
