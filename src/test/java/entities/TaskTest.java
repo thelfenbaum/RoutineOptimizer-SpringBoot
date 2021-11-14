@@ -23,22 +23,34 @@ public class TaskTest {
     public void tearDown() {
     }
 
+    /**
+     * test complete
+     */
     @Test
     public void testComplete() {
         task.complete();
         assertTrue(task.isCompleted());
     }
+    /**
+     * test getName
+     */
     @Test
     public void testGetName(){
         assertSame("Piano Practice", task.getName());
     }
 
+    /**
+     * test changeName
+     */
     @Test
     public void testChangeName(){
         task.changeName("Workout");
         assertSame("Workout", task.getName());
     }
 
+    /**
+     * test getStartDateTime
+     */
     @Test
     public void testGetStartDateTime(){
         LocalDateTime expected;
@@ -46,16 +58,25 @@ public class TaskTest {
         assertTrue(task.getStartDateTime().isEqual(expected));
     }
 
+    /**
+     * test getDuration
+     */
     @Test
     public void testGetDuration(){
         assertSame(duration, task.getDuration());
     }
 
+    /**
+     * test isCompleted
+     */
     @Test
     public void testIsCompleted(){
         assertSame(false, task.isCompleted());
     }
 
+    /**
+     * test chengeStartDateTime
+     */
     @Test
     public void testChangeStartDateTime(){
         LocalDateTime time;
@@ -64,6 +85,9 @@ public class TaskTest {
         assertTrue(task.getStartDateTime().isEqual(time));
     }
 
+    /**
+     * test changeTaskStartTime
+     */
     @Test
     public void testChangeTaskStartTime(){
         LocalDateTime time = LocalDateTime.of(2021, 11, 22, 9, 30);
@@ -71,6 +95,9 @@ public class TaskTest {
         assertTrue(task.getStartDateTime().isEqual(time));
     }
 
+    /**
+     * test changeTaskDuration
+     */
     @Test
     public void testChangeTaskDuration(){
         LocalTime time = LocalTime.of(12, 30);
@@ -78,6 +105,9 @@ public class TaskTest {
         assertSame(LocalTime.of(12, 30), task.getDuration());
     }
 
+    /**
+     * test durationToInt
+     */
     @Test
     public void testDurationToInt(){
         assertSame(9, task.durationToInt());

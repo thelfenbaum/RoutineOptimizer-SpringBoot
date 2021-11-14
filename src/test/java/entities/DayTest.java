@@ -27,10 +27,9 @@ public class DayTest {
     public void tearDown() {
     }
 
-    @Test
-    public void testToString(){
-    }
-
+    /**
+     * test getDayOfWeek
+     */
     @Test
     public void testGetDayOfWeek(){
         DayOfWeek expected;
@@ -38,6 +37,9 @@ public class DayTest {
         assertEquals(day.getDayOfWeek(), expected);
     }
 
+    /**
+     * test getTodaySchedule
+     */
     @Test
     public void testGetTodaySchedule(){
         LinkedHashMap<Double, String> expected = new LinkedHashMap<>();
@@ -47,12 +49,18 @@ public class DayTest {
         assertEquals(expected, day.getTodaySchedule());
     }
 
+    /**
+     * test getTodayTasks
+     */
     @Test
     public void testGetTodayTasks(){
         ArrayList<Task> todayTasks = new ArrayList<>();
         assertEquals(todayTasks, day.getTodayTasks());
     }
 
+    /**
+     * test addTodayTasks
+     */
     @Test
     public void testAddTodayTasks(){
         ArrayList<Task> todayTasks = new ArrayList<>();
@@ -63,12 +71,18 @@ public class DayTest {
         assertEquals(todayTasks, day.getTodayTasks());
     }
 
+    /**
+     * test getDayOfMonth
+     */
     @Test
     public void testGetDayOfMonth(){
         LocalDate expected = LocalDate.of(2021, 11, 20);
         assertEquals(expected, day.getDayOfMonth());
     }
 
+    /**
+     * test putProject
+     */
     @Test
     public void testPutProject(){
         LinkedHashMap<Double, String> expected = new LinkedHashMap<>();
@@ -80,6 +94,9 @@ public class DayTest {
         assertEquals(expected, day.getTodaySchedule());
     }
 
+    /**
+     * test removeTask
+     */
     @Test
     public void testRemoveTask(){
         LinkedHashMap<Double, String> expected = new LinkedHashMap<>();
