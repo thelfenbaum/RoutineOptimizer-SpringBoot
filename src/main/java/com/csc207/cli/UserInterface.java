@@ -1,7 +1,6 @@
 package com.csc207.cli;
 import api.*;
 import entities.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
@@ -17,14 +16,17 @@ public class UserInterface {
     private WeekSerializableInteractor weekSerializableInteractor;
     private UserInteractor userInteractor;
     private TaskSerializableInteractor taskSerializableInteractor;
+    private WeekController weekController;
 
     public UserInterface (){}
 
-    public UserInterface(UserController uc, WeekSerializableInteractor wsi, UserInteractor ui, TaskSerializableInteractor tsi){
+    public UserInterface(UserController uc, WeekSerializableInteractor wsi, UserInteractor ui,
+                         TaskSerializableInteractor tsi, WeekController wc){
         this.userController = uc;
         this.weekSerializableInteractor = wsi;
         this.userInteractor = ui;
         this.taskSerializableInteractor = tsi;
+        this.weekController = wc;
     }
     /**
      * Welcome message which greets user when they initiate the program
@@ -256,7 +258,7 @@ public class UserInterface {
      * @param reader: The scanner in Main module reading user input
      */
 
-    public static void schedulingDecision(Week week, int selection, Scanner reader){
+    public void schedulingDecision(Week week, int selection, Scanner reader){
         if (selection == 1) {
             FixedTask taskToPut = UserInterface.createFixedTask(reader, week.getUserId());
             if(!Controller.checkFixedTaskScheduling(week, taskToPut)){
@@ -274,6 +276,7 @@ public class UserInterface {
             else{Controller.activateProjectScheduling(week, projectTasksToSchedule);}
         } else if (selection == 4){
             // convert the week into WeekSerializable and TaskSerializable, and save to database
+            this.weekController.saveWeek(week);
         } else {
             System.out.println("Please enter a valid option (1, 2, or 3).");
         }

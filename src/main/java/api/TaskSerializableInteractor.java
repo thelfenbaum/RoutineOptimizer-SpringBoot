@@ -1,6 +1,7 @@
 package api;
 
 import entities.TaskSerializable;
+import entities.WeekSerializable;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,9 @@ public class TaskSerializableInteractor {
         this.taskSerRepo = taskSerRepo;
     }
 
+    public void saveTaskSerializable(TaskSerializable taskSer){
+        this.taskSerRepo.save(taskSer);
+    }
     /** Returns a list of tasks associated with a user.
      *
      * @param userId: the id of the user.

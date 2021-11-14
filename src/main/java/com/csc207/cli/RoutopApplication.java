@@ -37,7 +37,7 @@ public class RoutopApplication implements CommandLineRunner {
                 break;
             }
             week = this.ui.activateCreateOrImport(userId, createOrImportChoice, reader);
-            UserInterface.schedulingDecision(week, selectionForScheduling, reader);
+            this.ui.schedulingDecision(week, selectionForScheduling, reader);
         }
         reader.close();
     }
