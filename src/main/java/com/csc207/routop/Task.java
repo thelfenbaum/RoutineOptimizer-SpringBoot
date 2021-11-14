@@ -7,17 +7,12 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-@Entity
 public class Task {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
     private String name;
     private LocalDateTime startDateTime;
     private LocalTime duration;
     private boolean completed;
-
-    protected Task(){}
+    private Long userId;
 
 
     /**
@@ -26,11 +21,11 @@ public class Task {
      * @param name: name of this task
      * @param duration: duration of this task
      */
-    public Task(String name, LocalTime duration, Long id){
+    public Task(String name, LocalTime duration, Long userId){
         this.name = name;
         this.duration = duration;
         this.startDateTime = LocalDateTime.of(0, 1, 1, 0, 0);
-        this.id = id;
+        this.userId = userId;
         completed = false;
     }
 
@@ -41,11 +36,11 @@ public class Task {
      * @param startTime: start date and time of this task
      * @param duration: duration of this task
      */
-    public Task(String name, LocalDateTime startTime, LocalTime duration, Long id){
+    public Task(String name, LocalDateTime startTime, LocalTime duration, Long userId){
         this.name = name;
         this.duration = duration;
         this.startDateTime = startTime;
-        this.id = id;
+        this.userId = userId;
         completed = false;
     }
 
@@ -69,8 +64,8 @@ public class Task {
      * @return the id of the task
      */
 
-    public Long getId(){
-        return id;
+    public Long getUserId(){
+        return this.userId;
     }
 
     /**
