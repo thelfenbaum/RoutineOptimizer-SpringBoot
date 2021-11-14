@@ -1,12 +1,11 @@
 package api;
 
 import entities.TaskSerializable;
-import entities.WeekSerializable;
 
 import java.util.ArrayList;
 
 public class TaskSerializableInteractor {
-    private TaskSerializableRepository taskSerRepo;
+    private final TaskSerializableRepository taskSerRepo;
 
     public TaskSerializableInteractor(TaskSerializableRepository taskSerRepo){
         this.taskSerRepo = taskSerRepo;

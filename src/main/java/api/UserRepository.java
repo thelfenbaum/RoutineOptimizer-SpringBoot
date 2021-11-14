@@ -24,6 +24,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     /**
      * Checks if this user is in the database.
+     *
      * @param username: the username of the user.
      * @return true if they are in the database, false otherwise.
      */

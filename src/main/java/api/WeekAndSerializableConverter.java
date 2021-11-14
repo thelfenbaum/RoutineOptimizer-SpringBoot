@@ -57,6 +57,7 @@ public class WeekAndSerializableConverter {
 
     /**
      * Helper method which converts a TaskSerializable to a Task.
+     *
      * @param taskSer: the TaskSerializable.
      * @return the resultant Task.
      */

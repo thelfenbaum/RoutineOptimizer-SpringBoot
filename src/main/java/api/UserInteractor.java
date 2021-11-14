@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class UserInteractor {
-    private UserRepository userRepo;
+    private final UserRepository userRepo;
 
     public UserInteractor(UserRepository userRepo){
         this.userRepo = userRepo;
@@ -30,14 +30,29 @@ public class UserInteractor {
      * Get the id of a user.
      *
      * @param username: the Username of the user.
+     * @return the id of the user
      */
     public long getUserIdByUsername(String username){
         return this.userRepo.getUserByUsername(username).get(0).getId();
     }
 
+    /**
+     * Check if the username exist in database
+     *
+     * @param username: the Username of the user.
+     * @return true if the username has been stored in the database, false otherwise.
+     */
+
     public boolean isUsernameInDb(String username) {
         return this.userRepo.existsUserByUsername(username);
     }
+
+    /**
+     * Get the user with a given username
+     *
+     * @param username: the Username of the user.
+     * @return the user associated with the username
+     */
 
     public User getUserFromUsername(String username) {
         return this.userRepo.getUserByUsername(username).get(0);
