@@ -16,7 +16,13 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    protected User(){}
+    public User(){}
+
+    public User(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
+
 
     public Long getId(){
         return this.id;
@@ -28,10 +34,6 @@ public class User {
         this.id = id;
     }
 
-    public User(String username, String password){
-        this.username = username;
-        this.password = password;
-    }
 
     public String getUsername() {
         return this.username;

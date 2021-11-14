@@ -15,7 +15,7 @@ public class TaskTest {
     @Before
     public void setUp() {
         duration = LocalTime.of(4, 30);
-        task = new Task("Piano Practice", duration);
+        task = new Task("Piano Practice", duration, Long.valueOf("1"));
         }
 
     @After
@@ -25,6 +25,6 @@ public class TaskTest {
     @Test
     public void testComplete() {
         task.complete();
-        assertTrue(task.completed);
+        assertTrue(task.isCompleted());
     }
 }

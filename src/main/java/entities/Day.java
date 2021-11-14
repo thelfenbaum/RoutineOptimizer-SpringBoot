@@ -12,8 +12,8 @@ import java.util.Map;
  */
 
 public class Day {
-    private LocalDate dayOfMonth;
-    private DayOfWeek dayOfWeek;
+    private final LocalDate dayOfMonth;
+    private final DayOfWeek dayOfWeek;
     private Map<Double, String> todaySchedule;
     private ArrayList<Task> TodayTasks;
 
