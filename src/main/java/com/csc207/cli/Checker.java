@@ -8,18 +8,18 @@ import java.time.LocalDateTime;
 public class Checker {
 
     /**
-     * Take a Week and a list of NonFixedTask to find whether the project(list of NonFixedTask) can be
+     * Take a Week and a list of NonFixedTask to find whether the project (list of NonFixedTasks) can be
      * scheduled in the given week.
      *
      * @param week: the Week to schedule the task into.
      * @param projectTask: the project to be scheduled.
-     * @return true if the project can be scheduled, return false otherwise.
+     * @return true if the project can be scheduled, false otherwise.
      */
     public static boolean CheckScheduleProject(Week week, NonFixedTask[] projectTask){
         Task[] checkScheduleProject = Scheduler.ScheduleProject(week, projectTask);
         LocalDateTime defaultValue = LocalDateTime.of(0, 1, 1, 0, 0);
         for (Task task : checkScheduleProject) {
-            if (task.getStartDateTime().equals(defaultValue)) {
+            if (task.getStartDateTime().equals(defaultValue)) { // check if the task has been scheduled
                 return false;
             }
         }
@@ -52,10 +52,8 @@ public class Checker {
 
     public static boolean CheckScheduleFixedTask(Week week, FixedTask task) {
         for (Day day: week.getDays()){
-            if (task.getStartDateTime().toLocalDate().equals(day.getDayOfMonth())){
-                double h = task.getStartDateTime().getHour();
-                double m = (double)(task.getStartDateTime().getMinute())/60;
-                double startTimeD = h + m;
+            if (task.getStartDateTime().toLocalDate().equals(day.getDayOfMonth())){ // check if this day is the same as the day for the tasl
+                double startTimeD = ConvertBetweenTimeAndDouble.ConvertDateTimeDouble(task.getStartDateTime());
                 if(!day.getTodaySchedule().get(startTimeD).equals("")){
                     return false;
                 }

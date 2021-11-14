@@ -243,7 +243,7 @@ public class UserInterface {
 
         LocalTime maxHoursPerTask = getMaxHoursPerTask(week, reader, startDate, dueDateTime);
 
-        NonFixedTask[] projectTasks = new NonFixedTask[Constants.FREQUENCY];
+        NonFixedTask[] projectTasks = new NonFixedTask[7];
         for(int i = 0; i < 7; i++){
             projectTasks[i] = new NonFixedTask(name, dueDateTime, maxHoursPerTask, week.getUserId());
         }
@@ -310,7 +310,7 @@ public class UserInterface {
         System.out.println("What is the total number of hours you would like to work on this project? (round to the" +
                 " nearest 0.5)");
         double totalHours = Double.parseDouble(reader.nextLine());
-        double minHours = Project.calculateMinHours(week, startDate, dueDateTime, totalHours, Constants.FREQUENCY);
+        double minHours = Project.calculateMinHours(week, startDate, dueDateTime, totalHours, 7);
         // Create case to handle when minHours is 0.0
         double maxHours = Project.calculateMaxHoursWeek(week);
         System.out.println("You must work on this project at least " + minHours + " per day and at most " + maxHours +

@@ -9,8 +9,7 @@ import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
 
-public class ConvertTimeToDoubleTest {
-    ConvertTimeToDouble converter = new ConvertTimeToDouble();
+public class ConvertBetweenTimeAndDoubleTest {
     @Before
     public void setUp(){
     }
@@ -22,19 +21,19 @@ public class ConvertTimeToDoubleTest {
     @Test
     public void convertDateTimeDouble() {
         LocalDateTime time = LocalDateTime.of(2021, 3, 11, 1, 0);
-        assertEquals(1.0, converter.ConvertDateTimeDouble(time), 0.01);
+        assertEquals(1.0, ConvertBetweenTimeAndDouble.ConvertDateTimeDouble(time), 0.01);
     }
 
     @Test
     public void convertLocalTimeDouble() {
         LocalTime time = LocalTime.of(2,0);
-        assertEquals(2.0, converter.ConvertLocalTimeDouble(time), 0.01);
+        assertEquals(2.0, ConvertBetweenTimeAndDouble.ConvertLocalTimeDouble(time), 0.01);
     }
 
     @Test
     public void convertDoubleToLocalTime() {
         double time = 5.5;
         LocalTime expected = LocalTime.of(5, 30);
-        assertEquals(expected, converter.ConvertDoubleToLocalTime(time));
+        assertEquals(expected, ConvertBetweenTimeAndDouble.ConvertDoubleToLocalTime(time));
     }
 }

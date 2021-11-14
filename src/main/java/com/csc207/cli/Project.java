@@ -25,16 +25,14 @@ public interface Project {
      */
     static double calculateMinHours(Week week, LocalDate startDate, LocalDateTime dueDate, double totalHours,
                                     double frequency) {
-        //return 0.0 if the ideal working time per day does not fit into the user's current schedule, else return
-        //idealChunk
-        //get the idealChunk
-        double idealChunk = getIdealChunk(startDate, dueDate, totalHours, frequency);
-        //check if the idealChunk fits in the schedule
-        boolean fitSchedule = fitSchedule(week, idealChunk);
-        if (fitSchedule) {
+
+        double idealChunk = getIdealChunk(startDate, dueDate, totalHours, frequency); //get the idealChunk
+        if (fitSchedule(week, idealChunk)) { //check if the idealChunk fits in the schedule
             return idealChunk;
         }
-        return 0.0;
+        else {
+            return 0.0;
+        }
     }
 
     /** Finds the ideal chunk of time that a user must work on a project per day and returns the number of hours
@@ -46,14 +44,14 @@ public interface Project {
      * @return The ideal chunk of time in hours a user must work on a project per day. If there is no ideal chunk, return 0.5
      */
      static double getIdealChunk(LocalDate startDate, LocalDateTime dueDate, double totalHours, double frequency){
-        //Get the number of days between startDate and dueDate
-        long diff = ChronoUnit.DAYS.between(startDate, dueDate);
-        //Calculate the number of slots needed to work on the task base on user input frequency;
-        double slots = diff*(frequency/7);
-        //Get the ideal number of slots needed to complete the task
-        double idealChunk = totalHours/slots;
-        //Ideal chunk for each slot
-        return Math.max(idealChunk, 0.5);
+
+        long diff = ChronoUnit.DAYS.between(startDate, dueDate);  //Get the number of days between startDate and dueDate
+
+        double slots = diff*(frequency/7); //Calculate the number of slots needed to work on the task base on user input frequency;
+
+        double idealChunk = totalHours/slots; //Get the ideal number of slots needed to complete the task
+
+        return Math.max(idealChunk, 0.5); //Ideal chunk for each slot
     }
 
     /** Finds whether the given chunk of time is available in all the days in the given week
@@ -64,14 +62,16 @@ public interface Project {
      * If there is at least one day that does not have enough time, then return false
      */
      static boolean fitSchedule(Week week, double idealChunk){
-        //Check if each day has enough time for idealChunk
-        for(Day n: week.getDays()){
-            //get the maximum free timeslot fpr each day in the week
-            double maxDay = calculateMaxHoursDay(n);
+
+        for(Day n: week.getDays()){ //Check if each day has enough time for idealChunk
+
+            double maxDay = calculateMaxHoursDay(n); //get the maximum free timeslot fpr each day in the week
+
             //if the maximum free timeslot for each day is less than the idealChunk
             //return false, else return true.
             if (maxDay < idealChunk) {
-                return false;}}
+                return false;}
+        }
         return true;
     }
 
@@ -81,15 +81,17 @@ public interface Project {
      * @return the maximum hours that are available for all days in the given week
      */
      static double calculateMaxHoursWeek(Week week) {
-        //set variable maxHour
-        double maxHour = 0.0;
-        //iterate through each day in the week to find the maximum free timeslot
-        //of the week
-        for(Day n: week.getDays()){
-            //find the maximum free timeslot of each day in a week, assign it to variable maxDay
-            double maxDay = calculateMaxHoursDay(n);
-            //if the maximum timeslot of the day is greater than maxHour, replace maxHour with maxDay
-            if(maxHour < maxDay){maxHour = maxDay;}}
+
+        double maxHour = 0.0; //set variable maxHour
+
+        for(Day n: week.getDays()){  //iterate through each day in the week to find the maximum free timeslot of the week
+
+            double maxDay = calculateMaxHoursDay(n); //find the maximum free timeslot of each day in a week, assign it to variable maxDay
+
+            if(maxHour < maxDay){
+                maxHour = maxDay;
+            } //if the maximum timeslot of the day is greater than maxHour, replace maxHour with maxDay
+        }
         return maxHour;
     }
 
@@ -100,13 +102,16 @@ public interface Project {
      * @return the maximum number of hours that are available in the given day
      */
      static double calculateMaxHoursDay (Day day){
+
         //set variable maxHour and currentMax
         double maxHour = 0.0;
         double currentMax = 0.0;
-        //create a list of values in todaySchedule
-        List<String> task = new ArrayList<>(day.getTodaySchedule().values());
-        //loop through the list
-        for (String s : task) {
+
+
+        List<String> task = new ArrayList<>(day.getTodaySchedule().values()); //create a list of values in todaySchedule
+
+        for (String s : task) { //loop through the list
+
             //if there is no task assigned to this time (empty string)
             //add 0.5 to currentMax
             if (Objects.equals(s, "")) {
