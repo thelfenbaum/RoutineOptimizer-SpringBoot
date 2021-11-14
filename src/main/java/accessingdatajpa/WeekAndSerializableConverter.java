@@ -1,8 +1,6 @@
 package accessingdatajpa;
 
-import com.csc207.routop.TaskSerializable;
-import com.csc207.routop.Week;
-import com.csc207.routop.WeekSerializable;
+import com.csc207.routop.*;
 
 import java.util.ArrayList;
 
@@ -19,7 +17,13 @@ public class WeekAndSerializableConverter {
     }
 
     public static ArrayList<TaskSerializable> WeekToTaskSerializable(Week week){
-        ArrayList<TaskSerializable>
+        ArrayList<TaskSerializable> taskSers = new ArrayList<TaskSerializable>();
+        for(Day day: week.getDays()){
+            for(Task task: day.getTodayTasks()){
+                taskSers.add(new TaskSerializable());
+            }
+        }
+        return taskSers;
     }
 
     public static Week SerializableToWeek(WeekSerializable weekSer, ArrayList<TaskSerializable> taskSers){}
