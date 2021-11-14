@@ -1,7 +1,9 @@
 package api;
 
 import entities.User;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class UserInteractor {
     private UserRepository userRepo;
 
@@ -11,7 +13,7 @@ public class UserInteractor {
 
 
     /**
-     * Checks if the username and password match up in the database.
+     * Check if the username and password match up in the database.
      *
      * @param username: the username input by the user
      * @param password: the password input by the user
@@ -24,9 +26,9 @@ public class UserInteractor {
     }
 
     /**
-     * Gets the id of a user
+     * Get the id of a user.
      *
-     * @param username: the Username of the user
+     * @param username: the Username of the user.
      */
     public long getUserIdByUsername(String username){
         return this.userRepo.getUserByUsername(username).get(0).getId();

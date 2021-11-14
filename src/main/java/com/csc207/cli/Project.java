@@ -65,7 +65,7 @@ public interface Project {
      */
      static boolean fitSchedule(Week week, double idealChunk){
         //Check if each day has enough time for idealChunk
-        for(Day n: week.days){
+        for(Day n: week.getDays()){
             //get the maximum free timeslot fpr each day in the week
             double maxDay = calculateMaxHoursDay(n);
             //if the maximum free timeslot for each day is less than the idealChunk
@@ -85,7 +85,7 @@ public interface Project {
         double maxHour = 0.0;
         //iterate through each day in the week to find the maximum free timeslot
         //of the week
-        for(Day n: week.days){
+        for(Day n: week.getDays()){
             //find the maximum free timeslot of each day in a week, assign it to variable maxDay
             double maxDay = calculateMaxHoursDay(n);
             //if the maximum timeslot of the day is greater than maxHour, replace maxHour with maxDay
@@ -104,7 +104,7 @@ public interface Project {
         double maxHour = 0.0;
         double currentMax = 0.0;
         //create a list of values in todaySchedule
-        List<String> task = new ArrayList<>(day.todaySchedule.values());
+        List<String> task = new ArrayList<>(day.getTodaySchedule().values());
         //loop through the list
         for (String s : task) {
             //if there is no task assigned to this time (empty string)
