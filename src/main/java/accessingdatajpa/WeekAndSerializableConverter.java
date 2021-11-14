@@ -18,7 +18,9 @@ public class WeekAndSerializableConverter {
         return new WeekSerializable(week.getDays()[0].getDayOfMonth(), week.getUserId());
     }
 
-    public static ArrayList<TaskSerializable> WeekToTaskSerializable(Week week){}
+    public static ArrayList<TaskSerializable> WeekToTaskSerializable(Week week){
+        ArrayList<TaskSerializable>
+    }
 
     public static Week SerializableToWeek(WeekSerializable weekSer, ArrayList<TaskSerializable> taskSers){}
 }

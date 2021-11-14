@@ -7,7 +7,10 @@ import com.csc207.routop.WeekSerializable;
 import java.util.ArrayList;
 
 public class WeekSerializableInteractor {
-    public WeekSerializable convertWeekToWeekSerializable(Week week){}
+    WeekSerializableRepository repo;
 
-    public Week convertWeekSerializable(Week week){}
+    public void saveWeekSerializable(WeekSerializable weekSer){
+        this.repo.save(weekSer);
+    }
+
 }
