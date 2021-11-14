@@ -127,7 +127,8 @@ public class Task {
     }
 
     /**
-     *
+     * Converts the duration of the task from type LocalTime to type int
+     * @return the duration of the task converted to type int
      */
     public int durationToInt() {
         int hour = this.getDuration().getHour();
