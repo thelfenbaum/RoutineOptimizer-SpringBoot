@@ -20,7 +20,7 @@ public class WeekAndSerializableConverter {
         ArrayList<TaskSerializable> taskSers = new ArrayList<TaskSerializable>();
         for(Day day: week.getDays()){
             for(Task task: day.getTodayTasks()){
-                taskSers.add(new TaskSerializable());
+                taskSers.add(new TaskSerializable(task.getName(), task.getStartDateTime(), task.getDuration(), task.isCompleted(), task.getUserId()));
             }
         }
         return taskSers;
