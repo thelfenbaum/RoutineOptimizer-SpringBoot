@@ -57,6 +57,12 @@ public class UserInteractor {
     public User getUserFromUsername(String username) {
     }
 
-    public void saveUser(Long userId, String username, String password) {
+    /**
+     * Save this user to the database.
+     * @param username: the username.
+     * @param password: the password.
+     */
+    public void saveUser(String username, String password) {
+        this.userRepo.save(new User(username, password));
     }
 }
