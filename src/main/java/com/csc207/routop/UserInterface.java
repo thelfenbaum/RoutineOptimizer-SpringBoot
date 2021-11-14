@@ -1,8 +1,5 @@
 package com.csc207.routop;
-import accessingdatajpa.TaskSerializableController;
-import accessingdatajpa.UserInteractor;
-import accessingdatajpa.WeekAndSerializableConverter;
-import accessingdatajpa.WeekSerializableController;
+import accessingdatajpa.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -113,8 +110,8 @@ public class UserInterface {
             LocalDate startDate = UserInterface.getStartDate(reader);
             week = new Week(startDate, userId);
         } else if (selection == 2) { // use user id to retrieve the user's week serializable, convert it to week
-            WeekSerializable weekSers = WeekSerializableController.getWeekSerializableByUserId(userId);
-            ArrayList<TaskSerializable> tasksSers = TaskSerializableController.getTasksByUserId(userId);
+            WeekSerializable weekSers = WeekSerializableInteractor.getWeekSerializableByUserId(userId);
+            ArrayList<TaskSerializable> tasksSers = TaskSerializableInteractor.getTasksByUserId(userId);
             week = WeekAndSerializableConverter.SerializableToWeek(weekSers, tasksSers);
         } else {
             System.out.println("Please enter a valid option (1 or 2).");

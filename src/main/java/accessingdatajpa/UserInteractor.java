@@ -3,6 +3,13 @@ package accessingdatajpa;
 import com.csc207.routop.User;
 
 public class UserInteractor {
+    private UserRepository userRepo;
+
+    public UserInteractor(UserRepository userRepo){
+        this.userRepo = userRepo;
+    }
+
+
     /**
      * Checks if the username and password match up in the database.
      *
@@ -43,4 +50,13 @@ public class UserInteractor {
 
     }
 
+    public boolean isUsernameInDb(String username) {
+        return this.userRepo.existsUserByUsername(username);
+    }
+
+    public User getUserFromUsername(String username) {
+    }
+
+    public void saveUser(Long userId, String username, String password) {
+    }
 }

@@ -7,18 +7,18 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name= "bigint", nullable = false)
-    private double id;
+    @Column(name= "id", nullable = false)
+    private Long id;
 
     @Column(name = "username")
-    public String username;
+    private String username;
 
     @Column(name = "password")
     private String password;
 
     protected User(){}
 
-    public double getId(){
+    public Long getId(){
         return this.id;
     }
 
@@ -33,4 +33,11 @@ public class User {
         this.password = password;
     }
 
+    public String getUsername() {
+        return this.username;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
 }

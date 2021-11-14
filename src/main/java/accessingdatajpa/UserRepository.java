@@ -18,8 +18,15 @@ public interface UserRepository extends JpaRepository<User, Long> {
     /**
      * Get the user with this username.
      *
-     * @param username: the ID of the user accessing tasks in the database.
+     * @param username: the username of the user accessing tasks in the database.
      */
     @Query("Select u from User u where u.username = :username")
     ArrayList<User> getUserByUsername(String username);
+
+    /**
+     * Checks if this user is in the database.
+     * @param username: the username of the user.
+     * @return true if they are in the database, false otherwise.
+     */
+    boolean existsUserByUsername(String username);
 }
