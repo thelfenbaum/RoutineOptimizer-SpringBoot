@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Configuration
 public class UserController {
-    private UserInteractor userInt;
+    private final UserInteractor userInt;
 
     public UserController(UserInteractor userInt){
         this.userInt = userInt;
@@ -32,6 +32,7 @@ public class UserController {
 
     /**
      * Returns a user object from the database based on the user's username.
+     *
      * @param username: the username.
      * @return the user associated with this username.
      */
