@@ -35,44 +35,14 @@ public class Scheduler {
         return task;
     }
 
-    /*
-      Take a NonFixedTask and find the best (first available) time slot for it in a day.
-      Set that task's start time and duration to this best time slot and return it.
-
-      @param day: the Week to schedule the task into.
-     * @param task: the Task to be scheduled.
-     * @return the task with its updated time slot.
-     */
-
-//    public static Task ScheduleTaskInDay(Day day, Task task){
-//         algorithm to find best time slot in this day, to be used by ScheduleProject
-//        List<Double> time = new ArrayList<Double>();
-//        double freeDuration = 0.0;
-//        for (double key : day.todaySchedule.keySet()) {
-//            String value = day.todaySchedule.get(key);
-//            if (value.equals("")){freeDuration += 0.5;
-//            if (freeDuration == task.duration)
-//            {
-//                double startTime = key + 0.5 - task.duration;
-//                String startTimeString = Double.toString(startTime);
-//                int hourStart = Integer.parseInt(startTimeString.substring(0, 2));
-//                int minuteStart = Integer.parseInt(startTimeString.substring(3, 5));
-//                LocalTime start = LocalTime.of(hourStart, minuteStart);
-//                task.startDateTime = LocalDateTime.of(day.dayOfMonth, start);
-//            }}
-//            else{freeDuration = 0.0;}}
-//        return task;
-//        }
-
-
         /**
          * Take an array of NonFixedTasks with placeholder time slots and find the best (first available)
          * time slot for each one in the given frequency, which is in times per week (FOR PHASE 0, ASSUME THIS IS 7).
          * Set each of these task's start time and duration to this best time slot and return the same array with
          * all the updated tasks.
          *
-         * week: the Week to schedule the tasks into.
-         * projectTasks: the Tasks to be scheduled.
+         * @param week: the Week to schedule the tasks into.
+         * @param projectTasks: the Tasks to be scheduled.
          * @return the task with its updated time slot.
          */
 
