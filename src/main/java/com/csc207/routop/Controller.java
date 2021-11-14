@@ -20,6 +20,19 @@ public class Controller {
      */
     public static void activateProjectScheduling(Week week, NonFixedTask[] projectTasksToSchedule){
         NonFixedTask[] projectTasksToPut = Scheduler.ScheduleProject(week, projectTasksToSchedule);
-        Putter.putProject(projectTasksToPut[0].name, week, projectTasksToPut);
+        Putter.putProject(projectTasksToPut[0].getName(), week, projectTasksToPut);
     }
+
+    public static boolean checkNonFixedTaskScheduling(Week week,NonFixedTask taskToSchedule){
+        return Checker.CheckScheduleNonFixedTask(week, taskToSchedule);
+    }
+
+    public static boolean checkProjectScheduling(Week week,NonFixedTask[] projectToSchedule){
+        return Checker.CheckScheduleProject(week, projectToSchedule);
+    }
+
+    public static boolean checkFixedTaskScheduling(Week week,FixedTask taskToSchedule){
+        return Checker.CheckScheduleFixedTask(week, taskToSchedule);
+    }
+
 }

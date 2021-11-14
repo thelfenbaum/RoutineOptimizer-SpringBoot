@@ -240,23 +240,30 @@ public class UserInterface {
      * @param selection: the selection from the user about which type of task they would like to put
      * @param reader: The scanner in Main module reading user input
      */
-    public static void schedulingDecision(Week week, int selection, Scanner reader) {
+
+    public static void schedulingDecision(Week week, int selection, Scanner reader){
         if (selection == 1) {
             FixedTask taskToPut = UserInterface.createFixedTask(reader);
-            Controller.activateFixedTaskScheduling(week, taskToPut);
+            if(!Controller.checkFixedTaskScheduling(week, taskToPut)){
+                System.out.println("This task can't be scheduled");}
+            else{Controller.activateFixedTaskScheduling(week, taskToPut);}
         } else if (selection == 2) {
             NonFixedTask taskToSchedule = UserInterface.createNonFixedTask(reader);
-            Controller.activateNonFixedTaskScheduling(week, taskToSchedule);
+            if(!Controller.checkNonFixedTaskScheduling(week, taskToSchedule)){
+                System.out.println("This task can't be scheduled");}
+            else{Controller.activateNonFixedTaskScheduling(week, taskToSchedule);}
         } else if (selection == 3) {
             NonFixedTask[] projectTasksToSchedule = UserInterface.createProject(week, reader);
-            Controller.activateProjectScheduling(week, projectTasksToSchedule);
+            if(!Controller.checkProjectScheduling(week, projectTasksToSchedule)){
+                System.out.println("This project can't be scheduled");}
+            else{Controller.activateProjectScheduling(week, projectTasksToSchedule);}
         } else if (selection == 4){
             // convert the week into WeekSerializable and TaskSerializable, and save to database
-
         } else {
-            System.out.println("Please enter a valid option (1, 2, 3, or 4).");
+            System.out.println("Please enter a valid option (1, 2, or 3).");
         }
     }
+
 
     /** Helper method for createProject which gathers information about the project due date and time
      *
