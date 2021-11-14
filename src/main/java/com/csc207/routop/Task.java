@@ -12,7 +12,7 @@ public class Task {
     private LocalDateTime startDateTime;
     private LocalTime duration;
     private boolean completed;
-    private Long userId;
+    private final Long userId;
 
 
     /**
@@ -26,7 +26,7 @@ public class Task {
         this.duration = duration;
         this.startDateTime = LocalDateTime.of(0, 1, 1, 0, 0);
         this.userId = userId;
-        completed = false;
+        this.completed = false;
     }
 
     /**
@@ -41,7 +41,7 @@ public class Task {
         this.duration = duration;
         this.startDateTime = startTime;
         this.userId = userId;
-        completed = false;
+        this.completed = false;
     }
 
     /**

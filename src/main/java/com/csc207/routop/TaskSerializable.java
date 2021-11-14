@@ -39,4 +39,23 @@ public class TaskSerializable {
         this.userId = userId;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
+    public LocalDateTime getStartDateTime(){
+        return this.startDateTime;
+    }
+
+    public LocalTime getDuration(){
+        return this.duration;
+    }
+
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
 }
