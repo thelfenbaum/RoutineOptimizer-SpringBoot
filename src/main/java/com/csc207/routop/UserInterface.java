@@ -1,8 +1,13 @@
 package com.csc207.routop;
+import accessingdatajpa.TaskSerializableController;
 import accessingdatajpa.UserInteractor;
+import accessingdatajpa.WeekAndSerializableConverter;
+import accessingdatajpa.WeekSerializableController;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -98,21 +103,25 @@ public class UserInterface {
     /** Takes the selection of the user and allows the user to create their schedule with the given week, start time,
      * or to import an existing schedule
      *
-     * @param week: The week in which the schedule is being made for
+     * @param userId: the id of the user
      * @param selection: The selection of the user, whether they want to import or create their schedule
      * @param reader: The scanner in Main module reading user input
-     * @param selectionForScheduling: The type of task they would like to put into their week
      */
-    public static void activateCreateOrImport(Week week, int selection, int selectionForScheduling, Scanner reader){
+    public static Week activateCreateOrImport(long userId, int selection, Scanner reader){
+        Week week;
         if (selection == 1) {
-            //Controller.activateInstantiateWeek(startDate);
-            schedulingDecision(week, selectionForScheduling, reader);
-            System.out.println(week);
-        } else if (selection == 2) {
-            System.out.println("This feature is not currently available.");
+            LocalDate startDate = UserInterface.getStartDate(reader);
+            week = new Week(startDate, userId);
+        } else if (selection == 2) { // use user id to retrieve the user's week serializable, convert it to week
+            WeekSerializable weekSers = WeekSerializableController.getWeekSerializableByUserId(userId);
+            ArrayList<TaskSerializable> tasksSers = TaskSerializableController.getTasksByUserId(userId);
+            week = WeekAndSerializableConverter.SerializableToWeek(weekSers, tasksSers);
         } else {
             System.out.println("Please enter a valid option (1 or 2).");
+            int newSelection = Integer.parseInt(reader.nextLine());
+            week = activateCreateOrImport(userId, newSelection, reader);
         }
+        return week;
     }
 
     /**

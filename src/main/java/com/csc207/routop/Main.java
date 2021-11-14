@@ -9,18 +9,18 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
+        Week week;
         UserInterface.welcomeMessage();
         long userId = UserInterface.signInOrSignUp(reader);
         int createOrImportChoice = UserInterface.createOrImportWeek(reader);
-        LocalDate startDate = UserInterface.getStartDate(reader); // gets the start date for the week assuming they
-        // create it
-        Week week = new Week(startDate, userId);
+
         while(true){
             int selectionForScheduling = UserInterface.scheduleDuty(reader);
             if (selectionForScheduling == 4) {
                 break;
             }
-            UserInterface.activateCreateOrImport(week, createOrImportChoice, selectionForScheduling, reader);
+            week = UserInterface.activateCreateOrImport(userId, createOrImportChoice, reader);
+            UserInterface.schedulingDecision(week, selectionForScheduling, reader);
         }
         reader.close();
   }
