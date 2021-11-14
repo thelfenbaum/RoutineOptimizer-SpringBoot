@@ -17,10 +17,10 @@ public class Main {
         Week week = new Week(startDate, userId);
         while(true){
             int selectionForScheduling = UserInterface.scheduleDuty(reader);
+            UserInterface.activateCreateOrImport(week, createOrImportChoice, selectionForScheduling, reader);
             if (selectionForScheduling == 4) {
                 break;
             }
-            UserInterface.activateCreateOrImport(week, createOrImportChoice, selectionForScheduling, reader);
         }
         reader.close();
   }

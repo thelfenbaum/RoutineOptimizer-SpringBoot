@@ -13,7 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @param userId: the ID of the user accessing tasks in the database.
      */
     @Query("Select u from User u where u.id = :userId")
-    ArrayList<Task> getUserById(long userId);
+    ArrayList<User> getUserById(long userId);
 
     /**
      * Get the user with this username.
@@ -21,5 +21,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @param username: the ID of the user accessing tasks in the database.
      */
     @Query("Select u from User u where u.username = :username")
-    ArrayList<Task> getUserByUsername(String username);
+    ArrayList<User> getUserByUsername(String username);
 }

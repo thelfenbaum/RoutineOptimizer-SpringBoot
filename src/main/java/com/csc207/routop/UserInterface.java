@@ -170,8 +170,11 @@ public class UserInterface {
         } else if (selection == 3) {
             NonFixedTask[] projectTasksToSchedule = UserInterface.createProject(week, reader);
             Controller.activateProjectScheduling(week, projectTasksToSchedule);
+        } else if (selection == 4){
+            // convert the week into WeekSerializable and TaskSerializable, and save to database
+
         } else {
-            System.out.println("Please enter a valid option (1, 2, or 3).");
+            System.out.println("Please enter a valid option (1, 2, 3, or 4).");
         }
     }
 
