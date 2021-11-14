@@ -1,16 +1,14 @@
 package api;
 
-import api.TaskSerializableInteractor;
-import api.WeekAndSerializableConverter;
-import api.WeekSerializableInteractor;
-
 import entities.TaskSerializable;
 import entities.Week;
 import entities.WeekSerializable;
 
 import java.util.ArrayList;
 
+
 public class WeekController {
+
     public WeekSerializableInteractor weekSerializableInteractor;
     public TaskSerializableInteractor taskSerializableInteractor;
     public WeekController(WeekSerializableInteractor weekSerializableInteractor,
@@ -18,6 +16,12 @@ public class WeekController {
         this.weekSerializableInteractor = weekSerializableInteractor;
         this.taskSerializableInteractor = taskSerializableInteractor;
     }
+
+    /**
+     * Save this week entity to the database as a WeekSerializable object and multiple taskSerializable object.
+     *
+     * @param week: the week created by the user.
+     */
     public void saveWeek(Week week) {
         // convert to week serializable
         WeekSerializable convertedWeek = WeekAndSerializableConverter.WeekToWeekSerializable(week);

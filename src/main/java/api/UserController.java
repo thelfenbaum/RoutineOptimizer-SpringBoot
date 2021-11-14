@@ -32,6 +32,7 @@ public class UserController {
 
     /**
      * Returns a user object from the database based on the user's username.
+     *
      * @param username: the username.
      * @return the user associated with this username.
      */
