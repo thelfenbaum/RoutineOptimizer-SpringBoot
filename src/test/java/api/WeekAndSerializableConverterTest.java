@@ -1,6 +1,6 @@
 package api;
 
-import entities.*;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertEquals;
 
 public class WeekAndSerializableConverterTest {
     Week week;
@@ -40,7 +40,7 @@ public class WeekAndSerializableConverterTest {
     @Test
     public void testWeekToWeekSerializable(){
         WeekSerializable expected = new WeekSerializable(startDate, 1L);
-        assertSame(expected, WeekAndSerializableConverter.WeekToWeekSerializable(week));
+        assertEquals(expected, WeekAndSerializableConverter.WeekToWeekSerializable(week));
     }
 
     /**
@@ -49,7 +49,7 @@ public class WeekAndSerializableConverterTest {
     @Test
     public void testWeekToTaskSerializable(){
         ArrayList<TaskSerializable> expected = new ArrayList<>();
-        assertSame(expected, WeekAndSerializableConverter.WeekToTaskSerializable(week));
+        assertEquals(expected, WeekAndSerializableConverter.WeekToTaskSerializable(week));
     }
 
     /**
@@ -59,6 +59,6 @@ public class WeekAndSerializableConverterTest {
     public void testSerializableToWeek(){
         WeekSerializable weekSers = new WeekSerializable(startDate, 1L);
         ArrayList<TaskSerializable> taskSers = new ArrayList<>();
-        assertSame(week, WeekAndSerializableConverter.SerializableToWeek(weekSers, taskSers));
+        assertEquals(week, WeekAndSerializableConverter.SerializableToWeek(weekSers, taskSers));
     }
 }

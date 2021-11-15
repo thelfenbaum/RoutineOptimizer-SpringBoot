@@ -10,6 +10,7 @@ import java.time.LocalTime;
 
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class TaskTest {
     LocalTime duration;
@@ -76,7 +77,7 @@ public class TaskTest {
     }
 
     /**
-     * test chengeStartDateTime
+     * test changeStartDateTime
      */
     @Test
     public void testChangeStartDateTime(){
@@ -103,7 +104,7 @@ public class TaskTest {
     public void testChangeTaskDuration(){
         LocalTime time = LocalTime.of(12, 30);
         task.changeTaskDuration(time);
-        assertSame(LocalTime.of(12, 30), task.getDuration());
+        assertEquals(LocalTime.of(12, 30), task.getDuration());
     }
 
     /**
