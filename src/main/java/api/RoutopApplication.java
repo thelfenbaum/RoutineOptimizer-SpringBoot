@@ -25,8 +25,14 @@ public class RoutopApplication implements CommandLineRunner {
     @Override
     public void run(String... args){
         Scanner reader = new Scanner(System.in);
-        long userId = this.ui.signInOrSignUp(reader);
-        int createOrImportChoice = UserInterface.createOrImportWeek(reader);
+        boolean haveAccount = this.ui.signInOrSignUp(reader);
+        Long userId = this.ui.activateSignInOrSignUp(haveAccount, reader);
+        int createOrImportChoice;
+        if(haveAccount){
+            createOrImportChoice = UserInterface.createOrImportWeek(reader);
+        } else {
+            createOrImportChoice = UserInterface.createWeek(reader);
+        }
         Week week = this.ui.activateCreateOrImport(userId, createOrImportChoice, reader);
 
         while(true){

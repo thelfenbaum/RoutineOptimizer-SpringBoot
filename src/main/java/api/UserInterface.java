@@ -44,18 +44,34 @@ public class UserInterface {
      * @param reader: the scanner for user input
      * @return the id for the user
      */
-    public long signInOrSignUp(Scanner reader){
+    public boolean signInOrSignUp(Scanner reader){
         UserInterfacePrints.printWelcomeMessage();
         String response = reader.nextLine(); // y or n
         if (Objects.equals(response, "y")){
-            return signIn(reader);
+            return true;
         }
         else if (Objects.equals(response, "n")){
-            return signUp(reader);
+            return false;
         }
         else{
             System.out.println("Please enter a valid option.");
             return signInOrSignUp(reader); // start again
+        }
+    }
+
+    /**
+     * Sign user up or in based on whether they have an account from previous input prompt.
+     *
+     * @param haveAccount: whether they have an account.
+     * @param reader: the Scanner to get input.
+     * @return the next method, which signs them in or up depending on their input.
+     */
+    public Long activateSignInOrSignUp(boolean haveAccount, Scanner reader){
+        if (haveAccount){
+            return signIn(reader);
+        }
+        else {
+            return signUp(reader);
         }
     }
 
