@@ -34,21 +34,30 @@ public class WeekAndSerializableConverterTest {
     public void tearDown(){
     }
 
+    /**
+     * test weekToWeekSerializable
+     */
     @Test
     public void testWeekToWeekSerializable(){
-        WeekSerializable expected = new WeekSerializable(startDate, 1l);
+        WeekSerializable expected = new WeekSerializable(startDate, 1L);
         assertSame(expected, WeekAndSerializableConverter.WeekToWeekSerializable(week));
     }
 
+    /**
+     * test WeekToTaskSerializable
+     */
     @Test
     public void testWeekToTaskSerializable(){
         ArrayList<TaskSerializable> expected = new ArrayList<>();
         assertSame(expected, WeekAndSerializableConverter.WeekToTaskSerializable(week));
     }
 
+    /**
+     * test SerializableToWeek
+     */
     @Test
     public void testSerializableToWeek(){
-        WeekSerializable weekSers = new WeekSerializable(startDate, 1l);
+        WeekSerializable weekSers = new WeekSerializable(startDate, 1L);
         ArrayList<TaskSerializable> taskSers = new ArrayList<>();
         assertSame(week, WeekAndSerializableConverter.SerializableToWeek(weekSers, taskSers));
     }
