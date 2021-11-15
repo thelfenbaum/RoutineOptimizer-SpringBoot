@@ -152,8 +152,23 @@ We followed the dependency inversion principle by ensuring that classes such as 
 Our original packaging strategy was having three packages in our src/main/java. (1) an api package containing all of our database repository classes, interactor classes, and controllers; (2) a domain class containing all our entities and use cases; and (3) a cli package containing all of our front end command line classes and their respective controllers. We chose this packaging strategy (loosely termed inside/outside) because it neatly compartmentalizes different functionalities as well as compatibilities within our software. Our domain package would interact with both the cli and api packages, while the api and cli only interact with the domain. Additionally, this packaging strategy would also prep our code for scaling into a full-stack web app equipped with a web-based GUI and remote database server, since we already have pre-prepared the different packages which will interact with the newly added components. Our web-based GUI would only interact with the cli package and our remote database server would only interact with the api package. This would keep with both the interface segregation principle and the single repsponsibility principle, as well as provide us with an overall cleaner software structure. Below is a diagram of our packaging strategy which visually demonstrates its cleanliness and practicality:
 
 
-```sequence{theme="simple"}
-web-based GUI -> cli package
+```mermaid 
+    flowchart LR
+    WBG["web based gui"] --> CLI["cli"]
+    subgraph clip ["cli package"]
+    CLI["user interface"] -.-> CLIC["controller"] 
+    end
+    CLIC --> UC["use cases"]
+    subgraph d ["domain package"]
+    UC -.-> domain
+    end
+    APIC["controller"] --> UC
+    subgraph apip["api package"]
+    APII["interactor"] -.-> APIC
+    API["repository/gateway"] -.-> APII
+    end 
+    DB[("remote database")] --> API["api"]
+    
 ```
 
 However, with this packaging strategy, our application was not compiling due to errors SpringBoot was throwing. After much research, we discovered that SpringBoot’s entity scan (finding entities in code and matching ) only works when one of two packaging strategies is implemented: the SpringBoot default packaging strategy, or having all JPA-annotated classes within the same package. Since we did not follow SpringBoot’s default packaging strategy and did not want to start a new SpringBoot project (which would require setting all the application.properties anew and connecting the new application to the PostgreSQL database) we decided to put all of our JPA-annotated classes in the same package: the api package. We hope to find a way to use our original thought out design strategy (see open ended questions)
