@@ -1,11 +1,10 @@
 package com.csc207.cli;
 
-import org.apache.catalina.LifecycleState;
 
-import java.lang.reflect.Array;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
