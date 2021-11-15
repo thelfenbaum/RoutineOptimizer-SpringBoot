@@ -4,15 +4,15 @@
 
 User opens application and either signs in with username and password if they have an account or signs up for an account if they don't have one yet
 
-Tasks are scheduled into weeks. A week is created by the program for the user to schedule tasks into.
+Tasks are scheduled into weeks. A week either is created by the program for the user to schedule tasks into, or retreived from the database for the user to edit if they wihs to do so and already have a week saved in the program.
 
-The user uses the app to schedule their upcoming tasks, by inputting the tasks they want to get done, and specifying details such as:
+The user uses the app to schedule their upcoming tasks by inputting the tasks they want to get done, and specifying details such as:
 
 1.  The amount of time tasks will take
     
 2.  When they want to complete the tasks by
     
-3.  Whether they wish to repeat this task on a regular basis, and if so, how often
+3.  If they wish to complete the task via a series of smaller tasks
     
 
 Tasks are separated into two types, fixed and non-fixed, based on whether they have to be completed at a certain time (e.g. meeting) or not (e.g. exercising). The user is also able to create a project (i.e. a collection of tasks). For example, if a user wants to complete an assignment that takes 20 hours to complete, then they would add a project, specifying:
@@ -28,7 +28,7 @@ The program is supposed to take the non-fixed tasks, find an appropriate time fo
 
 **The new features in our program since phase 0:**
 
-Customized error messages -- these have been created but not yet embedded into the code
+-   Customized error messages -- these have been created but only partially embedded into the code
 
 -   Connection to a PostgreSQL database and spring boot web application framework
 
@@ -37,7 +37,7 @@ Customized error messages -- these have been created but not yet embedded into t
 -   Ability for the user to sign in. this feature enables:
 
 
--       the user to access previously saved week scheduled
+-       the user to access previously saved week schedules
 
 -       the database to save the user information
 
@@ -47,27 +47,27 @@ Customized error messages -- these have been created but not yet embedded into t
 
 ## **Design Decisions**
 
-**Temporary focus on backend at the cost of robust UI:** we felt that it would be too much to work on both the api and web stuff simultaneously, both of which are new areas of software we have never learned about or implemented before. Since phase 1 requires data serialization and spring offers us the opportunity to do so in a way that is conducive to a web application, we hope to utilize this framework to develop a robust front end over the next few weeks for phase 2.
+**Temporary focus on backend at the cost of robust UI:** we felt that it would be too much to work on both the api and web stuff simultaneously, both of which are new areas of software we have never learned about or implemented before. Since phase 1 requires data serialization and spring offers us the opportunity to do so in a way that is conducive to a web application, we spent our time developing the api and back end, but hope to utilize this framework to develop a robust front end over the next few weeks for phase 2.
 
-**Choice to proceed with a web application:** We chose to build a web application over Springboot because some of our team members have experience with HTML and CSS and wanted to deepen their experience. Our other team members find this knowledge base to be useful. We think a web app would be beneficial for our user since it allows them to access the app from a wider range of devices. Calendar stays constant but users change location, and we want to meet this need.
+**Choice to proceed with a web application:** We chose to build a web application over Springboot because some of our team members have experience with HTML and CSS and wanted to deepen their experience. Our other team members find this knowledge base to be useful. We think a web app would be beneficial for our user since it allows them to access the app from a wider range of devices. Calendars stay constant but users change location, and we want to meet this need.
 
-**Choice of PostgreSQL:** We chose PostgreSQL as our databse since it was the database used in the course procvided video tutorial and we thought we could take advantage of its ability to store arrays. This special feature ended up being unncessary as we just linked tables to each other (see other desing decisions for more info).
+**Choice of PostgreSQL:** We chose PostgreSQL as our databse since it was the database used in the course provided video tutorial and we thought we could take advantage of its ability to store arrays. This special feature ended up being unncessary as we just linked tables to each other (see other desing decisions for more info).
 
-**Choice of which entities to write to database:** We chose to store data in our database using three tables: Tasks (to store TaskSerializable object data), Weeks (to store WeekSerializable object data), and Users (to store User object data). We made this choice because this is the minimum amount of stored info our program needs to have complete data persistence. We need to be able to keep track of a Week object associated with a User object. However, a Week object contains Task objects inside of it, and PostgreSQL databases cannot store "nested tables". Thus, we needed a seperate table for serializing Task objects, which keeps track of the date they are to be completed on and the User who created them, both of which are linked to WeekSerializable objects stores in the Week table via their data and user id. To elaborate, if a given Task's date is contained within the seven day span starting on a given Week's start date and the Task's user id matches that of the Week, then we know the given Task is contained inside the given Week. The users are stored in their own table.
+**Choice of which entities to write to database:** We chose to store data in our database using three tables: Tasks (to store TaskSerializable object data), Weeks (to store WeekSerializable object data), and Users (to store User object data). We made this choice because this is the minimum amount of stored info our program needs to have complete data persistence. We need to be able to keep track of a Week object associated with a User object. However, a Week object contains Task objects inside of it, and PostgreSQL databases cannot store "nested tables". Thus, we needed a seperate table for serializing Task objects, which keeps track of the date they are to be completed on and the User who created them, both of which are linked to the WeekSerializable objects stored in the Week table via their data and the id of the user who scheduled them. To elaborate, if a given Task's date is contained within the seven day span starting on a given Week's start date and the Task's user id matches that of the Week, then we know the given Task is contained inside the given Week and have all the information necessary to reconstruct this week for the user. The users are stored in their own table.
 
 **Choice to write info to database at 2 points:**
 
--   Store user when they sign in: we wanted to commit the user to the database as soon as they connect to the program so that the database can assign them a user ID that goes into each of the tasks they create. This way, the week is keeping track of which activity belongs to the user as the tasks are created and scheduled.  
+-   Store user when they sign in: we wanted to commit the user to the database as soon as they connect to the program so that the database can assign them a user ID that goes into each of the tasks they create. This way, the program keeps track of which activity belongs to the user as the tasks are created and scheduled.  
       
     
--   Store week when user exits program: we thought this would be an effective point to store the week since the user would have put all the information they need into that week and are done with it until they revisit the program. We considered storing each of the entities into the database as they are instantiated by the user, but decided to simplify our use of the database while we are still learning how to use it. We can potentially complicate our database use going into phase 2 if we wish to make the database more responsible for the user’s info as they go through the program. An advantage of this approach is that if the program crashes, the user will not lose their schedule for the week they are in the process of editing.
+-   Store week when user exits program: we thought this would be an effective point to store the week since the user would have put all the information they need into that week and are done with it until they revisit the program. We considered storing each of the entities into the database as they are instantiated by the user, but decided to simplify our use of the database while we are still learning how to use it. We can potentially complicate our database use going into phase 2 if we wish to make the database more responsible for the user’s info as they go through the program. An advantage of this approach is that if the program crashes, the user will not lose their schedule for the week they are in the process of editing. However, we feel that our current setup is sufficent for storing user info and being able to recall it when the user revisits the program.
     
 
   
 
-**Converted todaySchedule from Hashmap to LinkedHashmap:** In phase 0 we stored the schedule of a day as a Hashmap where each key (time) was linked to a task name. However since HashMap did not preserve insertion order, the Hashmap did not display time in the correct order. After some investigation, we have decided to change the hashmap into a Linkedhashmap that iterate in the order in which the entries were put into the map. This will allow the schedule keys to correspond to the times of day in the proper order.
+**Converted todaySchedule from Hashmap to LinkedHashmap:** In phase 0 we stored the schedule of a day as a Hashmap where each key (time) was linked to a task name. However since HashMap did not preserve insertion order, the Hashmap did not display time in the correct order. After some investigation, we have decided to change the hashmap into a Linkedhashmap that iterates in the order in which the entries were put into the map. This will allow the schedule keys to correspond to the times of day in the proper order.
 
-**Added a list of tasks as an attribute to each Day object:** We added a list of tasks as an attribute to each day object in order to keep track of the tasks that are associated with a given day. Previously, when the day object did not have this attribute, there was no way of checking the exact task objects that were in the day object because the day object’s todaySchedule attribute maps the time to the name of the task (and does . With the list of tasks, it allows us to access the specific task objects that are added into the day by looking for common names between the task object and the task in the todaySchedule.
+**Added a list of tasks as an attribute to each Day object:** We added a list of tasks as an attribute to each day object in order to keep track of the tasks that are associated with a given day. Previously, when the day object did not have this attribute, there was no way of checking the exact task objects that were in the day object because the day object’s todaySchedule attribute maps the time to the name of the task (and does not keep track of any of the other attributes). This meant that we were not keeping track of task attributes other than name and time at which they were scheduled once we scheuled the tasks. With the list of tasks, it allows us to access the specific task objects that are added into the day by looking for common names between the task object and the task in the todaySchedule. The task list also plays an important role in allowing us to write scheudles to the databse.
 
 **Choice of Exceptions:**
 
