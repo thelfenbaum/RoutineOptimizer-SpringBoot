@@ -16,10 +16,16 @@ public class TaskSerializableInteractor {
         this.taskSerRepo = taskSerRepo;
     }
 
+    /**
+     * Saves a taskSerializable to the database.
+     *
+     * @param taskSer: the taskSerializable.
+     */
     @Transactional
     public void saveTaskSerializable(TaskSerializable taskSer){
         this.taskSerRepo.save(taskSer);
     }
+
     /** Returns a list of tasks associated with a user.
      *
      * @param userId: the id of the user.
@@ -28,6 +34,10 @@ public class TaskSerializableInteractor {
         return (ArrayList<TaskSerializable>) this.taskSerRepo.getTasksByUserId(userId);
     }
 
+    /**
+     * Removes all taskSerializables associated with a user id from the database.
+     * @param userId: the user id.
+     */
     @Transactional
     public void removeTaskSerializablesByUserId(long userId) {
         ArrayList<Long> listOfIds = new ArrayList<Long>();
