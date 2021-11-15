@@ -1,27 +1,25 @@
 package api;
 
-import entities.TaskSerializable;
-import entities.Week;
-import entities.WeekSerializable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 
-
+@RestController
 public class WeekController {
+    @Autowired
+    private final WeekSerializableInteractor weekSerializableInteractor;
+    @Autowired
+    private final TaskSerializableInteractor taskSerializableInteractor;
 
-    public WeekSerializableInteractor weekSerializableInteractor;
-    public TaskSerializableInteractor taskSerializableInteractor;
     public WeekController(WeekSerializableInteractor weekSerializableInteractor,
                           TaskSerializableInteractor taskSerializableInteractor) {
         this.weekSerializableInteractor = weekSerializableInteractor;
         this.taskSerializableInteractor = taskSerializableInteractor;
     }
 
-    /**
-     * Save this week entity to the database as a WeekSerializable object and multiple taskSerializable object.
-     *
-     * @param week: the week created by the user.
-     */
+    @Transactional
     public void saveWeek(Week week) {
         // convert to week serializable
         WeekSerializable convertedWeek = WeekAndSerializableConverter.WeekToWeekSerializable(week);

@@ -1,7 +1,6 @@
 package api;
 
 import com.csc207.cli.*;
-import entities.*;
 
 import java.util.ArrayList;
 

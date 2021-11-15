@@ -1,6 +1,4 @@
-package entities;
-
-import entities.Day;
+package api;
 
 import java.time.LocalDate;
 

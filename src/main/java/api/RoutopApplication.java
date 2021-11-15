@@ -1,19 +1,18 @@
-package com.csc207.cli;
+package api;
 
-import entities.Week;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Scanner;
 
 @SpringBootApplication
-@Configuration
+@EntityScan("api")
 public class RoutopApplication implements CommandLineRunner {
-    private UserInterface ui;
+    @Autowired
+    private final UserInterface ui;
 
     public RoutopApplication(UserInterface ui){
         this.ui = ui;

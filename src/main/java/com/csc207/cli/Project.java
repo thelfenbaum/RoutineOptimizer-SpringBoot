@@ -1,7 +1,7 @@
 package com.csc207.cli;
 
-import entities.Day;
-import entities.Week;
+import api.Day;
+import api.Week;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

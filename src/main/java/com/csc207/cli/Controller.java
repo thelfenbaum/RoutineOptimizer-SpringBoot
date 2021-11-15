@@ -1,8 +1,8 @@
 package com.csc207.cli;
 
-import entities.FixedTask;
-import entities.NonFixedTask;
-import entities.Week;
+import api.FixedTask;
+import api.NonFixedTask;
+import api.Week;
 
 public class Controller {
 

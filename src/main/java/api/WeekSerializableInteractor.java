@@ -1,26 +1,20 @@
 package api;
 
-import entities.WeekSerializable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 
+import javax.transaction.Transactional;
+
+@Configuration
 public class WeekSerializableInteractor {
+    @Autowired
     WeekSerializableRepository repo;
-
-    /**
-     * Construct a WeekSerializableInteractor with the given repository.
-     *
-     * @param wsr: the weekSerializableRepository
-     */
 
     public WeekSerializableInteractor(WeekSerializableRepository wsr){
         this.repo = wsr;
     }
 
-    /**
-     * Save the WeekSerializable object to the database.
-     *
-     * @param weekSer: the week created by the user.
-     */
-
+    @Transactional
     public void saveWeekSerializable(WeekSerializable weekSer){
         this.repo.save(weekSer);
     }
@@ -28,8 +22,8 @@ public class WeekSerializableInteractor {
     /** Returns the Week associated with a user.
      *
      * @param userId: the id of the user.
+     *
      */
-
     public WeekSerializable getWeekSerializableByUserId(Long userId){
         return this.repo.getWeekByUserId(userId);
     }

@@ -1,34 +1,29 @@
 package api;
 
-import entities.TaskSerializable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 
-
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 
+@Configuration
 public class TaskSerializableInteractor {
+    @Autowired
     private final TaskSerializableRepository taskSerRepo;
 
-    /**
-     * Constructs an interactor for the repo to interact with TaskSerializable.
-     * @param taskSerRepo: The TaskSerializableRepository we would like to have tasks interact with.
-     */
     public TaskSerializableInteractor(TaskSerializableRepository taskSerRepo){
         this.taskSerRepo = taskSerRepo;
     }
 
-    /**
-     * Saves the given TaskSerializable into the TaskSerializableRepository.
-     * @param taskSer: The TaskSerializable object we would like to put in the repo.
-     */
+    @Transactional
     public void saveTaskSerializable(TaskSerializable taskSer){
         this.taskSerRepo.save(taskSer);
     }
     /** Returns a list of tasks associated with a user.
      *
      * @param userId: the id of the user.
-     * @return The list of tasks of the user.
      */
-    public ArrayList<TaskSerializable> getTasksByUserId(long userId) {
-        return this.taskSerRepo.getTasksByUserId(userId);
+    public ArrayList<TaskSerializable> getTasksByUserId(Long userId) {
+        return (ArrayList<TaskSerializable>) this.taskSerRepo.getTasksByUserId(userId);
     }
 }

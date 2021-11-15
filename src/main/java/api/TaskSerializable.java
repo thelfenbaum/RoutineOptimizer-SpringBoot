@@ -1,4 +1,4 @@
-package entities;
+package api;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,19 +12,19 @@ public class TaskSerializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", columnDefinition = "text")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "start_datetime", columnDefinition = "timestamp")
+    @Column(name = "start_datetime")
     private LocalDateTime startDateTime;
 
-    @Column(name = "duration", columnDefinition = "time")
+    @Column(name = "duration")
     private LocalTime duration;
 
-    @Column(name = "is_complete", columnDefinition = "boolean")
+    @Column(name = "is_complete")
     private boolean isComplete;
 
-    @Column(name = "user_id", columnDefinition = "bigint")
+    @Column(name = "user_id")
     private Long userId;
 
     protected TaskSerializable() {};
