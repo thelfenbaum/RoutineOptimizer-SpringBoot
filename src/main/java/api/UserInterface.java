@@ -67,10 +67,10 @@ public class UserInterface {
     }
 
     /**
-     * signs in a user
+     * Signs a user in.
      *
-     * @param reader: the scanner for user input
-     * @return the id for the user
+     * @param reader: the scanner for user input.
+     * @return the id for the user.
      */
     public long signIn(Scanner reader){
         System.out.println("Please enter your username.");
@@ -83,9 +83,10 @@ public class UserInterface {
             return userId;
         }
         else{
-            System.out.println("Incorrect username or password \n ");
-            System.out.println("Do you have an account with us? (y/n)");
-            return signInOrSignUp(reader); // start again
+            System.out.println("Incorrect username or password. \n ");
+//            System.out.println("Do you have an account with us? (y/n)");
+//            return signInOrSignUp(reader); // start again
+            return signIn(reader);
         }
     }
 
@@ -180,7 +181,7 @@ public class UserInterface {
      * @return user's selected option as an integer.
      */
     public static int scheduleDuty(Scanner reader){
-        //Scanner reader = new Scanner(System.in);  // Create a Scanner object
+        // Scanner reader = new Scanner(System.in);  // Create a Scanner object
         // Give user instructions
         UserInterfacePrints.scheduleOptionsMessage();
         String selectedOption = reader.nextLine(); // Get user input
@@ -292,7 +293,6 @@ public class UserInterface {
      * @param selection: the selection from the user about which type of task they would like to put
      * @param reader: The scanner in Main module reading user input
      */
-
     public void schedulingDecision(Week week, int selection, Scanner reader){
         if (selection == 1) {
             FixedTask taskToPut = UserInterface.createFixedTask(reader, week.getUserId());

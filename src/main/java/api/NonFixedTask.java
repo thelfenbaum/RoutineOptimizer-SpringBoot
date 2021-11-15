@@ -13,7 +13,6 @@ public class NonFixedTask extends Task {
      * @param duration duration of the task
      * @param dueDateTime the date and time when the task is due
      */
-
     public NonFixedTask(String name, LocalDateTime dueDateTime, LocalTime duration, Long userId){
         super(name, duration, userId);
         this.dueDateTime = dueDateTime;

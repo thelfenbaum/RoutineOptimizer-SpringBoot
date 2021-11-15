@@ -18,11 +18,10 @@ public class Day {
     private ArrayList<Task> TodayTasks;
 
     /**
+     * Construct a Day, giving the day its day of month, day of week and the schedule of the day.
      *
-     * Construct a Day, giving the day its day of month, day of week and the schedule of the day
-     * @param dayOfMonth the day of month
+     * @param dayOfMonth: the day of month
      */
-
     public Day(LocalDate dayOfMonth){
         this.dayOfMonth = dayOfMonth;
         this.dayOfWeek = dayOfMonth.getDayOfWeek();
@@ -38,7 +37,6 @@ public class Day {
     /**
      * Return the string representation of a day that lists its day of week and schedule.
      */
-
     public String toString(){
         StringBuilder s = new StringBuilder();
         s.append("------ ").append(this.dayOfWeek).append(" ------\n");
