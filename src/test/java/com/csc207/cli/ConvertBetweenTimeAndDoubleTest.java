@@ -18,18 +18,27 @@ public class ConvertBetweenTimeAndDoubleTest {
     public void tearDown(){
     }
 
+    /**
+     * Tests convertDateTimeDouble method from a localDateTime to double.
+     */
     @Test
     public void convertDateTimeDouble() {
         LocalDateTime time = LocalDateTime.of(2021, 3, 11, 1, 0);
         assertEquals(1.0, ConvertBetweenTimeAndDouble.ConvertDateTimeDouble(time), 0.01);
     }
 
+    /**
+     * Tests convertLocalTimeDouble method with a LocalTime to type double.
+     */
     @Test
     public void convertLocalTimeDouble() {
         LocalTime time = LocalTime.of(2,0);
         assertEquals(2.0, ConvertBetweenTimeAndDouble.ConvertLocalTimeDouble(time), 0.01);
     }
 
+    /**
+     * Test convertDoubleToLocalTime method with a double converted to a type LocalTime.
+     */
     @Test
     public void convertDoubleToLocalTime() {
         double time = 5.5;

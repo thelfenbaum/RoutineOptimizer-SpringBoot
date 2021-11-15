@@ -25,6 +25,11 @@ public class CheckerTest {
     public void tearDown(){
     }
 
+    /**
+     * Tests CheckScheduleProject method with an array of 1 non-fixed task and checks that the project is not
+     * scheduled in
+     *
+     */
     @Test
     public void testCheckScheduleProject(){
         NonFixedTask t1 = new NonFixedTask("Piano Practice", LocalDateTime.of(2021, 4, 5, 12, 0), LocalTime.of(2, 30), 1L);
@@ -32,12 +37,18 @@ public class CheckerTest {
         assertSame(false, Checker.CheckScheduleProject(week, projectTask));
     }
 
+    /**
+     * Tests CheckScheduleNonFixedTask method with a week and a non-fixed task, when there is no task scheduled in week.
+     */
     @Test
     public void testCheckScheduleNonFixedTask(){
         NonFixedTask t1 = new NonFixedTask("Piano Practice", LocalDateTime.of(2021, 4, 5, 12, 0), LocalTime.of(2, 30), 1L);
         assertSame(false, Checker.CheckScheduleNonFixedTask(week, t1));
     }
 
+    /**
+     * Tests CheckScheduleFixedTask method with a week and a fixed task, when there is no tasks scheduled in the week.
+     */
     @Test
     public void testCheckScheduleFixedTask(){
         FixedTask t2 = new FixedTask("Jogging", LocalDateTime.of(2021, 4, 5, 12, 0), LocalTime.of(2, 30), 1L);
