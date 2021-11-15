@@ -32,7 +32,7 @@ Customized error messages -- these have been created but not yet embedded into t
 
 -   Connection to a PostgreSQL database and spring boot web application framework
 
--   A slightly more sophisticated scheduling algorithm which tells the user when they have no room for an event
+-   A slightly more sophisticated scheduling algorithm which tells the user when they have no room for a task
 
 -   Ability for the user to sign in. this feature enables:
 
