@@ -2,7 +2,7 @@ package api;
 import com.csc207.cli.Controller;
 import com.csc207.cli.Project;
 import com.csc207.cli.UserInterfacePrints;
-import com.csc207.cli.UserInterfacePrintsExceptions;
+import com.csc207.cli.UserInterfaceExceptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -181,7 +181,7 @@ public class UserInterface {
         // Give user instructions
         try {
             System.out.println("On which day do you want your week to start?\n");
-            return UserInterfacePrintsExceptions.getDate(reader);
+            return UserInterfaceExceptions.getDate(reader);
         }
         catch(Exception e){
             System.out.println(e.getMessage());
@@ -223,14 +223,14 @@ public class UserInterface {
         String name = reader.nextLine(); // Get user input
 
         System.out.println("On what date does your task or event to take place?");
-        LocalDate date = UserInterfacePrintsExceptions.getDate(reader);
+        LocalDate date = UserInterfaceExceptions.getDate(reader);
 
         System.out.println("At what time does your task or event begin?");
-        LocalTime time = UserInterfacePrintsExceptions.getTime(reader);
+        LocalTime time = UserInterfaceExceptions.getTime(reader);
         LocalDateTime startDateTime = LocalDateTime.of(date, time);
 
         System.out.println("What is the duration of this task or event?");
-        LocalTime duration = UserInterfacePrintsExceptions.getTime(reader);
+        LocalTime duration = UserInterfaceExceptions.getTime(reader);
 
         return new FixedTask(name, startDateTime, duration, userId);  // Create a FixedTask from this information
         }
@@ -254,13 +254,13 @@ public class UserInterface {
             String name = reader.nextLine(); // Get user input
 
             System.out.println("What is the duration of your task or event?");
-            LocalTime duration = UserInterfacePrintsExceptions.getTime(reader); // get task duration
+            LocalTime duration = UserInterfaceExceptions.getTime(reader); // get task duration
 
             System.out.println("Please enter the date that this task or event is due before.\n");
-            LocalDate dueDate = UserInterfacePrintsExceptions.getDate(reader);
+            LocalDate dueDate = UserInterfaceExceptions.getDate(reader);
 
             System.out.println("At what time on that day is your task or event due before?\n");
-            LocalTime dueTime = UserInterfacePrintsExceptions.getTime(reader);
+            LocalTime dueTime = UserInterfaceExceptions.getTime(reader);
 
             LocalDateTime dueDateTime = LocalDateTime.of(dueDate, dueTime);
             return new NonFixedTask(name, dueDateTime, duration, userId);
@@ -287,7 +287,7 @@ public class UserInterface {
             String name = reader.nextLine(); // Get user input
 
             System.out.println("What date do you want to start working on this project or goal?\n");
-            LocalDate startDate = UserInterfacePrintsExceptions.getDate(reader);
+            LocalDate startDate = UserInterfaceExceptions.getDate(reader);
 
             LocalDateTime dueDateTime = getDueDateTime(reader);
 
@@ -336,10 +336,10 @@ public class UserInterface {
         try {
             System.out.println("What date is this project or goal due by?");
 
-            LocalDate dueDate = UserInterfacePrintsExceptions.getDate(reader);
+            LocalDate dueDate = UserInterfaceExceptions.getDate(reader);
 
             System.out.println("At what time on that day is your project or goal due before? \n");
-            LocalTime dueTime = UserInterfacePrintsExceptions.getTime(reader);
+            LocalTime dueTime = UserInterfaceExceptions.getTime(reader);
 
             return LocalDateTime.of(dueDate, dueTime);
         }
@@ -370,7 +370,7 @@ public class UserInterface {
                     " per day.");
             System.out.println("Please enter the maximum amount of time you would like to work on this project in a given" +
                     "day.");
-            return UserInterfacePrintsExceptions.getTime(reader);
+            return UserInterfaceExceptions.getTime(reader);
         }
         catch(Exception e){
             System.out.println(e.getMessage());

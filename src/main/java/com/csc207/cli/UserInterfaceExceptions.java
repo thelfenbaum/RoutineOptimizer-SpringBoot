@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class UserInterfacePrintsExceptions {
+public class UserInterfaceExceptions {
     /**
      * Helper method UserInterface calls on to gather a date from the user
      * @param reader: Scanner in Main module reading user input
@@ -42,7 +42,7 @@ public class UserInterfacePrintsExceptions {
             }
             else{
                 List<Character> list = Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-                if (list.contains(startDate.charAt(i))){
+                if (!list.contains(startDate.charAt(i))){
                     throw new Exception(Exceptions.INVALID_DATE_FORMAT);
                 }
 
@@ -91,7 +91,7 @@ public class UserInterfacePrintsExceptions {
             }
             else{
                 List<Character> list = Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-                if (list.contains(startTime.charAt(i))){
+                if (!list.contains(startTime.charAt(i))){
                     throw new Exception(Exceptions.INVALID_TIME_FORMAT);
                 }
 
