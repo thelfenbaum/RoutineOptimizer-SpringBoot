@@ -26,7 +26,7 @@ Tasks are separated into two types, fixed and non-fixed, based on whether they h
 
 The program is supposed to take the non-fixed tasks, find an appropriate time for them (i.e. a time that does not coincide with the fixed tasks) such that they can be completed before the deadline, and add them to the schedule. After adding the tasks they want to complete, the user should be able to view a schedule of their week with all the fixed and non-fixed tasks they will do for the week.
 
-The new features in our program since phase 0:
+**The new features in our program since phase 0:**
 
 Customized error messages -- these have been created but not yet embedded into the code
 
