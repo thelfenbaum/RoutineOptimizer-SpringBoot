@@ -15,17 +15,15 @@ import java.util.Scanner;
 @Service
 public class UserInterface {
     @Autowired
-    private UserController userController;
+    private final UserController userController;
     @Autowired
-    private WeekSerializableInteractor weekSerializableInteractor;
+    private final WeekSerializableInteractor weekSerializableInteractor;
     @Autowired
-    private UserInteractor userInteractor;
+    private final UserInteractor userInteractor;
     @Autowired
-    private TaskSerializableInteractor taskSerializableInteractor;
+    private final TaskSerializableInteractor taskSerializableInteractor;
     @Autowired
-    private WeekController weekController;
-
-    public UserInterface(){}
+    private final WeekController weekController;
 
     public UserInterface(UserController uc, WeekSerializableInteractor wsi, UserInteractor ui,
                          TaskSerializableInteractor tsi, WeekController wc){
@@ -106,8 +104,6 @@ public class UserInterface {
         return newUser.getId();
     }
 
-
-
     /**
      * Starts the calendar program. Prints a blurb regarding how to program works, and then
      * gives user the option to either create or import their week calendar.
@@ -136,12 +132,14 @@ public class UserInterface {
         if (selection == 1) {
             LocalDate startDate = UserInterface.getStartDate(reader);
             week = new Week(startDate, userId);
+
         } else if (selection == 2) { // use user id to retrieve the user's week serializable, convert it to week
             WeekSerializable weekSers = this.weekSerializableInteractor.getWeekSerializableByUserId(userId);
             this.weekSerializableInteractor.removeWeekSerializableByUserId(userId);
             ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractor.getTasksByUserId(userId);
             this.taskSerializableInteractor.removeTaskSerializablesByUserId(userId);
             week = WeekAndSerializableConverter.SerializableToWeek(weekSers, tasksSers);
+
         } else {
             System.out.println("Please enter a valid option (1 or 2).");
             int newSelection = Integer.parseInt(reader.nextLine());
@@ -196,7 +194,6 @@ public class UserInterface {
      * @return the FixedTask that is to be put in the schedule.
      */
     public static FixedTask createFixedTask(Scanner reader, Long userId){
-        //Scanner reader = new Scanner(System.in);  // Create a Scanner object
         try{
             System.out.println("What is the name of your task or event?");
 
@@ -228,7 +225,6 @@ public class UserInterface {
      * @return the NonFixedTask that is to be put in the schedule.
      */
     public static NonFixedTask createNonFixedTask(Scanner reader, Long userId){
-        //Scanner reader = new Scanner(System.in);  // Create a Scanner object
         try {
             System.out.println("What is the name of your task or event?");
             String name = reader.nextLine(); // Get user input
@@ -260,7 +256,6 @@ public class UserInterface {
      * @return an array of unscheduled NonFixedTasks corresponding to this project.
      */
     public static NonFixedTask[] createProject(Week week, Scanner reader){
-        //Scanner reader = new Scanner(System.in);  // Create a Scanner object
         try {
             System.out.println("What is the name of your project or goal?");
 
@@ -295,28 +290,22 @@ public class UserInterface {
 
     public void schedulingDecision(Week week, int selection, Scanner reader){
         if (selection == 1) {
-            FixedTask taskToPut = UserInterface.createFixedTask(reader, week.getUserId());
-            if(!Controller.checkFixedTaskScheduling(week, taskToPut)){
-                System.out.println("This task can't be scheduled");}
-            else{Controller.activateFixedTaskScheduling(week, taskToPut);}
+            selectsOne(week, reader);
+
         } else if (selection == 2) {
-            NonFixedTask taskToSchedule = UserInterface.createNonFixedTask(reader, week.getUserId());
-            if(!Controller.checkNonFixedTaskScheduling(week, taskToSchedule)){
-                System.out.println("This task can't be scheduled");}
-            else{Controller.activateNonFixedTaskScheduling(week, taskToSchedule);}
+            selectsTwo(week, reader);
+
         } else if (selection == 3) {
-            NonFixedTask[] projectTasksToSchedule = UserInterface.createProject(week, reader);
-            if(!Controller.checkProjectScheduling(week, projectTasksToSchedule)){
-                System.out.println("This project can't be scheduled");}
-            else{Controller.activateProjectScheduling(week, projectTasksToSchedule);}
+            selectsThree(week, reader);
+
         } else if (selection == 4){
             // convert the week into WeekSerializable and TaskSerializable, and save to database
             this.weekController.saveWeek(week);
+
         } else {
             System.out.println("Please enter a valid option (1, 2, 3, or 4).");
         }
     }
-
 
     /** Helper method for createProject which gathers information about the project due date and time
      *
@@ -369,10 +358,31 @@ public class UserInterface {
         }
     }
 
-//    // The unitTest gave an error saying that there was no main method in UI, so I added one     -Issam
-//    public static void main(String[] args) {
-//
-//    }
+    private void selectsThree(Week week, Scanner reader) {
+        NonFixedTask[] projectTasksToSchedule = UserInterface.createProject(week, reader);
+        if(!Controller.checkProjectScheduling(week, projectTasksToSchedule)){
+            System.out.println("This project can't be scheduled");}
+        else{Controller.activateProjectScheduling(week, projectTasksToSchedule);}
+    }
+
+    private void selectsTwo(Week week, Scanner reader) {
+        NonFixedTask taskToSchedule = UserInterface.createNonFixedTask(reader, week.getUserId());
+        if(!Controller.checkNonFixedTaskScheduling(week, taskToSchedule)){
+            System.out.println("This task can't be scheduled");}
+        else{Controller.activateNonFixedTaskScheduling(week, taskToSchedule);}
+    }
+
+    private void selectsOne(Week week, Scanner reader) {
+        FixedTask taskToPut = UserInterface.createFixedTask(reader, week.getUserId());
+        if(!Controller.checkFixedTaskScheduling(week, taskToPut)){
+            System.out.println("This task can't be scheduled");}
+        else{Controller.activateFixedTaskScheduling(week, taskToPut);}
+    }
+
+    // The unitTest gave an error saying that there was no main method in UI, so I added one     -Issam
+    public static void main(String[] args) {
+
+    }
 
 }
 
