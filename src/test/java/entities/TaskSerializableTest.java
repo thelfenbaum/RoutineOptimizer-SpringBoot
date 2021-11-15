@@ -55,14 +55,6 @@ public class TaskSerializableTest {
     }
 
     /**
-     * test isComplete
-     */
-    @Test
-    public void testIsComplete(){
-        assertSame(false, task.isComplete());
-    }
-
-    /**
      * test getUserId
      */
     @Test

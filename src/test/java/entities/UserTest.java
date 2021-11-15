@@ -26,14 +26,6 @@ public class UserTest {
     }
 
     /**
-     * test that username matches user.getUsername()
-     */
-    @Test
-    public void testGetUsername(){
-        assertSame("username", user.getUsername());
-    }
-
-    /**
      * test that password matches user.getPassword()
      */
     @Test
