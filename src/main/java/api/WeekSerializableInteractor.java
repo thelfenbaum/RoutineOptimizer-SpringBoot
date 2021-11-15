@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 @Configuration
 public class WeekSerializableInteractor {
@@ -28,4 +31,10 @@ public class WeekSerializableInteractor {
         return this.repo.getWeekByUserId(userId);
     }
 
+    @Transactional
+    public void removeWeekSerializableByUserId(long userId) {
+        WeekSerializable weekSer = this.repo.getWeekByUserId(userId);
+        Long id = weekSer.userId;
+        this.repo.deleteAllById(Collections.singleton(id));
+    }
 }
