@@ -32,6 +32,7 @@ public class RoutopApplication implements CommandLineRunner {
         while(true){
             int selectionForScheduling = UserInterface.scheduleDuty(reader);
             this.ui.schedulingDecision(week, selectionForScheduling, reader);
+            System.out.println(week);
             if (selectionForScheduling == 4) {
                 break;
             }
