@@ -35,24 +35,16 @@ public class UserInterface {
         this.taskSerializableInteractor = tsi;
         this.weekController = wc;
     }
-    /**
-     * Welcome message which greets user when they initiate the program
-     */
-    public static void welcomeMessage(){
-        System.out.println("Hi there! Welcome to RoutOp, the app built for optimizing your week.");
-        System.out.println("The app looks at your week's fixed schedule (for example: meetings, exercise, or " +
-                "classes), and then schedules all your flexible duties in their optimal time slot. This way," +
-                "RoutOp helps you maximize your executive output each week! \n");
-        System.out.println("Do you have an account with us? (y/n)");
-    }
+
 
     /**
-     * Checks whether the user wants to sign in or sign up
+     * Starts the program with a welcome message and checks whether the user wants to sign in or sign up.
      *
      * @param reader: the scanner for user input
      * @return the id for the user
      */
     public long signInOrSignUp(Scanner reader){
+        UserInterfacePrints.printWelcomeMessage();
         String response = reader.nextLine(); // y or n
         if (Objects.equals(response, "y")){
             return signIn(reader);
@@ -61,7 +53,7 @@ public class UserInterface {
             return signUp(reader);
         }
         else{
-            System.out.println("Please enter a valid option (y or n).");
+            System.out.println("Please enter a valid option.");
             return signInOrSignUp(reader); // start again
         }
     }
@@ -107,11 +99,8 @@ public class UserInterface {
         return newUser.getId();
     }
 
-
-
     /**
-     * Starts the calendar program. Prints a blurb regarding how to program works, and then
-     * gives user the option to either create or import their week calendar.
+     * Gives a signed-in user the option to either create or import their week calendar.
      *  - If the user inputs 1, program creates a week calendar.
      *  - If the user inputs 2, program imports a week calendar.
      *
@@ -119,9 +108,22 @@ public class UserInterface {
      * @return user's selected option as an integer.
      */
     public static int createOrImportWeek(Scanner reader){
-        // Give background for the app and instructions for the user
+        // Give instructions to the user
         UserInterfacePrints.createOrImportWeekMessage();
         String selectedOption = reader.nextLine();  // Read user input
+        return Integer.parseInt(selectedOption);
+    }
+
+    /**
+     * Gives a signed-up user the option to create a new week. Input mist be 1.
+     *
+     * @param reader: The scanner in the Main module reading user input.
+     * @return user's selection option as an integer.
+     */
+    public static int createWeek(Scanner reader){
+        // Give instructions to the user
+        UserInterfacePrints.createWeekMessage();
+        String selectedOption = reader.nextLine();
         return Integer.parseInt(selectedOption);
     }
 
@@ -144,7 +146,7 @@ public class UserInterface {
             this.taskSerializableInteractor.removeTaskSerializablesByUserId(userId);
             week = WeekAndSerializableConverter.SerializableToWeek(weekSers, tasksSers);
         } else {
-            System.out.println("Please enter a valid option (1 or 2).");
+            System.out.println("Please enter a valid option.");
             int newSelection = Integer.parseInt(reader.nextLine());
             week = activateCreateOrImport(userId, newSelection, reader);
         }
