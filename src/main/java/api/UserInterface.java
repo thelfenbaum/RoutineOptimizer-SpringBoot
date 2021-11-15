@@ -369,10 +369,10 @@ public class UserInterface {
         }
     }
 
-    // The unitTest gave an error saying that there was no main method in UI, so I added one     -Issam
-    public static void main(String[] args) {
-
-    }
+//    // The unitTest gave an error saying that there was no main method in UI, so I added one     -Issam
+//    public static void main(String[] args) {
+//
+//    }
 
 }
 
