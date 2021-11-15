@@ -43,7 +43,7 @@ public class TaskSerializableInteractor {
         ArrayList<Long> listOfIds = new ArrayList<Long>();
         ArrayList<TaskSerializable> taskSers = getTasksByUserId(userId);
         for(TaskSerializable taskSer: taskSers){
-            listOfIds.add(taskSer.getUserId());
+            listOfIds.add(taskSer.getId());
         }
         this.taskSerRepo.deleteAllById(listOfIds);
     }

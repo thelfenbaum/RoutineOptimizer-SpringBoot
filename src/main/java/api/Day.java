@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -25,7 +26,7 @@ public class Day {
     public Day(LocalDate dayOfMonth){
         this.dayOfMonth = dayOfMonth;
         this.dayOfWeek = dayOfMonth.getDayOfWeek();
-        this.todaySchedule = new HashMap<>();
+        this.todaySchedule = new LinkedHashMap<>();
         // Set all initial half-hour blocks to the empty string, which represents
         // no task scheduled (free time)/
         for(double i = 0.0; i <= 23.5; i = i + 0.5){

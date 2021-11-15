@@ -23,5 +23,7 @@ public class WeekSerializable {
     }
 
 
-
+    public Long getId() {
+        return this.id;
+    }
 }

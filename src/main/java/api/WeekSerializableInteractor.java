@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collections;
 
 @Configuration
@@ -26,13 +27,15 @@ public class WeekSerializableInteractor {
      *
      */
     public WeekSerializable getWeekSerializableByUserId(Long userId){
-        return this.repo.getWeekByUserId(userId);
+        ArrayList<WeekSerializable> ws = (ArrayList<WeekSerializable>)this.repo.getByUserId(userId);
+        return ws.get(0);
     }
 
     @Transactional
     public void removeWeekSerializableByUserId(long userId) {
-        WeekSerializable weekSer = this.repo.getWeekByUserId(userId);
-        Long id = weekSer.userId;
+        ArrayList<WeekSerializable> weekSers = (ArrayList<WeekSerializable>)this.repo.getByUserId(userId);
+        WeekSerializable weekSer = weekSers.get(0);
+        Long id = weekSer.getId();
         this.repo.deleteAllById(Collections.singleton(id));
     }
 }

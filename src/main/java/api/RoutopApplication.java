@@ -34,6 +34,8 @@ public class RoutopApplication implements CommandLineRunner {
             createOrImportChoice = UserInterface.createWeek(reader);
         }
         Week week = this.ui.activateCreateOrImport(userId, createOrImportChoice, reader);
+        System.out.println("Here is your week:");
+        System.out.println(week);
 
         while(true){
             int selectionForScheduling = UserInterface.scheduleDuty(reader);

@@ -56,4 +56,8 @@ public class TaskSerializable {
     public Long getUserId() {
         return userId;
     }
+
+    public Long getId() {
+        return this.id;
+    }
 }
