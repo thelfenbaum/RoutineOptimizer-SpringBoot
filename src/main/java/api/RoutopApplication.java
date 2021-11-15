@@ -25,18 +25,17 @@ public class RoutopApplication implements CommandLineRunner {
     @Override
     public void run(String... args){
         Scanner reader = new Scanner(System.in);
-        Week week;
         UserInterface.welcomeMessage();
         long userId = this.ui.signInOrSignUp(reader);
         int createOrImportChoice = UserInterface.createOrImportWeek(reader);
+        Week week = this.ui.activateCreateOrImport(userId, createOrImportChoice, reader);
 
         while(true){
             int selectionForScheduling = UserInterface.scheduleDuty(reader);
+            this.ui.schedulingDecision(week, selectionForScheduling, reader);
             if (selectionForScheduling == 4) {
                 break;
             }
-            week = this.ui.activateCreateOrImport(userId, createOrImportChoice, reader);
-            this.ui.schedulingDecision(week, selectionForScheduling, reader);
         }
         reader.close();
     }
