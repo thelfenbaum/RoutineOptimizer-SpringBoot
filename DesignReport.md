@@ -34,12 +34,7 @@ The program is supposed to take the non-fixed tasks, find an appropriate time fo
 
 -   A slightly more sophisticated scheduling algorithm which tells the user when they have no room for a task
 
--   Ability for the user to sign in. this feature enables:
-
-
--       the user to access previously saved week schedules
-
--       the database to save the user information
+-   Ability for the user to sign in. this feature enables: the user to access previously saved week schedules, the database to save the user information
 
     
 
@@ -71,17 +66,17 @@ The program is supposed to take the non-fixed tasks, find an appropriate time fo
 
 **Choice of Exceptions:**
 
--   Exception INVALID_DATE_FORMAT. We decided to include this exception in order to account for the situation whenever the user is asked to input a date and they enter a date that is in a format that is not wanted by the program, this exception tells the user that the format of the date must be changed.
+-   Exception INVALID_DATE_FORMAT. We decided to include this exception in order to help the user realize when they have entered a date in a format that is unrecognized by the program, this exception tells the user that the format of the date must be changed.
     
 
   
 
--   Exception SCHEDULE_CONFLICT. We decided to include this exception in order to account for the situation whenever the user would like to schedule a task, but the task has a conflicting time with another task.
+-   Exception SCHEDULE_CONFLICT. We decided to include this exception in order to account for a situation where the user would like to schedule a task, but the task has a conflicting time with another task.
     
 
   
 
--   Exception INVALID_TIME_FORMAT. We decided to include this exception in order to account for the situation whenever the user is asked to input a time and the format of the inputted time is in a format that is not wanted by the program.
+-   Exception INVALID_TIME_FORMAT. We decided to include this exception in order to help the user realize when they have entered a time in a format that is unrecognized by the program, this exception tells the user that the format of the time must be changed.
     
 
 **Improving Scheduling Algorithm**
@@ -94,7 +89,7 @@ In phase 0 our group designed a scheduling algorithm that is capable of scheduli
     
 2.  When a task/project can’t be scheduled the user should be given the choice to either give up scheduling the current task or modify their schedule so that the current task can be scheduled
     
-3.  If the user decides to continue scheduling the current task, our program should provide the user with the minimum number of hours he/she needs to remove from the current task/other tasks to schedule the current task.
+3.  If the user decides to continue scheduling the current task, our program should provide the user with the minimum number of hours he/she needs to remove from the current taskload to schedule the current task.
     
 4.  The user should be allowed to remove a task or change the duration of a task
     
@@ -107,15 +102,17 @@ To accomplish 1 we have added a new use case class called Checker that checks if
 
 **Use of GitHub Features**
 
-Our group utilized GitHub Features including pull request and branching. We created different branches so that our team could work on different tasks at the time and try implementing new features without interfering with our original code. When we had changes that we were uncertain how they would affect the master branch once they were pushed, one member would also create a branch of current code as insurance. For example, in the Composite branch of our repository we have saved a version of our code with a partially implemented Composite design pattern. Moreover, each member of our team was required to leave a detailed message when changes were pushed to our repository so that other members could be informed of the changes and decide whether to accept the changes.
+Our group utilized GitHub Features including pull request and branching. We created different branches so that our team could work on different tasks at the time and try implementing new features without interfering with our original code. When we had changes that we were uncertain how they would affect the master branch once they were pushed, one member would also create a branch of current code as insurance. We have also utilized branches to contain new features that are in progress but not complete enough to let the master branch run smoothly. For example, in the Composite branch of our repository we have saved a version of our code with a partially implemented Composite design pattern. Moreover, each member of our team was required to leave a detailed message when changes were pushed to our repository so that other members could be informed of the changes and decide whether to accept the changes.
 
   
 
 **Refactoring:**
 
-Our group made use of built-in refactoring features in IntelliJ in order to extract, helper methods, rename classes and methods, and refactor modules when switching packages so intelliJ would take care of import statements.
+Our group made use of built-in refactoring features in IntelliJ in order to extract helper methods, rename classes and methods, and refactor modules when switching packages so intelliJ would take care of import statements.
 
-Another way in which we refactored our code was in our attempt to remove smells. We extracted duplicate code into helper methods, removed unnecessary classes, cut down long methods, cut out dead code. There are some instances where we may be violating the smell of long classes. These are addressed in our questions below (e.g. splitting user interface). We realize that some of the methods in scheduler and putter are on the longer side, but we hope to split these up as we create a more complex and flexible scheduling algorithm for phase 2.
+Another way in which we refactored our code was in our attempt to remove smells. We extracted duplicate code into helper methods, removed unnecessary classes, cut down long methods, and cut out dead code. 
+
+There are some instances where we are worrid that we may be violating the smell of long classes. These are addressed in our questions below (e.g. splitting user interface). We realize that some of the methods in scheduler and putter are on the longer side, but we hope to split these up as we create a more complex and flexible scheduling algorithm for phase 2.
 
 We are unsure if FixedTask and NonfixedTask count as alternative classes with different interfaces. We think not, so we left it, but we can take care of it if necessary.
 
@@ -129,11 +126,25 @@ The back end comes in sets of classes to ensure that we maintain clean architect
 
 The clean architecture from the phase 0 code is more or less the same. We still have the same issue with the project module in that we are not sure if it is one or more use cases or interfaces. One of the things we hope to do in the next phase is redesign project in a way that allows for more flexible scheduling and fixes this clean architecture issue (see open-ended questions below for more information).
 
+Another potential violation is that the UserInterface class calls on some methods in interactor classes. We are unsure if it counts as a violation if the UI calls on a use-case without first calling a controller (e.g. signIn method). We felt that it could be fine because our dependencies go in the correct direction, but would appreciate feedback.
+
 **SOLID Principles:**
 
-We made sure that our project is consistent with the Single Responsibility Principle by creating classes such as scheduler (that attempts to schedule a task) and checker (that checks if a task can be scheduled) that each have a single responsibility, instead of making the methods for each in one big class. We had difficulty replicating that for UserInterface and Controller, since we did not know how to split up the methods. As for the open/closed principle, we put that in mind when we were creating the User class. We did not manage to finish the User class, but we complied with the open/closed principle by making methods that we do not plan on modifying, instead of adding methods that could change. However, we might have to change the methods in Scheduler by implementing the composite design pattern, which changes the way tasks and projects are scheduled. We followed the Liskov Substitution principle by making FixedTask and NonFixedTask extend the behaviors of Task, without modifying or removing them. When it came to the interface segregation principle, we struggled. We did not know how to split up the methods in the Project interface, which resulted in many classes implementing it without using all its methods. We followed the dependency inversion principle by ensuring that classes such as scheduler and checker depended on the abstractions of classes such FixedTask and NonFixedTask instead of their details.
+single responsibility principle:
+We made sure that our project is consistent with the Single Responsibility Principle by creating classes such as scheduler (that attempts to schedule a task) and checker (that checks if a task can be scheduled) that each have a single responsibility, instead of making the methods for each in one big class. We had difficulty replicating that for UserInterface and Controller, since we did not know how to split up the methods. We moved the exceptions for the UI into a separate class in order to not violate single-responsibility principle.
 
-We moved the exceptions for the UI into a separate class in order to not violate single-responsibility principle.
+open/closed principle:
+A good example of us adhering to that principle is in our use of the adapter design pattern. This design pattern allowed us to make our code compatible with databases without completely modifying the structure and implementation of all our entities and use cases. Thus, we kept with the Open/Close Design Principle: that our code is closed for modification but open for extension. We extended our code by adding classes compatible with newly introduced requirements for our program, rather than completely modifying all our classes. One example of where we did not do a great job adhering to this principle is in our scheduler module where we might have to change the methods in Scheduler if we proceed with implementing the composite design pattern, which changes the way tasks and projects are scheduled. We are also not too atisfied with the outcome of our current scheduling algorithm so may modify it significantly.
+
+liskov substitution principle:
+We followed the Liskov Substitution principle by making FixedTask and NonFixedTask extend the behaviors of Task, without modifying or removing them. 
+
+interface segregation principle:
+When it came to the interface segregation principle, we struggled. We did not know how to split up the methods in the Project interface, which resulted in many classes implementing it without using all its methods. See our open ended questions and clean architecture sections for further discussion on this topic.
+
+dependency inversion:
+We followed the dependency inversion principle by ensuring that classes such as scheduler and checker depended on the abstractions of classes such FixedTask and NonFixedTask instead of their details. Satisfying the dependency inversion principle is a big part of our clean architecture related discussion. Even when we skipped 'layers', we always ensured that dependencies are inward and not outward.
+
 
 **Packaging strategies:**
 
@@ -149,27 +160,17 @@ We thought that builder would be a good implementation for project, but then rea
 
 We hope that composite pattern will help us build a more flexible version of projects and have created the classes that will allow us to do so but have not had time to implement them and adapt our scheduling and putting algorithms. These empty classes are kept on a branch named composite design pattern until they are implemented and read to merge with the master branch.
 
-Adapter:
+The design pattern that is currently fully implemented is the adapter pattern:
 
-The problem
+The problem: In order to have data serialization in our program, Week objects have to be saved to our database. However, week projects are complex: they have a list of Day objects as an attribute, and each of those Day objects contains a list of Task objects inside of it. Since databases cannot contain nested tables, Week objects cannot be directly saved to a database.
 
-In order to have data serialization in our program, Week objects have to be saved to our database. However, week projects are complex: they have a list of Day objects as an attribute, and each of those Day objects contains a list of Task objects inside of it. Since databases cannot contain nested tables, Week objects cannot be directly saved to a database.
+The possible solutions: There are two solutions to this problem. Solution 1: completely change the implementation of the Week and Task entity classes to contain only “simple” attributes and link their tables by date and user id (see subsection “Design Decisions - Database Structure Design Decision” for more info on this), and delete the Day entity class. Solution 2: create serializable versions of Task and Week (with “simple” attributes only), linking them using the user id and date fields, and save these to the database using their corresponding tables. Solution 1, while cleaner and more aligned with proper database usage, would require us to completely alter all of our entities, use case methods, controllers, and even our user interface, since our whole program depends on the structure of our Week entity. Solution 2, on the contrary, would require us only to create a couple of classes and a converter which converts between the serializable versions of the entities and the non-serializable ones.
 
-The possible solutions
+Our solution: Solution 2, explained above, completely describes the adapter design pattern. The design pattern consists of a client that requires one form of an object while the general program uses a different form of the object which is incompatible with the client. The design pattern solves this discrepancy by having an adapter class which adapts one form of the object to another form, preparing it for use by the client. This is the design pattern we chose to use.
 
-There are two solutions to this problem. Solution 1: completely change the implementation of the Week and Task entity classes to contain only “simple” attributes and link their tables by date and user id (see subsection “Design Decisions - Database Structure Design Decision” for more info on this), and delete the Day entity class. Solution 2: create serializable versions of Task and Week (with “simple” attributes only), linking them using the user id and date fields, and save these to the database using their corresponding tables. Solution 1, while cleaner and more aligned with proper database usage, would require us to completely alter all of our entities, use case methods, controllers, and even our user interface, since our whole program depends on the structure of our Week entity. Solution 2, on the contrary, would require us only to create a couple of classes and a converter which converts between the serializable versions of the entities and the non-serializable ones.
+How the design pattern fits in with our program: Applying the pattern to our program, we created a WeekSerializable entity and a TaskSerializable entity, which are versions of Week objects and Task objects which the database (the “client”) is able to work with. We created an adapter class, WeekAndSerializableConverter, which converts Week objects and Task objects to and from their respective serializable forms. One difference our implementation of the design pattern had from the general skeleton of the design pattern is that since a Week object contains tasks inside of it, for the adaptor class to build a week, it needs both a WeekSerialzable and the TaskSerializables associated with that WeekSerializable. In other words, the adaptor does not adapt a Week to WeekSerializable and vice versa directly; rather, it contains methods to convert a Week to both WeekSerializables and TaskSerializables and to convert a WeekSerializable and TaskSerializables to a Week object.
 
-Enter the adapter design pattern
-
-Solution 2, explained above, completely describes the adapter design pattern. The design pattern consists of a client that requires one form of an object while the general program uses a different form of the object which is incompatible with the client. The design pattern solves this discrepancy by having an adapter class which adapts one form of the object to another form, preparing it for use by the client. This is the design pattern we chose to use.
-
-How the design pattern fits in with our program
-
-Applying the pattern to our program, we created a WeekSerializable entity and a TaskSerializable entity, which are versions of Week objects and Task objects which the database (the “client”) is able to work with. We created an adapter class, WeekAndSerializableConverter, which converts Week objects and Task objects to and from their respective serializable forms. One difference our implementation of the design pattern had from the general skeleton of the design pattern is that since a Week object contains tasks inside of it, for the adaptor class to build a week, it needs both a WeekSerialzable and the TaskSerializables associated with that WeekSerializable. In other words, the adaptor does not adapt a Week to WeekSerializable and vice versa directly; rather, it contains methods to convert a Week to both WeekSerializables and TaskSerializables and to convert a WeekSerializable and TaskSerializables to a Week object.
-
-How the design pattern fits in with SOLID design
-
-This design pattern allowed us to make our code compatible with databases without completely modifying the structure and implementation of all our entities and use cases. Thus, we kept with the Open/Close Design Principle: that our code is closed for modification but open for extension. We extended our code by adding classes compatible with newly introduced requirements for our program, rather than completely modifying all our classes.
+Advantage of this apporoach - SOLID: This design pattern allowed us to make our code compatible with databases without completely modifying the structure and implementation of all our entities and use cases. Thus, we kept with the Open/Close Design Principle: that our code is closed for modification but open for extension. We extended our code by adding classes compatible with newly introduced requirements for our program, rather than completely modifying all our classes.
 
 ## Progress report:
 
@@ -182,9 +183,9 @@ This design pattern allowed us to make our code compatible with databases withou
     
 -   We are having a lot of difficulty with packaging strategy, especially since Spring seems to be quite picky about it. See packaging strategy section of design document
     
--   We are uncertain what we are going to do about the module which is currently a project Interface. Based on the needs of our improved scheduling algorithm and our ability to implement the composite design pattern, we hope to better divide this module into multiple interfaces and classes
+-   We are uncertain what we are going to do about the module which is currently a project Interface. Based on the needs of our improved scheduling algorithm and our ability to implement the composite design pattern, we hope to better divide this module into multiple interfaces and classes (see clean architecture section)
     
--   We are unsure if FixedTask and NonfixedTask count as alternative classes with different interfaces.
+-   We are unsure if FixedTask and NonfixedTask count as alternative classes with different interfaces (see refactoring section)
     
 
 **What has been working well so far**
