@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Configuration
 public class TaskSerializableInteractor {
@@ -25,5 +26,15 @@ public class TaskSerializableInteractor {
      */
     public ArrayList<TaskSerializable> getTasksByUserId(Long userId) {
         return (ArrayList<TaskSerializable>) this.taskSerRepo.getTasksByUserId(userId);
+    }
+
+    @Transactional
+    public void removeTaskSerializablesByUserId(long userId) {
+        ArrayList<Long> listOfIds = new ArrayList<Long>();
+        ArrayList<TaskSerializable> taskSers = getTasksByUserId(userId);
+        for(TaskSerializable taskSer: taskSers){
+            listOfIds.add(taskSer.getUserId());
+        }
+        this.taskSerRepo.deleteAllById(listOfIds);
     }
 }
