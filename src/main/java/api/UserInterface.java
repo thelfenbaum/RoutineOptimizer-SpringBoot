@@ -298,20 +298,11 @@ public class UserInterface {
      */
     public void schedulingDecision(Week week, int selection, Scanner reader){
         if (selection == 1) {
-            FixedTask taskToPut = UserInterface.createFixedTask(reader, week.getUserId());
-            if(!Controller.checkFixedTaskScheduling(week, taskToPut)){
-                System.out.println("This task can't be scheduled");}
-            else{Controller.activateFixedTaskScheduling(week, taskToPut);}
+            selectsOne(week, reader);
         } else if (selection == 2) {
-            NonFixedTask taskToSchedule = UserInterface.createNonFixedTask(reader, week.getUserId());
-            if(!Controller.checkNonFixedTaskScheduling(week, taskToSchedule)){
-                System.out.println("This task can't be scheduled");}
-            else{Controller.activateNonFixedTaskScheduling(week, taskToSchedule);}
+            selectsTwo(week, reader);
         } else if (selection == 3) {
-            NonFixedTask[] projectTasksToSchedule = UserInterface.createProject(week, reader);
-            if(!Controller.checkProjectScheduling(week, projectTasksToSchedule)){
-                System.out.println("This project can't be scheduled");}
-            else{Controller.activateProjectScheduling(week, projectTasksToSchedule);}
+            selectsThree(week, reader);
         } else if (selection == 4){
             // convert the week into WeekSerializable and TaskSerializable, and save to database
             this.weekController.saveWeek(week);
@@ -319,7 +310,6 @@ public class UserInterface {
             System.out.println("Please enter a valid option (1, 2, 3, or 4).");
         }
     }
-
 
     /** Helper method for createProject which gathers information about the project due date and time
      *
@@ -372,6 +362,26 @@ public class UserInterface {
         }
     }
 
+    private void selectsThree(Week week, Scanner reader) {
+        NonFixedTask[] projectTasksToSchedule = UserInterface.createProject(week, reader);
+        if(!Controller.checkProjectScheduling(week, projectTasksToSchedule)){
+            System.out.println("This project can't be scheduled");}
+        else{Controller.activateProjectScheduling(week, projectTasksToSchedule);}
+    }
+
+    private void selectsTwo(Week week, Scanner reader) {
+        NonFixedTask taskToSchedule = UserInterface.createNonFixedTask(reader, week.getUserId());
+        if(!Controller.checkNonFixedTaskScheduling(week, taskToSchedule)){
+            System.out.println("This task can't be scheduled");}
+        else{Controller.activateNonFixedTaskScheduling(week, taskToSchedule);}
+    }
+
+    private void selectsOne(Week week, Scanner reader) {
+        FixedTask taskToPut = UserInterface.createFixedTask(reader, week.getUserId());
+        if(!Controller.checkFixedTaskScheduling(week, taskToPut)){
+            System.out.println("This task can't be scheduled");}
+        else{Controller.activateFixedTaskScheduling(week, taskToPut);}
+    }
 
 }
 
