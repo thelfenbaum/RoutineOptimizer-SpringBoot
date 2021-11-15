@@ -12,7 +12,6 @@ public class FixedTask extends Task {
      * @param duration duration of the task
      * @param startTime start time of the task
      */
-
     public FixedTask(String name, LocalDateTime startTime,  LocalTime duration, Long userId){
         super(name, startTime, duration, userId);
     }

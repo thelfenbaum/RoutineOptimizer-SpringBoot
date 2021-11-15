@@ -27,7 +27,7 @@ public class TaskSerializable {
     @Column(name = "user_id")
     private Long userId;
 
-    protected TaskSerializable() {};
+    protected TaskSerializable() {}
 
     public TaskSerializable(String name, LocalDateTime startDateTime, LocalTime duration, boolean isComplete, Long userId){
         this.name = name;
@@ -49,9 +49,9 @@ public class TaskSerializable {
         return this.duration;
     }
 
-    public boolean isComplete() {
-        return isComplete;
-    }
+//    public boolean isComplete() {
+//        return isComplete;
+//    }
 
     public Long getUserId() {
         return userId;
