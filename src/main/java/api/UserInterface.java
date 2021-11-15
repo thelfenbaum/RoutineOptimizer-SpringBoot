@@ -157,8 +157,14 @@ public class UserInterface {
      */
     public static LocalDate getStartDate(Scanner reader){
         // Give user instructions
-        System.out.println("On which day do you want your week to start?\n");
-        return UserInterfacePrints.getDate(reader);
+        try {
+            System.out.println("On which day do you want your week to start?\n");
+            return UserInterfacePrints.getDate(reader);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return getStartDate(reader);
+        }
     }
 
     /**
@@ -189,7 +195,9 @@ public class UserInterface {
      */
     public static FixedTask createFixedTask(Scanner reader, Long userId){
         //Scanner reader = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("What is the name of your task or event?");
+        try{
+            System.out.println("What is the name of your task or event?");
+
         String name = reader.nextLine(); // Get user input
 
         System.out.println("On what date does your task or event to take place?");
@@ -203,6 +211,11 @@ public class UserInterface {
         LocalTime duration = UserInterfacePrints.getTime(reader);
 
         return new FixedTask(name, startDateTime, duration, userId);  // Create a FixedTask from this information
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return createFixedTask(reader, userId);
+        }
     }
 
 
@@ -214,20 +227,26 @@ public class UserInterface {
      */
     public static NonFixedTask createNonFixedTask(Scanner reader, Long userId){
         //Scanner reader = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("What is the name of your task or event?");
-        String name = reader.nextLine(); // Get user input
+        try {
+            System.out.println("What is the name of your task or event?");
+            String name = reader.nextLine(); // Get user input
 
-        System.out.println("What is the duration of your task or event?");
-        LocalTime duration = UserInterfacePrints.getTime(reader); // get task duration
+            System.out.println("What is the duration of your task or event?");
+            LocalTime duration = UserInterfacePrints.getTime(reader); // get task duration
 
-        System.out.println("Please enter the date that this task or event is due before.\n");
-        LocalDate dueDate = UserInterfacePrints.getDate(reader);
+            System.out.println("Please enter the date that this task or event is due before.\n");
+            LocalDate dueDate = UserInterfacePrints.getDate(reader);
 
-        System.out.println("At what time on that day is your task or event due before?\n");
-        LocalTime dueTime = UserInterfacePrints.getTime(reader);
+            System.out.println("At what time on that day is your task or event due before?\n");
+            LocalTime dueTime = UserInterfacePrints.getTime(reader);
 
-        LocalDateTime dueDateTime = LocalDateTime.of(dueDate, dueTime);
-        return new NonFixedTask(name, dueDateTime, duration, userId);
+            LocalDateTime dueDateTime = LocalDateTime.of(dueDate, dueTime);
+            return new NonFixedTask(name, dueDateTime, duration, userId);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return createNonFixedTask(reader, userId);
+        }
     }
 
     /**
@@ -240,21 +259,28 @@ public class UserInterface {
      */
     public static NonFixedTask[] createProject(Week week, Scanner reader){
         //Scanner reader = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("What is the name of your project or goal?");
-        String name = reader.nextLine(); // Get user input
+        try {
+            System.out.println("What is the name of your project or goal?");
 
-        System.out.println("What date do you want to start working on this project or goal?\n");
-        LocalDate startDate = UserInterfacePrints.getDate(reader);
+            String name = reader.nextLine(); // Get user input
 
-        LocalDateTime dueDateTime = getDueDateTime(reader);
+            System.out.println("What date do you want to start working on this project or goal?\n");
+            LocalDate startDate = UserInterfacePrints.getDate(reader);
 
-        LocalTime maxHoursPerTask = getMaxHoursPerTask(week, reader, startDate, dueDateTime);
+            LocalDateTime dueDateTime = getDueDateTime(reader);
 
-        NonFixedTask[] projectTasks = new NonFixedTask[7];
-        for(int i = 0; i < 7; i++){
-            projectTasks[i] = new NonFixedTask(name, dueDateTime, maxHoursPerTask, week.getUserId());
+            LocalTime maxHoursPerTask = getMaxHoursPerTask(week, reader, startDate, dueDateTime);
+
+            NonFixedTask[] projectTasks = new NonFixedTask[7];
+            for (int i = 0; i < 7; i++) {
+                projectTasks[i] = new NonFixedTask(name, dueDateTime, maxHoursPerTask, week.getUserId());
+            }
+            return projectTasks;
         }
-        return projectTasks;
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return createProject(week, reader);
+        }
     }
 
     /** Takes the selection and week that is given and finds whether what type of task is needed to be scheduled and
@@ -296,13 +322,20 @@ public class UserInterface {
      * @return the LocalDateTime object representing the due date for the project
      */
     private static LocalDateTime getDueDateTime(Scanner reader) {
-        System.out.println("What date is this project or goal due by?");
-        LocalDate dueDate = UserInterfacePrints.getDate(reader);
+        try {
+            System.out.println("What date is this project or goal due by?");
 
-        System.out.println("At what time on that day is your project or goal due before? \n");
-        LocalTime dueTime = UserInterfacePrints.getTime(reader);
+            LocalDate dueDate = UserInterfacePrints.getDate(reader);
 
-        return LocalDateTime.of(dueDate, dueTime);
+            System.out.println("At what time on that day is your project or goal due before? \n");
+            LocalTime dueTime = UserInterfacePrints.getTime(reader);
+
+            return LocalDateTime.of(dueDate, dueTime);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return getDueDateTime(reader);
+        }
     }
     /** Helper method for createProject which gathers information about the maximum amount of time the user can spend
      * on the project at a time
@@ -314,17 +347,24 @@ public class UserInterface {
      */
     private static LocalTime getMaxHoursPerTask(Week week, Scanner reader, LocalDate startDate, LocalDateTime dueDateTime)
     {
-        System.out.println("What is the total number of hours you would like to work on this project? (round to the" +
-                " nearest 0.5)");
-        double totalHours = Double.parseDouble(reader.nextLine());
-        double minHours = Project.calculateMinHours(week, startDate, dueDateTime, totalHours, 7);
-        // Create case to handle when minHours is 0.0
-        double maxHours = Project.calculateMaxHoursWeek(week);
-        System.out.println("You must work on this project at least " + minHours + " per day and at most " + maxHours +
-                " per day.");
-        System.out.println("Please enter the maximum amount of time you would like to work on this project in a given" +
-                "day.");
-        return UserInterfacePrints.getTime(reader);
+        try {
+            System.out.println("What is the total number of hours you would like to work on this project? (round to the" +
+                    " nearest 0.5)");
+
+            double totalHours = Double.parseDouble(reader.nextLine());
+            double minHours = Project.calculateMinHours(week, startDate, dueDateTime, totalHours, 7);
+            // Create case to handle when minHours is 0.0
+            double maxHours = Project.calculateMaxHoursWeek(week);
+            System.out.println("You must work on this project at least " + minHours + " per day and at most " + maxHours +
+                    " per day.");
+            System.out.println("Please enter the maximum amount of time you would like to work on this project in a given" +
+                    "day.");
+            return UserInterfacePrints.getTime(reader);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return getMaxHoursPerTask(week, reader, startDate, dueDateTime);
+        }
     }
 
     // The unitTest gave an error saying that there was no main method in UI, so I added one     -Issam
