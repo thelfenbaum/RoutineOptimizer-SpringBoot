@@ -154,7 +154,7 @@ Our original packaging strategy was having three packages in our src/main/java. 
 
 ```mermaid 
     flowchart LR
-    WBG["web based gui"] --> CLI["cli"]
+    U["user input"] --> WBG["web based gui"] --> CLI["cli"]
     subgraph clip ["cli package"]
     CLI["user interface"] -.-> CLIC["controller"] 
     end
