@@ -9,14 +9,6 @@ import java.util.ArrayList;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-
-//  Get the user with this username.
-//
-//  param userId: the ID of the user accessing tasks in the database.
-//  Query("Select u from User u where u.id = :userId")
-//  ArrayList<User> getUserById(long userId);
-
-
     /**
      * Get the user with this username.
      *

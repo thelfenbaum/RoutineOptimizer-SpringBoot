@@ -131,19 +131,19 @@ Another potential violation is that the UserInterface class calls on some method
 
 **SOLID Principles:**
 
-single responsibility principle:
+Single responsibility principle:
 We made sure that our project is consistent with the Single Responsibility Principle by creating classes such as scheduler (that attempts to schedule a task) and checker (that checks if a task can be scheduled) that each have a single responsibility, instead of making the methods for each in one big class. We had difficulty replicating that for UserInterface and Controller, since we did not know how to split up the methods. We moved the exceptions for the UI into a separate class in order to not violate single-responsibility principle.
 
-open/closed principle:
+Open/closed principle:
 A good example of us adhering to that principle is in our use of the adapter design pattern. This design pattern allowed us to make our code compatible with databases without completely modifying the structure and implementation of all our entities and use cases. Thus, we kept with the Open/Close Design Principle: that our code is closed for modification but open for extension. We extended our code by adding classes compatible with newly introduced requirements for our program, rather than completely modifying all our classes. One example of where we did not do a great job adhering to this principle is in our scheduler module where we might have to change the methods in Scheduler if we proceed with implementing the composite design pattern, which changes the way tasks and projects are scheduled. We are also not too atisfied with the outcome of our current scheduling algorithm so may modify it significantly.
 
-liskov substitution principle:
+Liskov substitution principle:
 We followed the Liskov Substitution principle by making FixedTask and NonFixedTask extend the behaviors of Task, without modifying or removing them. 
 
-interface segregation principle:
+Interface segregation principle:
 When it came to the interface segregation principle, we struggled. We did not know how to split up the methods in the Project interface, which resulted in many classes implementing it without using all its methods. See our open ended questions and clean architecture sections for further discussion on this topic.
 
-dependency inversion:
+Dependency inversion:
 We followed the dependency inversion principle by ensuring that classes such as scheduler and checker depended on the abstractions of classes such FixedTask and NonFixedTask instead of their details. Satisfying the dependency inversion principle is a big part of our clean architecture related discussion. Even when we skipped 'layers', we always ensured that dependencies are inward and not outward.
 
 
