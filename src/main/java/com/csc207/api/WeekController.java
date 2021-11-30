@@ -13,14 +13,16 @@ import java.util.ArrayList;
 @RestController
 public class WeekController {
     @Autowired
-    private final WeekSerializableInteractor weekSerializableInteractor;
+    private final WeekSerializableInteractorDataIn weekSerializableInteractorDataIn;
     @Autowired
-    private final TaskSerializableInteractor taskSerializableInteractor;
+    private final TaskSerializableInteractorDataIn taskSerializableInteractorDataIn;
 
-    public WeekController(WeekSerializableInteractor weekSerializableInteractor,
-                          TaskSerializableInteractor taskSerializableInteractor) {
-        this.weekSerializableInteractor = weekSerializableInteractor;
-        this.taskSerializableInteractor = taskSerializableInteractor;
+    public WeekController(WeekSerializableInteractorDataOut weekSerializableInteractorOut,
+                          WeekSerializableInteractorDataIn weekSerializableInteractorDataIn,
+                          TaskSerializableInteractorDataIn taskSerializableInteractorDataIn,
+                          TaskSerializableInteractorDataOut taskSerializableInteractorDataOut) {
+        this.weekSerializableInteractorDataIn = weekSerializableInteractorDataIn;
+        this.taskSerializableInteractorDataIn = taskSerializableInteractorDataIn;
     }
 
     @Transactional
@@ -30,10 +32,10 @@ public class WeekController {
         // convert to task serializable
         ArrayList<TaskSerializable> convertedTasks = WeekToSerializableAdapter.WeekToTaskSerializable(week);
         // save weekSerializable
-        this.weekSerializableInteractor.saveWeekSerializable(convertedWeek);
+        this.weekSerializableInteractorDataIn.saveWeekSerializable(convertedWeek);
         // save taskSerializable
         for(TaskSerializable task: convertedTasks) {
-            this.taskSerializableInteractor.saveTaskSerializable(task);
+            this.taskSerializableInteractorDataIn.saveTaskSerializable(task);
         }
     }
 }

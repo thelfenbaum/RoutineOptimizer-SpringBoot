@@ -7,11 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import javax.transaction.Transactional;
 
 @Configuration
-public class UserInteractor {
+public class UserInteractorDataOut {
     @Autowired
     private final UserRepository userRepo;
 
-    public UserInteractor(UserRepository userRepo){
+    public UserInteractorDataOut(UserRepository userRepo){
         this.userRepo = userRepo;
     }
 
@@ -44,16 +44,6 @@ public class UserInteractor {
 
     public User getUserFromUsername(String username) {
         return this.userRepo.getUserByUsername(username).get(0);
-    }
-
-    /**
-     * Save this user to the database.
-     *
-     * @param user: the User.
-     */
-    @Transactional
-    public void saveUser(User user) {
-        this.userRepo.save(user);
     }
 
 }

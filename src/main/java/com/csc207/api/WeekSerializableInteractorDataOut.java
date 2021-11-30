@@ -9,17 +9,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 @Configuration
-public class WeekSerializableInteractor {
+public class WeekSerializableInteractorDataOut {
     @Autowired
     WeekSerializableRepository repo;
 
-    public WeekSerializableInteractor(WeekSerializableRepository wsr){
+    public WeekSerializableInteractorDataOut(WeekSerializableRepository wsr){
         this.repo = wsr;
-    }
-
-    @Transactional
-    public void saveWeekSerializable(WeekSerializable weekSer){
-        this.repo.save(weekSer);
     }
 
     /** Returns the Week associated with a user.
