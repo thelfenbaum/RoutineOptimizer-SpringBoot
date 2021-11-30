@@ -21,18 +21,15 @@ public class UserInterface {
     @Autowired
     private UserInteractorDataOut userInteractor;
     @Autowired
-    private TaskSerializableInteractorDataIn taskSerializableInteractorDataIn;
-    @Autowired
     private WeekController weekController;
     @Autowired
     private final TaskSerializableInteractorDataOut taskSerializableInteractorDataOut;
 
     public UserInterface(UserController uc, WeekSerializableInteractorDataOut wsi, UserInteractorDataOut ui,
-                         TaskSerializableInteractorDataIn tsidi, TaskSerializableInteractorDataOut tsido, WeekController wc){
+                         TaskSerializableInteractorDataOut tsido, WeekController wc){
         this.userController = uc;
         this.weekSerializableInteractor = wsi;
         this.userInteractor = ui;
-        this.taskSerializableInteractorDataIn = tsidi;
         this.taskSerializableInteractorDataOut = tsido;
         this.weekController = wc;
     }
@@ -86,7 +83,7 @@ public class UserInterface {
         String username = reader.nextLine();
         System.out.println("Please enter your password.");
         String password = reader.nextLine();
-        if (this.userInteractor.checkSignIn(username, password)){ // checks whether if the username and password exist and match up
+        if (this.userInteractor.checkSignIn(username, password)){ // checks whether the username and password exist and match up
             long userId = this.userInteractor.getUserIdByUsername(username);
             System.out.println(this.weekSerializableInteractor.getWeekSerializableByUserId(userId)); // show the user their week
             return userId;
