@@ -7,11 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import javax.transaction.Transactional;
 
 @Configuration
-public class UserInteractor {
+public class UserInteractorDataOut {
     @Autowired
     private final UserRepository userRepo;
 
-    public UserInteractor(UserRepository userRepo){
+    public UserInteractorDataOut(UserRepository userRepo){
         this.userRepo = userRepo;
     }
 

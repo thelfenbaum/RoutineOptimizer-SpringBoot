@@ -8,11 +8,11 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 
 @Configuration
-public class TaskSerializableInteractor {
+public class TaskSerializableInteractorDataIn {
     @Autowired
     private final TaskSerializableRepository taskSerRepo;
 
-    public TaskSerializableInteractor(TaskSerializableRepository taskSerRepo){
+    public TaskSerializableInteractorDataIn(TaskSerializableRepository taskSerRepo){
         this.taskSerRepo = taskSerRepo;
     }
 
@@ -40,7 +40,7 @@ public class TaskSerializableInteractor {
      */
     @Transactional
     public void removeTaskSerializablesByUserId(long userId) {
-        ArrayList<Long> listOfIds = new ArrayList<Long>();
+        ArrayList<Long> listOfIds = new ArrayList<>();
         ArrayList<TaskSerializable> taskSers = getTasksByUserId(userId);
         for(TaskSerializable taskSer: taskSers){
             listOfIds.add(taskSer.getId());

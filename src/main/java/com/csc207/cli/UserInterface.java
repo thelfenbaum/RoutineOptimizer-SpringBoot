@@ -17,18 +17,18 @@ public class UserInterface {
     @Autowired
     private UserController userController;
     @Autowired
-    private WeekSerializableInteractor weekSerializableInteractor;
+    private WeekSerializableInteractorDataOut weekSerializableInteractor;
     @Autowired
-    private UserInteractor userInteractor;
+    private UserInteractorDataOut userInteractor;
     @Autowired
-    private TaskSerializableInteractor taskSerializableInteractor;
+    private TaskSerializableInteractorDataIn taskSerializableInteractor;
     @Autowired
     private WeekController weekController;
 
     public UserInterface(){}
 
-    public UserInterface(UserController uc, WeekSerializableInteractor wsi, UserInteractor ui,
-                         TaskSerializableInteractor tsi, WeekController wc){
+    public UserInterface(UserController uc, WeekSerializableInteractorDataOut wsi, UserInteractorDataOut ui,
+                         TaskSerializableInteractorDataIn tsi, WeekController wc){
         this.userController = uc;
         this.weekSerializableInteractor = wsi;
         this.userInteractor = ui;

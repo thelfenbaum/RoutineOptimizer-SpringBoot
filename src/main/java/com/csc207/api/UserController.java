@@ -10,9 +10,9 @@ import java.util.Objects;
 @RestController
 public class UserController {
     @Autowired
-    private final UserInteractor userInt;
+    private final UserInteractorDataOut userInt;
 
-    public UserController(UserInteractor userInt){
+    public UserController(UserInteractorDataOut userInt){
         this.userInt = userInt;
     }
 

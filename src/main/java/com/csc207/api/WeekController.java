@@ -13,12 +13,12 @@ import java.util.ArrayList;
 @RestController
 public class WeekController {
     @Autowired
-    private final WeekSerializableInteractor weekSerializableInteractor;
+    private final WeekSerializableInteractorDataOut weekSerializableInteractor;
     @Autowired
-    private final TaskSerializableInteractor taskSerializableInteractor;
+    private final TaskSerializableInteractorDataIn taskSerializableInteractor;
 
-    public WeekController(WeekSerializableInteractor weekSerializableInteractor,
-                          TaskSerializableInteractor taskSerializableInteractor) {
+    public WeekController(WeekSerializableInteractorDataOut weekSerializableInteractor,
+                          TaskSerializableInteractorDataIn taskSerializableInteractor) {
         this.weekSerializableInteractor = weekSerializableInteractor;
         this.taskSerializableInteractor = taskSerializableInteractor;
     }
