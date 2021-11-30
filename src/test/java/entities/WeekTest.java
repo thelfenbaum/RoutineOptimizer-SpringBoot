@@ -1,5 +1,6 @@
 package entities;
 
+import com.csc207.domain.DaysInjector;
 import com.csc207.domain.Week;
 import org.junit.After;
 import org.junit.Before;
@@ -20,7 +21,7 @@ public class WeekTest {
     @Before
     public void setUp() {
         startDate = LocalDate.of(2021, 11, 20);
-        week = new Week(startDate, 1L);
+        week = new Week(1L, DaysInjector.constructDayList(startDate));
     }
 
     /**

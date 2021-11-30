@@ -1,10 +1,7 @@
 package com.csc207.cli;
 
-import com.csc207.domain.Checker;
-import com.csc207.domain.FixedTask;
-import com.csc207.domain.NonFixedTask;
+import com.csc207.domain.*;
 
-import com.csc207.domain.Week;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +16,7 @@ public class CheckerTest {
     @Before
     public void setUp(){
         LocalDate startDate = LocalDate.of(2021, 4, 3);
-        week = new Week(startDate, 1L);
+        week = new Week(1L, DaysInjector.constructDayList(startDate));
     }
 
     @After
