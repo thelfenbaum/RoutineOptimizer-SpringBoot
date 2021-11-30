@@ -1,5 +1,6 @@
-package api;
+package com.csc207.api;
 
+import com.csc207.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

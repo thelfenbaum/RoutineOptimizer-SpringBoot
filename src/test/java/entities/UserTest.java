@@ -1,6 +1,6 @@
 package entities;
 
-import api.User;
+import com.csc207.domain.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

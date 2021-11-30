@@ -1,8 +1,7 @@
-package api;
-import com.csc207.cli.Controller;
-import com.csc207.cli.Project;
-import com.csc207.cli.UserInterfacePrints;
-import com.csc207.cli.UserInterfaceExceptions;
+package com.csc207.cli;
+import com.csc207.api.*;
+import com.csc207.domain.Project;
+import com.csc207.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

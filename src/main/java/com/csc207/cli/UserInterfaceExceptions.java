@@ -1,5 +1,7 @@
 package com.csc207.cli;
 
+import com.csc207.domain.Exceptions;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;

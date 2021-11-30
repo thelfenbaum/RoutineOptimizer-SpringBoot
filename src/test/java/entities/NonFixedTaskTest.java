@@ -1,6 +1,6 @@
 package entities;
 
-import api.NonFixedTask;
+import com.csc207.domain.NonFixedTask;
 import org.junit.After;
 import org.junit.Before;
 

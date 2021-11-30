@@ -1,5 +1,6 @@
 package com.csc207.cli;
 
+import com.csc207.domain.ConvertBetweenTimeAndDouble;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package api;
+package com.csc207.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

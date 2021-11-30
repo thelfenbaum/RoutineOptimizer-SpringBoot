@@ -1,11 +1,11 @@
-package api;
+package com.csc207.api;
 
+import com.csc207.domain.TaskSerializable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Collection;
 
 @Configuration
 public class TaskSerializableInteractor {

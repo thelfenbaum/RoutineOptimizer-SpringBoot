@@ -1,6 +1,7 @@
-package api;
+package com.csc207.api;
 
 
+import com.csc207.domain.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,6 +1,5 @@
-package com.csc207.cli;
+package com.csc207.domain;
 
-import api.*;
 import java.time.LocalDateTime;
 
 

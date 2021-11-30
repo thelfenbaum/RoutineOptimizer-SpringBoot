@@ -1,4 +1,4 @@
-package com.csc207.cli;
+package com.csc207.domain;
 
 public class Exceptions {
 

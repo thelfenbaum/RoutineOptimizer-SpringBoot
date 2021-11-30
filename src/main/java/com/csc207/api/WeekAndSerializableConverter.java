@@ -1,6 +1,6 @@
-package api;
+package com.csc207.api;
 
-import com.csc207.cli.*;
+import com.csc207.domain.*;
 
 import java.util.ArrayList;
 

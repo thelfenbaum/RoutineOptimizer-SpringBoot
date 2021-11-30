@@ -1,5 +1,6 @@
-package api;
+package com.csc207.api;
 
+import com.csc207.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 

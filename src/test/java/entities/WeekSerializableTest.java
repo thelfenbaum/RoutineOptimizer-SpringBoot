@@ -1,6 +1,6 @@
 package entities;
 
-import api.WeekSerializable;
+import com.csc207.domain.WeekSerializable;
 import org.junit.After;
 import org.junit.Before;
 

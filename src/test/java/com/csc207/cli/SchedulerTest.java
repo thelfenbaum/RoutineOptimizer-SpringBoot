@@ -1,8 +1,9 @@
 package com.csc207.cli;
 
-import api.Day;
-import api.NonFixedTask;
-import api.Week;
+import com.csc207.domain.Day;
+import com.csc207.domain.NonFixedTask;
+import com.csc207.domain.Scheduler;
+import com.csc207.domain.Week;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

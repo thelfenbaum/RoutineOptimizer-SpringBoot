@@ -1,9 +1,10 @@
 package com.csc207.cli;
 
-import api.FixedTask;
-import api.NonFixedTask;
+import com.csc207.domain.Checker;
+import com.csc207.domain.FixedTask;
+import com.csc207.domain.NonFixedTask;
 
-import api.Week;
+import com.csc207.domain.Week;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

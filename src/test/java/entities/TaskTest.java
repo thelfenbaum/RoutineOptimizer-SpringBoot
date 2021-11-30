@@ -1,6 +1,6 @@
 package entities;
 
-import api.Task;
+import com.csc207.domain.Task;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

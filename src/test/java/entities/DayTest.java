@@ -1,7 +1,7 @@
 package entities;
 
-import api.Day;
-import api.Task;
+import com.csc207.domain.Day;
+import com.csc207.domain.Task;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
