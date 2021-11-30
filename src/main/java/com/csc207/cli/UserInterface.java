@@ -21,18 +21,19 @@ public class UserInterface {
     @Autowired
     private UserInteractorDataOut userInteractor;
     @Autowired
-    private TaskSerializableInteractorDataIn taskSerializableInteractor;
+    private TaskSerializableInteractorDataIn taskSerializableInteractorDataIn;
     @Autowired
     private WeekController weekController;
-
-    public UserInterface(){}
+    @Autowired
+    private final TaskSerializableInteractorDataOut taskSerializableInteractorDataOut;
 
     public UserInterface(UserController uc, WeekSerializableInteractorDataOut wsi, UserInteractorDataOut ui,
-                         TaskSerializableInteractorDataIn tsi, WeekController wc){
+                         TaskSerializableInteractorDataIn tsidi, TaskSerializableInteractorDataOut tsido, WeekController wc){
         this.userController = uc;
         this.weekSerializableInteractor = wsi;
         this.userInteractor = ui;
-        this.taskSerializableInteractor = tsi;
+        this.taskSerializableInteractorDataIn = tsidi;
+        this.taskSerializableInteractorDataOut = tsido;
         this.weekController = wc;
     }
 
@@ -159,8 +160,8 @@ public class UserInterface {
         } else if (selection == 2) { // use user id to retrieve the user's week serializable, convert it to week
             WeekSerializable weekSers = this.weekSerializableInteractor.getWeekSerializableByUserId(userId);
             this.weekSerializableInteractor.removeWeekSerializableByUserId(userId);
-            ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractor.getTasksByUserId(userId);
-            this.taskSerializableInteractor.removeTaskSerializablesByUserId(userId);
+            ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractorDataOut.getTasksByUserId(userId);
+            this.taskSerializableInteractorDataOut.removeTaskSerializablesByUserId(userId);
             week = SerializableToWeekAdapter.SerializableToWeek(weekSers, tasksSers);
         } else {
             System.out.println("Please enter a valid option.");

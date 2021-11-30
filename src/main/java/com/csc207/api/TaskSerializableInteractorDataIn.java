@@ -26,25 +26,5 @@ public class TaskSerializableInteractorDataIn {
         this.taskSerRepo.save(taskSer);
     }
 
-    /** Returns a list of tasks associated with a user.
-     *
-     * @param userId: the id of the user.
-     */
-    public ArrayList<TaskSerializable> getTasksByUserId(Long userId) {
-        return (ArrayList<TaskSerializable>) this.taskSerRepo.getTasksByUserId(userId);
-    }
 
-    /**
-     * Removes all taskSerializables associated with a user id from the database.
-     * @param userId: the user id.
-     */
-    @Transactional
-    public void removeTaskSerializablesByUserId(long userId) {
-        ArrayList<Long> listOfIds = new ArrayList<>();
-        ArrayList<TaskSerializable> taskSers = getTasksByUserId(userId);
-        for(TaskSerializable taskSer: taskSers){
-            listOfIds.add(taskSer.getId());
-        }
-        this.taskSerRepo.deleteAllById(listOfIds);
-    }
 }
