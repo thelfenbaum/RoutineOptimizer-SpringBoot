@@ -1,4 +1,4 @@
-package com.csc207.api;
+package com.csc207.domain;
 
 import com.csc207.domain.*;
 

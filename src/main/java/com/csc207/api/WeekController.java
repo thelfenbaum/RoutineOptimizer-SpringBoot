@@ -2,6 +2,7 @@ package com.csc207.api;
 
 import com.csc207.domain.TaskSerializable;
 import com.csc207.domain.Week;
+import com.csc207.domain.WeekAndSerializableConverter;
 import com.csc207.domain.WeekSerializable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
