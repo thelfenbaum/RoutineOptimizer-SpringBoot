@@ -14,16 +14,13 @@ public class Week {
      *
      * Construct a week, giving the week its start date and an array of days in that week.
      * Class Week contains seven days. It represents a user's week and contains the data regarding all of their tasks.
-     * @param startDate the start date of that week.
+     *
+     * @param days: a list of seven consecutive days.
+     * @param userId: the id of the user constructing this Week object.
      */
-    public Week(LocalDate startDate, Long userId){
-        // initialize <days> to an empty array of 7 days
+    public Week(Long userId, Day[] days){
         this.userId = userId;
-        this.days = new Day[7];
-        // set each element of <days> to its corresponding day, starting with days[0] = new Day(startDate, startDay).
-        for(int i = 0; i <= 6; i++){
-            days[i] = new Day(startDate.plusDays(i));
-        }
+        this.days = days;
     }
 
 
