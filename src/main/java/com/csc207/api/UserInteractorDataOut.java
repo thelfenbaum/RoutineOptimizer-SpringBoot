@@ -46,14 +46,4 @@ public class UserInteractorDataOut {
         return this.userRepo.getUserByUsername(username).get(0);
     }
 
-    /**
-     * Save this user to the database.
-     *
-     * @param user: the User.
-     */
-    @Transactional
-    public void saveUser(User user) {
-        this.userRepo.save(user);
-    }
-
 }
