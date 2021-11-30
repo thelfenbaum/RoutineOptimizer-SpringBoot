@@ -1,4 +1,4 @@
-package api;
+package com.csc207.api;
 import com.csc207.cli.Controller;
 import com.csc207.cli.Project;
 import com.csc207.cli.UserInterfacePrints;

@@ -1,6 +1,6 @@
 package entities;
 
-import api.Week;
+import com.csc207.api.Week;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

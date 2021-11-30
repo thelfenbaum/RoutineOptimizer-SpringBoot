@@ -1,8 +1,8 @@
 package com.csc207.cli;
 
-import api.FixedTask;
-import api.NonFixedTask;
-import api.Week;
+import com.csc207.api.FixedTask;
+import com.csc207.api.NonFixedTask;
+import com.csc207.api.Week;
 
 public class Controller {
 

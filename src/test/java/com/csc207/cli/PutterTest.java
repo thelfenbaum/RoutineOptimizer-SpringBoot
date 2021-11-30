@@ -1,7 +1,7 @@
 package com.csc207.cli;
 
-import api.NonFixedTask;
-import api.Week;
+import com.csc207.api.NonFixedTask;
+import com.csc207.api.Week;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

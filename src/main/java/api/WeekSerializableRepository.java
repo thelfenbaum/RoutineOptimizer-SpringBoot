@@ -1,4 +1,4 @@
-package api;
+package com.csc207.api;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

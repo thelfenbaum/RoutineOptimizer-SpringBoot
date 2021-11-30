@@ -1,4 +1,4 @@
-package api;
+package com.csc207.api;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;

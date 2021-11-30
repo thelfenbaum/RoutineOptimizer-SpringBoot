@@ -1,6 +1,6 @@
 package entities;
 
-import api.FixedTask;
+import com.csc207.api.FixedTask;
 import org.junit.After;
 import org.junit.Before;
 

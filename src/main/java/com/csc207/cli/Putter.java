@@ -1,9 +1,9 @@
 package com.csc207.cli;
 
-import api.Day;
-import api.NonFixedTask;
-import api.Task;
-import api.Week;
+import com.csc207.api.Day;
+import com.csc207.api.NonFixedTask;
+import com.csc207.api.Task;
+import com.csc207.api.Week;
 
 import java.time.LocalDateTime;
 

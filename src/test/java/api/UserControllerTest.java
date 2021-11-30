@@ -1,4 +1,4 @@
-package api;
+package com.csc207.api;
 
 import org.junit.After;
 import org.junit.Before;
