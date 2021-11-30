@@ -25,8 +25,11 @@ public class UserInteractorDataOut {
      */
     public boolean checkSignIn(String username, String password){
         boolean existsUser = this.userRepo.existsUserByUsername(username);
-        String expectedPassword = this.userRepo.getUserByUsername(username).get(0).getPassword();
-        return existsUser && password.equals(expectedPassword);
+        if (existsUser) {
+            String expectedPassword = this.userRepo.getUserByUsername(username).get(0).getPassword();
+            return password.equals(expectedPassword);
+        }
+        return false;
     }
 
     /**
