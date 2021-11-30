@@ -154,7 +154,8 @@ public class UserInterface {
         Week week;
         if (selection == 1) {
             LocalDate startDate = UserInterface.getStartDate(reader);
-            week = new Week(startDate, userId);
+            Day[] days = DaysInjector.constructDayList(startDate);
+            week = new Week(userId, days);
         } else if (selection == 2) { // use user id to retrieve the user's week serializable, convert it to week
             WeekSerializable weekSers = this.weekSerializableInteractor.getWeekSerializableByUserId(userId);
             this.weekSerializableInteractor.removeWeekSerializableByUserId(userId);
