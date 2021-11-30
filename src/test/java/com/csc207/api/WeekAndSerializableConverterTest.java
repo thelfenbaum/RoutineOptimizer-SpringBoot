@@ -41,7 +41,7 @@ public class WeekAndSerializableConverterTest {
     @Test
     public void testWeekToWeekSerializable(){
         WeekSerializable expected = new WeekSerializable(startDate, 1L);
-        assertEquals(expected, WeekAndSerializableConverter.WeekToWeekSerializable(week));
+        assertEquals(expected, WeekToSerializableAdapter.WeekToWeekSerializable(week));
     }
 
     /**
@@ -50,7 +50,7 @@ public class WeekAndSerializableConverterTest {
     @Test
     public void testWeekToTaskSerializable(){
         ArrayList<TaskSerializable> expected = new ArrayList<>();
-        assertEquals(expected, WeekAndSerializableConverter.WeekToTaskSerializable(week));
+        assertEquals(expected, WeekToSerializableAdapter.WeekToTaskSerializable(week));
     }
 
     /**
@@ -60,6 +60,6 @@ public class WeekAndSerializableConverterTest {
     public void testSerializableToWeek(){
         WeekSerializable weekSers = new WeekSerializable(startDate, 1L);
         ArrayList<TaskSerializable> taskSers = new ArrayList<>();
-        assertEquals(week, WeekAndSerializableConverter.SerializableToWeek(weekSers, taskSers));
+        assertEquals(week, SerializableToWeekAdapter.SerializableToWeek(weekSers, taskSers));
     }
 }

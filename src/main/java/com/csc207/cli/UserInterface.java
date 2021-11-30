@@ -160,7 +160,7 @@ public class UserInterface {
             this.weekSerializableInteractor.removeWeekSerializableByUserId(userId);
             ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractor.getTasksByUserId(userId);
             this.taskSerializableInteractor.removeTaskSerializablesByUserId(userId);
-            week = WeekAndSerializableConverter.SerializableToWeek(weekSers, tasksSers);
+            week = SerializableToWeekAdapter.SerializableToWeek(weekSers, tasksSers);
         } else {
             System.out.println("Please enter a valid option.");
             int newSelection = Integer.parseInt(reader.nextLine());
