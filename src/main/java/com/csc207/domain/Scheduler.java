@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 //import java.util.Objects;
 
+/**
+ * This class finds the best available time slot for a given task or project in a given week.
+ */
+
 public class Scheduler {
 
     /**
@@ -44,8 +48,8 @@ public class Scheduler {
 
     public static NonFixedTask[] ScheduleProject(Week week, NonFixedTask[] projectTasks){
         NonFixedTask[] updatedTasks = new NonFixedTask[projectTasks.length];
-        for (int i = 0; i < projectTasks.length; i++){
-            updatedTasks[i] = (NonFixedTask) ScheduleTaskInDay(week.getDays()[i], projectTasks[i]);
+        for (int day = 0; day < projectTasks.length; day++){
+            updatedTasks[day] = (NonFixedTask) ScheduleTaskInDay(week.getDays()[day], projectTasks[day]);
         }
         return updatedTasks;
     }
@@ -66,13 +70,13 @@ public class Scheduler {
             String value = day.getTodaySchedule().get(key);
             if (value.equals("")){time.add(key);}}
         //iterate through free time to calculate how much free time we have in a row
-        for (int i = 0; i < time.size(); i++) {
-            if((time.get(i + 1) - time.get(i)) == 0.5){
+        for (int freeTime = 0; freeTime < time.size(); freeTime++) {
+            if((time.get(freeTime + 1) - time.get(freeTime)) == 0.5){
                 freeDuration += 0.5;
                 //check if current free duration equals to task duration
                 if(freeDuration >= durationD){
                     //if yes, schedule the task to the start of the free duration
-                    double startTime = time.get(i+1) - freeDuration;
+                    double startTime = time.get(freeTime+1) - freeDuration;
                     LocalTime start = ConvertTimeAndDouble.ConvertDoubleToLocalTime(startTime);
                     task.changeStartDateTime(LocalDateTime.of(day.getDayOfMonth(), start));
                     return task;

@@ -1,5 +1,9 @@
 package com.csc207.cli;
 
+/**
+ * This class is responsible for containing all the messages that will be printed out to the user.
+ */
+
 public class UserInterfacePrints {
 
     /**

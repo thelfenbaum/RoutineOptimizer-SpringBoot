@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
+/**
+ * This class is the database that stores WeekSerializable objects.
+ */
+
 @Repository
 public interface WeekSerializableRepository extends JpaRepository<WeekSerializable, Long> {
 

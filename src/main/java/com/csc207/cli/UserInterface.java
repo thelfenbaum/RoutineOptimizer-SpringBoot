@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * This class is responsible for executing all the user interactions.
+ */
+
 @Service
 public class UserInterface {
     @Autowired
@@ -25,6 +29,14 @@ public class UserInterface {
     @Autowired
     private final TaskSerializableInteractorDataOut taskSerializableInteractorDataOut;
 
+    /**
+     * The constructor for the UserInterface class.
+     * @param uc: The user controller object to obtain the user from the database.
+     * @param wsi: The week serializable interactor to obtain the week from the database.
+     * @param ui: The user interactor to check the database.
+     * @param tsido: The task serializable interactor to get data from the database.
+     * @param wc: The week controller object to save week to a database.
+     */
     public UserInterface(UserController uc, WeekSerializableInteractorDataOut wsi, UserInteractorDataOut ui,
                          TaskSerializableInteractorDataOut tsido, WeekController wc){
         this.userController = uc;
@@ -181,8 +193,8 @@ public class UserInterface {
             System.out.println("On which day do you want your week to start?\n");
             return UserInterfaceExceptions.getDate(reader);
         }
-        catch(Exception e){
-            System.out.println(e.getMessage());
+        catch(Exception exception){
+            System.out.println(exception.getMessage());
             return getStartDate(reader);
         }
     }
@@ -232,8 +244,8 @@ public class UserInterface {
 
         return new FixedTask(name, startDateTime, duration, userId);  // Create a FixedTask from this information
         }
-        catch(Exception e) {
-            System.out.println(e.getMessage());
+        catch(Exception exception) {
+            System.out.println(exception.getMessage());
             return createFixedTask(reader, userId);
         }
     }
@@ -263,8 +275,8 @@ public class UserInterface {
             LocalDateTime dueDateTime = LocalDateTime.of(dueDate, dueTime);
             return new NonFixedTask(name, dueDateTime, duration, userId);
         }
-        catch(Exception e){
-            System.out.println(e.getMessage());
+        catch(Exception exception){
+            System.out.println(exception.getMessage());
             return createNonFixedTask(reader, userId);
         }
     }
@@ -297,8 +309,8 @@ public class UserInterface {
             }
             return projectTasks;
         }
-        catch(Exception e){
-            System.out.println(e.getMessage());
+        catch(Exception exception){
+            System.out.println(exception.getMessage());
             return createProject(week, reader);
         }
     }
@@ -341,8 +353,8 @@ public class UserInterface {
 
             return LocalDateTime.of(dueDate, dueTime);
         }
-        catch(Exception e){
-            System.out.println(e.getMessage());
+        catch(Exception exception){
+            System.out.println(exception.getMessage());
             return getDueDateTime(reader);
         }
     }
@@ -370,12 +382,17 @@ public class UserInterface {
                     "day.");
             return UserInterfaceExceptions.getTime(reader);
         }
-        catch(Exception e){
-            System.out.println(e.getMessage());
+        catch(Exception exception){
+            System.out.println(exception.getMessage());
             return getMaxHoursPerTask(week, reader, startDate, dueDateTime);
         }
     }
 
+    /**
+     * Helper method for schedulingDecision. Executes code for when the user selects selection 3.
+     * @param week: The week that the user wants to schedule their project.
+     * @param reader: The Scanner object to take in inputs.
+     */
     private void selectsThree(Week week, Scanner reader) {
         NonFixedTask[] projectTasksToSchedule = UserInterface.createProject(week, reader);
         if(!Controller.checkProjectScheduling(week, projectTasksToSchedule)){
@@ -383,6 +400,11 @@ public class UserInterface {
         else{Controller.activateProjectScheduling(week, projectTasksToSchedule);}
     }
 
+    /**
+     * Helper method for schedulingDecision. Executes code for when the user selects selection 2.
+     * @param week: The week that the user wants to schedule their NonFixedTask.
+     * @param reader: The Scanner object to take in inputs.
+     */
     private void selectsTwo(Week week, Scanner reader) {
         NonFixedTask taskToSchedule = UserInterface.createNonFixedTask(reader, week.getUserId());
         if(!Controller.checkNonFixedTaskScheduling(week, taskToSchedule)){
@@ -390,6 +412,11 @@ public class UserInterface {
         else{Controller.activateNonFixedTaskScheduling(week, taskToSchedule);}
     }
 
+    /**
+     * Helper method for schedulingDecision. Executes code for when the user selects selection 1.
+     * @param week: The week that the user wants to schedule their FixedTask.
+     * @param reader: The Scanner object to take in inputs.
+     */
     private void selectsOne(Week week, Scanner reader) {
         FixedTask taskToPut = UserInterface.createFixedTask(reader, week.getUserId());
         if(!Controller.checkFixedTaskScheduling(week, taskToPut)){

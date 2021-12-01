@@ -11,6 +11,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.Scanner;
 
+/**
+ * This class is the routine optimizer application and is the CLI.
+ */
+
 @SpringBootApplication
 @EnableJpaRepositories("com.csc207.api")
 @EntityScan({"com.csc207.domain"})
@@ -19,6 +23,10 @@ public class RoutopApplication implements CommandLineRunner {
     @Autowired
     private final UserInterface ui;
 
+    /**
+     * The constructor for the RoutopApplication.
+     * @param ui: The user interface for the routop Application.
+     */
     public RoutopApplication(UserInterface ui){
         this.ui = ui;
     }

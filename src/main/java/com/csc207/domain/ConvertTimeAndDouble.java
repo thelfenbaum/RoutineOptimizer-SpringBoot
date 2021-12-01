@@ -3,6 +3,9 @@ package com.csc207.domain;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * This class is used to convert given times and doubles into double and time objects, respectively.
+ */
 
 public class ConvertTimeAndDouble {
 

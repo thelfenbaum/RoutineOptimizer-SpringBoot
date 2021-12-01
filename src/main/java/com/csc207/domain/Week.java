@@ -1,15 +1,14 @@
 package com.csc207.domain;
 
-import java.time.LocalDate;
+/**
+ * This class represents a week. The Week object should include the user id of the week and the days of the week.
+ */
 
 public class Week {
     private Long userId;
     private Day[] days;
 
-
     protected Week(){}
-
-
     /**
      *
      * Construct a week, giving the week its start date and an array of days in that week.
@@ -31,20 +30,27 @@ public class Week {
      */
 
     public String toString(){
-        StringBuilder s = new StringBuilder();
-        s.append("Week starting on ").append(this.days[0].getDayOfWeek()).append(", ").append(this.days[0].getDayOfMonth()).append("\n");
-        s.append("-------------------------------------------\n");
+        StringBuilder string = new StringBuilder();
+        string.append("Week starting on ").append(this.days[0].getDayOfWeek()).append(", ").append(this.days[0].getDayOfMonth()).append("\n");
+        string.append("-------------------------------------------\n");
         for(Day day: this.days){
-            s.append(day.toString());
+            string.append(day.toString());
         }
-        return s.toString();
+        return string.toString();
     }
 
-
+    /**
+     * Gets the days.
+     * @return The days of the week.
+     */
     public Day[] getDays() {
         return days;
     }
 
+    /**
+     * Gets the user id.
+     * @return The user id of the week.
+     */
     public Long getUserId() {
         return userId;
     }

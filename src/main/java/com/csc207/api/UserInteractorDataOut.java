@@ -6,11 +6,19 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.transaction.Transactional;
 
+/**
+ * This class is responsible for accessing user information in the database.
+ */
+
 @Configuration
 public class UserInteractorDataOut {
     @Autowired
     private final UserRepository userRepo;
 
+    /**
+     * The constructor for the UserInteractorDataOut.
+     * @param userRepo: The database that the class accesses.
+     */
     public UserInteractorDataOut(UserRepository userRepo){
         this.userRepo = userRepo;
     }
@@ -41,10 +49,21 @@ public class UserInteractorDataOut {
         return this.userRepo.getUserByUsername(username).get(0).getId();
     }
 
+    /**
+     * Checks if the username is in the database.
+     *
+     * @param username: The username that is checked if it is in the database.
+     * @return If the username is in the database or not.
+     */
     public boolean isUsernameInDb(String username) {
         return this.userRepo.existsUserByUsername(username);
     }
 
+    /**
+     * Gets the user of the given username.
+     * @param username: The username of the user that will be found in the database.
+     * @return The User object of the username
+     */
     public User getUserFromUsername(String username) {
         return this.userRepo.getUserByUsername(username).get(0);
     }

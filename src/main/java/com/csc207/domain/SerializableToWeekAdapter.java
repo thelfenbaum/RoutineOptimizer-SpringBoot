@@ -2,9 +2,13 @@ package com.csc207.domain;
 
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for converting WeekSerializable objects and TaskSerializable objects into a Week object.
+ */
+
 public class SerializableToWeekAdapter {
     /**
-     * Convert a WeekSerializable and an Array of TaskSerializables into a Week.
+     * Convert a WeekSerializable and an Array of TaskSerializable into a Week.
      *
      * @param weekSer: the WeekSerializable.
      * @param taskSers: the TaskSerializable.

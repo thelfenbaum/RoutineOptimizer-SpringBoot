@@ -6,6 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
+/**
+ * This class is responsible for obtaining all the tasks that are stored in the database for a user.
+ */
+
 @Repository
 public interface TaskSerializableRepository extends JpaRepository<TaskSerializable, Long>{
     /**

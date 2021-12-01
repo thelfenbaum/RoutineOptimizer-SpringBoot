@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+/**
+ * This class is the user database and is responsible for storing all information about users of the RoutOp application.
+ */
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 

@@ -3,6 +3,11 @@ package com.csc207.domain;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * This class represents a task. The task must include the name, start day and time, duration, completion status, and
+ * user id of the user that the task belongs to.
+ */
+
 public class Task {
     private String name;
     private LocalDateTime startDateTime;
@@ -12,7 +17,7 @@ public class Task {
 
 
     /**
-     * Constructor to be used by NonFixedTasks, giving the task its name and duration
+     * Constructor to be used by NonFixedTasks, giving the task its name and duration.
      *
      * @param name: name of this task
      * @param duration: duration of this task

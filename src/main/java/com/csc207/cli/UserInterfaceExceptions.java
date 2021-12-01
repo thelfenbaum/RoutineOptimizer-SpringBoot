@@ -8,6 +8,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * This class is responsible for user interactions and throws exceptions.
+ */
+
 public class UserInterfaceExceptions {
     /**
      * Helper method UserInterface calls on to gather a date from the user
@@ -36,15 +40,15 @@ public class UserInterfaceExceptions {
      * @throws Exception if the format is invalid
      */
     private static void checkError(String startDate) throws Exception {
-        for (int i = 0; i < startDate.length(); i++){
-            if (i == 4 || i == 7){
-                if (startDate.charAt(i) != '-'){
+        for (int dateDigit = 0; dateDigit < startDate.length(); dateDigit++){
+            if (dateDigit == 4 || dateDigit == 7){
+                if (startDate.charAt(dateDigit) != '-'){
                     throw new Exception(Exceptions.INVALID_DATE_FORMAT);
                 }
             }
             else{
                 List<Character> list = Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-                if (!list.contains(startDate.charAt(i))){
+                if (!list.contains(startDate.charAt(dateDigit))){
                     throw new Exception(Exceptions.INVALID_DATE_FORMAT);
                 }
 
@@ -85,15 +89,15 @@ public class UserInterfaceExceptions {
         if (startTime.length() != 5){
             throw new Exception(Exceptions.INVALID_TIME_FORMAT);
         }
-        for (int i = 0; i < startTime.length(); i++){
-            if (i == 2){
-                if (startTime.charAt(i) != ':'){
+        for (int dateDigit = 0; dateDigit < startTime.length(); dateDigit++){
+            if (dateDigit == 2){
+                if (startTime.charAt(dateDigit) != ':'){
                     throw new Exception(Exceptions.INVALID_TIME_FORMAT);
                 }
             }
             else{
                 List<Character> list = Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-                if (!list.contains(startTime.charAt(i))){
+                if (!list.contains(startTime.charAt(dateDigit))){
                     throw new Exception(Exceptions.INVALID_TIME_FORMAT);
                 }
 

@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This interface allows you to calculate.
+ */
+
 public interface Project {
 
     /** Calculate the minimum number of hours in a week that a user must work on their project per given frequency, so
@@ -63,9 +67,9 @@ public interface Project {
      */
      static boolean fitSchedule(Week week, double idealChunk){
 
-        for(Day n: week.getDays()){ //Check if each day has enough time for idealChunk
+        for(Day day: week.getDays()){ //Check if each day has enough time for idealChunk
 
-            double maxDay = calculateMaxHoursDay(n); //get the maximum free timeslot fpr each day in the week
+            double maxDay = calculateMaxHoursDay(day); //get the maximum free timeslot fpr each day in the week
 
             //if the maximum free timeslot for each day is less than the idealChunk
             //return false, else return true.
@@ -84,9 +88,9 @@ public interface Project {
 
         double maxHour = 0.0; //set variable maxHour
 
-        for(Day n: week.getDays()){  //iterate through each day in the week to find the maximum free timeslot of the week
+        for(Day day: week.getDays()){  //iterate through each day in the week to find the maximum free timeslot of the week
 
-            double maxDay = calculateMaxHoursDay(n); //find the maximum free timeslot of each day in a week, assign it to variable maxDay
+            double maxDay = calculateMaxHoursDay(day); //find the maximum free timeslot of each day in a week, assign it to variable maxDay
 
             if(maxHour < maxDay){
                 maxHour = maxDay;
@@ -108,13 +112,13 @@ public interface Project {
         double currentMax = 0.0;
 
 
-        List<String> task = new ArrayList<>(day.getTodaySchedule().values()); //create a list of values in todaySchedule
+        List<String> tasks = new ArrayList<>(day.getTodaySchedule().values()); //create a list of values in todaySchedule
 
-        for (String s : task) { //loop through the list
+        for (String task : tasks) { //loop through the list
 
             //if there is no task assigned to this time (empty string)
             //add 0.5 to currentMax
-            if (Objects.equals(s, "")) {
+            if (Objects.equals(task, "")) {
                 currentMax += 0.5;
                 //replace maxHour with currentMax is currentMax > maxHour
                 if (currentMax > maxHour) {

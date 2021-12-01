@@ -3,6 +3,11 @@ package com.csc207.domain;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * This class represents a non-fixed task. A non-fixed task should include the tasks name, due date, duration, and
+ * user id of the user that the task belongs to.
+ */
+
 public class NonFixedTask extends Task {
     public LocalDateTime dueDateTime;
 
