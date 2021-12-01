@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "Tasks")
+@Table(name = "tasks")
 public class TaskSerializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
