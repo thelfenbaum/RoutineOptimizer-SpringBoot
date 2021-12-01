@@ -60,7 +60,7 @@ public class Scheduler {
     public static Task ScheduleTaskInDay (Day day, Task task){
         List<Double> time = new ArrayList<>();
         double freeDuration = 0.0;
-        double durationD = ConvertBetweenTimeAndDouble.ConvertLocalTimeDouble(task.getDuration());
+        double durationD = ConvertTimeAndDouble.ConvertLocalTimeDouble(task.getDuration());
         //add all free time to a list
         for (double key : day.getTodaySchedule().keySet()) {
             String value = day.getTodaySchedule().get(key);
@@ -73,7 +73,7 @@ public class Scheduler {
                 if(freeDuration >= durationD){
                     //if yes, schedule the task to the start of the free duration
                     double startTime = time.get(i+1) - freeDuration;
-                    LocalTime start = ConvertBetweenTimeAndDouble.ConvertDoubleToLocalTime(startTime);
+                    LocalTime start = ConvertTimeAndDouble.ConvertDoubleToLocalTime(startTime);
                     task.changeStartDateTime(LocalDateTime.of(day.getDayOfMonth(), start));
                     return task;
                     //if duration is not task duration, reset freeDuration to 0.0

@@ -51,7 +51,7 @@ public class Checker {
     public static boolean CheckScheduleFixedTask(Week week, FixedTask task) {
         for (Day day: week.getDays()){
             if (task.getStartDateTime().toLocalDate().equals(day.getDayOfMonth())){ // check if this day is the same as the day for the tasl
-                double startTimeD = ConvertBetweenTimeAndDouble.ConvertDateTimeDouble(task.getStartDateTime());
+                double startTimeD = ConvertTimeAndDouble.ConvertDateTimeDouble(task.getStartDateTime());
                 if(!day.getTodaySchedule().get(startTimeD).equals("")){
                     return false;
                 }
