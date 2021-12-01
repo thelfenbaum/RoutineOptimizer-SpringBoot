@@ -1,6 +1,6 @@
 package com.csc207.cli;
 
-import com.csc207.domain.ConvertBetweenTimeAndDouble;
+import com.csc207.domain.ConvertTimeAndDouble;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +25,7 @@ public class ConvertBetweenTimeAndDoubleTest {
     @Test
     public void convertDateTimeDouble() {
         LocalDateTime time = LocalDateTime.of(2021, 3, 11, 1, 0);
-        assertEquals(1.0, ConvertBetweenTimeAndDouble.ConvertDateTimeDouble(time), 0.01);
+        assertEquals(1.0, ConvertTimeAndDouble.ConvertDateTimeDouble(time), 0.01);
     }
 
     /**
@@ -34,7 +34,7 @@ public class ConvertBetweenTimeAndDoubleTest {
     @Test
     public void convertLocalTimeDouble() {
         LocalTime time = LocalTime.of(2,0);
-        assertEquals(2.0, ConvertBetweenTimeAndDouble.ConvertLocalTimeDouble(time), 0.01);
+        assertEquals(2.0, ConvertTimeAndDouble.ConvertLocalTimeDouble(time), 0.01);
     }
 
     /**
@@ -44,6 +44,6 @@ public class ConvertBetweenTimeAndDoubleTest {
     public void convertDoubleToLocalTime() {
         double time = 5.5;
         LocalTime expected = LocalTime.of(5, 30);
-        assertEquals(expected, ConvertBetweenTimeAndDouble.ConvertDoubleToLocalTime(time));
+        assertEquals(expected, ConvertTimeAndDouble.ConvertDoubleToLocalTime(time));
     }
 }

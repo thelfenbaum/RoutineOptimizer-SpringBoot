@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 
-public class ConvertBetweenTimeAndDouble {
+public class ConvertTimeAndDouble {
 
     /** Takes a LocalDateTime object and outputs a double object that represents the time in the LocalDateTime object.
      *
