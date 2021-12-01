@@ -2,7 +2,7 @@ package com.csc207.api;
 
 import com.csc207.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.Objects;
@@ -20,29 +20,24 @@ public class UserController {
     }
 
     /**
-     * Check if both the username and password of this uwser are in the database.
+     * Check if the username of this user are in the database.
      *
      * @param username: the username.
-     * @param password: the password.
      * @return whether this username-password pair is in the database.
      */
-    public boolean isUsernameAndPasswordInDb(String username, String password){
-        if(this.userInteractorDataOut.isUsernameInDb(username)){
-            User user = this.userInteractorDataOut.getUserFromUsername(username);
-            return Objects.equals(user.getPassword(), password);
-        }
-        return false;
+    @GetMapping("/users/{username}")
+    public boolean isUsernameInDb(@PathVariable String username){
+        return this.userInteractorDataOut.isUsernameInDb(username);
     }
 
-
-    /**
-     * Returns a user object from the database based on the user's username.
-     * @param username: the username.
-     * @return the user associated with this username.
-     */
-    public User getUser(String username){
-        return this.userInteractorDataOut.getUserFromUsername(username);
-    }
+//    /**
+//     * Returns a user object from the database based on the user's username.
+//     * @param username: the username.
+//     * @return the user associated with this username.
+//     */
+//    public User getUser(String username){
+//        return this.userInteractorDataOut.getUserFromUsername(username);
+//    }
 
     /**
      * Save this User entity to the database.
@@ -50,7 +45,8 @@ public class UserController {
      * @param user: the User.
      */
     @Transactional
-    public void saveUser(User user){
+    @PostMapping("/users")
+    public void saveUser(@RequestBody User user){
         this.userInteractorDataIn.saveUser(user);
     }
 }
