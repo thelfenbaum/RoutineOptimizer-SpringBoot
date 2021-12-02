@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Configuration
 public class UserInteractorDataOut {
@@ -49,4 +50,7 @@ public class UserInteractorDataOut {
         return this.userRepo.getUserByUsername(username).get(0);
     }
 
+    public List<User> getAllUsers() {
+        return userRepo.findAll();
+    }
 }

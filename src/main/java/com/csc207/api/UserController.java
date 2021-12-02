@@ -1,11 +1,12 @@
 package com.csc207.api;
 
 import com.csc207.domain.User;
+import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
-import java.util.Objects;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -19,13 +20,19 @@ public class UserController {
         this.userInteractorDataIn = userInteractorDataIn;
     }
 
+
+    @GetMapping("/allusers")
+    List<User> all() {
+        return userInteractorDataOut.getAllUsers();
+    }
+
     /**
      * Check if the username of this user are in the database.
      *
      * @param username: the username.
      * @return whether this username-password pair is in the database.
      */
-    @GetMapping("/users/{username}")
+    @GetMapping("/allusers/{username}")
     public boolean isUsernameInDb(@PathVariable String username){
         return this.userInteractorDataOut.isUsernameInDb(username);
     }
@@ -45,7 +52,7 @@ public class UserController {
      * @param user: the User.
      */
     @Transactional
-    @PostMapping("/users")
+    @PostMapping("/allusers")
     public void saveUser(@RequestBody User user){
         this.userInteractorDataIn.saveUser(user);
     }
