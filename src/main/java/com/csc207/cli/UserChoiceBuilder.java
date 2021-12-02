@@ -1,5 +1,6 @@
 package com.csc207.cli;
 
+import com.csc207.api.WeekController;
 import com.csc207.domain.*;
 
 import java.time.LocalDate;
@@ -8,6 +9,24 @@ import java.util.Scanner;
 
 public class UserChoiceBuilder {
 
+    /** Takes the selection of the user and allows the user to create their schedule with the given week, start time,
+     * or to import an existing schedule
+     *
+     * @param userId: the id of the user
+     * @param selection: The selection of the user, whether they want to import or create their schedule
+     * @param reader: The scanner in Main module reading user input
+     */
+    public Week implementCreateOrImport(long userId, int selection, Scanner reader){
+        Week week;
+        if (selection == 1) {
+            LocalDate startDate = UserInterface.getStartDate(reader);
+            Day[] days = DaysInjector.constructDayList(startDate);
+            week = new Week(userId, days);
+        } else if (selection == 2) { // use user id to retrieve the user's week serializable, convert it to week
+            WeekController.importWeek();
+        }
+        return week;
+    }
 
     /** Takes the selection and week that is given and finds whether what type of task is needed to be scheduled and
      * schedules the task
