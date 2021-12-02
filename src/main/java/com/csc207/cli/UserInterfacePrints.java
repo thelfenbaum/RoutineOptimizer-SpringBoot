@@ -6,39 +6,8 @@ package com.csc207.cli;
 
 public class UserInterfacePrints {
 
-    /**
-     * Welcome message which greets user when they initiate the program
-     */
-    public static void printWelcomeMessage(){
-        System.out.println("Hi there! Welcome to RoutOp, the app built for optimizing your week.");
-        System.out.println("The app looks at your week's fixed schedule (for example: meetings, exercise, or " +
-                "classes), and then schedules all your flexible duties in their optimal time slot. This way," +
-                "RoutOp helps you maximize your executive output each week! \n");
-        System.out.println("Do you have an account with us? (y/n)");
-    }
-
-    /**
-     * Prints password creation requirements.
-     */
-    public static void printPasswordRequirements(){
-        System.out.println("MUST contain at least 12 characters");
-        System.out.println("MUST contain at least one uppercase letter");
-        System.out.println("MUST contain at least one lowercase letter");
-        System.out.println("MUST contain at least one number");
-        System.out.println("MUST contain at least one special character");
-        System.out.println("MUST not contain two or more identical characters in a row");
-        System.out.println("MUST not match commonly used password patterns");
-    }
 
 
-    /**
-     * Options presented to user for whether they want to create a new week or get one.
-     */
-    public static void createOrImportWeekMessage(){
-        System.out.println("Let's begin. Enter");
-        System.out.println("    - 1 to start a new week schedule");
-        System.out.println("    - 2 use your previously saved week schedule");
-    }
 
     /**
      * Options presented to user for whether they want to create a new week or get one.

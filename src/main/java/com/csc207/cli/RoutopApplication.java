@@ -1,6 +1,7 @@
 package com.csc207.cli;
 
 import com.csc207.domain.Week;
+import com.csc207.cli.UserChoiceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -44,7 +45,7 @@ public class RoutopApplication implements CommandLineRunner {
         if(haveAccount){
             createOrImportChoice = UserInterfaceMC.createOrImportWeek(reader);
         } else {
-            createOrImportChoice = UserInterfaceCreates.createWeek(reader);
+            createOrImportChoice = UserChoiceBuilder.schedulingDecision(reader);
         }
         Week week = this.ui.implementCreateOrImport(userId, createOrImportChoice, reader);
         System.out.println("Here is your week:");

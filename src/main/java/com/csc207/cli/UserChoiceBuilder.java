@@ -16,7 +16,7 @@ public class UserChoiceBuilder {
      * @param selection: the selection from the user about which type of task they would like to put
      * @param reader: The scanner in Main module reading user input
      */
-    public void schedulingDecision(Week week, int selection, Scanner reader){
+    public static void schedulingDecision(Week week, int selection, Scanner reader){
         if (selection == 1) {
             selectsOne(week, reader);
         } else if (selection == 2) {
@@ -31,12 +31,13 @@ public class UserChoiceBuilder {
         }
     }
 
+
     /**
      * Helper method for schedulingDecision. Executes code for when the user selects selection 3.
      * @param week: The week that the user wants to schedule their project.
      * @param reader: The Scanner object to take in inputs.
      */
-    private void selectsThree(Week week, Scanner reader) {
+    private static void selectsThree(Week week, Scanner reader) {
         NonFixedTask[] projectTasksToSchedule = UserInterfaceCreates.createProject(week, reader);
         if(!CheckerController.checkProjectScheduling(week, projectTasksToSchedule)){
             System.out.println("This project can't be scheduled");}
@@ -49,7 +50,7 @@ public class UserChoiceBuilder {
      * @param week: The week that the user wants to schedule their NonFixedTask.
      * @param reader: The Scanner object to take in inputs.
      */
-    private void selectsTwo(Week week, Scanner reader) {
+    private static void selectsTwo(Week week, Scanner reader) {
         NonFixedTask taskToSchedule = UserInterfaceCreates.createNonFixedTask(reader, week.getUserId());
         if(!CheckerController.checkNonFixedTaskScheduling(week, taskToSchedule)){
             System.out.println("This task can't be scheduled");}
@@ -62,7 +63,7 @@ public class UserChoiceBuilder {
      * @param week: The week that the user wants to schedule their FixedTask.
      * @param reader: The Scanner object to take in inputs.
      */
-    private void selectsOne(Week week, Scanner reader) {
+    private static void selectsOne(Week week, Scanner reader) {
         FixedTask taskToPut = UserInterfaceCreates.createFixedTask(reader, week.getUserId());
         if(!CheckerController.checkFixedTaskScheduling(week, taskToPut)){
             System.out.println("This task can't be scheduled");}

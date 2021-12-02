@@ -94,19 +94,30 @@ public class UserInterface {
         System.out.println("Please enter a username.");
         String username = reader.nextLine();
         System.out.println("Please enter a password.");
-        UserInterfacePrints.printPasswordRequirements();
+        printPasswordRequirements();
         String password = reader.nextLine();
         User newUser = new User(username, password);
         this.userController.saveUser(newUser);
         return newUser.getId();
     }
 
-
+    /**
+     * Prints password creation requirements.
+     */
+    private static void printPasswordRequirements(){
+        System.out.println("MUST contain at least 12 characters");
+        System.out.println("MUST contain at least one uppercase letter");
+        System.out.println("MUST contain at least one lowercase letter");
+        System.out.println("MUST contain at least one number");
+        System.out.println("MUST contain at least one special character");
+        System.out.println("MUST not contain two or more identical characters in a row");
+        System.out.println("MUST not match commonly used password patterns");
+    }
     }
 
 
 
 
-}
+
 
 
