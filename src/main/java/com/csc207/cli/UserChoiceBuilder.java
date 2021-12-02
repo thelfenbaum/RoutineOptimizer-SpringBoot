@@ -1,0 +1,93 @@
+package com.csc207.cli;
+
+import com.csc207.domain.*;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class UserChoiceBuilder {
+
+
+    /** Takes the selection and week that is given and finds whether what type of task is needed to be scheduled and
+     * schedules the task
+     *
+     * @param week: the week that the task will be scheduled in
+     * @param selection: the selection from the user about which type of task they would like to put
+     * @param reader: The scanner in Main module reading user input
+     */
+    public void schedulingDecision(Week week, int selection, Scanner reader){
+        if (selection == 1) {
+            selectsOne(week, reader);
+        } else if (selection == 2) {
+            selectsTwo(week, reader);
+        } else if (selection == 3) {
+            selectsThree(week, reader);
+        } else if (selection == 4){
+            // convert the week into WeekSerializable and TaskSerializable, and save to database
+            this.weekController.saveWeek(week);
+        } else {
+            System.out.println("Please enter a valid option (1, 2, 3, or 4).");
+        }
+    }
+
+    /**
+     * Helper method for schedulingDecision. Executes code for when the user selects selection 3.
+     * @param week: The week that the user wants to schedule their project.
+     * @param reader: The Scanner object to take in inputs.
+     */
+    private void selectsThree(Week week, Scanner reader) {
+        NonFixedTask[] projectTasksToSchedule = UserInterfaceCreates.createProject(week, reader);
+        if(!CheckerController.checkProjectScheduling(week, projectTasksToSchedule)){
+            System.out.println("This project can't be scheduled");}
+        else{
+            SchedulingController.activateProjectScheduling(week, projectTasksToSchedule);}
+    }
+
+    /**
+     * Helper method for schedulingDecision. Executes code for when the user selects selection 2.
+     * @param week: The week that the user wants to schedule their NonFixedTask.
+     * @param reader: The Scanner object to take in inputs.
+     */
+    private void selectsTwo(Week week, Scanner reader) {
+        NonFixedTask taskToSchedule = UserInterfaceCreates.createNonFixedTask(reader, week.getUserId());
+        if(!CheckerController.checkNonFixedTaskScheduling(week, taskToSchedule)){
+            System.out.println("This task can't be scheduled");}
+        else{
+            SchedulingController.activateNonFixedTaskScheduling(week, taskToSchedule);}
+    }
+
+    /**
+     * Helper method for schedulingDecision. Executes code for when the user selects selection 1.
+     * @param week: The week that the user wants to schedule their FixedTask.
+     * @param reader: The Scanner object to take in inputs.
+     */
+    private void selectsOne(Week week, Scanner reader) {
+        FixedTask taskToPut = UserInterfaceCreates.createFixedTask(reader, week.getUserId());
+        if(!CheckerController.checkFixedTaskScheduling(week, taskToPut)){
+            System.out.println("This task can't be scheduled");}
+        else{
+            SchedulingController.activateFixedTaskScheduling(week, taskToPut);}
+    }
+
+    /**
+     * helper method for activateCreateOrImport
+     * Assuming user starts a new week, ask the user to choose on which date
+     * they want their week to start.
+     *
+     * @param reader: The scanner in Main module reading user input
+     * @return the date they input as a LocalDate object.
+     */
+    private static LocalDate getStartDate(Scanner reader){
+        // Give user instructions
+        try {
+            System.out.println("On which day do you want your week to start?\n");
+            return UserInterfaceExceptions.getDate(reader);
+        }
+        catch(Exception exception){
+            System.out.println(exception.getMessage());
+            return getStartDate(reader);
+        }
+    }
+
+}

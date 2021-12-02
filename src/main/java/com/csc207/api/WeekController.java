@@ -1,9 +1,6 @@
 package com.csc207.api;
 
-import com.csc207.domain.TaskSerializable;
-import com.csc207.domain.Week;
-import com.csc207.domain.WeekToSerializableAdapter;
-import com.csc207.domain.WeekSerializable;
+import com.csc207.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,5 +50,15 @@ public class WeekController {
         for(TaskSerializable task: convertedTasks) {
             this.taskSerializableInteractorDataIn.saveTaskSerializable(task);
         }
+    }
+
+    private Week importWeek(long userId) {
+        Week week;
+        WeekSerializable weekSers = this.weekSerializableInteractor.getWeekSerializableByUserId(userId);
+        this.weekSerializableInteractor.removeWeekSerializableByUserId(userId);
+        ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractorDataOut.getTasksByUserId(userId);
+        this.taskSerializableInteractorDataOut.removeTaskSerializablesByUserId(userId);
+        week = SerializableToWeekAdapter.SerializableToWeek(weekSers, tasksSers);
+        return week;
     }
 }

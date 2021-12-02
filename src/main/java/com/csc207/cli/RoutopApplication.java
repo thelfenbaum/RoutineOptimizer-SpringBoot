@@ -42,11 +42,11 @@ public class RoutopApplication implements CommandLineRunner {
         Long userId = this.ui.activateSignInOrSignUp(haveAccount, reader);
         int createOrImportChoice;
         if(haveAccount){
-            createOrImportChoice = UserInterface.createOrImportWeek(reader);
+            createOrImportChoice = UserInterfaceMC.createOrImportWeek(reader);
         } else {
-            createOrImportChoice = UserInterface.createWeek(reader);
+            createOrImportChoice = UserInterfaceCreates.createWeek(reader);
         }
-        Week week = this.ui.activateCreateOrImport(userId, createOrImportChoice, reader);
+        Week week = this.ui.implementCreateOrImport(userId, createOrImportChoice, reader);
         System.out.println("Here is your week:");
         System.out.println(week);
 
