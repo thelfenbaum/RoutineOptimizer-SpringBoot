@@ -1,13 +1,25 @@
 package com.csc207.cli;
 
-import com.csc207.api.WeekController;
+import com.csc207.api.*;
 import com.csc207.domain.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserChoiceBuilder {
+
+    @Autowired
+    private final WeekController weekController;
+
+    /**
+     * The constructor for the UserChoiceBuilder class.
+     * @param wc: The week controller object to save week to a database.
+     */
+    public UserChoiceBuilder(WeekController wc){
+        this.weekController = wc;
+    }
 
     /** Takes the selection of the user and allows the user to create their schedule with the given week, start time,
      * or to import an existing schedule
@@ -19,11 +31,11 @@ public class UserChoiceBuilder {
     public Week implementCreateOrImport(long userId, int selection, Scanner reader){
         Week week;
         if (selection == 1) {
-            LocalDate startDate = UserInterface.getStartDate(reader);
+            LocalDate startDate = getStartDate(reader);
             Day[] days = DaysInjector.constructDayList(startDate);
             week = new Week(userId, days);
         } else if (selection == 2) { // use user id to retrieve the user's week serializable, convert it to week
-            WeekController.importWeek();
+            this.weekController.importWeek();
         }
         return week;
     }
@@ -44,7 +56,7 @@ public class UserChoiceBuilder {
             selectsThree(week, reader);
         } else if (selection == 4){
             // convert the week into WeekSerializable and TaskSerializable, and save to database
-            this.weekController.saveWeek(week);
+            wc.saveWeek(week);
         } else {
             System.out.println("Please enter a valid option (1, 2, 3, or 4).");
         }
