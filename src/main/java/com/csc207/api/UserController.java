@@ -30,7 +30,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/allusers")
+    @GetMapping("/users")
     List<User> all() {
         return userInteractorDataOut.getAllUsers();
     }
@@ -41,7 +41,7 @@ public class UserController {
      * @param username: the username.
      * @return whether this username-password pair is in the database.
      */
-    @GetMapping("/allusers/{username}")
+    @GetMapping("/users/{username}")
     public boolean isUsernameInDb(@PathVariable String username){
         return this.userInteractorDataOut.isUsernameInDb(username);
     }
@@ -61,7 +61,7 @@ public class UserController {
      * @param user: the User.
      */
     @Transactional
-    @PostMapping("/allusers")
+    @PostMapping("/users")
     public void saveUser(@RequestBody User user){
         this.userInteractorDataIn.saveUser(user);
     }
