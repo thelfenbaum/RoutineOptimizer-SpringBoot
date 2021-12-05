@@ -233,3 +233,39 @@ Advantage of this apporoach - SOLID: This design pattern allowed us to make our 
 -   It would be great to give the user more of an ooportunity to modify thier week if they dislike the way the scheduling algorithm set it up
     
 -   Lastly, we want RoutOp to be an application we would want to use for ourselves. This involves not only having an application that meets requirements, but one that meets its specifications in a way that genuinely helps the user. We would love to allocate more energy into refining our algorithms to really meet the needs of our desired user. We do not yet have concrete plans for what this component will look like since we will have to gauge as a team how much time we have to allocate to it after taking care of all the issues listed so far.
+
+
+
+
+## Accessibility Report
+
+#### Equitable Use:
+
+Our program web app is designed such that all users can have the same experience when using it. We ensured this by creating a gui with colors with high contrast so that colorblind users have no dificulty with it.
+
+#### Flexibility in Use:
+
+Our program gives users flexibility by allowing them to schedule their tasks very flexibly. We ensured this by giving the user the ability to modify their schedule by canceling or editing tasks and projects whenever they want.
+
+#### Simple and Intuitive Use:
+
+We made sure that our application was simple and that users could intuitively use it by designing it such that the language used when prompting the user to undertake actions such as signing in or changing their schedule without needing a tutorial for the website. This was done by eliminating all unnecessary complexity.
+
+#### Perceptible information: 
+
+The website we made was designed with the perceptibility of information as one of our main tasks. This was done by making the font size large enough and choosing a font that was legible. We also differentiated the various elements of the pages in ways that can be described to make it easy to give instructions or directions. We also created the gui with colors that contrast highly so that all information is clearly perceptible.
+
+#### Tolerance for Error: 
+
+Users of our website can feel safe knowing that it tries to prevent most errors that they may make. For example, all buttons on the webpages are big enough and far away from each other so that users do not accidentaly press a button they did not intend to press. We also have a password checker that checks the password that a user wants to use when signing up, by making sure that it is not a password that can be easily guessed by someone else.
+
+#### Low Physical Effort:
+
+The program also minimizes the physical effort the user has to put in by minimizing repetitive actions. For  example, instead of having to add multiple tasks for each day to the schedule for a routine (e.g. adding 7 tasks called "workout"), the user can add one task and say that they want to do it everyday.
+
+#### Size and Space for Approach and Use
+
+Of course, we did our best to ensure that the app is easy to use. In our html documents, we complied with semantic HTML by using \<header>, \<main>, and \<footer> to allow users using screen readers to understand what the page is representing.
+
+
+### 
