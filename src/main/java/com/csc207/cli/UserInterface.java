@@ -102,8 +102,6 @@ public class UserInterface {
         }
         else{
             System.out.println("Incorrect username or password. \n ");
-//            System.out.println("Do you have an account with us? (y/n)");
-//            return signInOrSignUp(reader); // start again
             return signIn(reader);
         }
     }
@@ -117,12 +115,18 @@ public class UserInterface {
     private long signUp(Scanner reader) {
         System.out.println("Please enter a username.");
         String username = reader.nextLine();
-        System.out.println("Please enter a password.");
-        UserInterfacePrints.printPasswordRequirements();
-        String password = reader.nextLine();
-        User newUser = new User(username, password);
-        this.userController.saveUser(newUser);
-        return newUser.getId();
+        if(this.userController.isUsernameInDb(username)) {
+            System.out.println("Please enter a password.");
+            UserInterfacePrints.printPasswordRequirements();
+            String password = reader.nextLine();
+            User newUser = new User(username, password);
+            this.userController.saveUser(newUser);
+            return newUser.getId();
+        }
+        else {
+            System.out.println("Username is taken. Please try again.");
+            return signUp(reader);
+        }
     }
 
     /**

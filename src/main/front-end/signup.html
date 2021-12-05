@@ -6,6 +6,15 @@
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sign Up</title>
+    <script>
+        function usernameAvailable(){
+            let username = document.getElementById('username').value;
+            let ajaxRequest = new XMLHttpRequest();
+            ajaxRequest.onreadystatechange = function(){}
+            ajaxRequest.open('GET', 'http://localhost:35729/users/' + username);
+            ajaxRequest.send();
+        }
+    </script>
 </head>
 
 <body>
@@ -13,10 +22,10 @@
     <p class="sign" align="center">Sign Up</p>
     <form class="form1">
         <label>
-            <input class="un " type="text" align="center" placeholder="Username">
+            <input class="un" id ="username" align="center" placeholder="Username">
         </label>
         <label>
-            <input class="pass" type="password" align="center" placeholder="Password">
+            <input class="pass" type="password" id="password" align="center" placeholder="Password">
         </label>
         <a class="submit" >Sign up</a>
         <p class="forgot" align="center">Already have an account? <a href="signin.html" > <u>Sign in. </u> </a> </p>
