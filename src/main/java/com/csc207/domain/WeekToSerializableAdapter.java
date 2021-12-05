@@ -2,6 +2,11 @@ package com.csc207.domain;
 
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for converting a Week object to a WeekSerializable object and
+ * a TaskSerializable object so that the Week object can be saved to a database.
+ */
+
 public class WeekToSerializableAdapter {
 
     /**
@@ -15,10 +20,10 @@ public class WeekToSerializableAdapter {
     }
 
     /**
-     * Convert a Week to an array of TaskSerializables
+     * Convert a Week to an array of TaskSerializable objects
      *
      * @param week: the Week to be converted to a TaskSerializable.
-     * @return an Array of TaskSerializables corresponding to this Week.
+     * @return an Array of TaskSerializable objects corresponding to this Week.
      */
     public static ArrayList<TaskSerializable> WeekToTaskSerializable(Week week){
         ArrayList<TaskSerializable> taskSers = new ArrayList<>();

@@ -2,6 +2,10 @@ package com.csc207.domain;
 
 import java.time.LocalDateTime;
 
+/**
+ * This class is responsible for putting given tasks and projects into a given week.
+ */
+
 public class Putter {
 
     /**
@@ -33,10 +37,10 @@ public class Putter {
                 //convert the start time of task to double
                 double startTimeD = ConvertTimeAndDouble.ConvertDateTimeDouble(task.getStartDateTime());
                 //loop through todaySchedule and mutate the value of the corresponding key
-                int i = 0;
-                while (i < totalTaskBlock) {
-                    day.getTodaySchedule().replace(startTimeD + 0.5*i, task.getName());
-                    i ++;
+                int block = 0;
+                while (block < totalTaskBlock) {
+                    day.getTodaySchedule().replace(startTimeD + 0.5*block, task.getName());
+                    block ++;
                 }
                 if (!day.getTodayTasks().contains(task)){
                     day.addTodayTasks(task);

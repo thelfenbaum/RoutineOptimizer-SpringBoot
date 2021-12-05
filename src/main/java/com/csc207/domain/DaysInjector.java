@@ -15,8 +15,8 @@ public class DaysInjector {
      */
     public static Day[] constructDayList(LocalDate startDate){
         Day[] days = new Day[7];
-        for(int i = 0; i <= 6; i++){
-          days[i] = new Day(startDate.plusDays(i));
+        for(int day = 0; day <= 6; day++){
+          days[day] = new Day(startDate.plusDays(day));
         }
         return days;
     }

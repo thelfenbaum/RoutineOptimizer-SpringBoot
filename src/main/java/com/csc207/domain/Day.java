@@ -28,22 +28,22 @@ public class Day {
         this.todaySchedule = new LinkedHashMap<>();
         // Set all initial half-hour blocks to the empty string, which represents
         // no task scheduled (free time)/
-        for(double i = 0.0; i <= 23.5; i = i + 0.5){
-            this.todaySchedule.put(i, "");
+        for(double time = 0.0; time <= 23.5; time = time + 0.5){
+            this.todaySchedule.put(time, "");
         }
-        this.TodayTasks = new ArrayList<Task>();
+        this.TodayTasks = new ArrayList<>();
     }
 
     /**
      * Return the string representation of a day that lists its day of week and schedule.
      */
     public String toString(){
-        StringBuilder s = new StringBuilder();
-        s.append("------ ").append(this.dayOfWeek).append(" ------\n");
+        StringBuilder string = new StringBuilder();
+        string.append("------ ").append(this.dayOfWeek).append(" ------\n");
         for(Double time: this.todaySchedule.keySet()){
-            s.append(time).append(": ").append(this.todaySchedule.get(time)).append("\n");
+            string.append(time).append(": ").append(this.todaySchedule.get(time)).append("\n");
         }
-        return(s.toString());
+        return(string.toString());
     }
 
     /**
@@ -96,15 +96,15 @@ public class Day {
     }
 
     /**
-     * remove a task from todaySchdule (delete the task)
+     * remove a task from todaySchedule (delete the task)
      * @param task: the task to be deleted
      */
     public void removeTask(Task task) {
         double begin = task.getStartDateTime().getHour() + task.getStartDateTime().getMinute() / 30.0;
         double end = begin + task.getDuration().getHour() + task.getDuration().getMinute() / 30.0;
-        for (double i = begin; i <= end; i+= 0.5)
+        for (double time = begin; time <= end; time+= 0.5)
         {
-            this.todaySchedule.put(i, "");
+            this.todaySchedule.put(time, "");
         }
     }
 

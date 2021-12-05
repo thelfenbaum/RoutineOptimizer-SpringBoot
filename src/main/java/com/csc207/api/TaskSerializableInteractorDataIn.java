@@ -7,11 +7,19 @@ import org.springframework.context.annotation.Configuration;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for inputting all the TaskSerializable objects into the database.
+ */
+
 @Configuration
 public class TaskSerializableInteractorDataIn {
     @Autowired
     private final TaskSerializableRepository taskSerRepo;
 
+    /**
+     * Constructor for the TaskSerializableInteractorDataIn.
+     * @param taskSerRepo: The database to store all the TaskSerializable objects.
+     */
     public TaskSerializableInteractorDataIn(TaskSerializableRepository taskSerRepo){
         this.taskSerRepo = taskSerRepo;
     }

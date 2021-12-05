@@ -6,15 +6,27 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.transaction.Transactional;
 
+/**
+ * This class is responsible for saving data to the week database.
+ */
+
 @Configuration
 public class WeekSerializableInteractorDataIn {
     @Autowired
     WeekSerializableRepository repo;
 
+    /**
+     * Constructor for the WeekSerializableInteractorDataIn class.
+     * @param wsr: The database that is being used to save information.
+     */
     public WeekSerializableInteractorDataIn(WeekSerializableRepository wsr){
         this.repo = wsr;
     }
 
+    /**
+     * Saves the WeekSerializable object to the database.
+     * @param weekSer: The WeekSerializable that will be saved in the database.
+     */
     @Transactional
     public void saveWeekSerializable(WeekSerializable weekSer){
         this.repo.save(weekSer);

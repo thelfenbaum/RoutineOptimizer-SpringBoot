@@ -10,6 +10,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import java.util.Scanner;
 
+/**
+ * This class is the routine optimizer application and is the CLI.
+ */
+
 @SpringBootApplication
 @EnableJpaRepositories("com.csc207.api")
 @EntityScan({"com.csc207.domain"})

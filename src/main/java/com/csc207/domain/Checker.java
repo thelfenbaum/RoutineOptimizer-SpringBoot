@@ -2,6 +2,9 @@ package com.csc207.domain;
 
 import java.time.LocalDateTime;
 
+/**
+ * This class is used to check whether a task or project has been scheduled into a given week.
+ */
 
 public class Checker {
 
@@ -50,7 +53,7 @@ public class Checker {
 
     public static boolean CheckScheduleFixedTask(Week week, FixedTask task) {
         for (Day day: week.getDays()){
-            if (task.getStartDateTime().toLocalDate().equals(day.getDayOfMonth())){ // check if this day is the same as the day for the tasl
+            if (task.getStartDateTime().toLocalDate().equals(day.getDayOfMonth())){ // check if this day is the same as the day for the task
                 double startTimeD = ConvertTimeAndDouble.ConvertDateTimeDouble(task.getStartDateTime());
                 if(!day.getTodaySchedule().get(startTimeD).equals("")){
                     return false;

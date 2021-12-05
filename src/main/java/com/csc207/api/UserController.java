@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * This class is responsible for accessing data about the user in the user database.
+ */
+
 @RestController
 public class UserController {
     @Autowired
@@ -15,6 +19,11 @@ public class UserController {
     @Autowired
     private final UserInteractorDataIn userInteractorDataIn;
 
+    /**
+     * The constructor for the UserController class.
+     * @param userInteractorDataOut: The interactor to access the information in the user database.
+     * @param userInteractorDataIn: The interactor to save data to the user database.
+     */
     public UserController(UserInteractorDataOut userInteractorDataOut, UserInteractorDataIn userInteractorDataIn){
         this.userInteractorDataOut = userInteractorDataOut;
         this.userInteractorDataIn = userInteractorDataIn;

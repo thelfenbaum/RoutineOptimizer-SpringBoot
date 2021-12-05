@@ -2,6 +2,11 @@ package com.csc207.cli;
 
 import com.csc207.domain.*;
 
+/**
+ * This class is responsible for initiating scheduling and putting of tasks and projects into weeks and checking if a
+ * task or project can be scheduled in a week.
+ */
+
 public class Controller {
 
     /**
