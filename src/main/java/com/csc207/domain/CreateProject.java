@@ -14,7 +14,7 @@ import java.util.Objects;
  * This interface allows you to calculate.
  */
 
-public interface Project {
+public class CreateProject {
 
     /** Calculate the minimum number of hours in a week that a user must work on their project per given frequency, so
      * that the project can be finished before the due date
@@ -27,7 +27,7 @@ public interface Project {
      * @return the minimum number of hours user must work on project per frequency to complete it in time. If
      *  there is not enough space in their week, return 0.0.
      */
-    static double calculateMinHours(Week week, LocalDate startDate, LocalDateTime dueDate, double totalHours,
+    public static double calculateMinHours(Week week, LocalDate startDate, LocalDateTime dueDate, double totalHours,
                                     double frequency) {
 
         double idealChunk = getIdealChunk(startDate, dueDate, totalHours, frequency); //get the idealChunk
@@ -47,7 +47,7 @@ public interface Project {
      * @param frequency: the number of times in a week that a project will be worked on
      * @return The ideal chunk of time in hours a user must work on a project per day. If there is no ideal chunk, return 0.5
      */
-     static double getIdealChunk(LocalDate startDate, LocalDateTime dueDate, double totalHours, double frequency){
+     public static double getIdealChunk(LocalDate startDate, LocalDateTime dueDate, double totalHours, double frequency){
 
         long diff = ChronoUnit.DAYS.between(startDate, dueDate);  //Get the number of days between startDate and dueDate
 
@@ -65,7 +65,7 @@ public interface Project {
      * @return true if the idealChunk is less than or equal to the maximum free timeslot of all the days in the week.
      * If there is at least one day that does not have enough time, then return false
      */
-     static boolean fitSchedule(Week week, double idealChunk){
+     public static boolean fitSchedule(Week week, double idealChunk){
 
         for(Day day: week.getDays()){ //Check if each day has enough time for idealChunk
 
@@ -84,7 +84,7 @@ public interface Project {
      * @param week: The week that is being checked to see the max timeslots that are available for all days
      * @return the maximum hours that are available for all days in the given week
      */
-     static double calculateMaxHoursWeek(Week week) {
+     public static double calculateMaxHoursWeek(Week week) {
 
         double maxHour = 0.0; //set variable maxHour
 
@@ -105,7 +105,7 @@ public interface Project {
      * @param day: The day that the max number of free timeslots are being found in
      * @return the maximum number of hours that are available in the given day
      */
-     static double calculateMaxHoursDay (Day day){
+     public static double calculateMaxHoursDay (Day day){
 
         //set variable maxHour and currentMax
         double maxHour = 0.0;

@@ -1,6 +1,6 @@
 package com.csc207.cli;
 import com.csc207.api.*;
-import com.csc207.domain.Project;
+import com.csc207.domain.CreateProject;
 import com.csc207.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -373,9 +373,9 @@ public class UserInterface {
                     " nearest 0.5)");
 
             double totalHours = Double.parseDouble(reader.nextLine());
-            double minHours = Project.calculateMinHours(week, startDate, dueDateTime, totalHours, 7);
+            double minHours = CreateProject.calculateMinHours(week, startDate, dueDateTime, totalHours, 7);
             // Create case to handle when minHours is 0.0
-            double maxHours = Project.calculateMaxHoursWeek(week);
+            double maxHours = CreateProject.calculateMaxHoursWeek(week);
             System.out.println("You must work on this project at least " + minHours + " per day and at most " + maxHours +
                     " per day.");
             System.out.println("Please enter the maximum amount of time you would like to work on this project in a given" +
