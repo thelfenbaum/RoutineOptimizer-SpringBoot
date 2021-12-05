@@ -31,9 +31,7 @@ public class UserChoiceBuilder {
     public Week implementCreateOrImport(long userId, int selection, Scanner reader){
         Week week;
         if (selection == 1) {
-            LocalDate startDate = getStartDate(reader);
-            Day[] days = DaysInjector.constructDayList(startDate);
-            week = new Week(userId, days);
+            UserInterfaceCreates.createWeek(userId, reader);
         } else if (selection == 2) { // use user id to retrieve the user's week serializable, convert it to week
             this.weekController.importWeek();
         }
@@ -100,26 +98,6 @@ public class UserChoiceBuilder {
             System.out.println("This task can't be scheduled");}
         else{
             SchedulingController.activateFixedTaskScheduling(week, taskToPut);}
-    }
-
-    /**
-     * helper method for activateCreateOrImport
-     * Assuming user starts a new week, ask the user to choose on which date
-     * they want their week to start.
-     *
-     * @param reader: The scanner in Main module reading user input
-     * @return the date they input as a LocalDate object.
-     */
-    private static LocalDate getStartDate(Scanner reader){
-        // Give user instructions
-        try {
-            System.out.println("On which day do you want your week to start?\n");
-            return UserInterfaceExceptions.getDate(reader);
-        }
-        catch(Exception exception){
-            System.out.println(exception.getMessage());
-            return getStartDate(reader);
-        }
     }
 
 }

@@ -169,4 +169,30 @@ public class UserInterfaceCreates {
             return getMaxHoursPerTask(week, reader, startDate, dueDateTime);
         }
     }
+
+    public static createWeek(Long userId, Scanner reader) {
+        LocalDate startDate = getStartDate(reader);
+        Day[] days = DaysInjector.constructDayList(startDate);
+        week = new Week(userId, days);
+    }
+
+    /**
+     * helper method for activateCreateOrImport
+     * Assuming user starts a new week, ask the user to choose on which date
+     * they want their week to start.
+     *
+     * @param reader: The scanner in Main module reading user input
+     * @return the date they input as a LocalDate object.
+     */
+    private static LocalDate getStartDate(Scanner reader){
+        // Give user instructions
+        try {
+            System.out.println("On which day do you want your week to start?\n");
+            return UserInterfaceExceptions.getDate(reader);
+        }
+        catch(Exception exception){
+            System.out.println(exception.getMessage());
+            return getStartDate(reader);
+        }
+    }
 }
