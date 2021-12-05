@@ -13,7 +13,7 @@ import java.time.LocalTime;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class ProjectTest {
+public class CreateProjectTest {
     Week week;
     NonFixedTask t1;
     NonFixedTask t2;
@@ -40,7 +40,7 @@ public class ProjectTest {
      */
     @Test
     public void testCalculateMinHours(){
-        assertEquals(1, Project.calculateMinHours(week, startDate, LocalDateTime.of(2021, 4, 10, 12, 0), 7.0, 7), 0.0);
+        assertEquals(1, CreateProject.calculateMinHours(week, startDate, LocalDateTime.of(2021, 4, 10, 12, 0), 7.0, 7), 0.0);
     }
 
     /**
@@ -48,7 +48,7 @@ public class ProjectTest {
      */
     @Test
     public void testGetIdealChunk(){
-        assertEquals(1.0, Project.getIdealChunk(startDate, LocalDateTime.of(2021, 4, 10, 12, 0), 7.0, 7), 0.0);
+        assertEquals(1.0, CreateProject.getIdealChunk(startDate, LocalDateTime.of(2021, 4, 10, 12, 0), 7.0, 7), 0.0);
     }
 
     /**
@@ -56,7 +56,7 @@ public class ProjectTest {
      */
     @Test
     public void testFitSchedule(){
-        assertTrue(Project.fitSchedule(week, 1.0));
+        assertTrue(CreateProject.fitSchedule(week, 1.0));
     }
 
     /**
@@ -64,7 +64,7 @@ public class ProjectTest {
      */
     @Test
     public void testCalculateMaxHoursWeek(){
-        assertEquals(24.0, Project.calculateMaxHoursWeek(week), 0);
+        assertEquals(24.0, CreateProject.calculateMaxHoursWeek(week), 0);
     }
 
     /**
@@ -72,6 +72,6 @@ public class ProjectTest {
      */
     @Test
     public void testCalculateMaxHoursDay(){
-        assertEquals(24.0, Project.calculateMaxHoursDay(day), 0.0);
+        assertEquals(24.0, CreateProject.calculateMaxHoursDay(day), 0.0);
     }
 }

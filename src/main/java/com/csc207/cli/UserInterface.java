@@ -78,8 +78,6 @@ public class UserInterface {
         }
         else{
             System.out.println("Incorrect username or password. \n ");
-//            System.out.println("Do you have an account with us? (y/n)");
-//            return signInOrSignUp(reader); // start again
             return signIn(reader);
         }
     }
