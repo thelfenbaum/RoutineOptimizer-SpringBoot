@@ -268,4 +268,12 @@ The program also minimizes the physical effort the user has to put in by minimiz
 Of course, we did our best to ensure that the app is easy to use. In our html documents, we complied with semantic HTML by using \<header>, \<main>, and \<footer> to allow users using screen readers to understand what the page is representing.
 
 
-### 
+
+
+### Target Market
+
+Overall, we think that our program should be marketed towards people who could make use of an app that schedules their day for them. This category is mostly made up of people who have busy days and are looking for a way to automate the process of scheduling their weeks. In general, this would include people like students, who often have workloads that they do not know how to handle, and professionals in fields that have lots of business meetings and events that they need to keep track of.
+
+### Demographics
+
+In general, it does not seem that any demographic would be more or less likely to use or program. It is possible that people who do not have busy schedules might not have much use of our app. In addition, anyone who is picky about the way they like to complete projects (for example, someone who likes to complete all the tasks for a project in the morning, a feature which is not yet part of our program) might prefer to not use our website.
