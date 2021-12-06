@@ -1,4 +1,4 @@
-package com.csc207.cli;
+package com.csc207.domain;
 
 import com.csc207.domain.*;
 import org.junit.After;
@@ -9,6 +9,10 @@ import static org.junit.Assert.assertEquals;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+
+/**
+ * This class tests the Scheduler class.
+ */
 
 public class SchedulerTest {
     Week week;

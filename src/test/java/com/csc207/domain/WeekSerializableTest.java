@@ -1,10 +1,16 @@
-package entities;
+package com.csc207.domain;
 
-import com.csc207.domain.WeekSerializable;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.time.LocalDate;
+
+import static org.junit.Assert.assertEquals;
+
+/**
+ * This class test the WeekSerializable class.
+ */
 
 public class WeekSerializableTest {
     LocalDate startDate;
@@ -24,5 +30,13 @@ public class WeekSerializableTest {
      */
     @After
     public void tearDown() {
+    }
+
+    /**
+     * tests the getId method.
+     */
+    @Test
+    public void testGetId(){
+        assertEquals(null, week.getId());
     }
 }
