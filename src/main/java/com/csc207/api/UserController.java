@@ -1,7 +1,6 @@
 package com.csc207.api;
 
 import com.csc207.domain.User;
-import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,6 +67,7 @@ public class UserController {
      */
     @Transactional
     @PostMapping("/users")
+    @CrossOrigin
     public void saveUser(@RequestBody User user){
         this.userInteractorDataIn.saveUser(user);
     }
