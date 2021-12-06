@@ -42,6 +42,7 @@ public class UserController {
      * @return whether this username-password pair is in the database.
      */
     @GetMapping("/users/{username}")
+    @CrossOrigin
     public User checkUsername(@PathVariable String username){
         return this.userInteractorDataOut.getUserFromUsername(username);
     }
