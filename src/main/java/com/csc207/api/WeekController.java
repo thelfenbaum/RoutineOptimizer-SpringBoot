@@ -18,7 +18,9 @@ public class WeekController {
     private final WeekSerializableInteractorDataIn weekSerializableInteractorDataIn;
     @Autowired
     private final TaskSerializableInteractorDataIn taskSerializableInteractorDataIn;
+    @Autowired
     private WeekSerializableInteractorDataOut weekSerializableInteractorDataOut;
+    @Autowired
     private TaskSerializableInteractorDataOut taskSerializableInteractorDataOut;
 
     /**
