@@ -11,6 +11,16 @@ async function getAllUsers(){
 function checkInput(username, password, users){
     // loop through users[i] and check if users[i].username matches username.
     // If yes, check if users[i].password matches. If yes return true, otherwise return false.
+    let usernameFound = false;
+    for(let i = 0; i < users.length; i++){
+        if (users[i].username === username){
+            usernameFound = true;
+            if (users[i].password === password){
+                    return true;
+            }
+        }
+    }
+    return false;
 }
 
 
