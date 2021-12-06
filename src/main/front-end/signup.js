@@ -8,3 +8,11 @@ async function getAllUsers(){
 }
 
 
+function checkInput(username, password, users){
+    // loop through users[i] and check if users[i].username matches username.
+    // If yes, check if users[i].password matches. If yes return true, otherwise return false.
+}
+
+
+
+
