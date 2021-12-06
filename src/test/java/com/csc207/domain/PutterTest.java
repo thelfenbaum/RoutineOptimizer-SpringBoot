@@ -1,9 +1,5 @@
-package com.csc207.cli;
+package com.csc207.domain;
 
-import com.csc207.domain.DaysInjector;
-import com.csc207.domain.NonFixedTask;
-import com.csc207.domain.Putter;
-import com.csc207.domain.Week;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +8,10 @@ import static org.junit.Assert.assertSame;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+
+/**
+ * This class tests the Putter class.
+ */
 
 public class PutterTest {
     Week week;

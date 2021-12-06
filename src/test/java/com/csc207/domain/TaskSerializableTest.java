@@ -1,6 +1,5 @@
-package entities;
+package com.csc207.domain;
 
-import com.csc207.domain.TaskSerializable;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +10,9 @@ import java.time.LocalTime;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This class tests the TaskSerializable class.
+ */
 
 public class TaskSerializableTest {
     LocalTime duration;
@@ -60,5 +62,13 @@ public class TaskSerializableTest {
     @Test
     public void testGetUserId(){
         assertSame(1L, task.getUserId());
+    }
+
+    /**
+     * test getId.
+     */
+    @Test
+    public void testGetId(){
+        assertSame(null, task.getId());
     }
 }

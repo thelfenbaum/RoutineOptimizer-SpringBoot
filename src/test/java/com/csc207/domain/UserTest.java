@@ -1,11 +1,14 @@
-package entities;
+package com.csc207.domain;
 
-import com.csc207.domain.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertSame;
+
+/**
+ * This class tests the User class.
+ */
 
 public class UserTest {
     User user;
@@ -26,10 +29,19 @@ public class UserTest {
     }
 
     /**
+     * tests the getId method
+     */
+    @Test
+    public void testGetId(){
+        assertSame(null, user.getId());
+    }
+
+    /**
      * test that password matches user.getPassword()
      */
     @Test
     public void testGetPassword(){
         assertSame("password", user.getPassword());
     }
+
 }
