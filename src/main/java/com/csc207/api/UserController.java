@@ -42,7 +42,12 @@ public class UserController {
      * @return whether this username-password pair is in the database.
      */
     @GetMapping("/users/{username}")
-    public boolean isUsernameInDb(@PathVariable String username){
+    public User checkUsername(@PathVariable String username){
+        return this.userInteractorDataOut.getUserFromUsername(username);
+    }
+
+
+    public boolean isUsernameInDb(String username){
         return this.userInteractorDataOut.isUsernameInDb(username);
     }
 

@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sign in</title>
+    <script type="text/javascript" src="signin.js" defer></script>
 </head>
 
 <body>
@@ -13,12 +14,12 @@
     <p class="sign" align="center">Sign In</p>
     <form class="form1">
         <label>
-            <input class="un " type="text" align="center" placeholder="Username">
+            <input class="un" id ="username" type="text" align="center" placeholder="Username">
         </label>
         <label>
-            <input class="pass" type="password" align="center" placeholder="Password">
+            <input class="pass" id="password" type="password" align="center" placeholder="Password">
         </label>
-        <a class="submit" >Sign in</a>
+        <input class="submit" type="button" value="Sign in"  onclick="validate()" />
         <p class="forgot" align="center">No account? <a href="signup.html"> <u>Sign up. </u> </a></p>
     </form>
 </div>
