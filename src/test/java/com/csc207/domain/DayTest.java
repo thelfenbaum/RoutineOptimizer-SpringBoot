@@ -1,7 +1,5 @@
-package entities;
+package com.csc207.domain;
 
-import com.csc207.domain.Day;
-import com.csc207.domain.Task;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +13,9 @@ import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This class tests the Day class.
+ */
 
 public class DayTest {
     LocalDate dayOfMonth;
