@@ -42,20 +42,19 @@ public class WeekController {
         this.taskSerializableInteractorDataOut = taskSerializableInteractorDataOut;
     }
 
-    /**
-     * Retrieve the week and its tasks from the week database and the task database, respectively.
-     * @param userId: The userId of the user who has a stored week
-     */
-    @GetMapping("/weeks/{userId}")
-    public Week importWeek(@PathVariable long userId) {
-        Week week;
-        WeekSerializable weekSers = this.weekSerializableInteractorDataOut.getWeekSerializableByUserId(userId);
-        this.weekSerializableInteractorDataOut.removeWeekSerializableByUserId(userId);
-        ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractorDataOut.getTasksByUserId(userId);
-        this.taskSerializableInteractorDataOut.removeTaskSerializablesByUserId(userId);
-        week = SerializableToWeekAdapter.SerializableToWeek(weekSers, tasksSers);
-        return week;
-    }
+//    /**
+//     * Retrieve the week and its tasks from the week database and the task database, respectively.
+//     * @param userId: The userId of the user who has a stored week
+//     */
+//    public Week importWeek(@PathVariable long userId) {
+//        Week week;
+//        WeekSerializable weekSers = this.weekSerializableInteractorDataOut.getWeekSerializableByUserId(userId);
+//        this.weekSerializableInteractorDataOut.removeWeekSerializableByUserId(userId);
+//        ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractorDataOut.getTasksByUserId(userId);
+//        this.taskSerializableInteractorDataOut.removeTaskSerializablesByUserId(userId);
+//        week = SerializableToWeekAdapter.SerializableToWeek(weekSers, tasksSers);
+//        return week;
+//    }
 
     /**
      * Saves the week and its tasks to the week database and the task database, respectively.
