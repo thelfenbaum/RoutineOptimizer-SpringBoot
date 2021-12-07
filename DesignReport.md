@@ -252,15 +252,21 @@ The website we made was designed with the perceptibility of information as one o
 
 #### Tolerance for Error: 
 
-Users of our website can feel safe knowing that it tries to prevent most errors that they may make. For example, all buttons on the webpages are big enough and far away from each other so that users do not accidentaly press a button they did not intend to press. We also have a password checker that checks the password that a user wants to use when signing up, by making sure that it is not a password that can be easily guessed by someone else.
+Users of our website can feel safe knowing that it tries to prevent most errors that they may make. For example, all buttons on the webpages are big enough and far away from each other so that users do not accidentaly press a button they did not intend to press. The buttons also have padding around them for misclicks.
+Additionally, we have error popups for incorrect passwords.
 
 #### Low Physical Effort:
 
-The program also minimizes the physical effort the user has to put in by minimizing repetitive actions. For  example, instead of having to add multiple tasks for each day to the schedule for a routine (e.g. adding 7 tasks called "workout"), the user can add one task and say that they want to do it everyday.
+The program is designed to minimizes the physical effort the user has to put in by minimizing repetitive actions. This is part of the idea behind scheduling projects, where the program asks you questions about one large task and then breaks it down and schedules it in multiple slots over a window of time so that the user does not have to do so manually.
+Our program requires no large amounts of scrolling or typing. Each scheduling process consists of a few buttons and short text-entries, requiring low physical effort. Furthermore, our program can be saved an exited after any task is scheduled, so that the user does not need to undergo the physical strain of sitting or standing in a single location due to application usage, if they do not want to.
+
+(For  example, instead of having to add multiple tasks for each day to the schedule for a routine (e.g. adding 7 tasks called "workout"), the user can add one task and say that they want to do it everyday.
 
 #### Size and Space for Approach and Use
 
-Of course, we did our best to ensure that the app is easy to use. In our html documents, we complied with semantic HTML by using \<header>, \<main>, and \<footer> to allow users using screen readers to understand what the page is representing.
+Of course, we did our best to ensure that the app is easy to use. A big part of why we chose to use chose to use a web application is that it enables our program to be run on all sorts of devices to suit the user needs. Our program will scale to any device screen and so can meet the size and space for approach for use that the user builds into their preferred web surfing environment.
+
+(In our html documents, we complied with semantic HTML by using \<header>, \<main>, and \<footer> to allow users using screen readers to understand what the page is representing.)
 
 
 
