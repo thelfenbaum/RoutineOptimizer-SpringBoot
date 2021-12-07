@@ -15,9 +15,9 @@ public class WeekSerializable {
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(name = "start_date")
-    public LocalDate startDate;
+    private LocalDate startDate;
     @Column(name = "user_id")
-    public Long userId;
+    private Long userId;
 
     protected WeekSerializable(){}
 
@@ -38,4 +38,8 @@ public class WeekSerializable {
     public Long getId() {
         return this.id;
     }
+
+    public LocalDate getStartDate() { return this.startDate; }
+
+    public Long getUserId() { return this.userId; }
 }

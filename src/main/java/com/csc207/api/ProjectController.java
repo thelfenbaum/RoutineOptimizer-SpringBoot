@@ -28,23 +28,17 @@ public class ProjectController {
 
     @GetMapping("/project/calculatehours/{userid}/{totalHoursStr}/{startDateStr}/{dueDateTimeStr}")
     @CrossOrigin
-    JSONObject calculateHours(@PathVariable("userid") String userid,
+    String calculateHours(@PathVariable("userid") String userid,
                               @PathVariable("totalHoursStr") String totalHoursStr,
                               @PathVariable("startDateStr") String startDateStr,
-                              @PathVariable("dueDateTimeStr") String dueDateTimeStr) throws JSONException {
-//        Week week = importWeek(Long.getLong(userid));
-//        Week week = new Week(Long.getLong(userid) * 1000, DaysInjector.constructDayList(LocalDate.of(2021, 10, 10)));
+                              @PathVariable("dueDateTimeStr") String dueDateTimeStr) {
+        Week week = importWeek(Long.parseLong(userid));
         LocalDate startDate = StringToDateTime.stringToLocalDate(startDateStr);
         LocalDateTime dueDateTime = StringToDateTime.stringToLocalDateTime(dueDateTimeStr);
         int totalHours = Integer.parseInt(totalHoursStr);
-//        double minHours = CreateProject.calculateMinHours(week, startDate, dueDateTime, totalHours, 7);
-//        double maxHours = CreateProject.calculateMaxHoursWeek(week);
-        double minHours = 10;
-        double maxHours = 10;
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("minHours", minHours);
-        jsonObject.put("maxHours", maxHours);
-        return jsonObject;
+        double minHours = CreateProject.calculateMinHours(week, startDate, dueDateTime, totalHours, 7);
+        double maxHours = CreateProject.calculateMaxHoursWeek(week);
+        return "{ minHours: " + minHours + ", maxHours: " + maxHours + " }";
     }
 
     public Week importWeek(long userId) {

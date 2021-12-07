@@ -20,13 +20,15 @@ body {
     font-size: 23px;
 }
 
-.welcome {
+.message {
     color: #A179C1;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 15px
+    font-size: 15px;
+    margin-left: 46px;
+    margin-right: 46px;
 }
 
-.signin, .signup {
+.create, .import {
     width: 76%;
     color: rgb(38, 50, 56);
     font-weight: 700;
