@@ -2,29 +2,24 @@
 
 ## **Updated Specifications**
 
-User opens application and either signs in with username and password if they have an account or signs up for an account if they don't have one yet
-
-Tasks are scheduled into weeks. A week either is created by the program for the user to schedule tasks into, or retreived from the database for the user to edit if they wihs to do so and already have a week saved in the program.
-
-The user uses the app to schedule their upcoming tasks by inputting the tasks they want to get done, and specifying details such as:
-
+The user uses the app to schedule their upcoming tasks, by inputting the tasks they want to get done, and specifying details such as:
 1.  The amount of time tasks will take
-    
 2.  When they want to complete the tasks by
-    
-3.  If they wish to complete the task via a series of smaller tasks
-    
+3.  Whether they wish to repeat this task on a regular basis, and if so, how often
 
 Tasks are separated into two types, fixed and non-fixed, based on whether they have to be completed at a certain time (e.g. meeting) or not (e.g. exercising). The user is also able to create a project (i.e. a collection of tasks). For example, if a user wants to complete an assignment that takes 20 hours to complete, then they would add a project, specifying:
-
 1.  How many hours they want to work on the project (in this example, 20)
-    
 2.  What is the maximum amount of time they're willing to work on the project per day
-    
 3.  When they want to complete the project by
-    
 
-The program is supposed to take the non-fixed tasks, find an appropriate time for them (i.e. a time that does not coincide with the fixed tasks) such that they can be completed before the deadline, and add them to the schedule. After adding the tasks they want to complete, the user should be able to view a schedule of their week with all the fixed and non-fixed tasks they will do for the week.
+The program is supposed to take the non-fixed tasks, find an appropriate time for them (i.e. a time that does not coincide with the fixed tasks, or the sleeping schedule of the user, which they will input) such that they can be completed before the deadline, and add them to the schedule. After adding the tasks and projects they want to complete, the user should be able to view a schedule of their week with all the fixed and non-fixed tasks they will do for the week.
+
+To start off, the user will need to sign up by creating a username and password. After that, the user should be able to see their week and modify it whenever they want by logging in.
+
+
+<br>
+<br>
+
 
 **The new features in our program since phase 0:**
 
