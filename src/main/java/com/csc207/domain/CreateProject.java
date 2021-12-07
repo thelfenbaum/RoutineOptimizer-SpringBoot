@@ -105,7 +105,7 @@ public class CreateProject {
      * @param day: The day that the max number of free timeslots are being found in
      * @return the maximum number of hours that are available in the given day
      */
-     public static double calculateMaxHoursDay (Day day){
+     private static double calculateMaxHoursDay (Day day){
 
         //set variable maxHour and currentMax
         double maxHour = 0.0;
