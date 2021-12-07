@@ -5,7 +5,6 @@
 The user uses the app to schedule their upcoming tasks, by inputting the tasks they want to get done, and specifying details such as:
 1.  The amount of time tasks will take
 2.  When they want to complete the tasks by
-3.  Whether they wish to repeat this task on a regular basis, and if so, how often
 
 Tasks are separated into two types, fixed and non-fixed, based on whether they have to be completed at a certain time (e.g. meeting) or not (e.g. exercising). The user is also able to create a project (i.e. a collection of tasks). For example, if a user wants to complete an assignment that takes 20 hours to complete, then they would add a project, specifying:
 1.  How many hours they want to work on the project (in this example, 20)
