@@ -28,7 +28,7 @@ public class ProjectController {
 
     @GetMapping("/project/calculatehours/{userid}/{totalHoursStr}/{startDateStr}/{dueDateTimeStr}")
     @CrossOrigin
-    String calculateHours(@PathVariable("userid") String userid,
+    public ProjectHoursResponse calculateHours(@PathVariable("userid") String userid,
                               @PathVariable("totalHoursStr") String totalHoursStr,
                               @PathVariable("startDateStr") String startDateStr,
                               @PathVariable("dueDateTimeStr") String dueDateTimeStr) {
@@ -38,7 +38,7 @@ public class ProjectController {
         int totalHours = Integer.parseInt(totalHoursStr);
         double minHours = CreateProject.calculateMinHours(week, startDate, dueDateTime, totalHours, 7);
         double maxHours = CreateProject.calculateMaxHoursWeek(week);
-        return "{ minHours: " + minHours + ", maxHours: " + maxHours + " }";
+        return new ProjectHoursResponse(minHours, maxHours);
     }
 
     public Week importWeek(long userId) {

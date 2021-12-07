@@ -26,6 +26,6 @@ async function validate() {
         alert("Password is incorrect. Please try again.");
     } else {
         window.userid = userid;
-        location.href = "../timetable/timetable.html";
+        location.href = "../create-or-import/create-or-import.html";
     }
 }

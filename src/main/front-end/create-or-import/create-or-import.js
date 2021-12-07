@@ -10,3 +10,9 @@ async function getTaskSers(userid) {
         .then(response => response.json())
 }
 
+async function importWeek() {
+    window.weekSer = getWeekSer(window.userid);
+    window.taskSers = getTaskSers(window.userid);
+    location.href = "../timetable/timetable.html";
+}
+
