@@ -38,7 +38,6 @@ public class TaskController {
     }
 
 
-
     public Week importWeek(long userId) {
         Week week;
         WeekSerializable weekSers = this.weekSerializableInteractorDataOut.getWeekSerializableByUserId(userId);
