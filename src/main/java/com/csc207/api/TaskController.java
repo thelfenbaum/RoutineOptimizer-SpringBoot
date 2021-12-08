@@ -65,7 +65,6 @@ public class TaskController {
     public void instantiateFixedTask(String name, LocalDateTime startDateTime, LocalTime duration,
                                         Long userId){
         FixedTask task = new FixedTask(name, startDateTime, duration, userId);
-        Week week = importWeek(userId);
         TaskSerializable taskSer = TasktoTaskSerializableAdaptor.TaskToTaskSerializable(task);
         saveTask(taskSer);
     }
