@@ -1,13 +1,12 @@
 package com.csc207.api;
 
-import com.csc207.domain.SerializableToWeekAdapter;
-import com.csc207.domain.TaskSerializable;
-import com.csc207.domain.Week;
-import com.csc207.domain.WeekSerializable;
+import com.csc207.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +34,20 @@ public class TaskController {
     @Transactional
     public void saveTask(TaskSerializable task){
         this.taskSerializableInteractorDataIn.saveTaskSerializable(task);
+    }
+
+    @GetMapping("/tasks/instantiate/{name}/{dueDateTime}/{duration}/{userId}")
+    @CrossOrigin
+    @Transactional
+    public void instantiateNonFixedTask(@PathVariable String name, @PathVariable String dueDateTime, @PathVariable String duration, @PathVariable String userId){
+        LocalDateTime DueDateTime = LocalDateTime.parse(dueDateTime);
+        LocalTime Duration = LocalTime.parse(duration);
+        long UserId = Long.parseLong(userId);
+        NonFixedTask task = new NonFixedTask(name, DueDateTime, Duration, UserId);
+        Week week = importWeek(UserId);
+        NonFixedTask taskScheduled = Scheduler.ScheduleTaskInWeek(week, task);
+        TaskSerializable taskSer = TasktoTaskSerializableAdaptor.TaskToTaskSerializable(taskScheduled);
+        saveTask(taskSer);
     }
 
 
