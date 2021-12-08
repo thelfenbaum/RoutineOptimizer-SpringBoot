@@ -108,6 +108,20 @@ Instead of having multiple scanners in the UI, we decided to only have one scann
 
 phase 2:
 
+A huge part of phase 2 was cleaning up our code. It was a great opportunity to utilize the knowledge we have been building over the course of the semester to build clean and well designed code
+
+We addressed the instances in our code where we violated the smell of long classes in phase 1 by splitting them up into seperate classes. We first split up the UserInterface class by taking out methods that had similar behaviours and making 2 new classes called UserInterfacePrints and UserInterfaceExceptions. Another class that we had split up was the Controller class into more specific controller classes like TaskController and UserController.
+
+Another part of our code that we refactored was our project class. Before in phase 1, the project class was an interface, however, after realising that the project class should be a use case, we refactored our code to change it from an interface to the class CreateProject.
+
+Our group addressed the bug from phase 1 where we could not save and retrieve weeks from the database by debugging our code so that it can save weeks to the database and retrieve saved weeks from the database.
+
+While working we realized that the Adapter class that converted a Week object into TaskSerializable and WeekSerializable objects and converted TaskSerializable and WeekSerializable objects into a Week object, which violated the single responsibility principle. Split this class (which currently has two responsibilities) into two classes to keep with the Single Responsibility Principle. In order to make our code align with the single responsibility principle, we refactored our code so that the Adapter class is split up into WeekToSerializableAdapter class which converts Week into a TaskSerializable and a WeekSerializable and SerializableToWeekAdapter which converts a TaskSerializable and a WeekSerializable into a Week object.
+
+Another place where we violated Single Responsibility Principle in phase 1 was in our Interactor classes. We addressed this issue by refactoring our code and creating two classes for each interactor, one pertaining to data doing into the database and one pertaining to data coming out.
+
+Another issue that we had from phase 1 is the zombie code that was in our code. We addressed this issue by refactoring our code by deleting the zombie code.  
+
 
 
 **Clean Architecture:**
