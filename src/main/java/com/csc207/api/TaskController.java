@@ -88,8 +88,6 @@ public class TaskController {
         NonFixedTask[] scheduledTasks = Scheduler.ScheduleProject(week, projectTasks);
         int i;
         for (i = 0; i < scheduledTasks.length; i++){
-            String taskDueDateTime = scheduledTasks[i].dueDateTime.toString();
-            String taskDuration = scheduledTasks[i].getDuration().toString();
             instantiateFixedTask(scheduledTasks[0].getName(), scheduledTasks[0].getStartDateTime(),
                     scheduledTasks[0].getDuration(), scheduledTasks[0].getUserId());
         }
