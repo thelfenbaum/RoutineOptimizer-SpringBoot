@@ -35,13 +35,13 @@ async function getUserid(username) {
 async function createAccount(){
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    const userId = await getUserid(username);
+    const userid = await getUserid(username);
 
-    if (userId !== undefined) {
+    if (userid !== undefined) {
         alert("Username is already in use. Please enter a different username.");
     } else {
         signUp(username, password);
-        window.userId = getUserid(username);
+        localStorage.setItem("userid", await getUserid(username));
         location.href = "../timetable/timetable.html";
     }
 }

@@ -94,3 +94,5 @@ function instantiateDOM(weekSerJSON, taskSerJSONArray){
 function updateDOM(taskSerJSONArray){
     updateTasksOnDOM(taskSerJSONArray);
 }
+
+instantiateDOM(localStorage.getItem("weekSer"), localStorage.getItem("taskSers"));

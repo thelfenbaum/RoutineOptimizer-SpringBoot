@@ -25,7 +25,7 @@ async function validate() {
     } else if (expPassword !== password) {
         alert("Password is incorrect. Please try again.");
     } else {
-        window.userid = userid;
+        localStorage.setItem("userid", userid);
         location.href = "../create-or-import/create-or-import.html";
     }
 }
