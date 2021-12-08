@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8080/tasks/"
+const API_BASE_URL = "http://localhost:8080"
 
 let triedName = document.getElementById("name").value;
 let myHeaders = new Headers();
@@ -20,7 +20,7 @@ let requestOptions = {
 };
 
 async function createFixedTask(){
-    fetch(API_BASE_URL, requestOptions)
+    fetch(API_BASE_URL + "/tasks", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error))
@@ -28,16 +28,21 @@ async function createFixedTask(){
 
 
 async function getWeekSer(userid) {
-    return fetch(API_BASE_URL + "weeks/" + userid)
+    return fetch(API_BASE_URL + "/weeks/" + userid)
         .then(response => response.json())
 }
 
 async function getTaskSers(userid) {
-    return fetch(API_BASE_URL + "tasks/" + userid)
+    return fetch(API_BASE_URL + "/tasks/" + userid)
         .then(response => response.json())
 }
 
 async function importWeek() {
     window.weekSer = getWeekSer(window.userid);
     window.taskSers = getTaskSers(window.userid);
-    location.href = "../timetable/timetable.html";}
+    location.href = "../timetable/timetable-empty.html";}
+
+async function createAndImport(){
+    await createFixedTask();
+    await importWeek();
+}

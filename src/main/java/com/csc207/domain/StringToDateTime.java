@@ -2,6 +2,7 @@ package com.csc207.domain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 
 public class StringToDateTime {
@@ -32,5 +33,11 @@ public class StringToDateTime {
         int dueTimeHour= Integer.parseInt(str.substring(11, 13));
         int dueTimeMin = Integer.parseInt(str.substring(14, 16));
         return LocalDateTime.of(dueDateYear, dueDateMonth, dueDateDay, dueTimeHour, dueTimeMin);
+    }
+
+    public static LocalTime stringToLocalTime(String str){
+        int hours = Integer.parseInt(str.substring(0, 2));
+        int mins = Integer.parseInt(str.substring(3, 5));
+        return LocalTime.of(hours, mins);
     }
 }

@@ -48,7 +48,7 @@ public class ProjectController {
     public Week importWeek(long userId) {
         Week week;
         WeekSerializable weekSers = this.weekSerializableInteractorDataOut.getWeekSerializableByUserId(userId);
-        this.weekSerializableInteractorDataOut.removeWeekSerializableByUserId(userId);
+//        this.weekSerializableInteractorDataOut.removeWeekSerializableByUserId(userId);
         ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractorDataOut.getTasksByUserId(userId);
         this.taskSerializableInteractorDataOut.removeTaskSerializablesByUserId(userId);
         week = SerializableToWeekAdapter.SerializableToWeek(weekSers, tasksSers);

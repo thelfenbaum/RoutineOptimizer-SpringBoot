@@ -36,14 +36,14 @@ public class TaskController {
         this.taskSerializableInteractorDataIn.saveTaskSerializable(task);
     }
 
-    @GetMapping("/tasks/instantiate/{name}/{dueDateTime}/{duration}/{userId}")
+    @PostMapping("/tasks/instantiate/{name}/{dueDateTimeStr}/{durationStr}/{userId}")
     @CrossOrigin
     @Transactional
-    public void instantiateNonFixedTask(@PathVariable String name, @PathVariable String dueDateTime, @PathVariable String duration, @PathVariable String userId){
-        LocalDateTime DueDateTime = LocalDateTime.parse(dueDateTime);
-        LocalTime Duration = LocalTime.parse(duration);
+    public void instantiateNonFixedTask(@PathVariable String name, @PathVariable String dueDateTimeStr, @PathVariable String durationStr, @PathVariable String userId){
+        LocalDateTime dueDateTime = StringToDateTime.stringToLocalDateTime(dueDateTimeStr);
+        LocalTime Duration = StringToDateTime.stringToLocalTime(durationStr);
         long UserId = Long.parseLong(userId);
-        NonFixedTask task = new NonFixedTask(name, DueDateTime, Duration, UserId);
+        NonFixedTask task = new NonFixedTask(name, dueDateTime, Duration, UserId);
         Week week = importWeek(UserId);
         NonFixedTask taskScheduled = Scheduler.ScheduleTaskInWeek(week, task);
         TaskSerializable taskSer = TasktoTaskSerializableAdaptor.TaskToTaskSerializable(taskScheduled);
@@ -54,7 +54,7 @@ public class TaskController {
     public Week importWeek(long userId) {
         Week week;
         WeekSerializable weekSers = this.weekSerializableInteractorDataOut.getWeekSerializableByUserId(userId);
-        this.weekSerializableInteractorDataOut.removeWeekSerializableByUserId(userId);
+//        this.weekSerializableInteractorDataOut.removeWeekSerializableByUserId(userId);
         ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractorDataOut.getTasksByUserId(userId);
         this.taskSerializableInteractorDataOut.removeTaskSerializablesByUserId(userId);
         week = SerializableToWeekAdapter.SerializableToWeek(weekSers, tasksSers);

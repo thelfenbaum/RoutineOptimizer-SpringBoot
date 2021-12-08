@@ -172,9 +172,9 @@ public class UserInterface {
             week = new Week(userId, days);
         } else if (selection == 2) { // use user id to retrieve the user's week serializable, convert it to week
             WeekSerializable weekSers = this.weekSerializableInteractor.getWeekSerializableByUserId(userId);
-            this.weekSerializableInteractor.removeWeekSerializableByUserId(userId);
+//            this.weekSerializableInteractor.removeWeekSerializableByUserId(userId);
             ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractorDataOut.getTasksByUserId(userId);
-            this.taskSerializableInteractorDataOut.removeTaskSerializablesByUserId(userId);
+//            this.taskSerializableInteractorDataOut.removeTaskSerializablesByUserId(userId);
             week = SerializableToWeekAdapter.SerializableToWeek(weekSers, tasksSers);
         } else {
             System.out.println("Please enter a valid option.");

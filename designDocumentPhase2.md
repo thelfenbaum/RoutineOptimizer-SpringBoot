@@ -177,7 +177,7 @@ However, with this packaging strategy, our application was not compiling due to 
 
 **Design patterns:**
 
-We thought that builder would be a good implementation for project, but then realized that despite being a complex aggregate, project only has one version. Builder pattern is suited for complex aggregates with multiple versions.
+We thought that builder would be a good implementation for project, but realized that despite being a complex aggregate, project only has one version. The builder design pattern is suited for complex aggregates with multiple versions.
 
 We hope that composite pattern will help us build a more flexible version of projects and have created the classes that will allow us to do so but have not had time to implement them and adapt our scheduling and putting algorithms. These empty classes are kept on a branch named composite design pattern until they are implemented and read to merge with the master branch.
 
