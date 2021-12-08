@@ -2,10 +2,7 @@ package com.csc207.api;
 
 import com.csc207.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -81,4 +78,15 @@ public class WeekController {
             this.taskSerializableInteractorDataIn.saveTaskSerializable(task);
         }
     }
+
+    @PostMapping("/weeks")
+    @CrossOrigin
+    @Transactional
+    public void saveWeekSerializable(WeekSerializable week){
+        this.weekSerializableInteractorDataIn.saveWeekSerializable(week);
+
+    }
+
+
+
 }
