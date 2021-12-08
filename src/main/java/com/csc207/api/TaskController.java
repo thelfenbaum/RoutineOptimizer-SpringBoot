@@ -62,4 +62,38 @@ public class TaskController {
     }
 
 
+    public void instantiateFixedTask(String name, LocalDateTime startDateTime, LocalTime duration,
+                                        Long userId){
+        FixedTask task = new FixedTask(name, startDateTime, duration, userId);
+        Week week = importWeek(userId);
+        TaskSerializable taskSer = TasktoTaskSerializableAdaptor.TaskToTaskSerializable(task);
+        saveTask(taskSer);
+    }
+
+
+    @GetMapping("/tasks/project/{name}/{dueDateTime}/{maxHoursPerTask}/{userId}")
+    @CrossOrigin
+    @Transactional
+    public void createScheduledProject (@PathVariable String name, @PathVariable String dueDateTime,
+                                       @PathVariable Double maxHoursPerTask, @PathVariable String userId){
+
+        NonFixedTask[] projectTasks = new NonFixedTask[7];
+        LocalDateTime DueDateTime = LocalDateTime.parse(dueDateTime);
+        LocalTime Duration =  ConvertTimeAndDouble.ConvertDoubleToLocalTime(maxHoursPerTask);
+        long UserId = Long.parseLong(userId);
+        for (int i = 0; i < 7; i++) {
+            projectTasks[i] = new NonFixedTask(name, DueDateTime, Duration, UserId);
+        }
+        Week week = importWeek(UserId);
+        NonFixedTask[] scheduledTasks = Scheduler.ScheduleProject(week, projectTasks);
+        int i;
+        for (i = 0; i < scheduledTasks.length; i++){
+            String taskDueDateTime = scheduledTasks[i].dueDateTime.toString();
+            String taskDuration = scheduledTasks[i].getDuration().toString();
+            instantiateFixedTask(scheduledTasks[0].getName(), scheduledTasks[0].getStartDateTime(),
+                    scheduledTasks[0].getDuration(), scheduledTasks[0].getUserId());
+        }
+
+    }
+
 }
