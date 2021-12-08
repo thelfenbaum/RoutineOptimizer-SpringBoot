@@ -32,7 +32,7 @@ public class TaskController {
     @PostMapping("/tasks")
     @CrossOrigin
     @Transactional
-    public void saveTask(TaskSerializable task){
+    public void saveTask(@RequestBody TaskSerializable task){
         this.taskSerializableInteractorDataIn.saveTaskSerializable(task);
     }
 
