@@ -1,25 +1,16 @@
-const API_BASE_URL = "http://localhost:8080/users/"
-
-let triedUsername = document.getElementById("username").value;
-let myHeaders = new Headers();
+var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
-let raw = JSON.stringify({
-    "username": triedUsername,
-    "password": document.getElementById("password").value
-});
-
-let requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow'
-};
-
-
-
 async function signUp() {
-    fetch(API_BASE_URL, requestOptions)
+    fetch("http://localhost:8080/users", {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify({
+            "username": document.getElementById("username").value,
+            "password": document.getElementById("password").value
+        }),
+        redirect: 'follow'
+    })
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
@@ -28,21 +19,21 @@ async function signUp() {
 
 // takes username and returns userId. Returns undefined if username not in database.
 async function getUserId(username){
-     return fetch(API_BASE_URL + username)
+     return fetch(API_BASE_URL + "/" + username)
             .then(response => response.json())
             .then(user => user.id)
-            // reject is a good thing here. this is when we want to let them use the username
             .catch(reject => console.log(reject));
 }
 
 // if userId undefined, allow to create an account with username. Otherwise, alert
 async function createAccount(){
-    window.userId = await getUserId(triedUsername);
+    const userId = await getUserId(document.getElementById("username").value);
     if (userId === undefined) {
         await signUp();
-        location.href = "../timetable/timetable.html"
+        // window.userId = getUserId(document.getElementById("username").value);
+        location.href = "../timetable/timetable.html";
     } else {
-        alert("Username is already in use. Please enter a different username.")
+        alert("Username is already in use. Please enter a different username.");
     }
 }
 
