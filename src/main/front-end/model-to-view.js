@@ -46,7 +46,7 @@ Date.prototype.getTimeFormatted = function() {
  */
 function createWeekOnDOM(weekSerJSON){
     let weekTimetable = ``;
-    const startDate = new Date(weekSerJSON.start_date);
+    const startDate = new Date(weekSerJSON.startDate);
     for(let i = 0; i <= 6; i++){
         weekTimetable +=
             `<li class="cd-schedule__group">
@@ -66,7 +66,7 @@ function createWeekOnDOM(weekSerJSON){
  */
 function updateTaskOnDOM(taskSerJSON){
     let taskNode = ``;
-    const startDateTime = new Date(taskSerJSON.start_datetime);
+    const startDateTime = new Date(taskSerJSON.startDateTime);
     const duration = taskSerJSON.duration;
     const endDateTime = startDateTime.addHours(duration(0, 2)).addMinutes(duration(3, 5))
     const day = startDateTime.getDay();
@@ -95,4 +95,4 @@ function updateDOM(taskSerJSONArray){
     updateTasksOnDOM(taskSerJSONArray);
 }
 
-instantiateDOM(localStorage.getItem("weekSer"), localStorage.getItem("taskSers"));
+instantiateDOM(JSON.parse(localStorage.getItem("weekSer")), JSON.parse(localStorage.getItem("taskSers")));

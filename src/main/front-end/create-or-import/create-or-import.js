@@ -14,8 +14,8 @@ async function getTaskSers(id) {
 
 async function importWeek() {
     const userid = localStorage.getItem("userid");
-    localStorage.setItem("weekSer", await getWeekSer(userid));
-    localStorage.setItem("taskSers", await getTaskSers(userid));
+    localStorage.setItem("weekSer", JSON.stringify(await getWeekSer(userid)));
+    localStorage.setItem("taskSers", JSON.stringify(await getTaskSers(userid)));
     location.href = "../timetable/timetable-empty.html";
 }
 
