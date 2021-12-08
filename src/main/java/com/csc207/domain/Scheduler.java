@@ -85,5 +85,4 @@ public class Scheduler {
             } else{ freeDuration = 0.0;}
     }return task;}
 
-
 }
