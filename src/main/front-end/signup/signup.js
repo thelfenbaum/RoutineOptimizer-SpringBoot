@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8080/users"
+const API_BASE_URL = "http://localhost:8080/users/"
 
 let triedUsername = document.getElementById("username").value;
 let myHeaders = new Headers();
@@ -16,8 +16,10 @@ let requestOptions = {
     redirect: 'follow'
 };
 
-async function signUp(){
-    fetch("http://localhost:8080/users", requestOptions)
+
+
+async function signUp() {
+    fetch(API_BASE_URL, requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
@@ -36,7 +38,7 @@ async function getUserId(username){
 // if userId undefined, allow to create an account with username. Otherwise, alert
 async function createAccount(){
     const userId = getUserId(triedUsername);
-    if userId === undefined {
+    if (userId === undefined) {
         signUp();
         location.href = "../timetable/timetable.html"
     } else {
