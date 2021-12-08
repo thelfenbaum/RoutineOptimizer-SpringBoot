@@ -79,12 +79,17 @@ public class WeekController {
         }
     }
 
+    @PostMapping("/weeks/remove/{userid}")
+    @CrossOrigin
+    public void removeWeekByUserId(@PathVariable String userid){
+        this.weekSerializableInteractorDataIn.removeWeekByUserId(Long.parseLong(userid));
+    }
+
     @PostMapping("/weeks")
     @CrossOrigin
     @Transactional
     public void saveWeekSerializable(WeekSerializable week){
         this.weekSerializableInteractorDataIn.saveWeekSerializable(week);
-
     }
 
 

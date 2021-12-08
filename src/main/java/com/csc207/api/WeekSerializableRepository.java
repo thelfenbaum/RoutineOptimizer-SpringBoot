@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * This class is the database that stores WeekSerializable objects.
@@ -21,6 +22,8 @@ public interface WeekSerializableRepository extends JpaRepository<WeekSerializab
      * @return the WeekSerializable associated with this user id.
      */
     @Query("Select w from WeekSerializable w where w.userId = :userId")
-    Collection<WeekSerializable> getByUserId(Long userId);
+    List<WeekSerializable> getByUserId(Long userId);
 
+    @Query("DELETE FROM WeekSerializable w WHERE w.userId = :userid")
+    public void removeWeekByUserId(long userid);
 }

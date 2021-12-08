@@ -40,9 +40,9 @@ async function createAccount(){
     if (userid !== undefined) {
         alert("Username is already in use. Please enter a different username.");
     } else {
-        signUp(username, password);
+        await signUp(username, password);
         localStorage.setItem("userid", await getUserid(username));
-        location.href = "../timetable/timetable.html";
+        // location.href = "../timetable/timetable-empty.html";
     }
 }
 
