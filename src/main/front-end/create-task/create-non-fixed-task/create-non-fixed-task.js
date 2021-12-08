@@ -8,7 +8,6 @@ let raw = JSON.stringify({
     "name": triedName,
     "start_date_time": document.getElementById("start_date_time").value,
     "duration": document.getElementById("duration").value,
-    "is_complete": document.getElementById("is_complete").value,
     "user_id": document.getElementById("user_id").value
 });
 
@@ -18,6 +17,13 @@ let requestOptions = {
     body: raw,
     redirect: 'follow'
 };
+
+async function createNonFixedTask(){
+    return fetch("http://localhost:8080/tasks/instantiate/{name}/{dueDateTime}/{duration}/{userId}", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error))
+}
 
 async function getWeekSer(userid) {
     return fetch(API_BASE_URL + "weeks/" + userid)
@@ -32,4 +38,4 @@ async function getTaskSers(userid) {
 async function importWeek() {
     window.weekSer = getWeekSer(window.userid);
     window.taskSers = getTaskSers(window.userid);
-    location.href = "../timetable/timetable.html";
+    location.href = "../timetable/timetable.html";}
