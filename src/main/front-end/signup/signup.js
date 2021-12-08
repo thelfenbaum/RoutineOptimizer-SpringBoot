@@ -37,9 +37,9 @@ async function getUserId(username){
 
 // if userId undefined, allow to create an account with username. Otherwise, alert
 async function createAccount(){
-    const userId = getUserId(triedUsername);
+    window.userId = await getUserId(triedUsername);
     if (userId === undefined) {
-        signUp();
+        await signUp();
         location.href = "../timetable/timetable.html"
     } else {
         alert("Username is already in use. Please enter a different username.")
