@@ -1,14 +1,15 @@
-API_BASE_URL = "http://localhost:8080/"
+const API_BASE_URL = "http://localhost:8080/tasks/"
 
-let triedUserId = document.getElementById("user_id").value;
-
+let triedName = document.getElementById("name").value;
 let myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
 let raw = JSON.stringify({
-    "user_id": triedUserId,
-    "start_date": document.getElementById("start_date").value
-
+    "name": triedName,
+    "start_date_time": document.getElementById("start_date_time").value,
+    "duration": document.getElementById("duration").value,
+    "is_complete": document.getElementById("is_complete").value,
+    "user_id": document.getElementById("user_id").value
 });
 
 let requestOptions = {
@@ -32,5 +33,3 @@ async function importWeek() {
     window.weekSer = getWeekSer(window.userid);
     window.taskSers = getTaskSers(window.userid);
     location.href = "../timetable/timetable.html";
-}
-
