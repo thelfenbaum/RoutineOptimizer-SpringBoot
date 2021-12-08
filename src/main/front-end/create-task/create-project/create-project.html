@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="formStyleProject.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <title>Create a Project!</title>
+</head>
+<body>
+<section id="overlay">
+    <hr>
+    <form action="submission.html" method="POST">
+        <h1>Create a Project!</h1>
+
+
+        <section class="protein">
+            <label for="patty">Project name:</label>
+            <input type="text" name="patty" id="patty">
+        </section>
+        <hr>
+
+        <section class="cooked">
+            <label for="doneness">How important is this project?</label>
+            <br>
+            <span>As important as the CSC207 project</span>
+            <input type="range" name="doneness" id="doneness" value="3" min="1" max="5">
+            <span>As important as climate change</span>
+        </section>
+        <hr>
+
+
+        <section class="patties">
+            <label for="amount2">What is the total amount of hours you want to work on this project?</label>
+            <input type="number" name="amount" id="amount2">
+        </section>
+        <hr>
+
+
+        <section class="patties">
+            <label for="amount3">What is the maximum amount of hours you want to work on this project per day?</label>
+            <input type="number" name="amount" id="amount3">
+        </section>
+        <hr>
+
+
+        <section class="toppings">
+            <label for="lettuce">When would you like to start this project?</label>
+            <br>
+            <input type="datetime-local" name="topping" id="lettuce" value="lettuce">
+        </section>
+        <hr>
+
+
+        <section class="toppings">
+            <label for="lettuce2">When would you like to finish this project by?</label>
+            <br>
+            <input type="datetime-local" name="topping" id="lettuce2" value="lettuce">
+        </section>
+        <hr>
+
+
+        <section class="submission">
+            <a class="submit" href = "timetableAfterProject.html" >Submit</a>
+        </section>
+    </form>
+</section>
+</body>
+</html>
