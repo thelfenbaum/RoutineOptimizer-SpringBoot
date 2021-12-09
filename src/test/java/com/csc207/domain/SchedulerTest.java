@@ -1,6 +1,5 @@
 package com.csc207.domain;
 
-import com.csc207.domain.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

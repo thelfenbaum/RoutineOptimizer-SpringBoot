@@ -48,7 +48,7 @@ public class StringToDateTime {
      */
     public static LocalTime stringToLocalTime(String str){
         int hours = Integer.parseInt(str.substring(0, 2));
-        int mins = Integer.parseInt(str.substring(3, 5));
-        return LocalTime.of(hours, mins);
+        int min = Integer.parseInt(str.substring(3, 5));
+        return LocalTime.of(hours, min);
     }
 }

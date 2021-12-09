@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * This class test the WeekSerializable class.
@@ -37,6 +37,6 @@ public class WeekSerializableTest {
      */
     @Test
     public void testGetId(){
-        assertEquals(null, week.getId());
+        assertNull(week.getId());
     }
 }
