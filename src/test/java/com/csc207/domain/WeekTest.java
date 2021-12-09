@@ -1,7 +1,5 @@
-package entities;
+package com.csc207.domain;
 
-import com.csc207.domain.DaysInjector;
-import com.csc207.domain.Week;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,12 +9,16 @@ import java.time.LocalDate;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This class tests the Week class.
+ */
+
 public class WeekTest {
     Week week;
     LocalDate startDate;
 
     /**
-     * test setup in common for all the tests bellow
+     * test setup in common for all the tests below
      */
     @Before
     public void setUp() {

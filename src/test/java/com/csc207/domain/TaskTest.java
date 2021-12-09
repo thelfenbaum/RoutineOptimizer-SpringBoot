@@ -1,6 +1,5 @@
-package entities;
+package com.csc207.domain;
 
-import com.csc207.domain.Task;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +10,10 @@ import java.time.LocalTime;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+
+/**
+ * This class tests the Task class.
+ */
 
 public class TaskTest {
     LocalTime duration;
@@ -39,6 +42,14 @@ public class TaskTest {
     @Test
     public void testGetName(){
         assertSame("Piano Practice", task.getName());
+    }
+
+    /**
+     * test getUserId
+     */
+    @Test
+    public void testGetUserId(){
+        assertSame(1L, task.getUserId());
     }
 
     /**

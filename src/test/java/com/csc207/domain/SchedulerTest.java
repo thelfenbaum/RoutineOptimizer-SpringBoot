@@ -1,4 +1,4 @@
-package com.csc207.cli;
+package com.csc207.domain;
 
 import com.csc207.domain.*;
 import org.junit.After;
@@ -9,6 +9,10 @@ import static org.junit.Assert.assertEquals;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+
+/**
+ * This class tests the Scheduler class.
+ */
 
 public class SchedulerTest {
     Week week;
@@ -36,7 +40,7 @@ public class SchedulerTest {
      */
     @Test
     public void testScheduleTaskInWeek(){
-        assertEquals(LocalDateTime.of(2021, 4, 3, 2, 0), Scheduler.ScheduleTaskInWeek(week, t1).getStartDateTime());
+        assertEquals(LocalDateTime.of(2021, 4, 3, 0, 0), Scheduler.ScheduleTaskInWeek(week, t1).getStartDateTime());
     }
 
     /**
@@ -44,7 +48,7 @@ public class SchedulerTest {
      */
     @Test
     public void testScheduleProject(){
-        assertEquals(LocalDateTime.of(2021, 4, 3, 2, 0), Scheduler.ScheduleProject(week, tasks)[0].getStartDateTime());
+        assertEquals(LocalDateTime.of(2021, 4, 3, 0, 0), Scheduler.ScheduleProject(week, tasks)[0].getStartDateTime());
     }
 
     /**
@@ -52,6 +56,6 @@ public class SchedulerTest {
      */
     @Test
     public void testScheduleTaskInDay(){
-        assertEquals(LocalDateTime.of(2021, 4, 3, 2, 0), Scheduler.ScheduleTaskInDay(day, t2).getStartDateTime());
+        assertEquals(LocalDateTime.of(2021, 4, 3, 0, 0), Scheduler.ScheduleTaskInDay(day, t2).getStartDateTime());
     }
 }

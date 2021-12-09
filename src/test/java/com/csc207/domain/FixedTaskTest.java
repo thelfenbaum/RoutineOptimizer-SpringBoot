@@ -1,11 +1,14 @@
-package entities;
+package com.csc207.domain;
 
-import com.csc207.domain.FixedTask;
 import org.junit.After;
 import org.junit.Before;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+
+/**
+ * This class tests the FixedTask class.
+ */
 
 public class FixedTaskTest {
     LocalTime duration;

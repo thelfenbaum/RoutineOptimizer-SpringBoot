@@ -1,6 +1,5 @@
-package com.csc207.cli;
+package com.csc207.domain;
 
-import com.csc207.domain.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +11,10 @@ import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
+/**
+ * This class tests the CreateProject class.
+ */
 
 public class CreateProjectTest {
     Week week;

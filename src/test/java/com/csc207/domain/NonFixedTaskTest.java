@@ -1,12 +1,15 @@
-package entities;
+package com.csc207.domain;
 
-import com.csc207.domain.NonFixedTask;
 import org.junit.After;
 import org.junit.Before;
 
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+
+/**
+ * This class tests the NonFixedTask class.
+ */
 
 public class NonFixedTaskTest {
     LocalTime duration;

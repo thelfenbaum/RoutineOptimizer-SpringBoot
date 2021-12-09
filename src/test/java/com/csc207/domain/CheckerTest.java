@@ -1,6 +1,4 @@
-package com.csc207.cli;
-
-import com.csc207.domain.*;
+package com.csc207.domain;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,6 +8,10 @@ import static org.junit.Assert.assertTrue;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+
+/**
+ * This class tests the Checker class.
+ */
 
 public class CheckerTest {
     Week week;

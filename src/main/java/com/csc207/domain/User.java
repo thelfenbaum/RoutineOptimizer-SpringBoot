@@ -43,10 +43,18 @@ public class User {
     }
 
     /**
+     * Get the username.
+     * @return the username of the user.
+     */
+    public String getUsername() {return this.username; }
+
+    /**
      * Get the password.
      * @return The password of the user.
      */
     public String getPassword() {
         return this.password;
     }
+
+
 }
