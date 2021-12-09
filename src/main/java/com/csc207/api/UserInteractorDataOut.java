@@ -3,8 +3,6 @@ package com.csc207.api;
 import com.csc207.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**

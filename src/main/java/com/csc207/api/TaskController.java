@@ -15,11 +15,13 @@ public class TaskController {
     @Autowired
     private final TaskSerializableInteractorDataOut taskSerializableInteractorDataOut;
     private final TaskSerializableInteractorDataIn taskSerializableInteractorDataIn;
-    private WeekSerializableInteractorDataOut weekSerializableInteractorDataOut;
+    private final WeekSerializableInteractorDataOut weekSerializableInteractorDataOut;
 
-    public TaskController(TaskSerializableInteractorDataOut taskSerializableInteractorDataOut, TaskSerializableInteractorDataIn taskSerializableInteractorDataIn){
+    public TaskController(TaskSerializableInteractorDataOut taskSerializableInteractorDataOut, TaskSerializableInteractorDataIn taskSerializableInteractorDataIn,
+    WeekSerializableInteractorDataOut weekSerializableInteractorDataOut){
         this.taskSerializableInteractorDataOut = taskSerializableInteractorDataOut;
         this.taskSerializableInteractorDataIn = taskSerializableInteractorDataIn;
+        this.weekSerializableInteractorDataOut = weekSerializableInteractorDataOut;
     }
 
     @GetMapping("/tasks/{userid}")

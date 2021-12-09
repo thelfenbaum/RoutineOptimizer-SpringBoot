@@ -1,8 +1,8 @@
 package com.csc207.domain;
 
 public class ProjectHoursResponse {
-    private double minHours;
-    private double maxHours;
+    private final double minHours;
+    private final double maxHours;
 
     public ProjectHoursResponse(double minHours, double maxHours){
         this.minHours = minHours;

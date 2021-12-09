@@ -1,9 +1,6 @@
 package com.csc207.api;
 
-import com.csc207.cli.UserInterfaceExceptions;
 import com.csc207.domain.*;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 @RestController
 public class ProjectController {
@@ -48,7 +43,6 @@ public class ProjectController {
     public Week importWeek(long userId) {
         Week week;
         WeekSerializable weekSers = this.weekSerializableInteractorDataOut.getWeekSerializableByUserId(userId);
-//        this.weekSerializableInteractorDataOut.removeWeekSerializableByUserId(userId);
         ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractorDataOut.getTasksByUserId(userId);
         this.taskSerializableInteractorDataOut.removeTaskSerializablesByUserId(userId);
         week = SerializableToWeekAdapter.SerializableToWeek(weekSers, tasksSers);
