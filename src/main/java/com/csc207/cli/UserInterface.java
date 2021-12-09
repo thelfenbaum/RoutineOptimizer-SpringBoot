@@ -4,8 +4,6 @@ import com.csc207.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -20,26 +18,17 @@ public class UserInterface {
     private WeekSerializableInteractorDataOut weekSerializableInteractor;
     @Autowired
     private UserInteractorDataOut userInteractor;
-    @Autowired
-    private WeekController weekController;
-    @Autowired
-    private final TaskSerializableInteractorDataOut taskSerializableInteractorDataOut;
 
     /**
      * The constructor for the UserInterface class.
      * @param uc: The user controller object to obtain the user from the database.
      * @param wsi: The week serializable interactor to obtain the week from the database.
      * @param ui: The user interactor to check the database.
-     * @param tsido: The task serializable interactor to get data from the database.
-     * @param wc: The week controller object to save week to a database.
      */
-    public UserInterface(UserController uc, WeekSerializableInteractorDataOut wsi, UserInteractorDataOut ui,
-                         TaskSerializableInteractorDataOut tsido, WeekController wc){
+    public UserInterface(UserController uc, WeekSerializableInteractorDataOut wsi, UserInteractorDataOut ui){
         this.userController = uc;
         this.weekSerializableInteractor = wsi;
         this.userInteractor = ui;
-        this.taskSerializableInteractorDataOut = tsido;
-        this.weekController = wc;
     }
 
 

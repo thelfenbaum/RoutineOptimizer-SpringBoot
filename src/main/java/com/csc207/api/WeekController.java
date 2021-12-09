@@ -58,7 +58,7 @@ public class WeekController {
         }
     }
 
-    private Week importWeek(long userId) {
+    public Week importWeek(long userId) {
         Week week;
         WeekSerializable weekSers = this.weekSerializableInteractorDataOut.getWeekSerializableByUserId(userId);
         this.weekSerializableInteractorDataOut.removeWeekSerializableByUserId(userId);

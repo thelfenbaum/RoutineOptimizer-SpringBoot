@@ -4,8 +4,7 @@ import com.csc207.api.*;
 import com.csc207.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class UserChoiceBuilder {
@@ -28,14 +27,12 @@ public class UserChoiceBuilder {
      * @param selection: The selection of the user, whether they want to import or create their schedule
      * @param reader: The scanner in Main module reading user input
      */
-    public Week implementCreateOrImport(long userId, int selection, Scanner reader){
-        Week week;
+    public void implementCreateOrImport(long userId, int selection, Scanner reader){
         if (selection == 1) {
             UserInterfaceCreates.createWeek(userId, reader);
         } else if (selection == 2) { // use user id to retrieve the user's week serializable, convert it to week
-            this.weekController.importWeek();
+            this.weekController.importWeek(userId);
         }
-        return week;
     }
 
     /** Takes the selection and week that is given and finds whether what type of task is needed to be scheduled and
@@ -45,7 +42,7 @@ public class UserChoiceBuilder {
      * @param selection: the selection from the user about which type of task they would like to put
      * @param reader: The scanner in Main module reading user input
      */
-    public static void schedulingDecision(Week week, int selection, Scanner reader){
+    public void schedulingDecision(Week week, int selection, Scanner reader){
         if (selection == 1) {
             selectsOne(week, reader);
         } else if (selection == 2) {
@@ -54,7 +51,7 @@ public class UserChoiceBuilder {
             selectsThree(week, reader);
         } else if (selection == 4){
             // convert the week into WeekSerializable and TaskSerializable, and save to database
-            wc.saveWeek(week);
+           this.weekController.saveWeek(week);
         } else {
             System.out.println("Please enter a valid option (1, 2, 3, or 4).");
         }

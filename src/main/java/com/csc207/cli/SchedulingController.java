@@ -2,7 +2,7 @@ package com.csc207.cli;
 
 import com.csc207.domain.*;
 
-import java.util.Scanner;
+
 
 /**
  * This class is responsible for initiating scheduling and putting of tasks and projects into weeks and checking if a
@@ -40,5 +40,5 @@ public class SchedulingController {
     public static void activateProjectScheduling(Week week, NonFixedTask[] projectTasksToSchedule){
         NonFixedTask[] projectTasksToPut = Scheduler.ScheduleProject(week, projectTasksToSchedule);
         Putter.putProject(projectTasksToPut[0].getName(), week, projectTasksToPut);
-    }
+    }}
 
