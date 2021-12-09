@@ -10,7 +10,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
- * This class is responsible for interactions between projects and the database.
+ * This class is responsible for interactions between projects and the database. All the methods in this class are
+ * only called on by the front end (which is why intelliJ say they are never used)
  */
 
 @RestController
