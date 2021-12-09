@@ -221,6 +221,8 @@ The clean architecture from the phase 0 code is more or less the same. We still 
 
 Another potential violation is that the UserInterface class calls on some methods in interactor classes. We are unsure if it counts as a violation if the UI calls on a use-case without first calling a controller (e.g. signIn method). We felt that it could be fine because our dependencies go in the correct direction, but would appreciate feedback.
 
+![cleanArchitectureDiagram](https://user-images.githubusercontent.com/90367016/145340919-2dcc2681-1888-4fc3-ac33-afe32a6f0ef7.jpg)
+
 ## SOLID Principles:
 
 Single responsibility principle:
