@@ -331,6 +331,8 @@ Because of our attention to clean architecture and SOLID principles, our program
 
 
 - Alon:
+    - Worked on JavaScript that makes API requests (GET and POST requests) to RestControllers in the java code and updates the HTML DOM.
+    - Created various HTML
 
 
 - Elyse:
