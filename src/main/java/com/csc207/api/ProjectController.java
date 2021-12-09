@@ -92,7 +92,7 @@ public class ProjectController {
         }
         NonFixedTask[] projectTasks = Scheduler.ScheduleProject(week, projectTasksToSchedule);
         for (int i = 0; i < 7; i++){
-            TaskSerializable taskSer = TasktoTaskSerializableAdapter.TaskToTaskSerializable(projectTasks[i]);
+            TaskSerializable taskSer = TaskToTaskSerializableAdapter.TaskToTaskSerializable(projectTasks[i]);
             this.taskSerializableInteractorDataIn.saveTaskSerializable(taskSer);
         }
     }

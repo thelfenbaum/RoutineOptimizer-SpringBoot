@@ -46,7 +46,7 @@ public class TaskController {
 //        NonFixedTask task = new NonFixedTask(name, dueDateTime, Duration, UserId);
         Week week = importWeek(nonFixedTask.getUserId());
         NonFixedTask taskScheduled = Scheduler.ScheduleTaskInWeek(week, nonFixedTask);
-        TaskSerializable taskSer = TasktoTaskSerializableAdapter.TaskToTaskSerializable(taskScheduled);
+        TaskSerializable taskSer = TaskToTaskSerializableAdapter.TaskToTaskSerializable(taskScheduled);
         saveTask(taskSer);
     }
 
@@ -65,7 +65,7 @@ public class TaskController {
     public void instantiateFixedTask(String name, LocalDateTime startDateTime, LocalTime duration,
                                         Long userId){
         FixedTask task = new FixedTask(name, startDateTime, duration, userId);
-        TaskSerializable taskSer = TasktoTaskSerializableAdapter.TaskToTaskSerializable(task);
+        TaskSerializable taskSer = TaskToTaskSerializableAdapter.TaskToTaskSerializable(task);
         saveTask(taskSer);
     }
 
