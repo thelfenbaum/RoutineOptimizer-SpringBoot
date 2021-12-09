@@ -24,7 +24,7 @@ Tasks are separated into two types, fixed and non-fixed, based on whether they h
 3.  When they want to complete the project by
     
 
-The program is supposed to take the non-fixed tasks, find an appropriate time for them (i.e. a time that does not coincide with the fixed tasks) such that they can be completed before the deadline, and add them to the schedule. After adding the tasks they want to complete, the user should be able to view a schedule of their week with all the fixed and non-fixed tasks they scheduled for the week.
+The program is supposed to take the non-fixed tasks, find an appropriate time for them (i.e. a time that does not coincide with the fixed tasks) such that they can be completed before the deadline, and add them to the schedule. Alternatively, in the event where the user inputs a fixed task, the program will add this task to the user's schedule. After adding the tasks they want to complete, the user should be able to view a schedule of their week with all the fixed and non-fixed tasks they scheduled for the week.
 
 **The new features in our program since phase 1:**
 - front end so that user can access program and run it via the web
@@ -35,7 +35,7 @@ The program is supposed to take the non-fixed tasks, find an appropriate time fo
 
 **Choice to proceed with a web application:** We chose to build a web application over Springboot because some of our team members have experience with HTML and CSS and wanted to deepen their experience. Our other team members find this knowledge base to be useful. We think a web app would be beneficial for our user since it allows them to access the app from a wider range of devices. Calendars stay constant but users change location, and we want to meet this need.
 
-**Choice to build front end thorugh HTML, CSS, and JavaScript:** 
+**Choice to build front end thorugh HTML, CSS, and JavaScript:** After researching front end options for a GUI which is compatible with our SpringBoot application, we chose to use HTML, CSS, and JavaScript. We chose to use these instead of react since they take less time to adjust to and could allow us to design a simple and effective front end in the limited amount of time we had.
 
 **Choice to use a database to ensure data persistence:** We felt that the best way to use this course to gain industry related knowledge was to 
 
@@ -43,13 +43,15 @@ The program is supposed to take the non-fixed tasks, find an appropriate time fo
 
 **Choice of which entities to write to database:** We chose to store data in our database using three tables: Tasks (to store TaskSerializable object data), Weeks (to store WeekSerializable object data), and Users (to store User object data). We made this choice because this is the minimum amount of stored info our program needs to have complete data persistence. We need to be able to keep track of a Week object associated with a User object. However, a Week object contains Task objects inside of it, and PostgreSQL databases cannot store "nested tables". Thus, we needed a seperate table for serializing Task objects, which keeps track of the date they are to be completed on and the User who created them, both of which are linked to the WeekSerializable objects stored in the Week table via their data and the id of the user who scheduled them. To elaborate, if a given Task's date is contained within the seven day span starting on a given Week's start date and the Task's user id matches that of the Week, then we know the given Task is contained inside the given Week and have all the information necessary to reconstruct this week for the user. The users are stored in their own table.
 
-**Points at which info is written to database:**
+**Points at which info is written to database:** While during phase 1 this was a big decision and we needed explicit points where the user saves information, this is not the case when it comes to phase 2 and our front end. Each time the user adds a task it is saved to the database so that it can be retrieved and added to the timetable for the user to see.
     
 **Converted todaySchedule from Hashmap to LinkedHashmap:** In phase 0 we stored the schedule of a day as a Hashmap where each key (time) was linked to a task name. However since HashMap did not preserve insertion order, the Hashmap did not display time in the correct order. After some investigation, we have decided to change the hashmap into a Linkedhashmap that iterates in the order in which the entries were put into the map. This will allow the schedule keys to correspond to the times of day in the proper order.
 
 **Added a list of tasks as an attribute to each Day object:** We added a list of tasks as an attribute to each day object in order to keep track of the tasks that are associated with a given day. Previously, when the day object did not have this attribute, there was no way of checking the exact task objects that were in the day object because the day object’s todaySchedule attribute maps the time to the name of the task (and does not keep track of any of the other attributes). This meant that we were not keeping track of task attributes other than name and time at which they were scheduled once we scheuled the tasks. With the list of tasks, it allows us to access the specific task objects that are added into the day by looking for common names between the task object and the task in the todaySchedule. The task list also plays an important role in allowing us to write scheudles to the databse.
 
-**Choice of Exceptions:**
+**Choice of Exceptions**
+
+Exceptions played a larger role in phase 1 where we relied on the cli instead of the front end. in phase 2, the client never sees the exceptions. Nonetheless, we have listed them below:
 
 -   Exception INVALID_DATE_FORMAT. We decided to include this exception in order to help the user realize when they have entered a date in a format that is unrecognized by the program, this exception tells the user that the format of the date must be changed.
     
@@ -63,6 +65,10 @@ The program is supposed to take the non-fixed tasks, find an appropriate time fo
 
 -   Exception INVALID_TIME_FORMAT. We decided to include this exception in order to help the user realize when they have entered a time in a format that is unrecognized by the program, this exception tells the user that the format of the time must be changed.
     
+**Alerts**
+-   username not in database: if the user tries to sign in with a username not found in the database, site alerts the user that they have entred the wrong username and need to try again
+-   password incorrect: the password inputted by the user does not match the password associated with the username
+-   username already in use: if the user attempts to sign up using a username that is already committed to the database, the website will tell them to choose a different username
 
 **Improving Scheduling Algorithm**
 
