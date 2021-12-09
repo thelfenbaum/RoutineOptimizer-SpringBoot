@@ -181,35 +181,35 @@ phase 2:
 A huge part of phase 2 was cleaning up our code. It was a great opportunity to utilize the knowledge we have been building over the course of the semester to build clean and well designed code
 
 We addressed the instances in our code where we violated the smell of long classes in phase 1 by splitting them up into seperate classes. We first split up the UserInterface class by taking out methods that had similar behaviours and making 2 new classes called UserInterfacePrints and UserInterfaceExceptions. Another class that we had split up was the Controller class into more specific controller classes like TaskController and UserController.
-**Git Issue and Commits for Splitting the UI** 
+- **Git Issue and Commits for Splitting the UI** 
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/2
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/b3fa6c4f1a58992058a859012580a38ca3af72e1
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/afbe350b4367e11e2813a3c9a9a396affa7944f5
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/ffad7f414f83b1d307418eb12538c3afe0e2ae67
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/071a9b22899b41c2ea0ef97092d0713175cad133
-**Git Issue and Commits for Splitting Controller**
+- **Git Issue and Commits for Splitting Controller**
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/2
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/216f6b772419228c70a2f0f827eaf2bc8d47e564
 
 Another part of our code that we refactored was our project class. Before in phase 1, the project class was an interface, however, after realising that the project class should be a use case, we refactored our code to change it from an interface to the class CreateProject.
-**Git Issue and Commits**
+- **Git Issue and Commits**
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/14
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/40d7116446b4a4b8ff16e3df5f9e04a56e7dd5f4
 
 Our group addressed the bug from phase 1 where we could not save and retrieve weeks from the database by debugging our code so that it can save weeks to the database and retrieve saved weeks from the database.
-**Git Issue and Commits**
+- **Git Issue and Commits**
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/5
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/23
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/bdbe110b8e1a7be46651a482197981928f95dae0
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/e476336ad94ebbd68e528595e1e238c5adcc6990
 
 While working we realized that the Adapter class that converted a Week object into TaskSerializable and WeekSerializable objects and converted TaskSerializable and WeekSerializable objects into a Week object, which violated the single responsibility principle. Split this class (which currently has two responsibilities) into two classes to keep with the Single Responsibility Principle. In order to make our code align with the single responsibility principle, we refactored our code so that the Adapter class is split up into WeekToSerializableAdapter class which converts Week into a TaskSerializable and a WeekSerializable and SerializableToWeekAdapter which converts a TaskSerializable and a WeekSerializable into a Week object.
-**Git Issue and Commits**
+- **Git Issue and Commits**
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/7
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/60cadc015e45cb5e213538c212b3a328ca913b94
 
 Another place where we violated Single Responsibility Principle in phase 1 was in our Interactor classes. We addressed this issue by refactoring our code and creating two classes for each interactor, one pertaining to data doing into the database and one pertaining to data coming out.
-**Git Issue and Commits**
+- **Git Issue and Commits**
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/18
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/4f39ff434519b7813781d5603fc9383990602546
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/ac4b1bce04caa6d367e67dcbb518c28cc2b0173f
@@ -217,12 +217,12 @@ Another place where we violated Single Responsibility Principle in phase 1 was i
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/898503971b1acc5c793fb1051aff491a2a76eb03
 
 Another issue that we had from phase 1 is the zombie code that was in our code. We addressed this issue by refactoring our code by deleting the zombie code.  
-**Git Issue and Commits**
+- **Git Issue and Commits**
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/12
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/3e6f3d796e75bd56fe1cb4eb9fab9a9b657d6301
 
 Another part of our code that we refactored was our Week class. We realised that our Week class had a hard dependency on the Day class so we used the Dependency Injection design pattern to fix the hard dependency.
-**Git Issue and Commits**
+- **Git Issue and Commits**
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/9
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/636e53468d44c01b5cbefcf5517aafb89efb92a9
 - https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/acf82db0295cabc2337aacb1c675fc83c9dc74f1
