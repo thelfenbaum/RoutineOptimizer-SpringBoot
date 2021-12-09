@@ -221,10 +221,6 @@ The clean architecture from the phase 0 code is more or less the same. We still 
 
 Another potential violation is that the UserInterface class calls on some methods in interactor classes. We are unsure if it counts as a violation if the UI calls on a use-case without first calling a controller (e.g. signIn method). We felt that it could be fine because our dependencies go in the correct direction, but would appreciate feedback.
 
-![cleanArchitectureDiagram](https://user-images.githubusercontent.com/90367016/145340919-2dcc2681-1888-4fc3-ac33-afe32a6f0ef7.jpg)
-![UML diagram](https://user-images.githubusercontent.com/90367016/145341078-83a014ce-245e-41b9-b3ff-8fe32d6085ef.png)
-
-
 ## SOLID Principles:
 
 Single responsibility principle:
@@ -278,7 +274,7 @@ We thought that builder would be a good implementation for project, but then rea
 
 We hope that composite pattern will help us build a more flexible version of projects and have created the classes that will allow us to do so but have not had time to implement them and adapt our scheduling and putting algorithms. These empty classes are kept on a branch named composite design pattern until they are implemented and read to merge with the master branch.
 
-The design pattern that is currently fully implemented is the adapter pattern:
+The first design pattern that we implemented is the adapter pattern:
 
 The problem: In order to have data serialization in our program, Week objects have to be saved to our database. However, week projects are complex: they have a list of Day objects as an attribute, and each of those Day objects contains a list of Task objects inside of it. Since databases cannot contain nested tables, Week objects cannot be directly saved to a database.
 
@@ -289,6 +285,14 @@ Our solution: Solution 2, explained above, completely describes the adapter desi
 How the design pattern fits in with our program: Applying the pattern to our program, we created a WeekSerializable entity and a TaskSerializable entity, which are versions of Week objects and Task objects which the database (the “client”) is able to work with. We created an adapter class, WeekAndSerializableConverter, which converts Week objects and Task objects to and from their respective serializable forms. One difference our implementation of the design pattern had from the general skeleton of the design pattern is that since a Week object contains tasks inside of it, for the adaptor class to build a week, it needs both a WeekSerialzable and the TaskSerializables associated with that WeekSerializable. In other words, the adaptor does not adapt a Week to WeekSerializable and vice versa directly; rather, it contains methods to convert a Week to both WeekSerializables and TaskSerializables and to convert a WeekSerializable and TaskSerializables to a Week object.
 
 Advantage of this apporoach - SOLID: This design pattern allowed us to make our code compatible with databases without completely modifying the structure and implementation of all our entities and use cases. Thus, we kept with the Open/Close Design Principle: that our code is closed for modification but open for extension. We extended our code by adding classes compatible with newly introduced requirements for our program, rather than completely modifying all our classes.
+
+The second design pattern we implemented is the dependency injection design pattern:
+
+The problem: Originally, the Week constructor instantiated a list of seven consecuutive Day entities based on the startDateTime argument passed into it. This is considered a "hard" dependency; the construction of an entity in the constructor of an another entity couples the entities to an extent which is undesirable.
+
+Our solution: Create a class called DaysInejctor which takes a start date and returns a list of seven consective days, which is then passed in as an arguent to Week's constructor, which instantiates a Week from those seven consecutive days.
+
+This was a relatively small change to our program, seeing that the only difference we had to make was that every time our code contained the instantiation of a Week entity: `new Week(startDateTime)` we had to replace it with: 
 
 ## Progress report:
 
@@ -355,16 +359,3 @@ Because of our attention to clean architecture and SOLID principles, our program
 
 
 
-
-
-## Special Thanks
-
-
-- Tabeeb, for helping us by guiding us in the right direction
-- Evan, for teaching us about data persistance
-- Danial, for taking the time to show us how to create a GUI
-
-
-
-
-Thank you Tabeeb <3
