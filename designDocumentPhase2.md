@@ -221,9 +221,6 @@ The clean architecture from the phase 0 code is more or less the same. We still 
 
 Another potential violation is that the UserInterface class calls on some methods in interactor classes. We are unsure if it counts as a violation if the UI calls on a use-case without first calling a controller (e.g. signIn method). We felt that it could be fine because our dependencies go in the correct direction, but would appreciate feedback.
 
-![cleanArchitectureDiagram](https://user-images.githubusercontent.com/90367016/145333085-dfd1eb3d-c43a-443c-af43-275898066487.jpg)
-
-
 ## SOLID Principles:
 
 Single responsibility principle:
@@ -313,18 +310,7 @@ Advantage of this apporoach - SOLID: This design pattern allowed us to make our 
 
 **What we plan to work on next**
     
-
--   We need to add font end to our web application
-    
--   We want to give our user the ability to mark tasks as complete in order to make room for other tasks in their place
-    
--   Our sign up feature should not let a user create an account if there is already an account under that username
-    
--   Our database functionality is currently limited in that it can only save one week per user. We would like to change that so that a user can save multiple weeks. This can also enable a user to plan for more than one week worth of tasks at a time
-
--   It would be great to give the user more of an ooportunity to modify thier week if they dislike the way the scheduling algorithm set it up
-    
--   Lastly, we want RoutOp to be an application we would want to use for ourselves. This involves not only having an application that meets requirements, but one that meets its specifications in a way that genuinely helps the user. We would love to allocate more energy into refining our algorithms to really meet the needs of our desired user. We do not yet have concrete plans for what this component will look like since we will have to gauge as a team how much time we have to allocate to it after taking care of all the issues listed so far.
+Because of our attention to clean architecture and SOLID principles, our program has lots of potential for modification. Unfortunately, the course and the project are over, but many teammates are excited for the opportunity to continue developing this repository on their spare time.
 
 
 ## Members' Contributions and Pull Requests
