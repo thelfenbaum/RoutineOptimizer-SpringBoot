@@ -290,7 +290,7 @@ Advantage of this apporoach - SOLID: This design pattern allowed us to make our 
 
 ## Progress report:
 
-**Open questions**
+ ### Open questions
     
 
 -   UserInterfacePrints is a collection of helper methods for the UserInerface. Typically helper methods are private and so must be in the same module as the method calling on them, but we felt that this makes the UI too crowded. We are wondering how to handle this scenario.
@@ -300,7 +300,7 @@ Advantage of this apporoach - SOLID: This design pattern allowed us to make our 
 -   We are unsure if FixedTask and NonfixedTask count as alternative classes with different interfaces (see refactoring section)
     
 
-**What has been working well so far**
+### What has been working well so far
     
 
 - Our team has been continuously improving at communication and design discussions. We enjoy getting together to discuss our program’s weaknesses and strengths and choose priorities in coding accordingly
@@ -312,7 +312,7 @@ Advantage of this apporoach - SOLID: This design pattern allowed us to make our 
 - We were able to develop a web app for our program that gives the user a way to easily create an account and schedule tasks.
 - 
 
-**What we plan to work on next**
+### What we plan to work on next
     
 Because of our attention to clean architecture and SOLID principles, our program has lots of potential for modification. Unfortunately, the course and the project are over, but many teammates are excited for the opportunity to continue developing this repository on their spare time.
 
