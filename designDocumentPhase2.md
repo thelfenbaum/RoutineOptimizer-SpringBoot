@@ -91,7 +91,7 @@ https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/21
 - Elyse:
 
 
-- Issam:
+- Issam: Over the last few weeks, his attention was directed towards creating a GUI. We decided to create a web application, so we needed to use HTML, CSS, and JavaScript, and he spent time learning these three languages and developing webpages for our website. Towards the end of the project, he was also responsible for cleaning up some code and writing up part of the design document.
 
 
     
