@@ -17,11 +17,11 @@ public class WeekController {
     @Autowired
     private final WeekSerializableInteractorDataIn weekSerializableInteractorDataIn;
     @Autowired
+    private final WeekSerializableInteractorDataOut weekSerializableInteractorDataOut;
+    @Autowired
     private final TaskSerializableInteractorDataIn taskSerializableInteractorDataIn;
     @Autowired
-    private WeekSerializableInteractorDataOut weekSerializableInteractorDataOut;
-    @Autowired
-    private TaskSerializableInteractorDataOut taskSerializableInteractorDataOut;
+    private final TaskSerializableInteractorDataOut taskSerializableInteractorDataOut;
 
     /**
      * The constructor for the WeekController class.
@@ -36,6 +36,8 @@ public class WeekController {
                           TaskSerializableInteractorDataOut taskSerializableInteractorDataOut) {
         this.weekSerializableInteractorDataIn = weekSerializableInteractorDataIn;
         this.taskSerializableInteractorDataIn = taskSerializableInteractorDataIn;
+        this.weekSerializableInteractorDataOut = weekSerializableInteractorOut;
+        this.taskSerializableInteractorDataOut = taskSerializableInteractorDataOut;
     }
 
     /**
