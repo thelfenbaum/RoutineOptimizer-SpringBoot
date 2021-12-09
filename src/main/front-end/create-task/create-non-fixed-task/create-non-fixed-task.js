@@ -41,13 +41,16 @@ async function getTaskSers(userid) {
         .then(response => response.json())
 }
 
-async function goToUpdatedWeek() {
-    localStorage.setItem("taskSers", await getTaskSers(localStorage.getItem("userid")));
-    location.href = "../timetable/timetable-empty.html";
+async function goToUpdatedWeek(userid) {
+    localStorage.setItem("taskSers", await getTaskSers(userid));
+    location.href = "../../timetable/timetable-empty.html";
 }
 
 async function submitInfo(){
-    const name = document.getElementById("name").value
-    const
-    await createNonFixedTask(name, )
+    const userid = localStorage.getItem("userid")
+    const name = document.getElementById("name").value;
+    const duration = document.getElementById("duration").value;
+    const dueDateTime = document.getElementById("dueDateTime").value;
+    await createNonFixedTask(name, duration, dueDateTime, userid);
+    await goToUpdatedWeek(userid);
 }

@@ -4,30 +4,8 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="formStyle.css">
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <script type="text/javascript" src="create-non-fixed-task.js" defer></script>
     <title>New Non-Fixed Task</title>
-<!--    <script>-->
-<!--        function changeLabel(task){-->
-<!--            if(task === "Fixed Task") {-->
-<!--                document.getElementById("nft").style.display= "none";-->
-<!--                document.getElementById("lettuce").style.display= "none";-->
-<!--                document.getElementById("line").style.display= "none";-->
-<!--                document.getElementById("ft").style.display= "block";-->
-<!--                document.getElementById("lettuce2").style.display= "inline";-->
-<!--                document.getElementById("line 2").style.display= "block";-->
-<!--                document.getElementById("line5").style.display= "block";-->
-<!--            }-->
-<!--            if(task === "Non-Fixed Task") {-->
-<!--                document.getElementById("nft").style.display= "block";-->
-<!--                document.getElementById("lettuce").style.display= "inline";-->
-<!--                document.getElementById("line").style.display= "block";-->
-<!--                document.getElementById("ft").style.display= "none";-->
-<!--                document.getElementById("lettuce2").style.display= "none";-->
-<!--                document.getElementById("line 2").style.display= "none";-->
-<!--                document.getElementById("line5").style.display= "block";-->
-<!--            }-->
-
-<!--        }-->
-<!--    </script>-->
 </head>
 <body background-color="#e1ad02">
 <section id="overlay">
@@ -59,8 +37,8 @@
 <!--        <hr>-->
 
         <section class="patties">
-            <label for="amount">What is the duration of this task? (format in HH:MM and round to the nearest 30 mins)</label>
-            <input type="text" name="amount" id="amount">
+            <label for="duration">What is the duration of this task? (format in HH:MM and round to the nearest 30 mins)</label>
+            <input type="text" name="amount" id="duration">
         </section>
         <hr>
 
@@ -84,7 +62,7 @@
 
 
         <section class="submission">
-            <input class="submit" type="button" value="Submit" onclick=""/>
+            <input class="submit" type="button" value="Submit" onclick="submitInfo()"/>
 <!--            <a class="submit" href = "../../timetable/timetable-empty.html" >Submit</a>-->
         </section>
     </form>
