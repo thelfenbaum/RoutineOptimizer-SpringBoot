@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class CreateProjectRequest {
-    private long userid;
-    private String name;
-    private LocalTime maxHoursPerTask;
-    private LocalDateTime dueDateTime;
-    private LocalDateTime startDateTime;
+    private final long userid;
+    private final String name;
+    private final LocalTime maxHoursPerTask;
+    private final LocalDateTime dueDateTime;
+    private final LocalDateTime startDateTime;
 
     public CreateProjectRequest(long userid, String name, LocalTime maxHoursPerTask, LocalDateTime dueDateTime, LocalDateTime startDateTime){
         this.userid = userid;
