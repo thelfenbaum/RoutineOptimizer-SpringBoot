@@ -301,12 +301,14 @@ Advantage of this apporoach - SOLID: This design pattern allowed us to make our 
 **What has been working well so far**
     
 
--   Our team has been continuously improving at communication and design discussions. We enjoy getting together to discuss our program’s weaknesses and strengths and choose priorities in coding accordingly
+- Our team has been continuously improving at communication and design discussions. We enjoy getting together to discuss our program’s weaknesses and strengths and choose priorities in coding accordingly
     
--   This phase of the project has involved a lot of independent learning. We used spring boot and PostgreSQL, two forms of software we had never encountered which dealt with an entire area of software we had never encountered. Most of the time for this phase went into research and trial and error code in order to learn how to write to and receive from a database. This process was initially difficult for our team as we felt that we had little concrete progress to display at meetings, but we are extremely proud of our progress.
+- This phase of the project has involved a lot of independent learning. We used spring boot and PostgreSQL, two forms of software we had never encountered which dealt with an entire area of software we had never encountered. Most of the time for this phase went into research and trial and error code in order to learn how to write to and receive from a database. This process was initially difficult for our team as we felt that we had little concrete progress to display at meetings, but we are extremely proud of our progress.
     
--   We are getting better at learning how to use meeting time, and have started breaking up into teams in different zoom breakout rooms which allows members to pop back and forth to ask different members for help or advice, but gives space for people to focus on specific tasks.
+- We are getting better at learning how to use meeting time, and have started breaking up into teams in different zoom breakout rooms which allows members to pop back and forth to ask different members for help or advice, but gives space for people to focus on specific tasks.
     
+- We were able to develop a web app for our program that gives the user a way to easily create an account and schedule tasks.
+- 
 
 **What we plan to work on next**
     
