@@ -37,13 +37,37 @@ async function activateCalculateHours() {
     alert("You must work on this project at least " + minHours + " hours a day and at most " + maxHours + " hours a day.")
 }
 
-async function createProject(userid, totalHours, startDateTime, dueDateTime, hoursPerDay){}
+async function createProject(name, userid, startDateTime, dueDateTime, hoursPerDay){
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", API_BASE_URL + "create-project", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        "name": name,
+        "maxHoursPerTask": hoursPerDay,
+        "userid": userid,
+        "dueDateTime":dueDateTime,
+        "startDateTime": startDateTime
+    }));
+}
+
+async function getTaskSers(userid) {
+    return fetch(API_BASE_URL + userid)
+        .then(response => response.json())
+}
+
+
+async function goToUpdatedWeek(userid) {
+    localStorage.setItem("taskSers", await getTaskSers(userid));
+    location.href = "../../timetable/timetable-empty.html";
+}
 
 async function submitInfo(){
     const userid = localStorage.getItem("userid");
-    const totalHours = document.getElementById("totalHours").value;
+    const name = localStorage.getItem("name");
     const startDateTime = document.getElementById("startDateTime").value;
     const dueDateTime = document.getElementById("dueDateTime").value;
     const hoursPerDay = document.getElementById("hoursNum").value;
+    await createProject(name, userid, startDateTime, dueDateTime, hoursPerDay);
+    await goToUpdatedWeek(userid);
 }
 
