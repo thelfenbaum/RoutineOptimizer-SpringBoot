@@ -1,6 +1,6 @@
 package com.csc207.domain;
 
-public class TasktoTaskSerializableAdaptor {
+public class TasktoTaskSerializableAdapter {
 
     /**
      * Convert a Week to a WeekSerializable to be saved to a database.

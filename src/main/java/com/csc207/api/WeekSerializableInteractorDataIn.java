@@ -34,6 +34,6 @@ public class WeekSerializableInteractorDataIn {
     }
 
     public void removeWeekByUserId(long userid){
-        this.repo.removeWeekByUserId(userid)
+        this.repo.removeWeekByUserId(userid);
     }
 }

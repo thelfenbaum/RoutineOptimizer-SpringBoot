@@ -36,17 +36,17 @@ public class TaskController {
         this.taskSerializableInteractorDataIn.saveTaskSerializable(task);
     }
 
-    @PostMapping("/tasks/instantiate/{name}/{dueDateTimeStr}/{durationStr}/{userId}")
+    @PostMapping("/tasks/instantiate-non-fixed-task")
     @CrossOrigin
     @Transactional
-    public void instantiateNonFixedTask(@PathVariable String name, @PathVariable String dueDateTimeStr, @PathVariable String durationStr, @PathVariable String userId){
-        LocalDateTime dueDateTime = StringToDateTime.stringToLocalDateTime(dueDateTimeStr);
-        LocalTime Duration = StringToDateTime.stringToLocalTime(durationStr);
-        long UserId = Long.parseLong(userId);
-        NonFixedTask task = new NonFixedTask(name, dueDateTime, Duration, UserId);
-        Week week = importWeek(UserId);
-        NonFixedTask taskScheduled = Scheduler.ScheduleTaskInWeek(week, task);
-        TaskSerializable taskSer = TasktoTaskSerializableAdaptor.TaskToTaskSerializable(taskScheduled);
+    public void instantiateNonFixedTask(@RequestBody NonFixedTask nonFixedTask){
+//        LocalDateTime dueDateTime = StringToDateTime.stringToLocalDateTime(dueDateTimeStr);
+//        LocalTime Duration = StringToDateTime.stringToLocalTime(durationStr);
+//        long UserId = Long.parseLong(userId);
+//        NonFixedTask task = new NonFixedTask(name, dueDateTime, Duration, UserId);
+        Week week = importWeek(nonFixedTask.getUserId());
+        NonFixedTask taskScheduled = Scheduler.ScheduleTaskInWeek(week, nonFixedTask);
+        TaskSerializable taskSer = TasktoTaskSerializableAdapter.TaskToTaskSerializable(taskScheduled);
         saveTask(taskSer);
     }
 
@@ -65,7 +65,7 @@ public class TaskController {
     public void instantiateFixedTask(String name, LocalDateTime startDateTime, LocalTime duration,
                                         Long userId){
         FixedTask task = new FixedTask(name, startDateTime, duration, userId);
-        TaskSerializable taskSer = TasktoTaskSerializableAdaptor.TaskToTaskSerializable(task);
+        TaskSerializable taskSer = TasktoTaskSerializableAdapter.TaskToTaskSerializable(task);
         saveTask(taskSer);
     }
 
