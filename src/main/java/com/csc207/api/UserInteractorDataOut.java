@@ -3,7 +3,6 @@ package com.csc207.api;
 import com.csc207.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-
 import java.util.List;
 
 /**
@@ -68,6 +67,10 @@ public class UserInteractorDataOut {
         return this.userRepo.getUserByUsername(username).get(0);
     }
 
+    /**
+     * Gets all users from the database.
+     * @return a list of all the users.
+     */
     public List<User> getAllUsers() {
         return userRepo.findAll();
     }

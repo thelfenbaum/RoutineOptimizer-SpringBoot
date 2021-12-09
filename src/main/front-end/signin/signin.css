@@ -76,10 +76,7 @@ form.form1 {
     color: #fff;
     background: linear-gradient(to right, #9C27B0, #E040FB);
     border: 0;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding: 10px 40px;
     font-family: 'Ubuntu', sans-serif;
     margin-left: 35%;
     font-size: 13px;
