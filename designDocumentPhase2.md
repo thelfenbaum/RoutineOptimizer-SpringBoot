@@ -217,9 +217,9 @@ Another part of our code that we refactored was our Week class. We realised that
 
 The back end comes in sets of classes to ensure that we maintain clean architecture. For each entity type that is written to the database there is a use case class whose name ends with interactor, a controller class, and a gateway class to the database whose name ends with repository. The use case classes modify the entity so that it can be written to the database, the repository classes contain the method for writing to the database, and the controller classes connect the two.
 
-The clean architecture from the phase 0 code is more or less the same. We still have the same issue with the project module in that we are not sure if it is one or more use cases or interfaces. One of the things we hope to do in the next phase is redesign project in a way that allows for more flexible scheduling and fixes this clean architecture issue (see open-ended questions below for more information).
+The clean architecture from the phase 0 code is more or less the same. One potnetial issue is th UserHoiceBuilds class which funcitons like a controller but calls on the UI.
 
-Another potential violation is that the UserInterface class calls on some methods in interactor classes. We are unsure if it counts as a violation if the UI calls on a use-case without first calling a controller (e.g. signIn method). We felt that it could be fine because our dependencies go in the correct direction, but would appreciate feedback.
+A lot of Clean Architecture related inquiries and research have gone into the 3 phases of this assignment, and we really hope they pay off.
 
 ## SOLID Principles:
 
@@ -344,14 +344,3 @@ Because of our attention to clean architecture and SOLID principles, our program
 
 
 
-## Special Thanks
-
-
-- Tabeeb, for helping us by guiding us in the right direction
-- Evan, for teaching us about data persistance
-- Danial, for taking the time to show us how to create a GUI
-
-
-
-
-Thank you Tabeeb <3
