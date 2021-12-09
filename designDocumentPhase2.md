@@ -1,32 +1,80 @@
 *Design Document*
 
-## Updated Specifications
+## **Updated Specifications**
 
-The user uses the app to schedule their upcoming tasks, by inputting the tasks they want to get done, and specifying details such as:
+User opens application and either signs in with username and password if they have an account, or signs up for an account if they don't have one yet
+
+Tasks are scheduled into weeks. A week is either created by the program for the user to schedule tasks into, or retreived from the database for the user to schedule tasks in addition to their previously scheduled ones.
+
+The user uses the app to schedule their upcoming tasks by inputting the tasks they want to get done, and specifying details such as:
+
 1.  The amount of time tasks will take
+    
 2.  When they want to complete the tasks by
+    
+3.  If they wish to complete the task via a series of smaller tasks
+    
 
 Tasks are separated into two types, fixed and non-fixed, based on whether they have to be completed at a certain time (e.g. meeting) or not (e.g. exercising). The user is also able to create a project (i.e. a collection of tasks). For example, if a user wants to complete an assignment that takes 20 hours to complete, then they would add a project, specifying:
+
 1.  How many hours they want to work on the project (in this example, 20)
-2.  What is the maximum amount of time they're willing to work on the project per day
+    
+2.  What is the maximum amount of time they're willing to work on the project per day (based off of a range of hours provided by the program)
+    
 3.  When they want to complete the project by
+    
 
-The program is supposed to take the non-fixed tasks, find an appropriate time for them (i.e. a time that does not coincide with the fixed tasks, or the sleeping schedule of the user, which they will input) such that they can be completed before the deadline, and add them to the schedule. After adding the tasks and projects they want to complete, the user should be able to view a schedule of their week with all the fixed and non-fixed tasks they will do for the week.
+The program is supposed to take the non-fixed tasks, find an appropriate time for them (i.e. a time that does not coincide with the fixed tasks) such that they can be completed before the deadline, and add them to the schedule. Alternatively, in the event where the user inputs a fixed task, the program will add this task to the user's schedule. After adding the tasks they want to complete, the user should be able to view a schedule of their week with all the fixed and non-fixed tasks they scheduled for the week.
 
-To start off, the user will need to sign up by creating a username and password. After that, the user should be able to see their week and modify it whenever they want by logging in.
+**The new features in our program since phase 1:**
+- front end so that user can access program and run it via the web
 
-**The new features in our program since phase 0:**
 
--   Customized error messages thrown when user enters a badly formatted date, an incorrect option out of given options, a wrong password, etc.
 
--   Connection to a PostgreSQL database and spring boot web application framework
+## Research questions we tackled this phase:
+Learning was a huge part of this phase. As a team of five members, we did not have much knowledge about the various aspects of designing a Java application, specificially with regards to areas such as clean architecture and SOLID, usage of Git, and development of a GUI. Therefore, we had to spend a significant amount of time researching various topics. These were our most significant design questions:
 
--   A slightly more sophisticated scheduling algorithm which tells the user when they have no room for a task
+-Which design patterns best fit our code?
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/13
+see pull request 
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/20
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/1
 
--   Ability for the user to sign in. this feature enables: 
-    -  The user to save their working week	schedule
-    -  The user to access previously saved week schedules
-    -  User information (i.e. username, password and ID) to be saved
+
+-MVC vs MVP
+(see comments here): https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/11
+
+-Repackaging our modules in ways which best fit SpringBoot compatibility
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/8
+
+-Commit messages
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/0503dd5d2f9afaa5b1aaeaa672eb9867384d9003
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/61ac206ee7c9ef77be30e47aae04b3dd8266df23
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/6049505f0195b9aa4bd759748b09c9c1966e6497
+
+-Using REST annotations to link code to web
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/29
+see pull request
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/36
+
+-Linking SpringBoot to GUI
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/4
+see pull request
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/36
+
+-Different options for GUI infrastructure (that can work with SpringBoot)
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/3
+see pull request
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/28
+
+-How the material covered in class on architectural boundaries pertains to our code
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/11
+see pull request https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/19
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/21
+
+-Does Mockito pertain to our testing?
+ 
+-How can our code accord with principles of universal design?
 
 
     
@@ -34,29 +82,23 @@ To start off, the user will need to sign up by creating a username and password.
 
 **Choice to proceed with a web application:** We chose to build a web application over Springboot because some of our team members have experience with HTML and CSS and wanted to deepen their experience. Our other team members find this knowledge base to be useful. We think a web app would be beneficial for our user since it allows them to access the app from a wider range of devices. Calendars stay constant but users change location, and we want to meet this need.
 
-**Webpage Setup** When starting up the program, the welcome page will start up. On the welcome page, there is a welcome message and two buttons. One button asks if the user would like to sign in to RoutOp and the other button asks if the user would like to sign up to RoutOp. If the user selects the sign-up button, then the page will navigate the user to the sign-up page. On the sign-up page, there is a message at the top letting the user know they are on the sign-up page, two text fields, a button, and a message with a hyperlink to navigate the user to the sign-in page. The two text fields are there so that the user can enter in their selected username in the first text field and their selected password in the second text field. The button is there so that once the user inputs their information it sends the provided information to the program and starts RoutOp. The message at the bottom of the page asks if the user has an account and if the user selects the hyperlink, it will allow the user to go to the sign-in page. On the sign-in page, there is a message at the top, two text fields, a button, and a message with a hyperlink. The message at the top is there to let the user know that they are on the page to sign-in to RoutOp. The two text fields are provided so the user can input their username and password, and the button is provided, so they can click on it once they have entered their information and starts RoutOp. The message with a hyperlink at the end lets the user know if they do not have an account then they can click on the hyperlink to go to the sign-up page. 
+**Choice to build front end thorugh HTML, CSS, and JavaScript:** After researching front end options for a GUI which is compatible with our SpringBoot application, we chose to use HTML, CSS, and JavaScript. We chose to use these instead of react since they take less time to adjust to and could allow us to design a simple and effective front end in the limited amount of time we had.
 
-**Choice to build front end thorugh HTML, CSS, and JavaScript:** 
+**Choice to use a database to ensure data persistence:** We felt that the best way to use this course to gain industry related knowledge was to 
 
-**Choice of PostgreSQL:** We chose PostgreSQL as our databse since it was the database used in the course provided video tutorial and we thought we could take advantage of its ability to store arrays. This special feature ended up being unncessary as we just linked tables to each other (see other desing decisions for more info).
+**Choice of PostgreSQL:** We chose PostgreSQL as our databse since it was the database used in the course provided video tutorial and we thought we could take advantage of its ability to store arrays. This special feature ended up being unncessary as we just linked tables to each other (see other desing decisions for more info). Regardless, we find PostreSQL to be a useful and effective database.
 
 **Choice of which entities to write to database:** We chose to store data in our database using three tables: Tasks (to store TaskSerializable object data), Weeks (to store WeekSerializable object data), and Users (to store User object data). We made this choice because this is the minimum amount of stored info our program needs to have complete data persistence. We need to be able to keep track of a Week object associated with a User object. However, a Week object contains Task objects inside of it, and PostgreSQL databases cannot store "nested tables". Thus, we needed a seperate table for serializing Task objects, which keeps track of the date they are to be completed on and the User who created them, both of which are linked to the WeekSerializable objects stored in the Week table via their data and the id of the user who scheduled them. To elaborate, if a given Task's date is contained within the seven day span starting on a given Week's start date and the Task's user id matches that of the Week, then we know the given Task is contained inside the given Week and have all the information necessary to reconstruct this week for the user. The users are stored in their own table.
 
-**Choice to write info to database at 2 points:**
-
--   Store user when they sign in: we wanted to commit the user to the database as soon as they connect to the program so that the database can assign them a user ID that goes into each of the tasks they create. This way, the program keeps track of which activity belongs to the user as the tasks are created and scheduled.  
-      
+**Points at which info is written to database:** While during phase 1 this was a big decision and we needed explicit points where the user saves information, this is not the case when it comes to phase 2 and our front end. Each time the user adds a task it is saved to the database so that it can be retrieved and added to the timetable for the user to see.
     
--   Store week when user exits program: we thought this would be an effective point to store the week since the user would have put all the information they need into that week and are done with it until they revisit the program. Although this approach leaves the user's info vulnerable in the event of a sudden crash, we feel that our current setup is sufficent for storing user info and being able to recall it when the user revisits the program.
-    
-
-  
-
 **Converted todaySchedule from Hashmap to LinkedHashmap:** In phase 0 we stored the schedule of a day as a Hashmap where each key (time) was linked to a task name. However since HashMap did not preserve insertion order, the Hashmap did not display time in the correct order. After some investigation, we have decided to change the hashmap into a Linkedhashmap that iterates in the order in which the entries were put into the map. This will allow the schedule keys to correspond to the times of day in the proper order.
 
 **Added a list of tasks as an attribute to each Day object:** We added a list of tasks as an attribute to each day object in order to keep track of the tasks that are associated with a given day. Previously, when the day object did not have this attribute, there was no way of checking the exact task objects that were in the day object because the day object’s todaySchedule attribute maps the time to the name of the task (and does not keep track of any of the other attributes). This meant that we were not keeping track of task attributes other than name and time at which they were scheduled once we scheuled the tasks. With the list of tasks, it allows us to access the specific task objects that are added into the day by looking for common names between the task object and the task in the todaySchedule. The task list also plays an important role in allowing us to write scheudles to the databse.
 
-**Choice of Exceptions:**
+**Choice of Exceptions**
+
+Exceptions played a larger role in phase 1 where we relied on the cli instead of the front end. in phase 2, the client never sees the exceptions. Nonetheless, we have listed them below:
 
 -   Exception INVALID_DATE_FORMAT. We decided to include this exception in order to help the user realize when they have entered a date in a format that is unrecognized by the program, this exception tells the user that the format of the date must be changed.
     
@@ -70,6 +112,10 @@ To start off, the user will need to sign up by creating a username and password.
 
 -   Exception INVALID_TIME_FORMAT. We decided to include this exception in order to help the user realize when they have entered a time in a format that is unrecognized by the program, this exception tells the user that the format of the time must be changed.
     
+**Alerts**
+-   username not in database: if the user tries to sign in with a username not found in the database, site alerts the user that they have entred the wrong username and need to try again
+-   password incorrect: the password inputted by the user does not match the password associated with the username
+-   username already in use: if the user attempts to sign up using a username that is already committed to the database, the website will tell them to choose a different username
 
 **Improving Scheduling Algorithm**
 
@@ -88,17 +134,20 @@ In phase 0 our group designed a scheduling algorithm that is capable of scheduli
 
   
 
-To accomplish 1 we have added a new use case class called Checker that checks if a task/project can be scheduled in a week. For FixedTasks, Checker implements a method called CheckScheduleFixedTask that checks if a task overlap would occur once the user schedules the current FixedTask. As for NonFixedTask and projects, Checker checks if the user has enough time in the week to work on the NonFixedTask/project. Unfortunately, our priorities in wrapping up the project did not allow us to implement steps 2-4, but we hope that a future expansion of Routop would enable for these features we designed.
+To accomplish 1 we have added a new use case class called Checker that checks if a task/project can be scheduled in a week. For FixedTasks, Checker implements a method called CheckScheduleFixedTask that checks if a task overlap would occur once the user schedules the current FixedTask. As for NonFixedTask and projects, Checker checks if the user has enough time in the week to work on the NonFixedTask/project. Unfortunately, our priorities in wrapping up the project did not allow us to implement steps 2-4, but we hope that a future expansion of Routop would enable these features we designed.
 
   
 
 **Use of GitHub Features**
 
-Our group utilized GitHub Features including pull request and branching. We created different branches so that our team could work on different tasks at the time and try implementing new features without interfering with our original code. When we had changes that we were uncertain how they would affect the master branch once they were pushed, one member would also create a branch of current code as insurance. We have also utilized branches to contain new features that are in progress but not complete enough to let the master branch run smoothly. For example, in the Composite branch of our repository we have saved a version of our code with a partially implemented Composite design pattern. Moreover, each member of our team was required to leave a detailed message when changes were pushed to our repository so that other members could be informed of the changes and decide whether to accept the changes.
+GitHus usage was a vital component of our development process this phase. We articulated the problems our team faced via issues where we could articulate procedures for approaching each of these problems, communicate with the team via comments, connect the issues to specific branches or pull requests (see for example issue #36), and tag the issue to better understand what kind of problem we were deadling with. An extension of our use of issues is our use of milestones. We used milestones in order to set deadlines for the team, usually coinciding with our biweekly meetings. The tags given to issues were extremely helpful around these meetings as they allowed us to focus our tasks and deadlines around certain areas of development (see for example milestone 2.1 which was exclusively build of research related issues).
+Additionally, branches and pull requests played a vital role in our experimenting and refactoring process. We created different branches so that our team could work on different tasks at the time and try implementing new features without interfering with our original code. When we had changes that we were uncertain how they would affect the master branch once they were pushed, one member would also create a branch of current code as insurance. We have also utilized branches to contain new features that are in progress but not complete enough to let the master branch run smoothly. For example, in the Composite branch of our repository we have saved a version of our code with a partially implemented Composite design pattern. Some of these branches never got pulled as we were not able to accommodate for those changes in our code given the amount of time and resources available before our deadline. Moreover, each member of our team was required to leave a detailed message when changes were pushed to our repository so that other members could be informed of the changes and decide whether to accept the changes.
 
   
 
 **Refactoring:**
+
+phase 1:
 
 Our group made use of built-in refactoring features in IntelliJ in order to extract helper methods, rename classes and methods, and refactor modules when switching packages so intelliJ would take care of import statements.
 
@@ -110,7 +159,59 @@ We are unsure if FixedTask and NonfixedTask count as alternative classes with di
 
 Instead of having multiple scanners in the UI, we decided to only have one scanner in the main module. This took care of many of our errors and, we think, is a much neater way to take care of processing user input.
 
-  
+phase 2:
+
+A huge part of phase 2 was cleaning up our code. It was a great opportunity to utilize the knowledge we have been building over the course of the semester to build clean and well designed code
+
+We addressed the instances in our code where we violated the smell of long classes in phase 1 by splitting them up into seperate classes. We first split up the UserInterface class by taking out methods that had similar behaviours and making 2 new classes called UserInterfacePrints and UserInterfaceExceptions. Another class that we had split up was the Controller class into more specific controller classes like TaskController and UserController.
+**Git Issue and Commits for Splitting the UI** 
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/2
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/b3fa6c4f1a58992058a859012580a38ca3af72e1
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/afbe350b4367e11e2813a3c9a9a396affa7944f5
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/ffad7f414f83b1d307418eb12538c3afe0e2ae67
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/071a9b22899b41c2ea0ef97092d0713175cad133
+**Git Issue and Commits for Splitting Controller**
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/2
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/216f6b772419228c70a2f0f827eaf2bc8d47e564
+
+Another part of our code that we refactored was our project class. Before in phase 1, the project class was an interface, however, after realising that the project class should be a use case, we refactored our code to change it from an interface to the class CreateProject.
+**Git Issue and Commits**
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/14
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/40d7116446b4a4b8ff16e3df5f9e04a56e7dd5f4
+
+Our group addressed the bug from phase 1 where we could not save and retrieve weeks from the database by debugging our code so that it can save weeks to the database and retrieve saved weeks from the database.
+**Git Issue and Commits**
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/5
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/23
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/bdbe110b8e1a7be46651a482197981928f95dae0
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/e476336ad94ebbd68e528595e1e238c5adcc6990
+
+While working we realized that the Adapter class that converted a Week object into TaskSerializable and WeekSerializable objects and converted TaskSerializable and WeekSerializable objects into a Week object, which violated the single responsibility principle. Split this class (which currently has two responsibilities) into two classes to keep with the Single Responsibility Principle. In order to make our code align with the single responsibility principle, we refactored our code so that the Adapter class is split up into WeekToSerializableAdapter class which converts Week into a TaskSerializable and a WeekSerializable and SerializableToWeekAdapter which converts a TaskSerializable and a WeekSerializable into a Week object.
+**Git Issue and Commits**
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/7
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/60cadc015e45cb5e213538c212b3a328ca913b94
+
+Another place where we violated Single Responsibility Principle in phase 1 was in our Interactor classes. We addressed this issue by refactoring our code and creating two classes for each interactor, one pertaining to data doing into the database and one pertaining to data coming out.
+**Git Issue and Commits**
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/18
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/4f39ff434519b7813781d5603fc9383990602546
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/ac4b1bce04caa6d367e67dcbb518c28cc2b0173f
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/1b1e00334547518b5e3a37c3d361807bd7e8dd91
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/898503971b1acc5c793fb1051aff491a2a76eb03
+
+Another issue that we had from phase 1 is the zombie code that was in our code. We addressed this issue by refactoring our code by deleting the zombie code.  
+**Git Issue and Commits**
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/12
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/3e6f3d796e75bd56fe1cb4eb9fab9a9b657d6301
+
+Another part of our code that we refactored was our Week class. We realised that our Week class had a hard dependency on the Day class so we used the Dependency Injection design pattern to fix the hard dependency.
+**Git Issue and Commits**
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/9
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/636e53468d44c01b5cbefcf5517aafb89efb92a9
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/acf82db0295cabc2337aacb1c675fc83c9dc74f1
+- https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/8a8b3426a736742542bf42db5dcc0a0662d3c30f
+
+
 
 **Clean Architecture:**
 
@@ -123,16 +224,17 @@ Another potential violation is that the UserInterface class calls on some method
 **SOLID Principles:**
 
 Single responsibility principle:
-We made sure that our project is consistent with the Single Responsibility Principle by creating classes such as scheduler (that attempts to schedule a task) and checker (that checks if a task can be scheduled) that each have a single responsibility, instead of making the methods for each in one big class. We had difficulty replicating that for UserInterface and Controller, since we did not know how to split up the methods. We moved the exceptions for the UI into a separate class in order to not violate single-responsibility principle.
+We made sure that our project is consistent with the Single Responsibility Principle by creating classes such as scheduler (that attempts to schedule a task) and checker (that checks if a task can be scheduled) that each have a single responsibility, instead of making the methods for each in one big class. 
+Much of our refactoring in phase 2 centred around SRP. We split up the controller (see issue #2, #25), and split the interactors into separate classes for data in and data out (issue #18). One class which may slightly violate SRP is UserChoiceBuilds, but we left it as one class because we felt that this is probably not the case.
 
 Open/closed principle:
-A good example of us adhering to that principle is in our use of the adapter design pattern. This design pattern allowed us to make our code compatible with databases without completely modifying the structure and implementation of all our entities and use cases. Thus, we kept with the Open/Close Design Principle: that our code is closed for modification but open for extension. We extended our code by adding classes compatible with newly introduced requirements for our program, rather than completely modifying all our classes. One example of where we did not do a great job adhering to this principle is in our scheduler module where we might have to change the methods in Scheduler if we proceed with implementing the composite design pattern, which changes the way tasks and projects are scheduled. We are also not too atisfied with the outcome of our current scheduling algorithm so may modify it significantly.
+A good example of us adhering to that principle is in our use of the adapter design pattern. This design pattern allowed us to make our code compatible with databases without completely modifying the structure and implementation of all our entities and use cases. Thus, we kept with the Open/Close Design Principle: that our code is closed for modification but open for extension. We extended our code by adding classes compatible with newly introduced requirements for our program, rather than completely modifying all our classes (see issue #7). One example of where we did not do a great job adhering to this principle is in our scheduler module where the algorithm schedules tasks in a way that is less than ideal. Getiing a better scheduling procedure would require direct modification of this module.
 
 Liskov substitution principle:
-We followed the Liskov Substitution principle by making FixedTask and NonFixedTask extend the behaviors of Task, without modifying or removing them. 
+We followed the Liskov Substitution principle by making FixedTask and NonFixedTask extend the behaviors of Task, without modifying or removing them. FixedTask and NonFixedTask are the only examples of inheritence in our code.
 
 Interface segregation principle:
-When it came to the interface segregation principle, we struggled. We did not know how to split up the methods in the Project interface, which resulted in many classes implementing it without using all its methods. See our open ended questions and clean architecture sections for further discussion on this topic.
+Our code has very few interfaces in it. One place where we ensure to follow interface segregation principle is in our use of gateways to the database, each of which implement JPARepository. We have one interface for each entity instead of one interface with many methods to be shared by the many entities and REST controllers (see WeekSerializableRepository.java, TaskSerializableRepository.java).
 
 Dependency inversion:
 We followed the dependency inversion principle by ensuring that classes such as scheduler and checker depended on the abstractions of classes such FixedTask and NonFixedTask instead of their details. Satisfying the dependency inversion principle is a big part of our clean architecture related discussion. Even when we skipped 'layers', we always ensured that dependencies are inward and not outward.
@@ -140,7 +242,7 @@ We followed the dependency inversion principle by ensuring that classes such as 
 
 **Packaging strategies:**
 
-Our original packaging strategy was having three packages in our src/main/java. (1) an com.csc207.api package containing all of our database repository classes, interactor classes, and controllers; (2) a domain class containing all our entities and use cases; and (3) a cli package containing all of our front end command line classes and their respective controllers. We chose this packaging strategy (loosely termed inside/outside) because it neatly compartmentalizes different functionalities as well as compatibilities within our software. Our domain package would interact with both the cli and com.csc207.api packages, while the com.csc207.api and cli only interact with the domain. Additionally, this packaging strategy would also prep our code for scaling into a full-stack web app equipped with a web-based GUI and remote database server, since we already have pre-prepared the different packages which will interact with the newly added components. Our web-based GUI would only interact with the cli package and our remote database server would only interact with the com.csc207.api package. This would keep with both the interface segregation principle and the single repsponsibility principle, as well as provide us with an overall cleaner software structure. Below is a diagram of our packaging strategy which visually demonstrates its cleanliness and practicality:
+Our original packaging strategy was having three packages in our src/main/java. (1) an com.csc207.api package containing all of our database repository classes, interactor classes, and controllers; (2) a domain class containing all our entities and use cases; and (3) a cli package containing all of our front end command line classes and their respective controllers. We chose this packaging strategy (loosely termed inside/outside) because it neatly compartmentalizes different functionalities as well as compatibilities within our software. Our domain package would interact with both the cli and com.csc207.api packages, while the com.csc207.api and cli only interact with the domain. Additionally, this packaging strategy enables our code to scale into a full-stack web app equipped with a web-based GUI and remote database server, since we pre-prepared the different packages which could interact with the newly added components as we added our database and web-based front end. Our web-based GUI only interacts with the cli package and our remote database server only interacts with the com.csc207.api package. This design keeps with both the interface segregation principle and the single repsponsibility principle, as well as provides us with an overall cleaner software structure. Below is a diagram of our packaging strategy which visually demonstrates its cleanliness and practicality (this diagram can only be seen in an IDE):
 
 
 ```mermaid 
@@ -162,7 +264,7 @@ Our original packaging strategy was having three packages in our src/main/java. 
     
 ```
 
-However, with this packaging strategy, our application was not compiling due to errors SpringBoot was throwing. After much research, we discovered that SpringBoot’s entity scan (finding entities in code and matching ) only works when one of two packaging strategies is implemented: the SpringBoot default packaging strategy, or having all JPA-annotated classes within the same package. Since we did not follow SpringBoot’s default packaging strategy and did not want to start a new SpringBoot project (which would require setting all the application.properties anew and connecting the new application to the PostgreSQL database) we decided to put all of our JPA-annotated classes in the same package: the com.csc207.api package. We hope to find a way to use our original thought out design strategy (see open ended questions)
+However, with this packaging strategy, our application was not compiling due to errors SpringBoot was throwing. After much research, we finally managed to fix this bug (see issues #8, 16).
 
   
 
