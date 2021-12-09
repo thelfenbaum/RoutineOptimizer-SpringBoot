@@ -77,28 +77,6 @@ https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/21
 -How can our code accord with principles of universal design?
 
 
-## Members' Contributions and Pull Requests
-
-- Jeong Min: Created test classes and tests for each of the classes in the program. Removed 1 letter variables in code. Added missing javadoc to classes and methods. Helped write the refactoring section of the design document. Created a pull request to merge the testing branch into the frontend-2 branch to add the tests. This is a significant contribution to the team as testing is a major part of creating programs as tests make sure code is thorough and accurate. https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/47 
-
-
-- Hailey:
-- Added the API annotations for linking our database to the web app. Created some save and get methods in the controller classes for saving data to the database/retrieving data from the database
-(Pull request https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/34) this is important because in order for our web app to perform its function we need to link our frontend with the database
-- Helped with creating POST requests in the javascript and fixing style errors in our code
-- Helped with writing tests and linking commit messages/pull requests to the design document
-
-
-- Alon:
-
-
-- Elyse:
-
-
-- Issam: Over the last few weeks, his attention was directed towards creating a GUI. We decided to create a web application, so we needed to use HTML, CSS, and JavaScript, and he spent time learning these three languages and developing webpages for our website. Towards the end of the project, he was also responsible for cleaning up some code and writing up part of the design document. 
-The most significant pull request was probably the Serialization pull request. This pull request allowed for data persistence and for our users to find good use for the program.
-
-
     
 ## **Design Decisions**
 
@@ -345,6 +323,27 @@ Advantage of this apporoach - SOLID: This design pattern allowed us to make our 
     
 -   Lastly, we want RoutOp to be an application we would want to use for ourselves. This involves not only having an application that meets requirements, but one that meets its specifications in a way that genuinely helps the user. We would love to allocate more energy into refining our algorithms to really meet the needs of our desired user. We do not yet have concrete plans for what this component will look like since we will have to gauge as a team how much time we have to allocate to it after taking care of all the issues listed so far.
 
+
+## Members' Contributions and Pull Requests
+
+- Jeong Min: Created test classes and tests for each of the classes in the program. Removed 1 letter variables in code. Added missing javadoc to classes and methods. Helped write the refactoring section of the design document. Created a pull request to merge the testing branch into the frontend-2 branch to add the tests. This is a significant contribution to the team as testing is a major part of creating programs as tests make sure code is thorough and accurate. https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/47
+
+
+- Hailey:
+- Added the API annotations for linking our database to the web app. Created some save and get methods in the controller classes for saving data to the database/retrieving data from the database
+  (Pull request https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/34) this is important because in order for our web app to perform its function we need to link our frontend with the database
+- Helped with creating POST requests in the javascript and fixing style errors in our code
+- Helped with writing tests and linking commit messages/pull requests to the design document
+
+
+- Alon:
+
+
+- Elyse:
+
+
+- Issam: Over the last few weeks, his attention was directed towards creating a GUI. We decided to create a web application, so we needed to use HTML, CSS, and JavaScript, and he spent time learning these three languages and developing webpages for our website. Towards the end of the project, he was also responsible for cleaning up some code and writing up part of the design document.
+  The most significant pull request was probably the Serialization pull request. This pull request allowed for data persistence and for our users to find good use for the program.
 
 
 
