@@ -1,3 +1,21 @@
+function getWeekDay(num){
+    if (num === 0){
+        return "Monday"
+    } else if (num === 1){
+        return "Tuesday"
+    } else if (num === 2){
+        return "Wednesday"
+    } else if (num === 3){
+        return "Thursday"
+    } else if (num === 4){
+        return "Friday"
+    } else if (num === 5){
+        return "Saturday"
+    } else if (num === 6){
+        return "Sunday"
+    }
+}
+
 Date.prototype.addDays = function(days) {
     let date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
@@ -50,8 +68,8 @@ function createWeekOnDOM(weekSerJSON){
     for(let i = 0; i <= 6; i++){
         weekTimetable +=
             `<li class="cd-schedule__group">
-                <div class="cd-schedule__top-info"><span>${startDate.addDays(i).getDay()},
-                ${startDate.addDays(i)}</span></div>
+                <div class="cd-schedule__top-info"><span>${getWeekDay(startDate.addDays(i).getDay())},
+                ${startDate.addDays(i).getDate()+1}-${startDate.addDays(i).getMonth()+1}-${startDate.addDays(i).getFullYear()}</span></div>
                 <ul id="day-${startDate.addDays(i).getDay()}">
                 </ul>
             </li>`
@@ -68,7 +86,7 @@ function updateTaskOnDOM(taskSerJSON){
     let taskNode = ``;
     const startDateTime = new Date(taskSerJSON.startDateTime);
     const duration = taskSerJSON.duration;
-    const endDateTime = startDateTime.addHours(duration(0, 2)).addMinutes(duration(3, 5))
+    const endDateTime = startDateTime.addHours(duration.slice(0, 2)).addMinutes(duration.slice(3, 5))
     const day = startDateTime.getDay();
     taskNode +=
         `<li class="cd-schedule__event">
@@ -82,17 +100,14 @@ function updateTaskOnDOM(taskSerJSON){
 
 function updateTasksOnDOM(taskSerJSONArray){
     for (let i = 0; i < taskSerJSONArray.length; i++) {
-        updateTaskOnDOM(taskSerJSONArray[i]);
+        updateTaskOnDOM(JSON.parse(taskSerJSONArray[i]));
     }
 }
 
 function instantiateDOM(weekSerJSON, taskSerJSONArray){
     createWeekOnDOM(weekSerJSON);
-    updateTaskOnDOM(taskSerJSONArray);
-}
-
-function updateDOM(taskSerJSONArray){
     updateTasksOnDOM(taskSerJSONArray);
 }
 
-instantiateDOM(JSON.parse(localStorage.getItem("weekSer")), JSON.parse(localStorage.getItem("taskSers")));
+
+instantiateDOM(JSON.parse(localStorage.getItem("weekSer")), localStorage.getItem("taskSers"));
