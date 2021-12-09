@@ -4,6 +4,7 @@ import com.csc207.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -75,6 +76,7 @@ public class ProjectController {
 
     @PostMapping("project/create-project")
     @CrossOrigin
+    @Transactional
     public void createProject(@RequestBody CreateProjectRequest createProjectRequest){
         Week week = importWeek(createProjectRequest.getUserid());
         NonFixedTask[] projectTasksToSchedule = new NonFixedTask[7];
