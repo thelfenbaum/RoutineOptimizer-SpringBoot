@@ -85,7 +85,7 @@ https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/21
 - Hailey:
 - Added the API annotations for linking our database to the web app. Created some save and get methods in the controller classes for saving data to the database/retrieving data from the database
 (Pull request https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/34) this is important because in order for our web app to perform its function we need to link our frontend with the database
-- Helped with creating POST requests in the javascript and fixing style errors in our code
+- Learned javascript and helped with creating POST requests in the javascript and fixing style errors in our code
 - Helped with writing tests and linking commit messages/pull requests to the design document
 
 
