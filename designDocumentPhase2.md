@@ -83,6 +83,10 @@ https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/21
 
 
 - Hailey:
+- Added the API annotations for linking our database to the web app. Created some save and get methods in the controller classes for saving data to the database/retrieving data from the database
+(Pull request https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/34) this is important because in order for our web app to perform its function we need to link our frontend with the database
+- Helped with creating POST requests in the javascript and fixing style errors in our code
+- Helped with writing tests and linking commit messages/pull requests to the design document
 
 
 - Alon:
@@ -339,3 +343,7 @@ Advantage of this apporoach - SOLID: This design pattern allowed us to make our 
 -   It would be great to give the user more of an ooportunity to modify thier week if they dislike the way the scheduling algorithm set it up
     
 -   Lastly, we want RoutOp to be an application we would want to use for ourselves. This involves not only having an application that meets requirements, but one that meets its specifications in a way that genuinely helps the user. We would love to allocate more energy into refining our algorithms to really meet the needs of our desired user. We do not yet have concrete plans for what this component will look like since we will have to gauge as a team how much time we have to allocate to it after taking care of all the issues listed so far.
+
+
+
+
