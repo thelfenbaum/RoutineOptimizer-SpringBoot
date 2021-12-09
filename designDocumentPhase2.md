@@ -221,8 +221,6 @@ The clean architecture from the phase 0 code is more or less the same. We still 
 
 Another potential violation is that the UserInterface class calls on some methods in interactor classes. We are unsure if it counts as a violation if the UI calls on a use-case without first calling a controller (e.g. signIn method). We felt that it could be fine because our dependencies go in the correct direction, but would appreciate feedback.
 
-![cleanArchitectureDiagram](https://user-images.githubusercontent.com/90367016/145333713-bced3495-6d5e-45df-8a4d-d4bfdb473035.jpg)
-
 ## SOLID Principles:
 
 Single responsibility principle:
@@ -290,30 +288,26 @@ Advantage of this apporoach - SOLID: This design pattern allowed us to make our 
 
 ## Progress report:
 
- ### Open questions
+**Open questions**
+    
+-   we are getting style errors for repeating code in both ProjectController and TaskController. We did not feel it made sense to extract this method into a separate class since we wanted to be able to communicate with the appropriate gateways without violating ISP.
+-   cannot remove style errors related to @Autowired decorators
+-   WeekSerializable, TaskSerializable, UserSerializable complain that id is never assigned since it is set by the database instead of within the code
+-   UserChoiceBuilds functions like a controller but calls on the UI. TA said to group it with the controllers despite its violation of DIP.
+-   FixedTask and NonfixedTask count as alternative classes with different interfaces (see refactoring section)
     
 
--   UserInterfacePrints is a collection of helper methods for the UserInerface. Typically helper methods are private and so must be in the same module as the method calling on them, but we felt that this makes the UI too crowded. We are wondering how to handle this scenario.
-    
--   We are wondering if we should break up our UI and controller into multiple smaller components to avoid violating the single responsibility principle. See the SOLID section of the design document for further discussion.  
-    
--   We are unsure if FixedTask and NonfixedTask count as alternative classes with different interfaces (see refactoring section)
+**What has been working well so far**
     
 
-### What has been working well so far
+-   Our team has been continuously improving at communication and design discussions. We enjoy getting together to discuss our program’s weaknesses and strengths and choose priorities in coding accordingly
+    
+-   This phase of the project has involved a lot of independent learning. We used spring boot and PostgreSQL, two forms of software we had never encountered which dealt with an entire area of software we had never encountered. Most of the time for this phase went into research and trial and error code in order to learn how to write to and receive from a database. This process was initially difficult for our team as we felt that we had little concrete progress to display at meetings, but we are extremely proud of our progress.
+    
+-   We are getting better at learning how to use meeting time, and have started breaking up into teams in different zoom breakout rooms which allows members to pop back and forth to ask different members for help or advice, but gives space for people to focus on specific tasks.
     
 
-- Our team has been continuously improving at communication and design discussions. We enjoy getting together to discuss our program’s weaknesses and strengths and choose priorities in coding accordingly
-    
-- This phase of the project has involved a lot of independent learning. We used spring boot and PostgreSQL, two forms of software we had never encountered which dealt with an entire area of software we had never encountered. Most of the time for this phase went into research and trial and error code in order to learn how to write to and receive from a database. This process was initially difficult for our team as we felt that we had little concrete progress to display at meetings, but we are extremely proud of our progress.
-    
-- We are getting better at learning how to use meeting time, and have started breaking up into teams in different zoom breakout rooms which allows members to pop back and forth to ask different members for help or advice, but gives space for people to focus on specific tasks.
-    
-- We were able to develop a web app for our program that gives the user a way to easily create an account and schedule tasks.
-
-- We have learned how to use Github features such as pull requests and issues. This has allowed us to be more productive whe we update code and has allowed everyone to understand more about the code that they are not directly editing.
-
-### What we plan to work on next
+**What we plan to work on next**
     
 Because of our attention to clean architecture and SOLID principles, our program has lots of potential for modification. Unfortunately, the course and the project are over, but many teammates are excited for the opportunity to continue developing this repository on their spare time.
 
@@ -331,12 +325,17 @@ Because of our attention to clean architecture and SOLID principles, our program
 
 
 - Alon:
-    - Worked on JavaScript that makes API requests (GET and POST requests) to RestControllers in the java code and updates the HTML DOM.
-    - Created various HTML
+    - connected HTML to JavaScript in code
+    - added java methods to support JavaScript methods
+    - conducted most of the research on api requests and trained the rest of the team to be able to do them
+    - led debugging effort
 
 
 - Elyse:
-
+    - Headed organization of design document
+    - worked with Jeong-Min to design UI split 
+    - Planned out get and post requests to go into javascript, wrote some get requests
+    - researched boundary issues, MVC, design patterns
 
 - Issam:
     - Over the last few weeks, his attention was directed towards creating a GUI. We decided to create a web application, so we needed to use HTML, CSS, and JavaScript, and he spent time learning these three languages and developing webpages for our website. Towards the end of the project, he was also responsible for cleaning up some code and writing up part of the design document.
