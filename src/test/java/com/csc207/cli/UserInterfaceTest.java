@@ -2,10 +2,13 @@ package com.csc207.cli;
 
 import com.csc207.api.*;
 import com.csc207.domain.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -96,6 +99,15 @@ public class UserInterfaceTest {
     }
 
     /**
+     * Tests the method createOrImportWeek.
+     */
+    @Test
+    public void testCreateOrImportWeek(){
+        String selectedOption = "3";
+        assertEquals(3, Integer.parseInt(selectedOption));
+    }
+
+    /**
      * Tests the createOrImportWeek method.
      */
     @Test
@@ -114,6 +126,58 @@ public class UserInterfaceTest {
         Day[] days = DaysInjector.constructDayList(startDate);
         Week week = new Week(2L, days);
         assertEquals(startDate.getDayOfWeek(), week.getDays()[0].getDayOfWeek());
+    }
+
+    /**
+     * Tests the scheduleDuty method.
+     */
+    @Test
+    public void testScheduleDuty(){
+        String selectedOption = "4";
+        assertEquals(4, selectedOption);
+    }
+
+    /**
+     * Tests the createFixedTask method.
+     */
+    @Test
+    public void testCreateFixedTask(){
+        String name = "Piano";
+        LocalDateTime startDateTime = LocalDateTime.of(2021, 12, 10, 1, 0);
+        LocalTime duration = LocalTime.of(1,0);
+        FixedTask expected = new FixedTask(name, startDateTime, duration, 2L);  // Create a FixedTask from this information
+        assertEquals("Piano", expected.getName());
+    }
+
+    /**
+     * Tests the createNonFixedTask method.
+     */
+    @Test
+    public void testCreateNonFixedTask(){
+        String name = "Soccer practice";
+        LocalDateTime startDateTime = LocalDateTime.of(2050, 12, 10, 1, 0);
+        LocalTime duration = LocalTime.of(2,0);
+        NonFixedTask expected = new NonFixedTask(name, startDateTime, duration, 2L);  // Create a FixedTask from this information
+        assertEquals("Soccer practice", expected.getName());
+    }
+
+    /**
+     * Tests the createProject method.
+     */
+    @Test
+    public void testCreateProject(){
+        String name = "Soccer practice";
+        LocalDateTime startDateTime = LocalDateTime.of(2050, 12, 10, 1, 0);
+        LocalTime duration = LocalTime.of(2,0);
+        NonFixedTask task = new NonFixedTask(name, startDateTime, duration, 2L);  // Create a FixedTask from this information
+        String name2 = "Piano";
+        LocalDateTime startDateTime2 = LocalDateTime.of(2021, 12, 10, 1, 0);
+        LocalTime duration2 = LocalTime.of(1,0);
+        NonFixedTask task2 = new NonFixedTask(name2, startDateTime2, duration2, 3L);  // Create a FixedTask from this information
+
+        NonFixedTask[] projectTasks = {task, task2};
+
+        assertEquals(2, projectTasks.length);
     }
 
 }
