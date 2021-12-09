@@ -57,7 +57,7 @@ async function getTaskSers(userid) {
 
 
 async function goToUpdatedWeek(userid) {
-    localStorage.setItem("taskSers", await getTaskSers(userid));
+    localStorage.setItem("taskSers", JSON.stringify(await getTaskSers(userid)));
     location.href = "../../timetable/timetable-empty.html";
 }
 

@@ -19,7 +19,7 @@ async function getTaskSers(userid) {
 }
 
 async function goToUpdatedWeek(userid) {
-    localStorage.setItem("taskSers", await getTaskSers(userid));
+    localStorage.setItem("taskSers", JSON.stringify(await getTaskSers(userid)));
     location.href = "../../timetable/timetable-empty.html";
 }
 
@@ -27,7 +27,7 @@ async function submitInfo(){
     const userid = localStorage.getItem("userid")
     const name = document.getElementById("name").value;
     const duration = document.getElementById("duration").value;
-    const startDateTime = document.getElementById("startDateTime").value;
+    const startDateTime = document.getElementById("startTime").value;
     await saveFixedTask(name, startDateTime, duration, userid);
     await goToUpdatedWeek(userid);
 }

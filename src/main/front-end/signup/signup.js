@@ -1,18 +1,3 @@
-// var myHeaders = new Headers();
-// myHeaders.append("Content-Type", "application/json");
-
-// const raw = JSON.stringify({
-//     "username": document.getElementById("username").value,
-//     "password": document.getElementById("password").value
-// })
-//
-// const requestOptions = {
-//     method: 'POST',
-//     headers: myHeaders,
-//     body: raw,
-//     redirect: 'follow'
-// }
-
 function signUp(username, password) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:8080/users", true);
@@ -37,12 +22,14 @@ async function createAccount(){
     const password = document.getElementById("password").value;
     const userid = await getUserid(username);
 
+
     if (userid !== undefined) {
         alert("Username is already in use. Please enter a different username.");
     } else {
         await signUp(username, password);
-        localStorage.setItem("userid", await getUserid(username));
-        // location.href = "../timetable/timetable-empty.html";
+        const userid = await getUserid(username);
+        localStorage.setItem("userid", userid);
+        location.href = "../create-or-import/start-when.html";
     }
 }
 
