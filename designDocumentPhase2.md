@@ -77,6 +77,23 @@ https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/21
 -How can our code accord with principles of universal design?
 
 
+## Members' Contributions and Pull Requests
+
+- Jeong Min:
+
+
+- Hailey:
+
+
+- Alon:
+
+
+- Elyse:
+
+
+- Issam:
+
+
     
 ## **Design Decisions**
 
@@ -138,7 +155,7 @@ To accomplish 1 we have added a new use case class called Checker that checks if
 
   
 
-**Use of GitHub Features**
+## Use of GitHub Features
 
 GitHus usage was a vital component of our development process this phase. We articulated the problems our team faced via issues where we could articulate procedures for approaching each of these problems, communicate with the team via comments, connect the issues to specific branches or pull requests (see for example issue #36), and tag the issue to better understand what kind of problem we were deadling with. An extension of our use of issues is our use of milestones. We used milestones in order to set deadlines for the team, usually coinciding with our biweekly meetings. The tags given to issues were extremely helpful around these meetings as they allowed us to focus our tasks and deadlines around certain areas of development (see for example milestone 2.1 which was exclusively build of research related issues).
 Additionally, branches and pull requests played a vital role in our experimenting and refactoring process. We created different branches so that our team could work on different tasks at the time and try implementing new features without interfering with our original code. When we had changes that we were uncertain how they would affect the master branch once they were pushed, one member would also create a branch of current code as insurance. We have also utilized branches to contain new features that are in progress but not complete enough to let the master branch run smoothly. For example, in the Composite branch of our repository we have saved a version of our code with a partially implemented Composite design pattern. Some of these branches never got pulled as we were not able to accommodate for those changes in our code given the amount of time and resources available before our deadline. Moreover, each member of our team was required to leave a detailed message when changes were pushed to our repository so that other members could be informed of the changes and decide whether to accept the changes.
@@ -213,7 +230,7 @@ Another part of our code that we refactored was our Week class. We realised that
 
 
 
-**Clean Architecture:**
+## Clean Architecture:
 
 The back end comes in sets of classes to ensure that we maintain clean architecture. For each entity type that is written to the database there is a use case class whose name ends with interactor, a controller class, and a gateway class to the database whose name ends with repository. The use case classes modify the entity so that it can be written to the database, the repository classes contain the method for writing to the database, and the controller classes connect the two.
 
@@ -221,7 +238,7 @@ The clean architecture from the phase 0 code is more or less the same. We still 
 
 Another potential violation is that the UserInterface class calls on some methods in interactor classes. We are unsure if it counts as a violation if the UI calls on a use-case without first calling a controller (e.g. signIn method). We felt that it could be fine because our dependencies go in the correct direction, but would appreciate feedback.
 
-**SOLID Principles:**
+## SOLID Principles:
 
 Single responsibility principle:
 We made sure that our project is consistent with the Single Responsibility Principle by creating classes such as scheduler (that attempts to schedule a task) and checker (that checks if a task can be scheduled) that each have a single responsibility, instead of making the methods for each in one big class. 
@@ -240,7 +257,7 @@ Dependency inversion:
 We followed the dependency inversion principle by ensuring that classes such as scheduler and checker depended on the abstractions of classes such FixedTask and NonFixedTask instead of their details. Satisfying the dependency inversion principle is a big part of our clean architecture related discussion. Even when we skipped 'layers', we always ensured that dependencies are inward and not outward.
 
 
-**Packaging strategies:**
+## Packaging strategies:
 
 Our original packaging strategy was having three packages in our src/main/java. (1) an com.csc207.api package containing all of our database repository classes, interactor classes, and controllers; (2) a domain class containing all our entities and use cases; and (3) a cli package containing all of our front end command line classes and their respective controllers. We chose this packaging strategy (loosely termed inside/outside) because it neatly compartmentalizes different functionalities as well as compatibilities within our software. Our domain package would interact with both the cli and com.csc207.api packages, while the com.csc207.api and cli only interact with the domain. Additionally, this packaging strategy enables our code to scale into a full-stack web app equipped with a web-based GUI and remote database server, since we pre-prepared the different packages which could interact with the newly added components as we added our database and web-based front end. Our web-based GUI only interacts with the cli package and our remote database server only interacts with the com.csc207.api package. This design keeps with both the interface segregation principle and the single repsponsibility principle, as well as provides us with an overall cleaner software structure. Below is a diagram of our packaging strategy which visually demonstrates its cleanliness and practicality (this diagram can only be seen in an IDE):
 
@@ -266,9 +283,9 @@ Our original packaging strategy was having three packages in our src/main/java. 
 
 However, with this packaging strategy, our application was not compiling due to errors SpringBoot was throwing. After much research, we finally managed to fix this bug (see issues #8, 16).
 
-  
 
-**Design patterns:**
+
+## Design patterns:
 
 We thought that builder would be a good implementation for project, but then realized that despite being a complex aggregate, project only has one version. Builder pattern is suited for complex aggregates with multiple versions.
 
