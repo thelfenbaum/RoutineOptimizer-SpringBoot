@@ -221,8 +221,6 @@ The clean architecture from the phase 0 code is more or less the same. We still 
 
 Another potential violation is that the UserInterface class calls on some methods in interactor classes. We are unsure if it counts as a violation if the UI calls on a use-case without first calling a controller (e.g. signIn method). We felt that it could be fine because our dependencies go in the correct direction, but would appreciate feedback.
 
-![cleanArchitectureDiagram](https://user-images.githubusercontent.com/90367016/145330727-435dbdf4-844f-4c05-9ba3-1484e0a075b5.jpg)
-
 ## SOLID Principles:
 
 Single responsibility principle:
@@ -267,6 +265,8 @@ Our original packaging strategy was having three packages in our src/main/java. 
 ```
 
 However, with this packaging strategy, our application was not compiling due to errors SpringBoot was throwing. After much research, we finally managed to fix this bug (see issues #8, 16).
+
+
 
 ## Design patterns:
 
@@ -330,10 +330,10 @@ Advantage of this apporoach - SOLID: This design pattern allowed us to make our 
 
 
 - Hailey:
-  - Added the API annotations for linking our database to the web app. Created some save and get methods in the controller classes for saving data to the database/retrieving data from the database
-    (Pull request https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/34) this is important because in order for our web app to perform its function we need to link our frontend with the database
-  - Helped with creating POST requests in the javascript and fixing style errors in our code
-  - Helped with writing tests and linking commit messages/pull requests to the design document
+    - Added the API annotations for linking our database to the web app. Created some save and get methods in the controller classes for saving data to the database/retrieving data from the database
+      (Pull request https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/34) this is important because in order for our web app to perform its function we need to link our frontend with the database
+    - Helped with creating POST requests in the javascript and fixing style errors in our code
+    - Helped with writing tests and linking commit messages/pull requests to the design document
 
 
 - Alon:
@@ -342,10 +342,10 @@ Advantage of this apporoach - SOLID: This design pattern allowed us to make our 
 - Elyse:
 
 
-- Issam: 
-  - Over the last few weeks, his attention was directed towards creating a GUI. We decided to create a web application, so we needed to use HTML, CSS, and JavaScript, and he spent time learning these three languages and developing webpages for our website. Towards the end of the project, he was also responsible for cleaning up some code and writing up part of the design document.
+- Issam:
+    - Over the last few weeks, his attention was directed towards creating a GUI. We decided to create a web application, so we needed to use HTML, CSS, and JavaScript, and he spent time learning these three languages and developing webpages for our website. Towards the end of the project, he was also responsible for cleaning up some code and writing up part of the design document.
 
-  - The most significant pull request was probably the Serialization pull request. This pull request allowed for data persistence and for our users to find good use for the program.
+    - The most significant pull request was probably the Serialization pull request. This pull request allowed for data persistence and for our users to find good use for the program.
 
 
 
