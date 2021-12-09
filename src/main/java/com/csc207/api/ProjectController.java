@@ -74,6 +74,12 @@ public class ProjectController {
         return week;
     }
 
+    /**
+     * Create a project (an array of nonFixedTask) based on user input, schedule the array of nonFixedTask, convert each
+     * NonFixedTask into a TaskSerializable object and store them in the database
+     * @param createProjectRequest: the information needed to create a project
+     */
+
     @PostMapping("project/create-project")
     @CrossOrigin
     @Transactional
