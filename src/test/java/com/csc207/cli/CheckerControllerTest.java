@@ -1,6 +1,9 @@
 package com.csc207.cli;
 
-import com.csc207.domain.*;
+import com.csc207.domain.DaysInjector;
+import com.csc207.domain.FixedTask;
+import com.csc207.domain.NonFixedTask;
+import com.csc207.domain.Week;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,11 +14,8 @@ import java.time.LocalTime;
 
 import static org.junit.Assert.assertTrue;
 
-/**
- * This class tests the Controller class.
- */
+public class CheckerControllerTest {
 
-public class ControllerTest {
     Week week;
     FixedTask task1;
     NonFixedTask task2;
@@ -32,41 +32,12 @@ public class ControllerTest {
     @After
     public void tearDown(){
     }
-
-    /**
-     * Tests activateFixedTaskScheduling method.
-     *
-     */
-    @Test
-    public void testActivateFixedTaskScheduling(){
-        Controller.activateFixedTaskScheduling(week, task1);
-        assertTrue(week.getDays()[0].getTodayTasks().contains(task1));
-    }
-
-    /**
-     * Tests the activateNonFixedTaskScheduling method.
-     */
-    @Test
-    public void testActivateNonFixedTaskScheduling(){
-        Controller.activateNonFixedTaskScheduling(week, task2);
-        assertTrue(week.getDays()[0].getTodayTasks().contains(task2));
-    }
-
-    /**
-     * Tests the activateProjectScheduling method.
-     */
-    @Test
-    public void testActivateProjectScheduling(){
-        Controller.activateProjectScheduling(week, tasks);
-        assertTrue(week.getDays()[0].getTodayTasks().contains(task2));
-    }
-
     /**
      * Tests the checkProjectScheduling method.
      */
     @Test
     public void testCheckNonFixedTaskScheduling(){
-        assertTrue(Controller.checkFixedTaskScheduling(week, task1));
+        assertTrue(CheckerController.checkFixedTaskScheduling(week, task1));
     }
 
     /**
@@ -74,7 +45,7 @@ public class ControllerTest {
      */
     @Test
     public void testCheckProjectScheduling(){
-        assertTrue(Controller.checkProjectScheduling(week, tasks));
+        assertTrue(CheckerController.checkProjectScheduling(week, tasks));
     }
 
     /**
@@ -82,8 +53,6 @@ public class ControllerTest {
      */
     @Test
     public void testCheckFixedTaskScheduling(){
-        assertTrue(Controller.checkNonFixedTaskScheduling(week, task2));
+        assertTrue(CheckerController.checkNonFixedTaskScheduling(week, task2));
     }
-
-
 }

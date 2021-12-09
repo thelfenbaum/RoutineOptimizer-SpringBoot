@@ -36,7 +36,7 @@ public class UserInterfaceTest {
         mockWSI = mock(WeekSerializableInteractorDataOut.class);
         mockTSIDO = mock(TaskSerializableInteractorDataOut.class);
         mockWC = mock(WeekController.class);
-        UI = new UserInterface(mockUC, mockWSI, mockUIDO, mockTSIDO, mockWC);
+        UI = new UserInterface(mockUC, mockWSI, mockUIDO);
     }
     /**
      * Tests the signInOrSignUp method.
