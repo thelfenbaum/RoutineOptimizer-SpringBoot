@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 
 /**
  * This class is responsible for inputting all the TaskSerializable objects into the database.

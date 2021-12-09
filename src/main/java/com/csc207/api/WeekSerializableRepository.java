@@ -2,10 +2,11 @@ package com.csc207.api;
 
 import com.csc207.domain.WeekSerializable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
+
 import java.util.List;
 
 /**
@@ -24,6 +25,11 @@ public interface WeekSerializableRepository extends JpaRepository<WeekSerializab
     @Query("Select w from WeekSerializable w where w.userId = :userId")
     List<WeekSerializable> getByUserId(Long userId);
 
+    /**
+     * Removes a WeekSerializable associated with the given userid from th database.
+     * @param userid: the user id.
+     */
+    @Modifying
     @Query("DELETE FROM WeekSerializable w WHERE w.userId = :userid")
-    public void removeWeekByUserId(long userid);
+    void removeWeekByUserId(long userid);
 }

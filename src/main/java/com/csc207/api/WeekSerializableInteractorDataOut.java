@@ -4,9 +4,8 @@ import com.csc207.domain.WeekSerializable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Collections;
+
 
 /**
  * This class is responsible for accessing data about weeks in the database.
@@ -34,15 +33,4 @@ public class WeekSerializableInteractorDataOut {
         return ws.get(0);
     }
 
-//    /**
-//     * Removes the weeks of a user from the database by using the user id.
-//     * @param userId: The userid of the weeks that are associated with this user.
-//     */
-//    @Transactional
-//    public void removeWeekSerializableByUserId(long userId) {
-//        ArrayList<WeekSerializable> weekSers = (ArrayList<WeekSerializable>)this.repo.getByUserId(userId);
-//        WeekSerializable weekSer = weekSers.get(0);
-//        Long id = weekSer.getId();
-//        this.repo.deleteAllById(Collections.singleton(id));
-//    }
 }

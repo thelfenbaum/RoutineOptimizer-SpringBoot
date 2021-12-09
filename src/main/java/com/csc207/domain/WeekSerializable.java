@@ -39,7 +39,15 @@ public class WeekSerializable {
         return this.id;
     }
 
+    /**
+     * Gets the start date.
+     * @return The start date of the week.
+     */
     public LocalDate getStartDate() { return this.startDate; }
 
+    /**
+     * Gets the User id.
+     * @return The user id of the week.
+     */
     public Long getUserId() { return this.userId; }
 }

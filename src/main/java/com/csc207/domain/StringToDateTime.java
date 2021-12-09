@@ -4,10 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * This class is responsible for converting String objects to Date objects.
+ */
 
 public class StringToDateTime {
 
     /**
+     * Converts the given string object to a LocalDate object.
      * Precondition: str is correctly formatted as "YYYY-MM-DD".
      * @param str: the string to be converted to a LocalDate.
      *
@@ -21,6 +25,7 @@ public class StringToDateTime {
     }
 
     /**
+     * Convert the given String object to a LocalDateTime object.
      * Precondition: str is correctly formatted as "YYYY-MM-DD$HH:MM", where $ is any character.
      * @param str: the string to be converted to a LocalDateTime.
      *
@@ -35,6 +40,12 @@ public class StringToDateTime {
         return LocalDateTime.of(dueDateYear, dueDateMonth, dueDateDay, dueTimeHour, dueTimeMin);
     }
 
+    /**
+     * Converts the String to a LocalTime object.
+     * Precondition: str is correctly formatted as "HH:MM".
+     * @param str: The time in string format
+     * @return The LocalTime object represented by the string.
+     */
     public static LocalTime stringToLocalTime(String str){
         int hours = Integer.parseInt(str.substring(0, 2));
         int mins = Integer.parseInt(str.substring(3, 5));
