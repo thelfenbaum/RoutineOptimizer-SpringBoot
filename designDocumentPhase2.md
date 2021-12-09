@@ -36,6 +36,10 @@ Learning was a huge part of this phase. As a team of five members, we did not ha
 
 -Which design patterns best fit our code?
 https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/13
+see pull request 
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/20
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/1
+
 
 -MVC vs MVP
 (see comments here): https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/11
@@ -49,16 +53,24 @@ https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/61ac206ee7c9ef77
 https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/6049505f0195b9aa4bd759748b09c9c1966e6497
 
 -Using REST annotations to link code to web
-https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/29 
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/29
+see pull request
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/36
 
 -Linking SpringBoot to GUI
 https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/4
+see pull request
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/36
 
 -Different options for GUI infrastructure (that can work with SpringBoot)
 https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/3
+see pull request
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/28
 
 -How the material covered in class on architectural boundaries pertains to our code
 https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/11
+see pull request https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/19
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/21
 
 -Does Mockito pertain to our testing?
  
