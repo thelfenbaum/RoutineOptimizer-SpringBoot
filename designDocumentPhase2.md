@@ -309,6 +309,7 @@ This was a relatively small change to our program, seeing that the only differen
 -   WeekSerializable, TaskSerializable, UserSerializable complain that id is never assigned since it is set by the database instead of within the code
 -   UserChoiceBuilds functions like a controller but calls on the UI. TA said to group it with the controllers despite its violation of DIP.
 -   FixedTask and NonfixedTask count as alternative classes with different interfaces (see refactoring section)
+-   style errors in CLI for not calling on methods since not using CLI in order to allow front end to function
     
 
 **What has been working well so far**
