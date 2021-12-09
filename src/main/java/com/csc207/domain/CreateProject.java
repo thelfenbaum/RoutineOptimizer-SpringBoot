@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * This interface allows you to calculate.
+ * This class allows you to gather information about creating project.
  */
 
 public class CreateProject {

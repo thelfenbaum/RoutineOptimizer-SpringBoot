@@ -1,5 +1,9 @@
 package com.csc207.domain;
 
+/**
+ * This class is responsible for converting the Task to a TaskSerializable object.
+ */
+
 public class TasktoTaskSerializableAdaptor {
 
     /**

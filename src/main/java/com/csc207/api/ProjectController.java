@@ -16,6 +16,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class is responsible for interactions between projects and the database.
+ */
+
 @RestController
 public class ProjectController {
     @Autowired
@@ -23,12 +27,26 @@ public class ProjectController {
     @Autowired
     private final TaskSerializableInteractorDataOut taskSerializableInteractorDataOut;
 
+    /**
+     * The constructor for the class.
+     * @param weekSerializableInteractorDataOut: The interactor to get weeks from the database.
+     * @param taskSerializableInteractorDataOut: The interactor to get tasks from the database.
+     */
+
     public ProjectController(WeekSerializableInteractorDataOut weekSerializableInteractorDataOut,
                              TaskSerializableInteractorDataOut taskSerializableInteractorDataOut){
         this.weekSerializableInteractorDataOut = weekSerializableInteractorDataOut;
         this.taskSerializableInteractorDataOut = taskSerializableInteractorDataOut;
     }
 
+    /**
+     * Calculate the hours of a project.
+     * @param userid: The userid.
+     * @param totalHoursStr: The total hours.
+     * @param startDateStr: The start date.
+     * @param dueDateTimeStr: The due date.
+     * @return The ProjectHoursResponse object that contains the minimum number of hours and max number of hours.
+     */
     @GetMapping("/project/calculatehours/{userid}/{totalHoursStr}/{startDateStr}/{dueDateTimeStr}")
     @CrossOrigin
     public ProjectHoursResponse calculateHours(@PathVariable("userid") String userid,
@@ -45,6 +63,11 @@ public class ProjectController {
     }
 
 
+    /**
+     * Import a week of a user.
+     * @param userId: The user id.
+     * @return The Week of the user
+     */
     public Week importWeek(long userId) {
         Week week;
         WeekSerializable weekSers = this.weekSerializableInteractorDataOut.getWeekSerializableByUserId(userId);

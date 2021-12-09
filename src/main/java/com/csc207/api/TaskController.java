@@ -10,6 +10,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is responsible for interactions between Tasks and the database.
+ */
+
 @RestController
 public class TaskController {
     @Autowired
@@ -17,18 +21,31 @@ public class TaskController {
     private final TaskSerializableInteractorDataIn taskSerializableInteractorDataIn;
     private WeekSerializableInteractorDataOut weekSerializableInteractorDataOut;
 
+    /**
+     * The constructor for this class.
+     * @param taskSerializableInteractorDataOut: The TaskSerializable interactor to get tasks from the database.
+     * @param taskSerializableInteractorDataIn: The TaskSerializable interactor to save tasks to the database.
+     */
     public TaskController(TaskSerializableInteractorDataOut taskSerializableInteractorDataOut, TaskSerializableInteractorDataIn taskSerializableInteractorDataIn){
         this.taskSerializableInteractorDataOut = taskSerializableInteractorDataOut;
         this.taskSerializableInteractorDataIn = taskSerializableInteractorDataIn;
     }
 
+    /**
+     * Get all tasks from the database associated with the given userid.
+     * @param userid: the user id.
+     * @return A list of tasks associated with a user.
+     */
     @GetMapping("/tasks/{userid}")
     @CrossOrigin
     public List<TaskSerializable> getTasks(@PathVariable String userid){
         return this.taskSerializableInteractorDataOut.getTasksByUserId(Long.valueOf(userid));
     }
 
-
+    /**
+     * Saves a task to the database.
+     * @param task: The task to be saved.
+     */
     @PostMapping("/tasks")
     @CrossOrigin
     @Transactional
@@ -36,6 +53,13 @@ public class TaskController {
         this.taskSerializableInteractorDataIn.saveTaskSerializable(task);
     }
 
+    /**
+     * Creates a NonFixedTask object and saves it to the database.
+     * @param name: The name of the task.
+     * @param dueDateTimeStr: The due date of the task.
+     * @param durationStr: The duration of the task.
+     * @param userId: The user id.
+     */
     @PostMapping("/tasks/instantiate/{name}/{dueDateTimeStr}/{durationStr}/{userId}")
     @CrossOrigin
     @Transactional
@@ -51,6 +75,11 @@ public class TaskController {
     }
 
 
+    /**
+     * Imports a week from the database of a given userid.
+     * @param userId: the user id
+     * @return: the week of the userid
+     */
     public Week importWeek(long userId) {
         Week week;
         WeekSerializable weekSers = this.weekSerializableInteractorDataOut.getWeekSerializableByUserId(userId);
@@ -61,7 +90,13 @@ public class TaskController {
         return week;
     }
 
-
+    /**
+     * Creates a FixedTask object and saves it to the database.
+     * @param name: The name of the task.
+     * @param startDateTime: The start date and time of the task.
+     * @param duration: The duration of the task.
+     * @param userId: The user id.
+     */
     public void instantiateFixedTask(String name, LocalDateTime startDateTime, LocalTime duration,
                                         Long userId){
         FixedTask task = new FixedTask(name, startDateTime, duration, userId);
@@ -70,6 +105,13 @@ public class TaskController {
     }
 
 
+    /**
+     * Creates a scheduled project.
+     * @param name: The name of the task.
+     * @param dueDateTime: The date and time the task is due.
+     * @param maxHoursPerTask: The maximum hours per task
+     * @param userId: The user id.
+     */
     @GetMapping("/tasks/project/{name}/{dueDateTime}/{maxHoursPerTask}/{userId}")
     @CrossOrigin
     @Transactional

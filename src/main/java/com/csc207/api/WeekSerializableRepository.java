@@ -24,6 +24,10 @@ public interface WeekSerializableRepository extends JpaRepository<WeekSerializab
     @Query("Select w from WeekSerializable w where w.userId = :userId")
     List<WeekSerializable> getByUserId(Long userId);
 
+    /**
+     * Removes a WeekSerializable associated with the given userid from th database.
+     * @param userid: the user id.
+     */
     @Query("DELETE FROM WeekSerializable w WHERE w.userId = :userid")
     public void removeWeekByUserId(long userid);
 }
