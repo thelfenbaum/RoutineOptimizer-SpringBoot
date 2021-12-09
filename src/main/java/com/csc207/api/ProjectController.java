@@ -2,10 +2,7 @@ package com.csc207.api;
 
 import com.csc207.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,6 +18,8 @@ public class ProjectController {
     private final WeekSerializableInteractorDataOut weekSerializableInteractorDataOut;
     @Autowired
     private final TaskSerializableInteractorDataOut taskSerializableInteractorDataOut;
+    @Autowired
+    private final TaskSerializableInteractorDataIn taskSerializableInteractorDataIn;
 
     /**
      * The constructor for the class.
@@ -29,9 +28,11 @@ public class ProjectController {
      */
 
     public ProjectController(WeekSerializableInteractorDataOut weekSerializableInteractorDataOut,
-                             TaskSerializableInteractorDataOut taskSerializableInteractorDataOut){
+                             TaskSerializableInteractorDataOut taskSerializableInteractorDataOut,
+                             TaskSerializableInteractorDataIn taskSerializableInteractorDataIn){
         this.weekSerializableInteractorDataOut = weekSerializableInteractorDataOut;
         this.taskSerializableInteractorDataOut = taskSerializableInteractorDataOut;
+        this.taskSerializableInteractorDataIn = taskSerializableInteractorDataIn;
     }
 
     /**
@@ -72,6 +73,21 @@ public class ProjectController {
         return week;
     }
 
+    @PostMapping("project/create-project")
+    @CrossOrigin
+    public void createProject(@RequestBody CreateProjectRequest createProjectRequest){
+        Week week = importWeek(createProjectRequest.getUserid());
+        NonFixedTask[] projectTasksToSchedule = new NonFixedTask[7];
+        for (int i = 0; i < 7; i++) {
+            projectTasksToSchedule[i] = new NonFixedTask(createProjectRequest.getName(), createProjectRequest.getDueDateTime,
+                    createProjectRequest.getMaxHoursPerTask(), createProjectRequest.getUserid());
+        }
+        NonFixedTask[] projectTasks = Scheduler.ScheduleProject(week, projectTasksToSchedule);
+        for (int i = 0; i < 7; i++){
+            TaskSerializable taskSer = TasktoTaskSerializableAdapter.TaskToTaskSerializable(projectTasks[i]);
+            this.taskSerializableInteractorDataIn.saveTaskSerializable(taskSer);
+        }
+    }
 
 
 

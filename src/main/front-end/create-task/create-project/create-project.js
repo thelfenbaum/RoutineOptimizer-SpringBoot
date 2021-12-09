@@ -27,13 +27,23 @@ async function calculateHours(userid, totalHours, startDateTime, dueDateTime){
 }
 
 async function activateCalculateHours() {
-    let userid = localStorage.getItem("userid");
-    let totalHours = document.getElementById("totalHours").value;
-    let startDateTime = document.getElementById("startDateTime").value;
-    let dueDateTime = document.getElementById("dueDateTime").value;
+    const userid = localStorage.getItem("userid");
+    const totalHours = document.getElementById("totalHours").value;
+    const startDateTime = document.getElementById("startDateTime").value;
+    const dueDateTime = document.getElementById("dueDateTime").value;
     let hoursObj = calculateHours(userid, totalHours, startDateTime, dueDateTime);
     let minHours = hoursObj.minHours;
     let maxHours = hoursObj.maxHours;
     alert("You must work on this project at least " + minHours + " hours a day and at most " + maxHours + " hours a day.")
+}
+
+async function createProject(userid, totalHours, startDateTime, dueDateTime, hoursPerDay){}
+
+async function submitInfo(){
+    const userid = localStorage.getItem("userid");
+    const totalHours = document.getElementById("totalHours").value;
+    const startDateTime = document.getElementById("startDateTime").value;
+    const dueDateTime = document.getElementById("dueDateTime").value;
+    const hoursPerDay = document.getElementById("hoursNum").value;
 }
 
