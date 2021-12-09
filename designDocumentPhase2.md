@@ -30,6 +30,41 @@ The program is supposed to take the non-fixed tasks, find an appropriate time fo
 - front end so that user can access program and run it via the web
 
 
+
+## Research questions we tackled this phase:
+Learning was a huge part of this phase. As a team of five members, we did not have much knowledge about the various aspects of designing a Java application, specificially with regards to areas such as clean architecture and SOLID, usage of Git, and development of a GUI. Therefore, we had to spend a significant amount of time researching various topics. These were our most significant design questions:
+
+-Which design patterns best fit our code?
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/13
+
+-MVC vs MVP
+(see comments here): https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/11
+
+-Repackaging our modules in ways which best fit SpringBoot compatibility
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/8
+
+-Commit messages
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/0503dd5d2f9afaa5b1aaeaa672eb9867384d9003
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/61ac206ee7c9ef77be30e47aae04b3dd8266df23
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/commit/6049505f0195b9aa4bd759748b09c9c1966e6497
+
+-Using REST annotations to link code to web
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/29 
+
+-Linking SpringBoot to GUI
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/4
+
+-Different options for GUI infrastructure (that can work with SpringBoot)
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/3
+
+-How the material covered in class on architectural boundaries pertains to our code
+https://github.com/laviealon/RoutineOptimizer-SpringBoot/issues/11
+
+-Does Mockito pertain to our testing?
+ 
+-How can our code accord with principles of universal design?
+
+
     
 ## **Design Decisions**
 
