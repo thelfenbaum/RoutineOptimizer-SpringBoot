@@ -310,7 +310,8 @@ Advantage of this apporoach - SOLID: This design pattern allowed us to make our 
 - We are getting better at learning how to use meeting time, and have started breaking up into teams in different zoom breakout rooms which allows members to pop back and forth to ask different members for help or advice, but gives space for people to focus on specific tasks.
     
 - We were able to develop a web app for our program that gives the user a way to easily create an account and schedule tasks.
-- 
+
+- We have learned how to use Github features such as pull requests and issues. This has allowed us to be more productive whe we update code and has allowed everyone to understand more about the code that they are not directly editing.
 
 ### What we plan to work on next
     
