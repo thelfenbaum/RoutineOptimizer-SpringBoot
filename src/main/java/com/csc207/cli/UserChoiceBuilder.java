@@ -3,21 +3,27 @@ package com.csc207.cli;
 import com.csc207.api.*;
 import com.csc207.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 import java.util.Scanner;
 
+@Service
 public class UserChoiceBuilder {
 
     @Autowired
     private final WeekController weekController;
+    @Autowired
+    private final ProjectController projectController;
 
     /**
      * The constructor for the UserChoiceBuilder class.
-     * @param wc: The week controller object to save week to a database.
+     * @param wc : The week controller object to save week to a database.
+     * @param projectController: the project controller object that handles processes associated with creating proects.
      */
-    public UserChoiceBuilder(WeekController wc){
+    public UserChoiceBuilder(WeekController wc, ProjectController projectController){
         this.weekController = wc;
+        this.projectController = projectController;
     }
 
     /** Takes the selection of the user and allows the user to create their schedule with the given week, start time,
@@ -31,7 +37,7 @@ public class UserChoiceBuilder {
         if (selection == 1) {
             UserInterfaceCreates.createWeek(userId, reader);
         } else if (selection == 2) { // use user id to retrieve the user's week serializable, convert it to week
-            this.weekController.importWeek(userId);
+            this.projectController.importWeek(userId);
         }
     }
 
