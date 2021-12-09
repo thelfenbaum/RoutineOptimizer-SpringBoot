@@ -40,10 +40,6 @@ public class TaskController {
     @CrossOrigin
     @Transactional
     public void instantiateNonFixedTask(@RequestBody NonFixedTask nonFixedTask){
-//        LocalDateTime dueDateTime = StringToDateTime.stringToLocalDateTime(dueDateTimeStr);
-//        LocalTime Duration = StringToDateTime.stringToLocalTime(durationStr);
-//        long UserId = Long.parseLong(userId);
-//        NonFixedTask task = new NonFixedTask(name, dueDateTime, Duration, UserId);
         Week week = importWeek(nonFixedTask.getUserId());
         NonFixedTask taskScheduled = Scheduler.ScheduleTaskInWeek(week, nonFixedTask);
         TaskSerializable taskSer = TaskToTaskSerializableAdapter.TaskToTaskSerializable(taskScheduled);
@@ -54,7 +50,6 @@ public class TaskController {
     public Week importWeek(long userId) {
         Week week;
         WeekSerializable weekSers = this.weekSerializableInteractorDataOut.getWeekSerializableByUserId(userId);
-//        this.weekSerializableInteractorDataOut.removeWeekSerializableByUserId(userId);
         ArrayList<TaskSerializable> tasksSers = this.taskSerializableInteractorDataOut.getTasksByUserId(userId);
         this.taskSerializableInteractorDataOut.removeTaskSerializablesByUserId(userId);
         week = SerializableToWeekAdapter.SerializableToWeek(weekSers, tasksSers);
