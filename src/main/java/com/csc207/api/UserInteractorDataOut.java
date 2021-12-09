@@ -67,6 +67,10 @@ public class UserInteractorDataOut {
         return this.userRepo.getUserByUsername(username).get(0);
     }
 
+    /**
+     * Gets all users from the database.
+     * @return a list of all the users.
+     */
     public List<User> getAllUsers() {
         return userRepo.findAll();
     }

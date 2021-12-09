@@ -32,6 +32,10 @@ public class WeekSerializableInteractorDataIn {
         this.repo.save(weekSer);
     }
 
+    /**
+     * Removes the week associated with the userid
+     * @param userid: The user id
+     */
     public void removeWeekByUserId(long userid){
         this.repo.removeWeekByUserId(userid);
     }

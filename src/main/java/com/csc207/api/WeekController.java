@@ -37,6 +37,11 @@ public class WeekController {
     }
 
 
+    /**
+     * Gets the week associated with the given userid from the database.
+     * @param userid: The user id.
+     * @return the given user's week.
+     */
     @GetMapping("/weeks/{userid}")
     @CrossOrigin
     public WeekSerializable getWeeks(@PathVariable String userid){
@@ -61,12 +66,20 @@ public class WeekController {
         }
     }
 
+    /**
+     * Remove the week associated with the given userid.
+     * @param userid: the user id.
+     */
     @PostMapping("/weeks/remove/{userid}")
     @CrossOrigin
     public void removeWeekByUserId(@PathVariable String userid){
         this.weekSerializableInteractorDataIn.removeWeekByUserId(Long.parseLong(userid));
     }
 
+    /**
+     * Saves a WeekSerializable object to the database.
+     * @param week: the week to be saved.
+     */
     @PostMapping("/weeks")
     @CrossOrigin
     @Transactional

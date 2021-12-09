@@ -38,7 +38,7 @@ public class UserController {
      * Check if the username of this user are in the database.
      *
      * @param username: the username.
-     * @return whether this username-password pair is in the database.
+     * @return the user associated with the username.
      */
     @GetMapping("/users/{username}")
     @CrossOrigin
@@ -47,6 +47,11 @@ public class UserController {
     }
 
 
+    /**
+     * Checks if the username is in the database.
+     * @param username: The username.
+     * @return whether the username is in the database
+     */
     public boolean isUsernameInDb(String username){
         return this.userInteractorDataOut.isUsernameInDb(username);
     }
