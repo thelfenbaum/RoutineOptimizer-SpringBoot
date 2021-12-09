@@ -79,7 +79,7 @@ https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/21
 
 ## Members' Contributions and Pull Requests
 
-- Jeong Min:
+- Jeong Min: Created test classes and tests for each of the classes in the program. Removed 1 letter variables in code. Added missing javadoc to classes and methods. Helped write the refactoring section of the design document. Created a pull request to merge the testing branch into the frontend-2 branch to add the tests. This is a significant contribution to the team as testing is a major part of creating programs as tests make sure code is thorough and accurate. https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/47 
 
 
 - Hailey:
