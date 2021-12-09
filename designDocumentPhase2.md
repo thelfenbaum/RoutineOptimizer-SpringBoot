@@ -346,6 +346,7 @@ Because of our attention to clean architecture and SOLID principles, our program
 
 ## Special Thanks
 
+
 - Tabeeb, for helping us by guiding us in the right direction
 - Evan, for teaching us about data persistance
 - Danial, for taking the time to show us how to create a GUI
