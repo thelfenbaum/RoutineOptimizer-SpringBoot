@@ -134,7 +134,7 @@ public class UserInterfaceTest {
     @Test
     public void testScheduleDuty(){
         String selectedOption = "4";
-        assertEquals(4, selectedOption);
+        assertEquals(4, Integer.parseInt(selectedOption));
     }
 
     /**
