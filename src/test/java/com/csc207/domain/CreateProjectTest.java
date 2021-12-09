@@ -69,12 +69,4 @@ public class CreateProjectTest {
     public void testCalculateMaxHoursWeek(){
         assertEquals(24.0, CreateProject.calculateMaxHoursWeek(week), 0);
     }
-
-    /**
-     * test the method calculateMaxHoursDay
-     */
-    @Test
-    public void testCalculateMaxHoursDay(){
-        assertEquals(24.0, CreateProject.calculateMaxHoursDay(day), 0.0);
-    }
 }

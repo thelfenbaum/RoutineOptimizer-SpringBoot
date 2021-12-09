@@ -1,21 +1,12 @@
 package com.csc207.cli;
 
-import com.csc207.domain.DaysInjector;
-import com.csc207.domain.NonFixedTask;
-import com.csc207.domain.Putter;
-import com.csc207.domain.Week;
-
 import org.junit.After;
 import org.junit.Test;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Scanner;
 
-import static org.junit.Assert.assertSame;
+import java.time.LocalTime;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**

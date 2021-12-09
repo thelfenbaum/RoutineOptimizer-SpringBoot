@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="formStyleProject.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <script type="text/javascript" src="create-project.js" defer></script>
+    <title>Create a Project!</title>
+</head>
+<body>
+<section id="overlay">
+    <hr>
+<!--    <form action="submission.html" method="POST">-->
+    <form>
+        <h1>Create a Project!</h1>
+
+
+        <section class="protein">
+            <label for="name">Project name:</label>
+            <input type="text" name="patty" id="name">
+        </section>
+        <hr>
+
+        <section class="cooked">
+            <label for="doneness">How important is this project?</label>
+            <br>
+            <span>As important as the CSC207 project</span>
+            <input type="range" name="doneness" id="doneness" value="3" min="1" max="5">
+            <span>As important as climate change</span>
+        </section>
+        <hr>
+
+        <section class="toppings">
+            <label for="startDateTime">When would you like to start this project?</label>
+            <br>
+            <input type="datetime-local" name="topping" id="startDateTime" value="lettuce">
+        </section>
+        <hr>
+
+
+        <section class="toppings">
+            <label for="dueDateTime">When would you like to finish this project by?</label>
+            <br>
+            <input type="datetime-local" name="topping" id="dueDateTime" value="lettuce">
+        </section>
+        <hr>
+
+
+        <section class="patties">
+            <label for="totalHours">What is the total amount of hours you want to work on this project?</label>
+            <input type="number" step="1" name="amount" id="totalHours">
+        </section>
+        <hr>
+
+        <section class="calculate-message">
+            <label for="calculate-hours">Click below to calculate the minimum and maximum hours you must work on this
+            project per day</label>
+        </section>
+
+        <section class="calculate-button">
+            <input class="submit" type="button" id="calculate-hours" value="Calculate!" onclick="activateCalculateHours()"/>
+        </section>
+
+        <hr>
+        <section class="patties">
+            <label for="hoursNum">What is the maximum nuber of hours you want to work on this project per day?</label>
+            <input type="number" name="amount" id="hoursNum">
+        </section>
+        <hr>
+
+
+        <section class="submission">
+            <label>
+                <input class="submit" type="button" onclick="submitInfo()" value="Submit"/>
+            </label>
+            <!--            <a class="submit" href = "../../timetable/timetable-empty.html" >Submit</a>-->
+        </section>
+    </form>
+</section>
+</body>
+</html>

@@ -21,8 +21,8 @@ public class SerializableToWeekAdapter {
             tasks.add(TaskSerializableToTask(taskSer));
         }
         // create a Week object
-        Day[] days = DaysInjector.constructDayList(weekSer.startDate);
-        Week week = new Week(weekSer.userId, days);
+        Day[] days = DaysInjector.constructDayList(weekSer.getStartDate());
+        Week week = new Week(weekSer.getUserId(), days);
         // schedule all Tasks from tasks onto there
         for(Task task: tasks){
             Putter.putTask(week, task);

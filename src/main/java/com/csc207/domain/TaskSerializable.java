@@ -75,9 +75,9 @@ public class TaskSerializable {
         return this.duration;
     }
 
-//    public boolean isComplete() {
-//        return isComplete;
-//    }
+    public boolean isComplete() {
+        return isComplete;
+    }
 
     /**
      * Gets the user id.

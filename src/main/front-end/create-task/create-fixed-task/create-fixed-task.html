@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="formStyle.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <script type="text/javascript" src="create-fixed-task.js" defer></script>
+    <title>New Fixed Task</title>
+</head>
+<body background-color="#e1ad02">
+<section id="overlay">
+    <hr>
+    <form>
+        <h1>Create a Fixed Task</h1>
+
+        <!--        <section class="sauce-selection">-->
+        <!--            <label for="sauce">What type of task would you like?</label>-->
+        <!--            <input list="sauces" id="sauce" name="sauce" onchange=changeLabel(this.value)>-->
+        <!--            <datalist id="sauces">-->
+        <!--                <option value="Fixed Task"></option>-->
+        <!--                <option value="Non-Fixed Task"></option>-->
+        <!--            </datalist>-->
+        <!--        </section>-->
+        <hr>
+
+        <section class="protein">
+            <label for="name">Task name:</label>
+            <input type="text" name="patty" id="name">
+        </section>
+        <hr>
+
+        <!--        <section class="patties">-->
+        <!--            <label for="startDateTime">Start date and time:</label>-->
+        <!--            <input type="datetime-local" name="amount" id="startDateTime">-->
+        <!--        </section>-->
+
+        <!--        <hr>-->
+
+        <section class="patties">
+            <label for="startTime">What is the datetime your task starts on? </label>
+            <input type="datetime-local" name="amount" id="startTime">
+        </section>
+        <hr>
+
+        <hr id = "line5">
+
+        <section class="toppings">
+            <label for="duration">What is the duration of this task? (format in HH:MM and round to the nearest 30 mins)</label>
+            <!--            <br id="line3">-->
+            <input type="text" name="topping" id="duration" value="HH:MM"/>
+        </section>
+
+        <hr>
+
+
+        <!--        <section class="toppings">-->
+        <!--            <label for="lettuce2" id="ft">When would you like to start this task?</label>-->
+        <!--            <br id="line4">-->
+        <!--            <input type="datetime-local" name="topping" id="lettuce2" value="lettuce" >-->
+        <!--        </section>-->
+        <!--        <hr id="line 2">-->
+
+
+        <section class="submission">
+            <input class="submit" type="button" value="Submit" onclick="submitInfo()"/>
+            <!--            <a class="submit" href = "../../timetable/timetable-empty.html" >Submit</a>-->
+        </section>
+    </form>
+</section>
+</body>
+</html>

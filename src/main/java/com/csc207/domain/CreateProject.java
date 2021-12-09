@@ -1,7 +1,6 @@
 package com.csc207.domain;
 
-import com.csc207.domain.Day;
-import com.csc207.domain.Week;
+
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * This interface allows you to calculate.
+ * This class allows you to gather information about creating project.
  */
 
 public class CreateProject {
@@ -105,7 +104,7 @@ public class CreateProject {
      * @param day: The day that the max number of free timeslots are being found in
      * @return the maximum number of hours that are available in the given day
      */
-     public static double calculateMaxHoursDay (Day day){
+     private static double calculateMaxHoursDay (Day day){
 
         //set variable maxHour and currentMax
         double maxHour = 0.0;
