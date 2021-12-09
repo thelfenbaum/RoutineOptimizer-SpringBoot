@@ -56,15 +56,6 @@ public class UserController {
         return this.userInteractorDataOut.isUsernameInDb(username);
     }
 
-//    /**
-//     * Returns a user object from the database based on the user's username.
-//     * @param username: the username.
-//     * @return the user associated with this username.
-//     */
-//    public User getUser(String username){
-//        return this.userInteractorDataOut.getUserFromUsername(username);
-//    }
-
     /**
      * Save this User entity to the database.
      *

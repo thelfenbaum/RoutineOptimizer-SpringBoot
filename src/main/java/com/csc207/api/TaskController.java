@@ -19,7 +19,7 @@ public class TaskController {
     @Autowired
     private final TaskSerializableInteractorDataOut taskSerializableInteractorDataOut;
     private final TaskSerializableInteractorDataIn taskSerializableInteractorDataIn;
-    private WeekSerializableInteractorDataOut weekSerializableInteractorDataOut;
+    private final WeekSerializableInteractorDataOut weekSerializableInteractorDataOut;
 
     /**
      * The constructor for this class.
@@ -27,8 +27,10 @@ public class TaskController {
      * @param taskSerializableInteractorDataIn: The TaskSerializable interactor to save tasks to the database.
      */
     public TaskController(TaskSerializableInteractorDataOut taskSerializableInteractorDataOut, TaskSerializableInteractorDataIn taskSerializableInteractorDataIn){
+    WeekSerializableInteractorDataOut weekSerializableInteractorDataOut){
         this.taskSerializableInteractorDataOut = taskSerializableInteractorDataOut;
         this.taskSerializableInteractorDataIn = taskSerializableInteractorDataIn;
+        this.weekSerializableInteractorDataOut = weekSerializableInteractorDataOut;
     }
 
     /**

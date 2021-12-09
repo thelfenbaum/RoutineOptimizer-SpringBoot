@@ -3,7 +3,6 @@ package com.csc207.api;
 import com.csc207.domain.WeekSerializable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
 

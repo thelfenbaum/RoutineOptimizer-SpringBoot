@@ -5,8 +5,8 @@ package com.csc207.domain;
  */
 
 public class ProjectHoursResponse {
-    private double minHours;
-    private double maxHours;
+    private final double minHours;
+    private final double maxHours;
 
     /**
      * The constructor for a ProjectHoursResponse object.
