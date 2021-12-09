@@ -81,7 +81,7 @@ public class ProjectController {
         Week week = importWeek(createProjectRequest.getUserid());
         NonFixedTask[] projectTasksToSchedule = new NonFixedTask[7];
         for (int i = 0; i < 7; i++) {
-            projectTasksToSchedule[i] = new NonFixedTask(createProjectRequest.getName(), createProjectRequest.getDueDateTime,
+            projectTasksToSchedule[i] = new NonFixedTask(createProjectRequest.getName(), createProjectRequest.getDueDateTime(),
                     createProjectRequest.getMaxHoursPerTask(), createProjectRequest.getUserid());
         }
         NonFixedTask[] projectTasks = Scheduler.ScheduleProject(week, projectTasksToSchedule);
