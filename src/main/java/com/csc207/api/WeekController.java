@@ -4,7 +4,6 @@ import com.csc207.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 
 /**
@@ -25,15 +24,11 @@ public class WeekController {
 
     /**
      * The constructor for the WeekController class.
-     * @param weekSerializableInteractorOut: The interactor used to access data from the week database.
      * @param weekSerializableInteractorDataIn: The interactor used to save data to the week database.
      * @param taskSerializableInteractorDataIn: The interactor used to save data to the task database.
-     * @param taskSerializableInteractorDataOut: The interactor used to access data from the task database.
      */
-    public WeekController(WeekSerializableInteractorDataOut weekSerializableInteractorOut,
-                          WeekSerializableInteractorDataIn weekSerializableInteractorDataIn,
-                          TaskSerializableInteractorDataIn taskSerializableInteractorDataIn,
-                          TaskSerializableInteractorDataOut taskSerializableInteractorDataOut) {
+    public WeekController(WeekSerializableInteractorDataIn weekSerializableInteractorDataIn,
+                          TaskSerializableInteractorDataIn taskSerializableInteractorDataIn) {
         this.weekSerializableInteractorDataIn = weekSerializableInteractorDataIn;
         this.taskSerializableInteractorDataIn = taskSerializableInteractorDataIn;
     }
