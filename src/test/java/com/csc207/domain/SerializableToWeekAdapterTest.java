@@ -24,7 +24,7 @@ public class SerializableToWeekAdapterTest {
     public void setup(){
         startDate = LocalDate.of(2021, 4, 12);
         weekSer = new WeekSerializable(startDate, 1L);
-        LocalDateTime startDateTime = LocalDateTime.of(2021, 4, 11, 12, 00);
+        LocalDateTime startDateTime = LocalDateTime.of(2021, 4, 11, 12, 0);
         LocalTime duration = LocalTime.of(1, 0);
         task1 = new TaskSerializable("Piano Practice", startDateTime, duration, false, 2L);
         taskSers = new ArrayList<>();

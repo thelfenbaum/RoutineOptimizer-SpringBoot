@@ -12,13 +12,8 @@ import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Scanner;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
-
-
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * This class is responsible for testing the UserInterface class.
@@ -95,7 +90,7 @@ public class UserInterfaceTest {
         assertTrue(mockUC.isUsernameInDb(username));
         String password = "Password";
         User newUser = new User(username, password);
-        assertEquals(null, newUser.getId());
+        assertNull(newUser.getId());
     }
 
     /**
@@ -178,6 +173,7 @@ public class UserInterfaceTest {
         NonFixedTask[] projectTasks = {task, task2};
 
         assertEquals(2, projectTasks.length);
+        assertEquals(task.getName(), projectTasks[0].getName());
     }
 
 }
