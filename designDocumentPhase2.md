@@ -298,7 +298,7 @@ The problem: Originally, the Week constructor instantiated a list of seven conse
 
 Our solution: Create a class called DaysInejctor which takes a start date and returns a list of seven consective days, which is then passed in as an arguent to Week's constructor, which instantiates a Week from those seven consecutive days.
 
-This was a relatively small change to our program, seeing that the only difference we had to make was that every time our code contained the instantiation of a Week entity: `new Week(startDateTime)` we had to replace it with: 
+This was a relatively small change to our program, seeing that the only difference we had to make was that every time our code contained the instantiation of a Week entity: `new Week(userid, startDateTime)` we had to replace it with an injection of a Day list: `new Week(userid, DaysInjector.constructDayList(startDateTime))`. This design pattern limited the coupling between our entities and thus lined up our code closer with clean architecture principles.
 
 ## Progress report:
 
@@ -309,6 +309,7 @@ This was a relatively small change to our program, seeing that the only differen
 -   WeekSerializable, TaskSerializable, UserSerializable complain that id is never assigned since it is set by the database instead of within the code
 -   UserChoiceBuilds functions like a controller but calls on the UI. TA said to group it with the controllers despite its violation of DIP.
 -   FixedTask and NonfixedTask count as alternative classes with different interfaces (see refactoring section)
+-   style errors in CLI for not calling on methods since not using CLI in order to allow front end to function
     
 
 **What has been working well so far**
@@ -350,6 +351,7 @@ Because of our attention to clean architecture and SOLID principles, our program
     - Implemented the dependency injection design pattern and the adapter design pattern
     - Split up several API classes and the adapter classes based on SRP 
     - Changed around the whole SpringBoot application so that it could run on a server (associated pull request: https://github.com/laviealon/RoutineOptimizer-SpringBoot/pull/32)
+    - Reviewed and merged the critical pull request of frontend-2 into master.
 
 
 - Elyse:
