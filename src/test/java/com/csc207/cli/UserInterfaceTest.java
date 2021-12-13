@@ -28,16 +28,16 @@ public class UserInterfaceTest {
     WeekController mockWC;
     UserInterface UI;
 
-    @Before
-    public void setUp(){
-        mockUIDO = mock(UserInteractorDataOut.class);
-        mockUI = mock(UserInterface.class);
-        mockUC = mock(UserController.class);
-        mockWSI = mock(WeekSerializableInteractorDataOut.class);
-        mockTSIDO = mock(TaskSerializableInteractorDataOut.class);
-        mockWC = mock(WeekController.class);
-        UI = new UserInterface(mockUC, mockWSI, mockUIDO, mockTSIDO, mockWC);
-    }
+//    @Before
+//    public void setUp(){
+//        mockUIDO = mock(UserInteractorDataOut.class);
+//        mockUI = mock(UserInterface.class);
+//        mockUC = mock(UserController.class);
+//        mockWSI = mock(WeekSerializableInteractorDataOut.class);
+//        mockTSIDO = mock(TaskSerializableInteractorDataOut.class);
+//        mockWC = mock(WeekController.class);
+//        UI = new UserInterface(mockUC, mockWSI, mockUIDO, mockTSIDO, mockWC);
+//    }
     /**
      * Tests the signInOrSignUp method.
      */

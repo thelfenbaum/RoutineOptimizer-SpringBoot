@@ -16,26 +16,26 @@ function getWeekDay(num){
     }
 }
 
-Date.prototype.addDays = function(days) {
-    let date = new Date(this.valueOf());
+function addDays(datetime, days) {
+    let date = new Date(datetime.valueOf());
     date.setDate(date.getDate() + days);
     return date;
 }
 
-Date.prototype.addMinutes = function(minutes) {
-    let date = new Date(this.valueOf());
+function addMinutes(datetime, minutes) {
+    let date = new Date(datetime.valueOf());
     date.setTime(date.getTime() + minutes*60000);
     return date;
 }
 
-Date.prototype.addHours = function(hours) {
-    let date = new Date(this.valueOf());
+function addHours(datetime, hours) {
+    let date = new Date(datetime.valueOf());
     date.setTime(date.getTime() + hours*60*60*1000);
     return date;
 }
 
-Date.prototype.getHoursFormatted = function() {
-    let hours = this.getHours();
+function getHoursFormatted(datetime) {
+    let hours = datetime.getHours();
     if (hours >= 10) {
         return hours.toString();
     } else {
@@ -43,8 +43,8 @@ Date.prototype.getHoursFormatted = function() {
     }
 }
 
-Date.prototype.getMinutesFormatted = function() {
-    let minutes = this.getMinutes();
+function getMinutesFormatted(datetime) {
+    let minutes = datetime.getMinutes();
     if (minutes === 30) {
         return minutes.toString();
     } else {
@@ -52,8 +52,8 @@ Date.prototype.getMinutesFormatted = function() {
     }
 }
 
-Date.prototype.getTimeFormatted = function() {
-    return this.getHoursFormatted + ":" + this.getMinutesFormatted();
+function getTimeFormatted(datetime) {
+    return getHoursFormatted(datetime) + ":" + getMinutesFormatted(datetime);
 }
 
 
@@ -68,9 +68,9 @@ function createWeekOnDOM(weekSerJSON){
     for(let i = 0; i <= 6; i++){
         weekTimetable +=
             `<li class="cd-schedule__group">
-                <div class="cd-schedule__top-info"><span>${getWeekDay(startDate.addDays(i).getDay())},
-                ${startDate.addDays(i).getDate()+1}-${startDate.addDays(i).getMonth()+1}-${startDate.addDays(i).getFullYear()}</span></div>
-                <ul id="day-${startDate.addDays(i).getDay()}">
+                <div class="cd-schedule__top-info"><span>${getWeekDay(addDays(startDate, i).getDay())},
+                ${addDays(startDate, i).getDate()+1}-${addDays(startDate, i).getMonth()+1}-${addDays(startDate, i).getFullYear()}</span></div>
+                <ul id="day-${addDays(startDate, i).getDay()}">
                 </ul>
             </li>`
     }
@@ -86,21 +86,21 @@ function updateTaskOnDOM(taskSerJSON){
     let taskNode = ``;
     const startDateTime = new Date(taskSerJSON.startDateTime);
     const duration = taskSerJSON.duration;
-    const endDateTime = startDateTime.addHours(duration.slice(0, 2)).addMinutes(duration.slice(3, 5))
+    const endDateTime = addMinutes(addHours(startDateTime, duration.slice(0, 2)), duration.slice(3, 5))
     const day = startDateTime.getDay();
     taskNode +=
         `<li class="cd-schedule__event">
-            <a data-start="${startDateTime.getTimeFormatted()}" data-end="${endDateTime.getTimeFormatted()}" 
-            data-content="${taskSerJSON.name}" data-event="event-${taskSerJSON.id}" href="#0">
+            <a data-start=${getTimeFormatted(endDateTime)} data-end=${getTimeFormatted(startDateTime)} 
+            data-content=${taskSerJSON.name} data-event="event-1" href="#">
                 <em class="cd-schedule__name">${taskSerJSON.name}</em>
             </a>
         </li>`
-    document.querySelector("#" + day).innerHTML = taskNode;
+    document.querySelector("#day-" + day).innerHTML = taskNode;
 }
 
 function updateTasksOnDOM(taskSerJSONArray){
     for (let i = 0; i < taskSerJSONArray.length; i++) {
-        updateTaskOnDOM(JSON.parse(taskSerJSONArray[i]));
+        updateTaskOnDOM(taskSerJSONArray[i]);
     }
 }
 
@@ -110,4 +110,4 @@ function instantiateDOM(weekSerJSON, taskSerJSONArray){
 }
 
 
-instantiateDOM(JSON.parse(localStorage.getItem("weekSer")), localStorage.getItem("taskSers"));
+instantiateDOM(JSON.parse(localStorage.getItem("weekSer")), JSON.parse(localStorage.getItem("taskSers")));

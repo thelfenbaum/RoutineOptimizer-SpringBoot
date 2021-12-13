@@ -9,10 +9,24 @@
 
 :root {
   // colors
-  @include defineColorHSL(--cd-color-event-1, 199, 25%, 46%);   // Smalt Blue
-  @include defineColorHSL(--cd-color-event-2, 271, 23%, 26%);   // Martinique
-  @include defineColorHSL(--cd-color-event-3, 162, 14%, 68%);   // Edward
-  @include defineColorHSL(--cd-color-event-4, 31, 89%, 68%);    // Rajah
+  @include defineColorHSL(--cd-color-1, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-2, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-3, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-4, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-5, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-6, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-7, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-8, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-9, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-10, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-11, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-12, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-13, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-14, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-15, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-16, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-17, 199, 25%, 46%);   // Smalt Blue
+  @include defineColorHSL(--cd-color-18, 199, 25%, 46%);   // Smalt Blue
   @include defineColorHSL(--cd-color-text, 0, 0%, 13%);         // Black
   @include defineColorHSL(--cd-color-border, 0, 0%, 92%);       // Grey
 
@@ -29,7 +43,7 @@ body {
 }
 
 a {
-	color: var(--cd-color-event-3);
+	color: var(--cd-color-event-1);
 }
 
 .cd-schedule {
@@ -314,6 +328,11 @@ a {
 .cd-schedule__event [data-event="event-4"],
 .cd-schedule-modal[data-event="event-4"] .cd-schedule-modal__header-bg {
 	background: var(--cd-color-event-4);
+}
+
+.cd-schedule__event [data-event="5"],
+.cd-schedule-modal[data-event="5"] .cd-schedule-modal__header-bg {
+  background: var(--cd-color-5);
 }
 
 .cd-schedule-modal {

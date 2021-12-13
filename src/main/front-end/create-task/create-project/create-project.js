@@ -20,7 +20,7 @@ const API_BASE_URL = "http://localhost:8080/project/"
 // };
 
 async function calculateHours(userid, totalHours, startDateTime, dueDateTime){
-    let url = API_BASE_URL + userid + "/" + totalHours + "/" + startDateTime + "/" + dueDateTime;
+    let url = API_BASE_URL + "calculatehours/" + userid + "/" + totalHours + "/" + startDateTime + "/" + dueDateTime;
     return fetch(url)
         .then(response => response.json())
         .catch(error => console.log(error));

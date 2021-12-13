@@ -66,6 +66,7 @@ public class ProjectController {
      * @param userId: The user id.
      * @return The Week of the user
      */
+    @CrossOrigin
     public Week importWeek(long userId) {
         Week week;
         WeekSerializable weekSers = this.weekSerializableInteractorDataOut.getWeekSerializableByUserId(userId);
