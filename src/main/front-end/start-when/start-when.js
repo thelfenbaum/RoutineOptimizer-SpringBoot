@@ -28,11 +28,12 @@ async function getNewWeek(userid){
 
 // remove old week, add in new week on given start date, and save that new week as a POJO in localstorage
 async function instantiateWeek(){
-    const userId = localStorage.getItem("userid");
+    const userid = localStorage.getItem("userid");
     const startDate = document.getElementById("create").value;
-    await removeOldWeek(userId);
-    await addNewWeek(userId, startDate);
-    const weekSer = JSON.stringify(await getNewWeek());
+    await removeOldWeek(userid);
+    await addNewWeek(userid, startDate);
+    const weekSerRaw = await getNewWeek(userid);
+    const weekSer = JSON.stringify(weekSerRaw);
     localStorage.setItem("weekSer", weekSer);
     location.href = "../timetable/timetable-empty.html";
 }

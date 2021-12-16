@@ -28,7 +28,10 @@ async function createAccount(){
     } else {
         await signUp(username, password);
         let userid = await getUserid(username);
-        localStorage.setItem("userid", userid);
+        while (userid === undefined){
+            let userid = await getUserid(username);
+        }
+        localStorage.setItem("userid", userid.toString());
         location.href = "../start-when/start-when.html";
     }
 }
