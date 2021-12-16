@@ -90,7 +90,7 @@ function updateTaskOnDOM(taskSerJSON){
     const day = startDateTime.getDay();
     taskNode +=
         `<li class="cd-schedule__event">
-            <a data-start=${getTimeFormatted(endDateTime)} data-end=${getTimeFormatted(startDateTime)} 
+            <a data-start=${getTimeFormatted(startDateTime)} data-end=${getTimeFormatted(endDateTime)} 
             data-content=${taskSerJSON.name} data-event="event-1" href="#">
                 <em class="cd-schedule__name">${taskSerJSON.name}</em>
             </a>

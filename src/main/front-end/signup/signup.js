@@ -29,7 +29,7 @@ async function createAccount(){
         await signUp(username, password);
         const userid = await getUserid(username);
         localStorage.setItem("userid", userid);
-        location.href = "../create-or-import/start-when.html";
+        location.href = "../start-when/start-when.html";
     }
 }
 
