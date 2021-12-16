@@ -84,7 +84,7 @@ public class WeekController {
     @PostMapping("/weeks")
     @CrossOrigin
     @Transactional
-    public void saveWeekSerializable(WeekSerializable week){
+    public void saveWeekSerializable(@RequestBody WeekSerializable week){
         this.weekSerializableInteractorDataIn.saveWeekSerializable(week);
     }
 

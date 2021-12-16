@@ -20,6 +20,6 @@ async function importWeek() {
 }
 
 function createWeek() {
-    location.href = "start-when.html";
+    location.href = "../start-when/start-when.html";
 }
 

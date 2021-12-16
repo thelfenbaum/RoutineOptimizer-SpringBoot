@@ -42,7 +42,7 @@ public class UserController {
      */
     @GetMapping("/users/{username}")
     @CrossOrigin
-    public User checkUsername(@PathVariable String username){
+    public User getUserFromUsername(@PathVariable String username){
         return this.userInteractorDataOut.getUserFromUsername(username);
     }
 

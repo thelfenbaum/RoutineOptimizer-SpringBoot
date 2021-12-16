@@ -27,8 +27,11 @@ async function createAccount(){
         alert("Username is already in use. Please enter a different username.");
     } else {
         await signUp(username, password);
-        const userid = await getUserid(username);
-        localStorage.setItem("userid", userid);
+        let userid = await getUserid(username);
+        while (userid === undefined){
+            let userid = await getUserid(username);
+        }
+        localStorage.setItem("userid", userid.toString());
         location.href = "../start-when/start-when.html";
     }
 }
