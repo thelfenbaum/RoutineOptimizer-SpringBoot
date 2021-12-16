@@ -27,7 +27,7 @@ public class WeekSerializableInteractorDataIn {
      * Saves the WeekSerializable object to the database.
      * @param weekSer: The WeekSerializable that will be saved in the database.
      */
-    @Transactional
+//    @Transactional
     public void saveWeekSerializable(WeekSerializable weekSer){
         this.repo.save(weekSer);
     }
