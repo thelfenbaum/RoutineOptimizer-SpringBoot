@@ -3,7 +3,7 @@
 <h2> What is This Project? </h2>
 This is a project I built for a Software Design Course at the University of Toronto. </p>
 
-<b>Basic concept:</b> scheduling application to help optimize one's routine in 1 of 2 ways: schedule an item at a concrete time, or get the program to schedule a task (or set of tasks) for you based on your availability. This concept was motivated by my experiences waiting many weeks for a learning strategist on campus to schedule tasks like this with me </p>
+<b>Basic concept:</b> scheduling application to help optimize one's routine in 1 of 2 ways: (1) schedule an item at a concrete time, or (2) get the program to schedule a task (or set of tasks) for you based on your availability. This concept was motivated by my experiences waiting many weeks for a learning strategist on campus to schedule tasks like this with me </p>
 <b>Stack information:</b> full stack web application with PostgreSQL database, Spring boot backend and Vanilla JavaScript/CSS/HTML frontend </p>
 
 This project was extremely important for my development as a software engineer for a number of reasons, including:
